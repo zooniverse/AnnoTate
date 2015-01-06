@@ -32,7 +32,7 @@
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates'], callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc'], callback);
     });
 
     gulp.task('clean', function (callback) {
@@ -47,6 +47,11 @@
 
     gulp.task('dist', function (callback) {
         return runSequence('build', 'server', callback);
+    });
+
+    gulp.task('misc', function () {
+        return gulp.src('bower_components/bootstrap/dist/css/bootstrap.css.map')
+            .pipe(gulp.dest(serverDir));
     });
 
     gulp.task('processIndex', function () {
