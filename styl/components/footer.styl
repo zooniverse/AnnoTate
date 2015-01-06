@@ -1,2 +1,37 @@
 footer[role="content-info"]
-    width: auto
+
+    logo-size = 180px
+
+    .structure
+        max-width: 1200px
+        padding: 20px
+        margin: 0 auto
+
+    .logo-container
+        display: block
+        height: logo-size
+        margin: 0 auto 20px
+        width: logo-size
+
+        svg
+            height: logo-size
+            width: logo-size
+
+    .content
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+
+
+    dl
+        flex: 0 0 25%
+
+    p
+        flex: 0 0 100%
+        padding: 0 20%
+        text-align: center
+
+    .links
+        flex: 0 0 100%
+        a
+            margin-right: 50px
