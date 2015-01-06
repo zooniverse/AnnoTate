@@ -71,8 +71,7 @@
     gulp.task('templates', function () {
         return gulp.src(templatesDir + '/**/*.html')
             .pipe(templateCache({
-                module: 'app',
-                root: 'templates/'
+                module: 'app'
             }))
             .pipe(concat('templates.js'))
             .pipe(gulp.dest(serverDir));

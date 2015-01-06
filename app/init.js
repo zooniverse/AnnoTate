@@ -15,7 +15,7 @@
                 .when('/', {
                     controller: 'HomeCtrl',
                     slug: 'home',
-                    templateUrl: 'templates/home.html'
+                    templateUrl: 'home.html'
                 })
                 .otherwise({
                     redirectTo: '/'
