@@ -13,6 +13,7 @@
     var replace = require('gulp-replace-task');
     var runSequence = require('run-sequence');
     var server = require('./server.js');
+    var stylus = require('gulp-stylus');
     var templateCache = require('gulp-angular-templatecache');
     var uglify = require('gulp-uglify');
     var useref = require('gulp-useref')
@@ -27,12 +28,13 @@
     var serverDir = baseDir + '/.tmp';
     var appDir = baseDir + '/app';
     var cssDir = baseDir + '/css';
+    var stylDir = baseDir + '/styl';
     var templatesDir = appDir + '/templates';
 
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates', 'misc'], callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus'], callback);
     });
 
     gulp.task('clean', function (callback) {
@@ -50,7 +52,11 @@
     });
 
     gulp.task('misc', function () {
-        return gulp.src('bower_components/bootstrap/dist/css/bootstrap.css.map')
+        var files = [
+            'bower_components/bootstrap/dist/css/bootstrap.css',
+            'bower_components/bootstrap/dist/css/bootstrap.css.map'
+        ];
+        return gulp.src(files)
             .pipe(gulp.dest(serverDir));
     });
 
@@ -66,6 +72,12 @@
 
     gulp.task('server', function () {
         return server();
+    });
+
+    gulp.task('stylus', function () {
+        gulp.src(stylDir + '/main.styl')
+            .pipe(stylus())
+            .pipe(gulp.dest(serverDir));
     });
 
     gulp.task('templates', function () {
@@ -87,6 +99,11 @@
         gulp.watch([
             templatesDir + '/**/*'
         ], ['templates']);
+
+        gulp.watch([
+            stylDir + '/**/*'
+        ], ['stylus']);
+
     });
 
 })();
