@@ -10,7 +10,9 @@
                 restrict: 'A',
                 link: function (scope, element, attrs) {
 
-                    scope.panZoom = svgPanZoom(element[0]);
+                    scope.svg = element[0];
+
+                    scope.panZoom = svgPanZoom(scope.svg);
 
                     scope.panZoom.on = function () {
                         scope.panZoom.enablePan();
