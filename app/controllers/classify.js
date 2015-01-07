@@ -9,8 +9,6 @@
         'SubjectsFactory',
         function ($scope, SubjectsFactory) {
 
-
-
             $scope.activeTool = null;
 
             $scope.setTool = function (tool) {
