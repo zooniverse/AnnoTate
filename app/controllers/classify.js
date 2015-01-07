@@ -6,8 +6,9 @@
 
     app.controller('ClassifyCtrl', [
         '$scope',
+        'AnnotationsFactory',
         'SubjectsFactory',
-        function ($scope, SubjectsFactory) {
+        function ($scope, Annotations, Subjects) {
 
             $scope.activeTool = null;
 
@@ -23,10 +24,12 @@
                 }
             };
 
-            SubjectsFactory.get()
+            Subjects.get()
                 .then(function (response) {
                     $scope.subject = response;
                 });
+
+            $scope.annotations = Annotations.list();
 
         }
 

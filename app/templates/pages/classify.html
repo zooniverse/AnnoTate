@@ -26,6 +26,12 @@
                 xlink:href=""
                 y="0"></image>
 
+            <circle
+                temp-text-annotation
+                data="annotation"
+                ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
+            ></circle>
+
         </svg>
 
     </div>
