@@ -5,14 +5,15 @@
     var app = angular.module('app');
 
     app.factory('SubjectsFactory', [
-        function () {
+        '$q',
+        function ($q) {
 
             var _dummySubject = {
                 image: '/images/image_03.jpg'
             };
 
             var get = function () {
-                return _dummySubject;
+                return $q.when(_dummySubject);
             };
 
             return {

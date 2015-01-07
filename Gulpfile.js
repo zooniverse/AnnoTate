@@ -34,7 +34,7 @@
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts'], callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts', 'images'], callback);
     });
 
     gulp.task('clean', function (callback) {
