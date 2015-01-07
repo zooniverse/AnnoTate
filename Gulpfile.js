@@ -34,7 +34,7 @@
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus'], callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts'], callback);
     });
 
     gulp.task('clean', function (callback) {
@@ -51,10 +51,22 @@
         return runSequence('build', 'server', callback);
     });
 
+    gulp.task('fonts', function () {
+        var fontFiles = ['bower_components/bootstrap/dist/fonts/*'];
+        return gulp.src(fontFiles)
+            .pipe(gulp.dest(serverDir + '/fonts'));
+    });
+
+    gulp.task('images', function () {
+        return gulp.src('images/*')
+            .pipe(gulp.dest(serverDir + '/images'));
+    });
+
+
     gulp.task('misc', function () {
         var files = [
             'bower_components/bootstrap/dist/css/bootstrap.css',
-            'bower_components/bootstrap/dist/css/bootstrap.css.map'
+            'bower_components/bootstrap/dist/css/bootstrap.css.map',
         ];
         return gulp.src(files)
             .pipe(gulp.dest(serverDir));

@@ -14,11 +14,16 @@
                 .when('/', {
                     controller: 'HomeCtrl',
                     slug: 'home',
-                    templateUrl: 'home.html'
+                    templateUrl: 'pages/home.html'
                 })
                 .when('/about', {
                     slug: 'about',
-                    templateUrl: 'about.html'
+                    templateUrl: 'pages/about.html'
+                })
+                .when('/classify', {
+                    controller: 'ClassifyCtrl',
+                    slug: 'classify',
+                    templateUrl: 'pages/classify.html'
                 })
                 .otherwise({
                     redirectTo: '/'

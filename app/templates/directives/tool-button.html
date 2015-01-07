@@ -1,0 +1,6 @@
+<li ng-class="{'active': $parent.activeTool.name === tool.name}">
+    <a ng-click="toggle()">
+        <span class="glyphicon glyphicon-{{ tool.icon }}" aria-hidden="true"></span>
+        <span class="tool-name">{{ tool.name }}</span>
+    </a>
+</li>
