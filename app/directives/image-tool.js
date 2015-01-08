@@ -5,7 +5,8 @@
     var module = angular.module('app');
 
     module.directive('imageTool', [
-        function () {
+        'hotkeys',
+        function (hotkeys) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -14,10 +15,18 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent;
+                    var viewport = angular.element(ClassifyCtrl.viewport);
 
                     scope.toggle = function () {
                         ClassifyCtrl.setTool(scope.tool);
                     };
+
+                    hotkeys.bindTo(ClassifyCtrl)
+                        .add({
+                            combo: 'i',
+                            description: 'Activate the image tool',
+                            callback: scope.toggle
+                        });
 
                     scope.tool = {
 

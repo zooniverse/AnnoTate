@@ -13,12 +13,14 @@
             $scope.activeTool = null;
 
             $scope.setTool = function (tool) {
-                if ($scope.activeTool && $scope.activeTool.name === tool.name) {
+                if ($scope.activeTool) {
                     $scope.activeTool.deactivate();
-                    $scope.activeTool = null;
-                } else {
+                }
+                if (!$scope.activeTool || ($scope.activeTool && $scope.activeTool.name !== tool.name )) {
                     $scope.activeTool = tool;
                     $scope.activeTool.activate();
+                } else {
+                    $scope.activeTool = null;
                 }
             };
 

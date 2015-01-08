@@ -67,6 +67,7 @@
         var files = [
             'bower_components/bootstrap/dist/css/bootstrap.css',
             'bower_components/bootstrap/dist/css/bootstrap.css.map',
+            'bower_components/angular-hotkeys/build/hotkeys.css',
         ];
         return gulp.src(files)
             .pipe(gulp.dest(serverDir));

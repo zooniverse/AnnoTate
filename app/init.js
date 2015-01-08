@@ -4,7 +4,8 @@
 
     var app = angular.module('app', [
         'ngRoute',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'cfp.hotkeys'
     ]);
 
     app.config([

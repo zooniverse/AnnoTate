@@ -5,8 +5,9 @@
     var module = angular.module('app');
 
     module.directive('textTool', [
+        'hotkeys',
         'AnnotationsFactory',
-        function (Annotations) {
+        function (hotkeys, Annotations) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -20,6 +21,13 @@
                     scope.toggle = function () {
                         ClassifyCtrl.setTool(scope.tool);
                     };
+
+                    hotkeys.bindTo(ClassifyCtrl)
+                        .add({
+                            combo: 't',
+                            description: 'Activate the text tool',
+                            callback: scope.toggle
+                        });
 
                     scope.tool = {
 
@@ -47,7 +55,6 @@
                         }
 
                     };
-
 
                 }
             };
