@@ -1,4 +1,4 @@
-(function (angular, $) {
+(function (angular) {
 
     'use strict';
 
@@ -15,12 +15,47 @@
                 templateUrl: 'directives/temp-text-annotation.html',
                 link: function (scope, element, attrs) {
 
-                    scope.r = 20;
-                    console.log(scope)
-                }
+                    var ClassifyCtrl = scope.$parent.$parent;
+                    var panZoom = ClassifyCtrl.panZoom;
+                    var viewport = angular.element(ClassifyCtrl.viewport);
 
+                    scope.r = 20;
+
+                    scope.addHoverClass = function () {
+                        element.addClass('hover');
+                    };
+
+                    scope.removeHoverClass = function () {
+                        element.removeClass('hover');
+                    };
+
+                    scope.startDrag = function ($event) {
+                        event.stopPropagation();
+                        viewport.on('mousemove', drag);
+                    };
+
+                    var drag = function (event) {
+                        var point = ClassifyCtrl.getPoint(event);
+                        element.attr('cx', point.x);
+                        element.attr('cy', point.y);
+                        event.preventDefault();
+                        event.stopPropagation();
+                    };
+
+                    scope.endDrag = function ($event) {
+                        var point = ClassifyCtrl.getPoint(event);
+                        scope.data.x = point.x;
+                        scope.data.y = point.y;
+                        viewport.off('mousemove');
+                    };
+
+                    scope.stopClick = function ($event) {
+                        event.stopPropagation();
+                    };
+
+                }
             }
         }
     ]);
 
-}(window.angular, window.$));
+}(window.angular));

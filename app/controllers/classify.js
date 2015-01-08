@@ -16,11 +16,9 @@
                 if ($scope.activeTool && $scope.activeTool.name === tool.name) {
                     $scope.activeTool.deactivate();
                     $scope.activeTool = null;
-                    $scope.panZoom.on();
                 } else {
                     $scope.activeTool = tool;
                     $scope.activeTool.activate();
-                    $scope.panZoom.off();
                 }
             };
 

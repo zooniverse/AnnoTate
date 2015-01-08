@@ -15,7 +15,7 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent;
-                    var svg = angular.element(ClassifyCtrl.svg);
+                    var viewport = angular.element(ClassifyCtrl.viewport);
 
                     scope.toggle = function () {
                         ClassifyCtrl.setTool(scope.tool);
@@ -28,29 +28,20 @@
 
                         activate: function () {
                             console.log(this.name, 'active');
-                            svg.on('click', this.click.bind(this));
+                            viewport.on('click', this.click.bind(this));
                         },
 
                         deactivate: function () {
                             console.log(this.name, 'inactive');
-                            svg.off('click');
+                            viewport.off('click');
                         },
 
                         click: function (event) {
                             this.addTempPoint(event);
                         },
 
-                        getPoint: function (event) {
-                            var rect = event.target.getBoundingClientRect();
-                            var zoom = parseFloat(ClassifyCtrl.panZoom.getSizes().realZoom);
-                            return {
-                               x: Math.round((event.clientX - rect.left) / zoom),
-                               y: Math.round((event.clientY - rect.top) / zoom),
-                            };
-                        },
-
                         addTempPoint: function (event)  {
-                            Annotations.add(_.extend(this.getPoint(event), {
+                            Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
                                 type: 'tempText'
                             }));
                         }

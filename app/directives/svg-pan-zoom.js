@@ -1,4 +1,4 @@
-(function (angular, _, svgPanZoom) {
+(function (angular, svgPanZoom) {
 
     'use strict';
 
@@ -11,17 +11,16 @@
                 link: function (scope, element, attrs) {
 
                     scope.svg = element[0];
-
                     scope.panZoom = svgPanZoom(scope.svg);
+                    scope.viewport = scope.svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
 
-                    scope.panZoom.on = function () {
-                        scope.panZoom.enablePan();
-                        scope.panZoom.enableZoom();
-                    };
-
-                    scope.panZoom.off = function () {
-                        scope.panZoom.disablePan();
-                        scope.panZoom.disableZoom();
+                    scope.getPoint = function (event) {
+                        var rect = scope.viewport.getBoundingClientRect();
+                        var zoom = parseFloat(scope.panZoom.getSizes().realZoom);
+                        return {
+                           x: Math.round((event.clientX - rect.left) / zoom),
+                           y: Math.round((event.clientY - rect.top) / zoom),
+                        };
                     };
 
                 }
@@ -29,4 +28,4 @@
         }
     ]);
 
-}(window.angular, window._, window.svgPanZoom));
+}(window.angular, window.svgPanZoom));

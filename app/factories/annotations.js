@@ -15,9 +15,10 @@
             };
 
             var add = function (value) {
-                _annotations.push(angular.copy(value));
+                var copied = angular.copy(value);
+                _annotations.push(copied);
                 $rootScope.$apply();
-                console.log(_annotations);
+                return copied;
             };
 
             var list = function () {
