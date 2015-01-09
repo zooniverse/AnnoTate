@@ -32,6 +32,12 @@
                 ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
             ></circle>
 
+            <g
+                text-annotation
+                data="annotation"
+                ng-repeat="annotation in annotations | filter:{type:'text'}:true"
+            ></g>
+
         </svg>
 
     </div>
