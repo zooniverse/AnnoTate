@@ -34,11 +34,11 @@
                         icon: 'picture',
 
                         activate: function () {
-                            console.log(this.name, 'active');
+                            $log.info(this.name, 'activated');
                         },
 
                         deactivate: function () {
-                            console.log(this.name, 'inactive');
+                            $log.info(this.name, 'deactivated');
                         }
 
                     };
