@@ -5,8 +5,9 @@
     var module = angular.module('app');
 
     module.directive('imageTool', [
+        '$log',
         'hotkeys',
-        function (hotkeys) {
+        function ($log, hotkeys) {
             return {
                 restrict: 'E',
                 replace: true,
