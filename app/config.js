@@ -4,6 +4,10 @@
 
     var app = angular.module('app');
 
-    app.constant('Config', {});
+    app.constant('Config', {
+        svg: {
+            pointSize: 10
+        }
+    });
 
 }());

@@ -5,7 +5,8 @@
     var app = angular.module('app');
 
     app.directive('tempTextAnnotation', [
-        function () {
+        'Config',
+        function (Config) {
             return {
                 scope: {
                     data: '='
@@ -19,7 +20,7 @@
                     var panZoom = ClassifyCtrl.panZoom;
                     var viewport = angular.element(ClassifyCtrl.viewport);
 
-                    scope.r = 20;
+                    scope.r = Config.svg.pointSize;
 
                     scope.addHoverClass = function () {
                         element.addClass('hover');
