@@ -5,9 +5,10 @@
     var module = angular.module('app');
 
     module.directive('textTool', [
+        '$log',
         'hotkeys',
         'AnnotationsFactory',
-        function (hotkeys, Annotations) {
+        function ($log, hotkeys, Annotations) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -33,31 +34,49 @@
 
                         name: 'Text',
                         icon: 'font',
-                        tempPoint: false,
+                        tempPoint: null,
 
                         activate: function () {
-                            console.log(this.name, 'active');
                             viewport.on('click', this.click.bind(this));
+                            $log.info(this.name, 'activated');
                         },
 
                         deactivate: function () {
-                            console.log(this.name, 'inactive');
                             viewport.off('click');
+                            $log.info(this.name, 'deactivated');
                         },
 
                         click: function (event) {
-                            (!this.tempPoint) ? this.addTempPoint(event) : this.removeTempPoint();
+                            if (!this.tempPoint) {
+                               this.addTempPoint(event);
+                            } else {
+                                this.addAnnotation(event);
+                                this.removeTempPoint();
+                            }
+                        },
+
+                        addAnnotation: function (event) {
+                            var endPoint = ClassifyCtrl.getPoint(event);
+                            var annotation = Annotations.add({
+                                type: 'text',
+                                x1: this.tempPoint.x,
+                                y1: this.tempPoint.y,
+                                x2: endPoint.x,
+                                y2: endPoint.y
+                            });
                         },
 
                         addTempPoint: function (event)  {
                             this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
                                 type: 'tempText'
                             }));
+                            $log.log('Added tempPoint', this.tempPoint);
                         },
 
                         removeTempPoint: function ()  {
                             Annotations.destroy(this.tempPoint);
                             this.tempPoint = null;
+                            $log.log('Removed tempPoint');
                         }
                     };
 
