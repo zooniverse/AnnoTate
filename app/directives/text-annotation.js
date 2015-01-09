@@ -30,6 +30,10 @@
                         element.removeClass('hover');
                     };
 
+                    scope.click = function ($event) {
+                        $event.preventDefault();
+                    };
+
                 }
             }
         }
