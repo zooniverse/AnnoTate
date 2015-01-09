@@ -33,6 +33,7 @@
 
                         name: 'Text',
                         icon: 'font',
+                        tempPoint: false,
 
                         activate: function () {
                             console.log(this.name, 'active');
@@ -45,15 +46,19 @@
                         },
 
                         click: function (event) {
-                            this.addTempPoint(event);
+                            (!this.tempPoint) ? this.addTempPoint(event) : this.removeTempPoint();
                         },
 
                         addTempPoint: function (event)  {
-                            Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
+                            this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
                                 type: 'tempText'
                             }));
-                        }
+                        },
 
+                        removeTempPoint: function ()  {
+                            Annotations.destroy(this.tempPoint);
+                            this.tempPoint = null;
+                        }
                     };
 
                 }
