@@ -21,7 +21,7 @@
                     var panZoom = ClassifyCtrl.panZoom;
                     var viewport = angular.element(ClassifyCtrl.viewport);
 
-                    scope.r = Config.svg.pointSize;
+                    scope.deleteR = 10
 
                     scope.addHoverClass = function () {
                         element.addClass('hover');
@@ -52,11 +52,9 @@
                     };
 
                     scope.delete = function () {
-                        console.log('delete')
                         Annotations.destroy(scope.data);
                     };
 
-                    scope.deleteR = 10
 
                 }
             }
