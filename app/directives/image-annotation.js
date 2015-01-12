@@ -5,8 +5,9 @@
     var app = angular.module('app');
 
     app.directive('imageAnnotation', [
+        'AnnotationsFactory',
         'Config',
-        function (Config) {
+        function (Annotations, Config) {
             return {
                 scope: {
                     data: '='
@@ -30,10 +31,32 @@
                         element.removeClass('hover');
                     };
 
+                    scope.activateEdit = function ($event) {
+                        $event.preventDefault();
+                        $event.stopImmediatePropagation();
+                        element.addClass('edit');
+                        viewport.on('click', scope.deactivateEdit);
+                    };
+
+                    scope.deactivateEdit = function (event) {
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+
+                        viewport.off('click');
+                        element.removeClass('edit');
+                    };
+
                     scope.click = function ($event) {
                         $event.preventDefault();
                         $event.stopImmediatePropagation();
                     };
+
+                    scope.delete = function () {
+                        console.log('delete')
+                        Annotations.destroy(scope.data);
+                    };
+
+                    scope.deleteR = 10
 
                 }
             }

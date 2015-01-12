@@ -8,6 +8,10 @@
         '$rootScope',
         function ($rootScope) {
 
+            var _defer = function (fn) {
+                ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
+            };
+
             var _annotations = [];
 
             var reset = function () {
@@ -26,8 +30,9 @@
             };
 
             var destroy = function (data) {
-                _.remove(_annotations, { $$hashKey: data.$$hashKey });
-                $rootScope.$apply();
+                _defer(function () {
+                    _.remove(_annotations, { $$hashKey: data.$$hashKey });
+                });
             };
 
             return {

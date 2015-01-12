@@ -35,6 +35,7 @@
                         name: 'Image',
                         icon: 'picture',
                         tempRect: null,
+                        tempOrigin: null,
                         drawing: false,
 
                         activate: function () {
@@ -52,7 +53,8 @@
                         startDraw: function (event) {
                             event.stopImmediatePropagation();
                             this.drawing = true;
-                            this.tempRect = Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
+                            this.tempOrigin = ClassifyCtrl.getPoint(event);
+                            this.tempRect = Annotations.add(_.extend(this.tempOrigin, {
                                 type: 'tempImage',
                                 width: 0,
                                 height: 0
@@ -62,8 +64,10 @@
 
                         draw: function (event) {
                             var newPoint = ClassifyCtrl.getPoint(event);
-                            this.tempRect.width = newPoint.x - this.tempRect.x;
-                            this.tempRect.height = newPoint.y - this.tempRect.y;
+                            this.tempRect.x = (this.tempOrigin.x < newPoint.x) ? this.tempOrigin.x : newPoint.x;
+                            this.tempRect.y = (this.tempOrigin.y < newPoint.y) ? this.tempOrigin.y : newPoint.y;
+                            this.tempRect.width = (this.tempOrigin.x < newPoint.x) ? newPoint.x - this.tempRect.x : this.tempOrigin.x - newPoint.x;
+                            this.tempRect.height = (this.tempOrigin.y < newPoint.y) ? newPoint.y - this.tempRect.y : this.tempOrigin.y - newPoint.y;
                             scope.$apply();
                         },
 
@@ -77,6 +81,7 @@
                             Annotations.destroy(this.tempRect);
                             this.drawing = false;
                             this.tempRect = null;
+                            this.tempOrigin = null;
                             viewport.off('mousemove');
                         }
 

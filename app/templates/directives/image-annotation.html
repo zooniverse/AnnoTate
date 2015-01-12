@@ -1,9 +1,23 @@
-<rect
-    class="image-annotation"
-    ng-attr-x="{{ data.x }}"
-    ng-attr-y="{{ data.y }}"
-    ng-attr-height="{{ data.height }}"
-    ng-attr-width="{{ data.width }}"
-    ng-click="click($event)"
-    ng-mousedown="click($event)"
-></rect>
+<g class="image-annotation">
+
+    <rect
+        class="image-annotation-area"
+        ng-attr-x="{{ data.x }}"
+        ng-attr-y="{{ data.y }}"
+        ng-attr-height="{{ data.height }}"
+        ng-attr-width="{{ data.width }}"
+        ng-click="activateEdit($event)"
+        ng-mousedown="click($event)"
+        ng-mouseenter="addHoverClass()"
+        ng-mouseleave="removeHoverClass()"
+    ></rect>
+
+    <circle
+        class="image-annotation-delete"
+        ng-attr-cx="{{ data.x + data.width }}"
+        ng-attr-cy="{{ data.y }}"
+        ng-attr-r="{{ deleteR }}"
+        ng-click="delete()"
+    ></circle>
+
+</g>
