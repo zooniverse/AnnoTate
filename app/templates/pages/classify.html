@@ -38,6 +38,13 @@
                 ng-repeat="annotation in annotations | filter:{type:'text'}:true"
             ></g>
 
+            <g
+                temp-image-annotation
+                data="annotation"
+                ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
+            ></g>
+
+
         </svg>
 
     </div>
