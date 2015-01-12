@@ -44,6 +44,11 @@
                 ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
             ></g>
 
+            <g
+                image-annotation
+                data="annotation"
+                ng-repeat="annotation in annotations | filter:{type:'image'}:true"
+            ></g>
 
         </svg>
 

@@ -35,6 +35,7 @@
                         name: 'Image',
                         icon: 'picture',
                         tempRect: null,
+                        drawing: false,
 
                         activate: function () {
                             viewport.on('mousedown', this.startDraw.bind(this));
@@ -50,6 +51,7 @@
 
                         startDraw: function (event) {
                             event.stopImmediatePropagation();
+                            this.drawing = true;
                             this.tempRect = Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
                                 type: 'tempImage',
                                 width: 0,
@@ -66,6 +68,15 @@
                         },
 
                         finishDraw: function (event) {
+                            if (!this.drawing) {
+                                return false;
+                            }
+                            Annotations.add(_.extend(angular.copy(this.tempRect), {
+                                type: 'image'
+                            }));
+                            Annotations.destroy(this.tempRect);
+                            this.drawing = false;
+                            this.tempRect = null;
                             viewport.off('mousemove');
                         }
 
