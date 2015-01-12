@@ -43,8 +43,8 @@
                         },
 
                         deactivate: function () {
-                            viewport.off('mousedown', this.startDraw);
-                            viewport.off('mouseup', this.finishDraw);
+                            viewport.off('mousedown');
+                            viewport.off('mouseup');
                             $log.info(this.name, 'deactivated');
                         },
 
