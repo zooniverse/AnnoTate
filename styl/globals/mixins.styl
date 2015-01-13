@@ -1,2 +1,10 @@
 box-sizing()
     vendor('box-sizing', arguments)
+
+$clearfix
+    &:before,
+    &:after
+        content: " "
+        display: table
+    &:after
+        clear: both

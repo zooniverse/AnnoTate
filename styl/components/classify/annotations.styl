@@ -19,8 +19,23 @@
 
 .text-annotation-edit
     background-color: #fff
+    border-radius: 6px
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
     color: black
     left: 50px
     position: absolute
     top: 50px
     width: 400px
+
+    .btn-toolbar
+        @extend $clearfix
+        border-top: 1px solid #e5e5e5
+        padding: 15px
+
+        .editing
+            float: left
+        .save-close
+            float: right
+
+    .text-entry
+        padding: 15px

@@ -17,6 +17,8 @@
 
                     var ClassifyCtrl = scope.$parent.$parent;
 
+                    scope.text = scope.data.text || '';
+
                     scope.deletion = function () {
                         console.log('deletion');
                     };
@@ -29,13 +31,15 @@
                         console.log('illegible');
                     };
 
-                    scope.discard = function () {
-                        console.log('Discard');
+                    scope.close = function () {
+                        console.log('Close');
                         ClassifyCtrl.editingTextAnnotation = null;
                     };
 
                     scope.save = function () {
-                        console.log('save');
+                        scope.data.text = scope.text;
+                        console.log('save', scope.data);
+                        scope.close();
                     };
 
                 }
