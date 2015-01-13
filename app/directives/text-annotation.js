@@ -33,6 +33,7 @@
                     scope.click = function ($event) {
                         $event.preventDefault();
                         $event.stopImmediatePropagation();
+                        ClassifyCtrl.editingTextAnnotation = scope.data;
                     };
 
                 }

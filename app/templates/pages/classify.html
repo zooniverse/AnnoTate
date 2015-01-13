@@ -9,6 +9,8 @@
 
     <div class="svg-container">
 
+        <div text-annotation-edit data="editingTextAnnotation" ng-if="editingTextAnnotation !== null"></div>
+
         <svg
             height="100%"
             ng-class="{ 'active': activeTool.name }"

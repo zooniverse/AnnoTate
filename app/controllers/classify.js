@@ -12,6 +12,8 @@
 
             $scope.activeTool = null;
 
+            $scope.editingTextAnnotation = null;
+
             $scope.setTool = function (tool) {
                 if ($scope.activeTool) {
                     $scope.activeTool.deactivate();
