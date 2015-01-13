@@ -5,7 +5,8 @@
     var app = angular.module('app');
 
     app.directive('textAnnotationEdit', [
-        function () {
+        '$window',
+        function ($window) {
             return {
                 scope: {
                     data: '='
@@ -16,29 +17,50 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;
+                    var textArea = element.find('textarea');
 
                     scope.text = scope.data.text || '';
 
+                    var tag = function (tagText) {
+
+                        var startTag = '[' + tagText + ']';
+                        var endTag = '[/' + tagText + ']';
+
+                        var start = textArea.prop('selectionStart');
+                        var end = textArea.prop('selectionEnd');
+                        var text = textArea.val();
+
+                        if (start === end) {
+                            var textBefore = text.substring(0, start);
+                            var textAfter = text.substring(start, text.length);
+                            textArea.val(textBefore + startTag + endTag + textAfter);
+                        } else {
+                            var textBefore = text.substring(0, start);
+                            var textInBetween = text.substring(start, end);
+                            var textAfter = text.substring(end, text.length);
+                            textArea.val(textBefore + startTag + textInBetween + endTag + textAfter);
+                        }
+
+                    };
+
                     scope.deletion = function () {
-                        console.log('deletion');
+                        tag('deletion');
                     };
 
                     scope.insertion = function () {
-                        console.log('insertion');
+                        tag('insertion');
                     };
 
                     scope.illegible = function () {
-                        console.log('illegible');
+                        tag('illegible');
                     };
 
                     scope.close = function () {
-                        console.log('Close');
                         ClassifyCtrl.editingTextAnnotation = null;
                     };
 
                     scope.save = function () {
                         scope.data.text = scope.text;
-                        console.log('save', scope.data);
                         scope.close();
                     };
 
