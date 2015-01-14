@@ -17,12 +17,15 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;
-                    var textArea = element.find('textarea');
+                    var viewport = element.parent();
 
+                    scope.translateX = 0;
+                    scope.translateY = 0;
                     scope.text = scope.data.text || '';
 
                     var tag = function (tagText) {
 
+                        var textArea = element.find('textarea');
                         var startTag = '[' + tagText + ']';
                         var endTag = '[/' + tagText + ']';
 
@@ -41,6 +44,31 @@
                             textArea.val(textBefore + startTag + textInBetween + endTag + textAfter);
                         }
 
+                    };
+
+                    scope.startDrag = function ($event) {
+                        var target = $event.target.tagName;
+                        if (target === 'DIV' && $event.button === 0) {
+                            element.addClass('dragging');
+                            $event.preventDefault();
+                            viewport.on('mousemove', drag);
+                        }
+
+                    };
+
+                    var drag = function (event) {
+                        event.preventDefault();
+                        scope.translateX += event.movementX;
+                        scope.translateY += event.movementY;
+                        element.css('transform', 'translateX(' + scope.translateX + 'px) translateY(' + scope.translateY + 'px)');
+                    };
+
+                    scope.endDrag = function ($event) {
+                        var target = $event.target.tagName;
+                        if (target === 'DIV') {
+                            element.removeClass('dragging');
+                            viewport.off('mousemove');
+                        }
                     };
 
                     scope.deletion = function () {

@@ -47,6 +47,10 @@
                         },
 
                         click: function (event) {
+                            if (ClassifyCtrl.editingTextAnnotation) {
+                                return false;
+                            }
+
                             if (!this.tempPoint) {
                                this.addTempPoint(event);
                             } else {

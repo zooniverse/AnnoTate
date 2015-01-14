@@ -12,7 +12,7 @@
 
             $scope.activeTool = null;
 
-            $scope.editingTextAnnotation = {x: 133, y: 278, type: "text", $$hashKey: "object:17", text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt' };
+            $scope.editingTextAnnotation = null;
 
             $scope.setTool = function (tool) {
                 if ($scope.activeTool) {

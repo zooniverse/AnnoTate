@@ -51,6 +51,10 @@
                         },
 
                         startDraw: function (event) {
+                            if (ClassifyCtrl.editingTextAnnotation) {
+                                return false;
+                            }
+
                             event.stopImmediatePropagation();
                             this.drawing = true;
                             this.tempOrigin = ClassifyCtrl.getPoint(event);
@@ -72,6 +76,10 @@
                         },
 
                         finishDraw: function (event) {
+                            if (ClassifyCtrl.editingTextAnnotation) {
+                                return false;
+                            }
+
                             if (!this.drawing) {
                                 return false;
                             }
