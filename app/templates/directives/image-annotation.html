@@ -12,12 +12,31 @@
         ng-mouseleave="removeHoverClass()"
     ></rect>
 
-    <circle
+    <svg
         class="image-annotation-delete"
-        ng-attr-cx="{{ data.x + data.width }}"
-        ng-attr-cy="{{ data.y }}"
-        ng-attr-r="{{ deleteR }}"
+        viewBox="0 0 283.464 283.465"
         ng-click="delete()"
-    ></circle>
+        width="20"
+        height="20"
+        x="0"
+        y="0"
+        ng-attr-x="{{ data.x + data.width - 10 }}"
+        ng-attr-y="{{ data.y - 10}}"
+        style="overflow:visible">
+
+       <circle
+           cx="141.73199"
+           cy="141.73199"
+           r="141.73199"
+           id="circle7"
+           style="fill:red" />
+
+        <g id="g9">
+            <polygon
+                points="141.031,92.602 90.923,42.493 40.812,92.604 90.922,142.712 40.812,192.822 90.921,242.932 141.031,192.822 191.141,242.931 241.25,192.821 191.141,142.711 241.251,92.602 191.142,42.492 141.031,92.602 "
+                id="polygon11"
+                style="fill:#ffffff" />
+        </g>
+    </svg>
 
 </g>
