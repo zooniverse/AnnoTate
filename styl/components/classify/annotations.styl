@@ -1,19 +1,37 @@
 .temp-text-annotation
+    opacity: 0.4
+    -webkit-animation: pulse 0.5s ease-in-out
+    -webkit-animation-iteration-count: infinite
+    -webkit-transform-origin: center
+    -webkit-animation-direction: alternate
+    fill: #ED303C
     &.hover
         cursor: move
 
 .text-annotation
+    opacity: 0.4
+    fill: #F5634A
     &.hover
         cursor: pointer
+        opacity: 0.8
+
+.temp-image-annotation
+    opacity: 0.4
+    fill: dark-blue
 
 .image-annotation
+
+    rect
+        opacity: 0.4
+        fill: blue
+
     .image-annotation-delete
         cursor: pointer
-        display: none
+        display: none !important
         fill: red
     &.edit
         .image-annotation-delete
-            display: block
+            display: block  !important
     &.hover
         cursor: pointer
 
@@ -42,3 +60,11 @@
 
     &.dragging
         cursor: move
+
+
+@-webkit-keyframes pulse
+    0%
+        -webkit-transform: scale(0.8)
+    100%
+        -webkit-transform: scale(1)
+
