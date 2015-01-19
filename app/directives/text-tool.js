@@ -45,7 +45,9 @@
                         deactivate: function () {
                             viewport.off('click');
                             $log.info(this.name, 'deactivated');
-                            this.removeTempPoint();
+                            if (this.tempPoint) {
+                                this.removeTempPoint();
+                            }
                         },
 
                         click: function (event) {
