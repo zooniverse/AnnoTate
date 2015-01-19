@@ -18,6 +18,7 @@
 
                     var ClassifyCtrl = scope.$parent.$parent;
                     var viewport = element.parent();
+                    var textArea = element.find('textarea');
 
                     scope.translateX = 0;
                     scope.translateY = 0;
@@ -25,7 +26,6 @@
 
                     var tag = function (tagText) {
 
-                        var textArea = element.find('textarea');
                         var startTag = '[' + tagText + ']';
                         var endTag = '[/' + tagText + ']';
 
@@ -43,6 +43,8 @@
                             var textAfter = text.substring(end, text.length);
                             textArea.val(textBefore + startTag + textInBetween + endTag + textAfter);
                         }
+
+                        textArea[0].focus();
 
                     };
 
@@ -71,15 +73,15 @@
                         }
                     };
 
-                    scope.deletion = function () {
+                    scope.deletion = function ($event) {
                         tag('deletion');
                     };
 
-                    scope.insertion = function () {
+                    scope.insertion = function ($event) {
                         tag('insertion');
                     };
 
-                    scope.illegible = function () {
+                    scope.illegible = function ($event) {
                         tag('illegible');
                     };
 
