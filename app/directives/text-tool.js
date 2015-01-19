@@ -33,6 +33,7 @@
                     scope.tool = {
 
                         name: 'Text',
+                        label: 'Annotate Text',
                         icon: 'font',
                         tempPoint: null,
 
@@ -44,6 +45,7 @@
                         deactivate: function () {
                             viewport.off('click');
                             $log.info(this.name, 'deactivated');
+                            this.removeTempPoint();
                         },
 
                         click: function (event) {
@@ -68,6 +70,7 @@
                                 x2: endPoint.x,
                                 y2: endPoint.y
                             });
+                            ClassifyCtrl.editingTextAnnotation = annotation;
                         },
 
                         addTempPoint: function (event)  {

@@ -33,6 +33,7 @@
                     scope.tool = {
 
                         name: 'Image',
+                        label: 'Annotate Image',
                         icon: 'picture',
                         tempRect: null,
                         tempOrigin: null,
