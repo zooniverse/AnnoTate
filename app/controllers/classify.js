@@ -29,6 +29,7 @@
             Subjects.get()
                 .then(function (response) {
                     $scope.subject = response;
+                    $scope.panZoom.setMinZoom($scope.panZoom.getSizes().realZoom);
                 });
 
             $scope.annotations = Annotations.list();

@@ -25,6 +25,13 @@
                         };
                     };
 
+                    scope.centre = function () {
+                        scope.panZoom.resize();
+                        scope.panZoom.updateBBox();
+                        scope.panZoom.center();
+                        scope.panZoom.fit();
+                    };
+
                 }
             };
         }
