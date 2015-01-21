@@ -32,6 +32,11 @@
                         scope.panZoom.fit();
                     };
 
+                    scope.rotate = function (degrees) {
+                        var rotateContainer = svg.getElementsByClassName('rotate-container');
+                        console.log(rotateContainer);
+                    };
+
                 }
             };
         }

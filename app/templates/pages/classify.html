@@ -7,6 +7,18 @@
         </ul>
         <ul class="nav navbar-nav navbar-right sub-tools">
             <li>
+                <a href class="left" ng-click="rotate()">
+                    <span class="glyphicon glyphicon-share-alt glyphicon-share-alt-left" aria-hidden="true"></span>
+                    Rotate Left
+                </a>
+            </li>
+            <li>
+                <a href class="right" ng-click="rotate()">
+                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                    Rotate Right
+                </a>
+            </li>
+            <li>
                 <a href class="centre" ng-click="centre()">
                     <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
                     Centre
@@ -31,37 +43,45 @@
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
 
-            <image
-                height="696px"
-                ng-attr-xlink:href="{{ subject.image }}"
-                width="544px"
-                x="0"
-                xlink:href=""
-                y="0"></image>
+            <g class="pan-zoom">
 
-            <circle
-                temp-text-annotation
-                data="annotation"
-                ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
-            ></circle>
+                <g class="rotate-container">
 
-            <g
-                text-annotation
-                data="annotation"
-                ng-repeat="annotation in annotations | filter:{type:'text'}:true"
-            ></g>
+                    <image
+                        height="696px"
+                        ng-attr-xlink:href="{{ subject.image }}"
+                        width="544px"
+                        x="0"
+                        xlink:href=""
+                        y="0"></image>
 
-            <g
-                temp-image-annotation
-                data="annotation"
-                ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
-            ></g>
+                    <circle
+                        temp-text-annotation
+                        data="annotation"
+                        ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
+                    ></circle>
 
-            <g
-                image-annotation
-                data="annotation"
-                ng-repeat="annotation in annotations | filter:{type:'image'}:true"
-            ></g>
+                    <g
+                        text-annotation
+                        data="annotation"
+                        ng-repeat="annotation in annotations | filter:{type:'text'}:true"
+                    ></g>
+
+                    <g
+                        temp-image-annotation
+                        data="annotation"
+                        ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
+                    ></g>
+
+                    <g
+                        image-annotation
+                        data="annotation"
+                        ng-repeat="annotation in annotations | filter:{type:'image'}:true"
+                    ></g>
+
+                </g>
+
+            </g>
 
         </svg>
 
