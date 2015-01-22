@@ -48,7 +48,8 @@
     });
 
     gulp.task('dist', function (callback) {
-        return runSequence('build', 'server', callback);
+        PRODUCTION = true;
+        return runSequence('build', callback);
     });
 
     gulp.task('fonts', function () {
