@@ -9,7 +9,7 @@
         function ($q) {
 
             var _dummySubject = {
-                image: '/images/image_03.jpg'
+                image: 'images/image_03.jpg'
             };
 
             var get = function () {

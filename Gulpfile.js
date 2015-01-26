@@ -12,6 +12,7 @@
     var match = require('gulp-match')
     var replace = require('gulp-replace-task');
     var runSequence = require('run-sequence');
+    var shell = require('gulp-shell')
     var server = require('./server.js');
     var stylus = require('gulp-stylus');
     var templateCache = require('gulp-angular-templatecache');
@@ -34,7 +35,7 @@
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts', 'images'], callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts', 'images'], 'panoptes', callback);
     });
 
     gulp.task('clean', function (callback) {
@@ -71,8 +72,16 @@
             'bower_components/angular-hotkeys/build/hotkeys.css',
         ];
         return gulp.src(files)
-            .pipe(gulp.dest(serverDir));
+            .pipe(gulp.dest(serverDir + '/css'));
     });
+
+    gulp.task('panoptes', shell.task([
+        'browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
+    ], {
+        templateData: {
+            outputPath: serverDir + '/panoptes.js'
+        }
+    }));
 
     gulp.task('processIndex', function () {
         var assets = useref.assets();
@@ -91,7 +100,7 @@
     gulp.task('stylus', function () {
         gulp.src(stylDir + '/main.styl')
             .pipe(stylus())
-            .pipe(gulp.dest(serverDir));
+            .pipe(gulp.dest(serverDir + '/css'));
     });
 
     gulp.task('templates', function () {

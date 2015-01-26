@@ -7,8 +7,9 @@
     app.controller('ClassifyCtrl', [
         '$scope',
         'AnnotationsFactory',
+        'PanoptesFactory',
         'SubjectsFactory',
-        function ($scope, Annotations, Subjects) {
+        function ($scope, Annotations, Panoptes, Subjects) {
 
             $scope.activeTool = null;
 
@@ -33,6 +34,8 @@
                 });
 
             $scope.annotations = Annotations.list();
+
+            console.log('Panoptes', Panoptes)
 
         }
 
