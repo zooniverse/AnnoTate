@@ -6,7 +6,8 @@
 
     app.factory('SubjectsFactory', [
         '$q',
-        function ($q) {
+        'PanoptesFactory',
+        function ($q, Panoptes) {
 
             var _dummySubject = {
                 image: 'images/image_03.jpg'
