@@ -7,11 +7,11 @@
     app.controller('ClassifyCtrl', [
         '$scope',
         'AnnotationsFactory',
-        'PanoptesFactory',
         'SubjectsFactory',
-        function ($scope, Annotations, Panoptes, Subjects) {
+        function ($scope, Annotations, Subjects) {
 
             $scope.activeTool = null;
+            $scope.subjectLoaded = false;
 
             $scope.editingTextAnnotation = null;
 
@@ -30,12 +30,10 @@
             Subjects.get()
                 .then(function (response) {
                     $scope.subject = response;
-                    $scope.panZoom.setMinZoom($scope.panZoom.getSizes().realZoom);
+                    $scope.subjectLoaded = true;
                 });
 
             $scope.annotations = Annotations.list();
-
-            console.log('Panoptes', Panoptes)
 
         }
 

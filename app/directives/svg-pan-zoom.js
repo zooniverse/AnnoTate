@@ -13,7 +13,9 @@
                     var svg = element[0];
 
                     scope.svg = svg;
-                    scope.panZoom = svgPanZoom(svg, {});
+                    scope.panZoom = svgPanZoom(svg, {
+                        fit: false
+                    });
                     scope.viewport = svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
 
                     scope.getPoint = function (event) {
@@ -26,8 +28,8 @@
                     };
 
                     scope.centre = function () {
-                        scope.panZoom.resize();
                         scope.panZoom.updateBBox();
+                        scope.panZoom.resize();
                         scope.panZoom.center();
                         scope.panZoom.fit();
                     };

@@ -47,12 +47,21 @@
 
                 <g class="rotate-container">
 
+                    <rect
+                        height="0px"
+                        width="0px"
+                        x="0"
+                        y="0"
+                    ></rect>
+
                     <image
+                        ng-if="subjectLoaded === true"
                         height="696px"
-                        ng-attr-xlink:href="{{ subject.image }}"
+                        ng-href="{{ subject.image.url }}"
                         width="544px"
                         x="0"
                         xlink:href=""
+                        ng-load="centre()"
                         y="0"></image>
 
                     <circle
