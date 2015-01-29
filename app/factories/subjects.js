@@ -6,10 +6,14 @@
 
     app.factory('SubjectsFactory', [
         '$http',
+        '$localStorage',
         '$q',
         'Config',
-        'PanoptesFactory',
-        function ($http, $q, Config, Panoptes) {
+        function ($http, $localStorage, $q, Config) {
+
+            if (_.isUndefined($localStorage.activeSubject)) {
+                $localStorage.activeSubject = {};
+            }
 
             var _get = function (endpoint, params) {
                 var url = Config.api + endpoint;
@@ -22,9 +26,10 @@
                 return $http.get(url, config);
             };
 
-            var _getSubject = function () {
+            var getSubject = function () {
                 return _get('/subjects', { limit: 1 })
-                    .then(_constructSubject);
+                    .then(_constructSubject)
+                    .then(_setActiveSubject);
             };
 
             var _constructSubject = function (response) {
@@ -40,15 +45,21 @@
                     }
                 };
                 return subject;
-                // return {
-                //     image: {
-                //         url: 'images/image_03.jpg'
-                //     }
-                // }
+            };
+
+            var _setActiveSubject = function (subject) {
+                $localStorage.activeSubject = subject;
+                return subject;
+            };
+
+            var resetActiveSubject = function () {
+                $localStorage.activeSubject = {};
             };
 
             return {
-                get: _getSubject
+                get: getSubject,
+                active: $localStorage.activeSubject,
+                resetActive: resetActiveSubject
             };
 
         }]);

@@ -31,9 +31,8 @@
                 .then(function (response) {
                     $scope.subject = response;
                     $scope.subjectLoaded = true;
+                    $scope.annotations = Annotations.list();
                 });
-
-            $scope.annotations = Annotations.list();
 
         }
 

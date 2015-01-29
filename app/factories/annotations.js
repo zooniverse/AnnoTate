@@ -5,33 +5,36 @@
     var app = angular.module('app');
 
     app.factory('AnnotationsFactory', [
+        '$localStorage',
         '$rootScope',
-        function ($rootScope) {
+        function ($localStorage, $rootScope) {
+
+            if (_.isUndefined($localStorage.annotations)) {
+                $localStorage.annotations = [];
+            }
 
             var _defer = function (fn) {
                 ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
             };
 
-            var _annotations = [];
-
             var reset = function () {
-                _annotations = [];
+                $localStorage.annotations = [];
             };
 
             var add = function (value) {
                 var copied = angular.copy(value);
-                _annotations.push(copied);
+                $localStorage.annotations.push(copied);
                 $rootScope.$apply();
                 return copied;
             };
 
             var list = function () {
-                return _annotations;
+                return $localStorage.annotations;
             };
 
             var destroy = function (data) {
                 _defer(function () {
-                    _.remove(_annotations, { $$hashKey: data.$$hashKey });
+                    _.remove($localStorage.annotations, { $$hashKey: data.$$hashKey });
                 });
             };
 
