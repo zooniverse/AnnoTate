@@ -6,7 +6,8 @@
         'ngRoute',
         'ui.bootstrap',
         'cfp.hotkeys',
-        'ngLoad'
+        'ngLoad',
+        'ngStorage'
     ]);
 
     app.config([
