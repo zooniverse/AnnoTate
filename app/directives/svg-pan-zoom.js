@@ -31,7 +31,7 @@
                         return point.matrixTransform(svg.rotateContainer.getScreenCTM().inverse());
                     };
 
-                    scope.centre = function () {
+                    svg.$centre = function () {
                         svg.panZoom.updateBBox();
                         svg.panZoom.resize();
                         svg.panZoom.center();
@@ -41,12 +41,9 @@
                     svg.$rotate = function (degrees) {
                         degrees = degrees || 0;
                         $log.log('Rotating', svg.rotateContainer, { current: svg.rotation, delta: degrees, new: svg.rotation + degrees});
-
                         svg.rotation = svg.rotation + degrees;
-
                         var rect = svg.rotateContainer.getBoundingClientRect();
                         var transform = [svg.rotation, rect.width / 2, rect.height / 2];
-
                         angular.element(svg.rotateContainer).attr('transform', 'rotate(' + transform.join(' ') + ')');
 
                     };
