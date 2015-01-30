@@ -11,19 +11,23 @@
                 restrict: 'A',
                 link: function (scope, element, attrs) {
 
-                    var svg = element[0];
+                    var svg = scope.svg = {
+                        root: element[0],
+                        rotation: 0
+                    };
 
-                    scope.svg = svg;
-                    scope.panZoom = svgPanZoom(svg, {
+
+
+
+                    scope.panZoom = svgPanZoom(svg.root, {
                         fit: false
                     });
-                    scope.viewport = svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
-                    var rotateContainer = svg.getElementsByClassName('rotate-container')[0];
+                    scope.viewport = svg.root.getElementsByClassName('svg-pan-zoom_viewport')[0];
+                    var rotateContainer = svg.root.getElementsByClassName('rotate-container')[0];
 
-                    scope.rotation = 0;
 
                     scope.getPoint = function (event) {
-                        var point = svg.createSVGPoint();
+                        var point = svg.root.createSVGPoint();
                         point.x = event.clientX;
                         point.y = event.clientY;
                         return point.matrixTransform(rotateContainer.getScreenCTM().inverse());
@@ -38,13 +42,12 @@
 
                     scope.rotate = function (degrees) {
                         degrees = degrees || 0;
-                        $log.log('Rotating', rotateContainer, { current: scope.rotation, delta: degrees, new: scope.rotation + degrees});
+                        $log.log('Rotating', rotateContainer, { current: svg.rotation, delta: degrees, new: svg.rotation + degrees});
 
-                        scope.rotation = scope.rotation + degrees;
+                        svg.rotation = svg.rotation + degrees;
 
                         var rect = rotateContainer.getBoundingClientRect();
-                        $log.log(rect)
-                        var transform = [scope.rotation, rect.width / 2, rect.height / 2];
+                        var transform = [svg.rotation, rect.width / 2, rect.height / 2];
 
                         angular.element(rotateContainer).attr('transform', 'rotate(' + transform.join(' ') + ')');
 
