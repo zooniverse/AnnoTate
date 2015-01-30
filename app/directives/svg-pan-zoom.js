@@ -23,12 +23,10 @@
                     scope.rotation = 0;
 
                     scope.getPoint = function (event) {
-                        var rect = rotateContainer.getBoundingClientRect();
-                        var zoom = parseFloat(scope.panZoom.getSizes().realZoom);
-                        return {
-                           x: Math.round((event.clientX - rect.left) / zoom),
-                           y: Math.round((event.clientY - rect.top) / zoom),
-                        };
+                        var point = svg.createSVGPoint();
+                        point.x = event.clientX;
+                        point.y = event.clientY;
+                        return point.matrixTransform(rotateContainer.getScreenCTM().inverse());
                     };
 
                     scope.centre = function () {

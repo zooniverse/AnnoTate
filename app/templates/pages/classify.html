@@ -35,11 +35,11 @@
         <div text-annotation-edit data="editingTextAnnotation" ng-if="editingTextAnnotation !== null"></div>
 
         <svg
-            height="598"
             ng-class="{ 'active': activeTool.name }"
             svg-pan-zoom
+            height="100%"
+            width="100%"
             version="1.1"
-            width="1198"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -57,7 +57,7 @@
                     <image
                         ng-if="subjectLoaded === true"
                         height="696px"
-                        ng-href="{{ subject.image.url }}"
+                        ng-href="images/image_03.jpg"
                         width="544px"
                         x="0"
                         xlink:href=""
