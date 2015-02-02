@@ -17,6 +17,7 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent;
+                    var svg = ClassifyCtrl.svg;
                     var viewport = angular.element(ClassifyCtrl.viewport);
 
                     scope.toggle = function () {
@@ -58,7 +59,7 @@
 
                             event.stopImmediatePropagation();
                             this.drawing = true;
-                            this.tempOrigin = ClassifyCtrl.getPoint(event);
+                            this.tempOrigin = svg.$getPoint(event);
                             this.tempRect = Annotations.add(_.extend(this.tempOrigin, {
                                 type: 'tempImage',
                                 width: 0,
@@ -68,7 +69,7 @@
                         },
 
                         draw: function (event) {
-                            var newPoint = ClassifyCtrl.getPoint(event);
+                            var newPoint = svg.$getPoint(event);
                             this.tempRect.x = (this.tempOrigin.x < newPoint.x) ? this.tempOrigin.x : newPoint.x;
                             this.tempRect.y = (this.tempOrigin.y < newPoint.y) ? this.tempOrigin.y : newPoint.y;
                             this.tempRect.width = (this.tempOrigin.x < newPoint.x) ? newPoint.x - this.tempRect.x : this.tempOrigin.x - newPoint.x;

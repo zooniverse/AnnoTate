@@ -17,7 +17,6 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;
-                    var panZoom = ClassifyCtrl.panZoom;
                     var viewport = angular.element(ClassifyCtrl.viewport);
 
                     scope.r = Config.svg.pointSize;

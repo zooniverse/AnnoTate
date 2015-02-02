@@ -24,7 +24,7 @@
                     svg.rotateContainer = svg.root.getElementsByClassName('rotate-container')[0];
 
 
-                    scope.getPoint = function (event) {
+                    svg.$getPoint = function (event) {
                         var point = svg.root.createSVGPoint();
                         point.x = event.clientX;
                         point.y = event.clientY;
