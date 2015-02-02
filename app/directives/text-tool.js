@@ -17,7 +17,7 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent;
-                    var viewport = angular.element(ClassifyCtrl.viewport);
+                    var viewport = angular.element(ClassifyCtrl.svg.viewport);
 
                     scope.toggle = function () {
                         ClassifyCtrl.setTool(scope.tool);
@@ -64,7 +64,7 @@
                         },
 
                         addAnnotation: function (event) {
-                            var endPoint = ClassifyCtrl.getPoint(event);
+                            var endPoint = ClassifyCtrl.svg.$getPoint(event);
                             var annotation = Annotations.add({
                                 type: 'text',
                                 x1: this.tempPoint.x,
@@ -76,7 +76,7 @@
                         },
 
                         addTempPoint: function (event)  {
-                            this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.getPoint(event), {
+                            this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.svg.$getPoint(event), {
                                 type: 'tempText'
                             }));
                             $log.log('Added tempPoint', this.tempPoint);

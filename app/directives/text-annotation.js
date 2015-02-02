@@ -17,7 +17,7 @@
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;
-                    var viewport = angular.element(ClassifyCtrl.viewport);
+                    var viewport = angular.element(ClassifyCtrl.svg.viewport);
 
                     scope.r = Config.svg.pointSize;
 

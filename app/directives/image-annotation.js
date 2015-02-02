@@ -19,7 +19,7 @@
 
                     var ClassifyCtrl = scope.$parent.$parent;
                     var panZoom = ClassifyCtrl.panZoom;
-                    var viewport = angular.element(ClassifyCtrl.viewport);
+                    var viewport = angular.element(ClassifyCtrl.svg.viewport);
 
                     scope.deleteR = 10
 

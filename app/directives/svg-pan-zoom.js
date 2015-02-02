@@ -20,9 +20,8 @@
                         fit: false
                     });
 
-                    scope.viewport = svg.root.getElementsByClassName('svg-pan-zoom_viewport')[0];
+                    svg.viewport = svg.root.getElementsByClassName('svg-pan-zoom_viewport')[0];
                     svg.rotateContainer = svg.root.getElementsByClassName('rotate-container')[0];
-
 
                     svg.$getPoint = function (event) {
                         var point = svg.root.createSVGPoint();
@@ -45,7 +44,6 @@
                         var rect = svg.rotateContainer.getBoundingClientRect();
                         var transform = [svg.rotation, rect.width / 2, rect.height / 2];
                         angular.element(svg.rotateContainer).attr('transform', 'rotate(' + transform.join(' ') + ')');
-
                     };
 
                 }

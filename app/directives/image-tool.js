@@ -18,7 +18,7 @@
 
                     var ClassifyCtrl = scope.$parent;
                     var svg = ClassifyCtrl.svg;
-                    var viewport = angular.element(ClassifyCtrl.viewport);
+                    var viewport = angular.element(ClassifyCtrl.svg.viewport);
 
                     scope.toggle = function () {
                         ClassifyCtrl.setTool(scope.tool);

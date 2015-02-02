@@ -18,7 +18,7 @@
 
                     var ClassifyCtrl = scope.$parent.$parent;
                     var panZoom = ClassifyCtrl.panZoom;
-                    var viewport = angular.element(ClassifyCtrl.viewport);
+                    var viewport = angular.element(ClassifyCtrl.svg.viewport);
 
                     scope.r = Config.svg.pointSize;
 
@@ -36,7 +36,7 @@
                     };
 
                     var drag = function (event) {
-                        var point = ClassifyCtrl.getPoint(event);
+                        var point = ClassifyCtrl.svg.$getPoint(event);
                         element.attr('cx', point.x);
                         element.attr('cy', point.y);
                         event.preventDefault();
@@ -44,7 +44,7 @@
                     };
 
                     scope.endDrag = function ($event) {
-                        var point = ClassifyCtrl.getPoint(event);
+                        var point = ClassifyCtrl.svg.$getPoint(event);
                         scope.data.x = point.x;
                         scope.data.y = point.y;
                         viewport.off('mousemove');
