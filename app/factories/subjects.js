@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, zooAPI) {
 
     'use strict';
 
@@ -16,20 +16,23 @@
             }
 
             var _get = function (endpoint, params) {
-                var url = Config.api + endpoint;
-                var config = {
-                    params: _.extend(Config.apiParams, params),
-                    headers: {
-                        Accept: 'application/vnd.api+json; version=1'
-                    }
-                };
-                return $http.get(url, config);
+                // var url = Config.api + endpoint;
+                // var config = {
+                //     params: _.extend(Config.apiParams, params),
+                //     headers: {
+                //         Accept: 'application/vnd.api+json; version=1'
+                //     }
+                // };
+                // return $http.get(url, config);
+
+                return window.zooAPI.get(endpoint);
+
             };
 
             var getSubject = function () {
-                return _get('/subjects', { limit: 1 })
-                    .then(_constructSubject)
-                    .then(_setActiveSubject);
+                return _get('/projects/6', { limit: 1 })
+                    // .then(_constructSubject)
+                    // .then(_setActiveSubject);
             };
 
             var _constructSubject = function (response) {
@@ -64,4 +67,4 @@
 
         }]);
 
-})(window.angular);
+})(window.angular, window.zooAPI);

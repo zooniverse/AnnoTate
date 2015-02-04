@@ -10,8 +10,7 @@
         },
         api: 'https://panoptes-staging.zooniverse.org/api',
         apiParams: {
-            'project_id': 185,
-            'workflow_id': 141
+            'project_id': 6
         }
     });
 

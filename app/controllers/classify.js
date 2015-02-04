@@ -27,12 +27,13 @@
                 }
             };
 
-            // Subjects.get()
-            //     .then(function (response) {
-            //         $scope.subject = response;
-            //         $scope.subjectLoaded = true;
+            Subjects.get()
+                .then(function (response) {
+                    $scope.subject = response;
+                    console.log(response)
+                    $scope.subjectLoaded = true;
                     $scope.annotations = Annotations.list();
-            //     });
+                });
 
             $scope.subjectLoaded = true;
 
