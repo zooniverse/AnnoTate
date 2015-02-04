@@ -1,8 +1,16 @@
 header[role="banner"]
+    .row
+        @media (min-width: 992px)
+            display: flex
 
     h1
         @extend .dancing-script
+        margin: 30px 0
 
     nav
+        @media (min-width: 992px)
+            display: flex
+            align-items: center
+            justify-content: flex-end
         a
-            padding: 0 40px
+            margin-left: 80px
