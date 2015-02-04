@@ -1,103 +1,105 @@
-<div class="structure">
+<div class="row">
+    <div class=" col-xs-12">
+        <nav class="navbar navbar-default upper-bar">
+            <ul class="nav navbar-nav tools">
+                <text-tool></text-tool>
+                <image-tool></image-tool>
+            </ul>
+            <ul class="nav navbar-nav navbar-right sub-tools">
+                <li>
+                    <a href class="left" ng-click="svg.$rotate(-90)">
+                        <span class="glyphicon glyphicon-share-alt glyphicon-share-alt-left" aria-hidden="true"></span>
+                        Rotate Left
+                    </a>
+                </li>
+                <li>
+                    <a href class="right" ng-click="svg.$rotate(90)">
+                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                        Rotate Right
+                    </a>
+                </li>
+                <li>
+                    <a href class="centre" ng-click="svg.$centre()">
+                        <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+                        Centre
+                    </a>
+                </li>
+                <li>
+                    <button class="btn btn-success navbar-btn finished">Finished transcribing</button>
+                </li>
+            </ul>
+        </nav>
 
-    <nav class="navbar navbar-default upper-bar">
-        <ul class="nav navbar-nav tools">
-            <text-tool></text-tool>
-            <image-tool></image-tool>
-        </ul>
-        <ul class="nav navbar-nav navbar-right sub-tools">
-            <li>
-                <a href class="left" ng-click="svg.$rotate(-90)">
-                    <span class="glyphicon glyphicon-share-alt glyphicon-share-alt-left" aria-hidden="true"></span>
-                    Rotate Left
-                </a>
-            </li>
-            <li>
-                <a href class="right" ng-click="svg.$rotate(90)">
-                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-                    Rotate Right
-                </a>
-            </li>
-            <li>
-                <a href class="centre" ng-click="svg.$centre()">
-                    <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
-                    Centre
-                </a>
-            </li>
-            <li>
-                <button class="btn btn-success navbar-btn finished">Finished transcribing</button>
-            </li>
-        </ul>
-    </nav>
+        <div class="svg-container">
 
-    <div class="svg-container">
+            <div text-annotation-edit data="editingTextAnnotation" ng-if="editingTextAnnotation !== null"></div>
 
-        <div text-annotation-edit data="editingTextAnnotation" ng-if="editingTextAnnotation !== null"></div>
+            <svg
+                ng-class="{ 'active': activeTool.name }"
+                svg-pan-zoom
+                height="100%"
+                width="100%"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
 
-        <svg
-            ng-class="{ 'active': activeTool.name }"
-            svg-pan-zoom
-            height="100%"
-            width="100%"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g class="pan-zoom">
 
-            <g class="pan-zoom">
+                    <g class="rotate-container">
 
-                <g class="rotate-container">
+                        <rect
+                            height="0px"
+                            width="0px"
+                            x="0"
+                            y="0"
+                        ></rect>
 
-                    <rect
-                        height="0px"
-                        width="0px"
-                        x="0"
-                        y="0"
-                    ></rect>
+                        <image
+                            ng-if="subjectLoaded === true"
+                            height="696px"
+                            ng-href="images/image_03.jpg"
+                            width="544px"
+                            x="0"
+                            xlink:href=""
+                            ng-load="svg.$centre()"
+                            y="0"></image>
 
-                    <image
-                        ng-if="subjectLoaded === true"
-                        height="696px"
-                        ng-href="images/image_03.jpg"
-                        width="544px"
-                        x="0"
-                        xlink:href=""
-                        ng-load="svg.$centre()"
-                        y="0"></image>
+                        <circle
+                            temp-text-annotation
+                            data="annotation"
+                            ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
+                        ></circle>
 
-                    <circle
-                        temp-text-annotation
-                        data="annotation"
-                        ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
-                    ></circle>
+                        <g
+                            text-annotation
+                            data="annotation"
+                            ng-repeat="annotation in annotations | filter:{type:'text'}:true"
+                        ></g>
 
-                    <g
-                        text-annotation
-                        data="annotation"
-                        ng-repeat="annotation in annotations | filter:{type:'text'}:true"
-                    ></g>
+                        <g
+                            temp-image-annotation
+                            data="annotation"
+                            ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
+                        ></g>
 
-                    <g
-                        temp-image-annotation
-                        data="annotation"
-                        ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
-                    ></g>
+                        <g
+                            image-annotation
+                            data="annotation"
+                            ng-repeat="annotation in annotations | filter:{type:'image'}:true"
+                        ></g>
 
-                    <g
-                        image-annotation
-                        data="annotation"
-                        ng-repeat="annotation in annotations | filter:{type:'image'}:true"
-                    ></g>
+                    </g>
 
                 </g>
 
-            </g>
+            </svg>
 
-        </svg>
+        </div>
+
+        <nav class="navbar navbar-default lower-bar">
+            <p class="navbar-text">Lower information bar</p>
+        </nav>
 
     </div>
-
-    <nav class="navbar navbar-default lower-bar">
-        <p class="navbar-text">Lower information bar</p>
-    </nav>
 
 </div>
