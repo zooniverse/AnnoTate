@@ -10,8 +10,11 @@
         'SubjectsFactory',
         function ($scope, Annotations, Subjects) {
 
+            $scope.subject = {
+                isLoaded: false
+            };
+
             $scope.activeTool = null;
-            $scope.subjectLoaded = false;
 
             $scope.editingTextAnnotation = null;
 
@@ -29,13 +32,14 @@
 
             Subjects.get()
                 .then(function (response) {
-                    $scope.subject = response;
-                    console.log(response)
-                    $scope.subjectLoaded = true;
+                    $scope.subject.data = response;
+                    $scope.subject.isLoaded = true;
                     $scope.annotations = Annotations.list();
                 });
 
-            $scope.subjectLoaded = true;
+            $scope.finished = function () {
+                console.log('Finished transcribing')
+            };
 
         }
 

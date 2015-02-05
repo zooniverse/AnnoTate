@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <button class="btn btn-success navbar-btn finished">Finished transcribing</button>
+                    <button class="btn btn-success navbar-btn finished" ng-click="finished()">Finished transcribing</button>
                 </li>
             </ul>
         </nav>
@@ -55,13 +55,13 @@
                         ></rect>
 
                         <image
-                            ng-if="subjectLoaded === true"
                             height="696px"
-                            ng-href="images/image_03.jpg"
+                            ng-href="{{ subject.data.image.url }}"
+                            ng-if="subject.isLoaded === true"
+                            ng-load="svg.$centre()"
                             width="544px"
                             x="0"
                             xlink:href=""
-                            ng-load="svg.$centre()"
                             y="0"></image>
 
                         <circle

@@ -31,8 +31,16 @@
 
             var getSubject = function () {
                 return _get('/projects/6', { limit: 1 })
-                    // .then(_constructSubject)
-                    // .then(_setActiveSubject);
+                    .then(_constructSubject)
+                    .then(_setActiveSubject);
+            };
+
+            var getDummySubject = function () {
+                return $q.when({
+                    image: {
+                        url: 'images/image_03.jpg'
+                    }
+                });
             };
 
             var _constructSubject = function (response) {
@@ -60,7 +68,7 @@
             };
 
             return {
-                get: getSubject,
+                get: getDummySubject,
                 active: $localStorage.activeSubject,
                 resetActive: resetActiveSubject
             };
