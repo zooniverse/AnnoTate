@@ -18,9 +18,7 @@
             };
 
             var reset = function () {
-                _defer(function () {
-                    $localStorage.annotations = [];
-                });
+                $localStorage.annotations.length = 0;
             };
 
             var add = function (value) {
