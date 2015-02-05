@@ -39,6 +39,10 @@
 
             $scope.finished = function () {
                 console.log('Finished transcribing')
+                Subjects.resetActive();
+                Annotations.reset();
+                // Why you no, two-way binding?
+                $scope.annotations = Annotations.list();
             };
 
         }
