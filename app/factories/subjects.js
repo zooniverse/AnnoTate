@@ -1,4 +1,4 @@
-(function (angular, zooAPI) {
+(function (angular, _, zooAPI) {
 
     'use strict';
 
@@ -36,11 +36,13 @@
             };
 
             var getDummySubject = function () {
-                return $q.when({
+                var subject = {
                     image: {
                         url: 'images/image_03.jpg'
                     }
-                });
+                };
+                _setActiveSubject(subject)
+                return $q.when(subject);
             };
 
             var _constructSubject = function (response) {
@@ -67,12 +69,19 @@
                 $localStorage.activeSubject = {};
             };
 
+            var checkForSubject = function () {
+                if (!_.isEmpty($localStorage.activeSubject)) {
+                    return $q.when($localStorage.activeSubject)
+                } else {
+                    return getDummySubject();
+                }
+            };
+
             return {
-                get: getDummySubject,
-                active: $localStorage.activeSubject,
+                get: checkForSubject,
                 resetActive: resetActiveSubject
             };
 
         }]);
 
-})(window.angular, window.zooAPI);
+})(window.angular, window._, window.zooAPI);
