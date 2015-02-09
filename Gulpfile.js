@@ -30,7 +30,7 @@
     var appDir = baseDir + '/app';
     var cssDir = baseDir + '/css';
     var stylDir = baseDir + '/styl';
-    var templatesDir = appDir + '/templates';
+    var templatesDir = appDir + '/modules/**/templates';
 
 
     // Tasks
@@ -106,7 +106,7 @@
     gulp.task('templates', function () {
         return gulp.src(templatesDir + '/**/*.html')
             .pipe(templateCache({
-                module: 'app'
+                module: 'transcribe'
             }))
             .pipe(concat('templates.js'))
             .pipe(gulp.dest(serverDir));

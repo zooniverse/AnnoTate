@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.directive('tempImageAnnotation', [
+    module.directive('tempImageAnnotation', [
         'Config',
         function (Config) {
             return {
@@ -13,7 +13,7 @@
                 },
                 restrict: 'A',
                 replace: true,
-                templateUrl: 'directives/temp-image-annotation.html'
+                templateUrl: 'classify/templates/directives/temp-image-annotation.html'
             }
         }
     ]);

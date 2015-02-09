@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.factory('AuthFactory', [
+    module.factory('AuthFactory', [
         '$localStorage',
         '$rootScope',
         function ($localStorage, $rootScope) {

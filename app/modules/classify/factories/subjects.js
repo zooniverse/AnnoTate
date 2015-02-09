@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.factory('SubjectsFactory', [
+    module.factory('SubjectsFactory', [
         '$http',
         '$localStorage',
         '$q',

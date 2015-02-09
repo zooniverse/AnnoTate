@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.controller('ClassifyCtrl', [
+    module.controller('ClassifyCtrl', [
         '$scope',
         'AnnotationsFactory',
         'SubjectsFactory',

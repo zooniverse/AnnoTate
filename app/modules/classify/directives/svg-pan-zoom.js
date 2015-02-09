@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('app');
+    var module = angular.module('transcribe');
 
     module.directive('svgPanZoom', [
         '$log',

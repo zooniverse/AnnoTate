@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.directive('textAnnotation', [
+    module.directive('textAnnotation', [
         'Config',
         function (Config) {
             return {
@@ -13,7 +13,7 @@
                 },
                 restrict: 'A',
                 replace: true,
-                templateUrl: 'directives/text-annotation.html',
+                templateUrl: 'classify/templates/directives/text-annotation.html',
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;

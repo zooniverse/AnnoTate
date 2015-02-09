@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.constant('Config', {
+    module.constant('Config', {
         svg: {
             pointSize: 10
         },
@@ -14,7 +14,7 @@
         }
     });
 
-    app.config([
+    module.config([
         '$sceDelegateProvider',
         function ($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([

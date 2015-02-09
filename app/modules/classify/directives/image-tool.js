@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('app');
+    var module = angular.module('transcribe');
 
     module.directive('imageTool', [
         '$log',
@@ -13,7 +13,7 @@
                 restrict: 'E',
                 replace: true,
                 scope: {},
-                templateUrl: 'directives/tool-button.html',
+                templateUrl: 'classify/templates/directives/tool-button.html',
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent;

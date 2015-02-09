@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.directive('imageAnnotation', [
+    module.directive('imageAnnotation', [
         'AnnotationsFactory',
         'Config',
         function (Annotations, Config) {
@@ -14,7 +14,7 @@
                 },
                 restrict: 'A',
                 replace: true,
-                templateUrl: 'directives/image-annotation.html',
+                templateUrl: 'classify/templates/directives/image-annotation.html',
                 link: function (scope, element, attrs) {
 
                     var ClassifyCtrl = scope.$parent.$parent;

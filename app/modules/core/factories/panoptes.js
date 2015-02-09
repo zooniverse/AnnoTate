@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.factory('PanoptesFactory', [
+    module.factory('PanoptesFactory', [
         function () {
 
             var _auth = window.zooAuth;

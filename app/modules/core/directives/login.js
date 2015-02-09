@@ -2,16 +2,16 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.directive('login', [
+    module.directive('login', [
         'Config',
         'AuthFactory',
         function (Config, Auth) {
             return {
                 restrict: 'A',
                 replace: true,
-                templateUrl: 'directives/login.html',
+                templateUrl: 'core/templates/directives/login.html',
                 link: function (scope, element, attrs) {
 
                     scope.preventClose = function ($event) {

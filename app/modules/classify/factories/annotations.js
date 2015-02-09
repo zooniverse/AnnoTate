@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var app = angular.module('app');
+    var module = angular.module('transcribe');
 
-    app.factory('AnnotationsFactory', [
+    module.factory('AnnotationsFactory', [
         '$localStorage',
         '$rootScope',
         function ($localStorage, $rootScope) {

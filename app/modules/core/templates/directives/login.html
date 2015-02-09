@@ -1,0 +1,27 @@
+<div>
+
+    <div ng-if="Auth.loggingIn">Logging you in now...</div>
+
+    <div class="btn-group" dropdown is-open="status.isopen" ng-if="!Auth.user.login">
+        <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            Login <span class="caret"></span>
+        </button>
+        <div id="login-form" class="dropdown-menu" ng-click="preventClose($event)">
+            <form class="form">
+                <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
+                <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
+                <button type="button" class="btn btn-default" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="btn-group" dropdown is-open="status.isopen" ng-if="Auth.user.login">
+        <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            {{ Auth.user.display_name }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href ng-click="Auth.signOut()">Logout</a></li>
+        </ul>
+    </div>
+
+</div>
