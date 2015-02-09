@@ -17,16 +17,31 @@
                 .when('/', {
                     controller: 'HomeCtrl',
                     slug: 'home',
-                    templateUrl: 'pages/home.html'
+                    templateUrl: 'pages/home.html',
+                    resolve: {
+                        'Auth': ['$rootScope', 'AuthFactory', function ($rootScope, Auth) {
+                            $rootScope.Auth = Auth;
+                        }]
+                    }
                 })
                 .when('/about', {
                     slug: 'about',
-                    templateUrl: 'pages/about.html'
+                    templateUrl: 'pages/about.html',
+                    resolve: {
+                        'Auth': ['$rootScope', 'AuthFactory', function ($rootScope, Auth) {
+                            $rootScope.Auth = Auth;
+                        }]
+                    }
                 })
                 .when('/classify', {
                     controller: 'ClassifyCtrl',
                     slug: 'classify',
-                    templateUrl: 'pages/classify.html'
+                    templateUrl: 'pages/classify.html',
+                    resolve: {
+                        'Auth': ['$rootScope', 'AuthFactory', function ($rootScope, Auth) {
+                            $rootScope.Auth = Auth;
+                        }]
+                    }
                 })
                 .otherwise({
                     redirectTo: '/'
@@ -35,7 +50,8 @@
 
     app.run([
         '$rootScope',
-        function ($rootScope) {
+        'AuthFactory',
+        function ($rootScope, Auth) {
             $rootScope.$on('$routeChangeSuccess', function (event, data) {
                 $rootScope.slug = data.$$route.slug  || '';
             });

@@ -14,6 +14,8 @@
                 isLoaded: false
             };
 
+            console.log($scope)
+
             $scope.activeTool = null;
 
             $scope.editingTextAnnotation = null;
