@@ -8,29 +8,32 @@
         'cfp.hotkeys',
         'ngLoad',
         'ngStorage',
+        'ui.router',
 
         'transcribe.classify',
         'transcribe.static'
     ]);
 
     module.config([
-        '$routeProvider',
-        function ($routeProvider) {
-            $routeProvider
-                .otherwise({
-                    redirectTo: '/'
-                });
-    }]);
+        '$urlRouterProvider',
+        function ($urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
+        }
+    ]);
 
     module.run([
         '$rootScope',
         'AuthFactory',
         function ($rootScope, Auth) {
-            $rootScope.$on('$routeChangeSuccess', function (event, data) {
-                if (data.$$route && data.$$route.slug) {
-                    $rootScope.slug = data.$$route.slug  || '';
+
+            $rootScope.Auth = Auth;
+
+            $rootScope.$on('$stateChangeSuccess', function (event, data) {
+                if (data && data.slug) {
+                    $rootScope.slug = data.slug  || '';
                 }
             });
+
         }
     ]);
 

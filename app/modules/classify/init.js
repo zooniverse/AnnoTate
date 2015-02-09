@@ -5,19 +5,16 @@
     var module = angular.module('transcribe.classify', []);
 
     module.config([
-        '$routeProvider',
-        function ($routeProvider) {
-            $routeProvider
-                .when('/classify', {
-                    controller: 'ClassifyCtrl',
-                    slug: 'classify',
+        '$stateProvider',
+        function ($stateProvider) {
+            $stateProvider
+                .state('classify', {
+                    url: '/classify',
                     templateUrl: 'classify/templates/classify.html',
-                    resolve: {
-                        'Auth': ['$rootScope', 'AuthFactory', function ($rootScope, Auth) {
-                            $rootScope.Auth = Auth;
-                        }]
-                    }
+                    controller: 'ClassifyCtrl',
+                    slug: 'classify'
                 });
-    }]);
+        }
+    ]);
 
 }(window.angular));

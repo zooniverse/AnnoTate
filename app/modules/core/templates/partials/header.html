@@ -3,9 +3,11 @@
 <div class="row">
     <h1 class="col-xs-12 col-md-4">Transcribe</h1>
     <nav class="col-xs-12 col-md-8" role="navigation">
-        <a ng-href="#/">Home</a>
-        <a ng-href="#/about">About</a>
-        <a ng-href="#/classify">Classify</a>
-        <a ng-href>Blog</a>
+        <ul class="nav nav-pills">
+            <li ui-sref="home" ui-sref-active="active"><a>Home</a></li>
+            <li ui-sref="about" ui-sref-active="active"><a>About</a></li>
+            <li ui-sref="classify" ui-sref-active="active"><a>Classify</a></li>
+            <li><a ng-href>Blog</a></li>
+        </ul>
     </nav>
 </div>

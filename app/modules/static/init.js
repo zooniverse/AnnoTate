@@ -2,20 +2,23 @@
 
     'use strict';
 
-    var app = angular.module('transcribe.static', []);
+    var module = angular.module('transcribe.static', []);
 
-    app.config([
-        '$routeProvider',
-        function ($routeProvider) {
-            $routeProvider
-                .when('/', {
-                    slug: 'home',
-                    templateUrl: 'static/templates/pages/home.html'
+    module.config([
+        '$stateProvider',
+        function ($stateProvider) {
+            $stateProvider
+                .state('home', {
+                    url: '/',
+                    templateUrl: 'static/templates/pages/home.html',
+                    slug: 'home'
                 })
-                .when('/about', {
-                    slug: 'about',
-                    templateUrl: 'static/templates/pages/about.html'
+                .state('about', {
+                    url: '/about',
+                    templateUrl: 'static/templates/pages/about.html',
+                    slug: 'about'
                 });
-    }]);
+        }
+    ]);
 
 }(window.angular));
