@@ -2,19 +2,18 @@
 
     'use strict';
 
-    var module = angular.module('transcribe');
+    var module = angular.module('transcribe.classify');
 
     module.controller('ClassifyCtrl', [
         '$scope',
+        '$modal',
         'AnnotationsFactory',
         'SubjectsFactory',
-        function ($scope, Annotations, Subjects) {
+        function ($scope, $modal, Annotations, Subjects) {
 
             $scope.subject = {
                 isLoaded: false
             };
-
-            console.log($scope)
 
             $scope.activeTool = null;
 
@@ -32,20 +31,39 @@
                 }
             };
 
-            Subjects.get()
-                .then(function (response) {
-                    $scope.subject.data = response;
-                    $scope.subject.isLoaded = true;
-                    $scope.annotations = Annotations.list();
-                });
+            var getNextSubject = function () {
+                $scope.subject.isLoaded = false;
+                Subjects.get()
+                    .then(function (response) {
+                        $scope.subject.data = response;
+                        $scope.subject.isLoaded = true;
+                        $scope.annotations = Annotations.list();
+                    });
+            };
 
-            $scope.finished = function () {
-                console.log('Finished transcribing')
+            var submitThenGetNextSubject = function (transcriptionComplete) {
                 Subjects.resetActive();
                 Annotations.reset();
                 // Why you no, two-way binding?
                 $scope.annotations = Annotations.list();
+                getNextSubject();
             };
+
+            $scope.next = function () {
+
+                var modalInstance = $modal.open({
+                    templateUrl: 'classify/templates/modal-next.html',
+                    controller: 'ClassifyModalNextCtrl',
+                    size: 'sm',
+                    backdrop: 'static'
+                });
+
+                modalInstance.result.then(submitThenGetNextSubject);
+
+            };
+
+            // Go!
+            getNextSubject();
 
         }
 
