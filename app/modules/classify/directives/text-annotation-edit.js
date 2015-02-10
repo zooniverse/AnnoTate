@@ -67,10 +67,8 @@
 
                     scope.endDrag = function ($event) {
                         var target = $event.target.tagName;
-                        if (target === 'DIV') {
-                            element.removeClass('dragging');
-                            viewport.off('mousemove');
-                        }
+                        element.removeClass('dragging');
+                        viewport.off('mousemove');
                     };
 
                     scope.deletion = function ($event) {
