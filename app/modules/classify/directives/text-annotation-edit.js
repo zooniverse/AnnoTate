@@ -59,9 +59,21 @@
                     };
 
                     var drag = function (event) {
+
                         event.preventDefault();
-                        scope.translateX += event.movementX;
-                        scope.translateY += event.movementY;
+
+                        if ((scope.translateX + event.movementX) < 0) {
+                            scope.translateX = 0;
+                        } else {
+                            scope.translateX += event.movementX;
+                        }
+
+                        if ((scope.translateY + event.movementY) < 0) {
+                            scope.translateY = 0;
+                        } else {
+                            scope.translateY += event.movementY;
+                        }
+
                         element.css('transform', 'translateX(' + scope.translateX + 'px) translateY(' + scope.translateY + 'px)');
                     };
 
