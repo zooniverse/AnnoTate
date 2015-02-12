@@ -45,7 +45,7 @@
                 $scope.subject.data.transcriptionComplete = transcriptionComplete;
                 Annotations.submit($scope.subject.data);
                 Subjects.resetActive();
-                Annotations.reset();
+                // Annotations.reset();
                 // Why you no, two-way binding?
                 $scope.annotations = Annotations.list();
                 getNextSubject();

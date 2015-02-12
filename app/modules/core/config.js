@@ -11,7 +11,8 @@
         api: 'https://panoptes-staging.zooniverse.org/api',
         apiParams: {
             'project_id': 6
-        }
+        },
+        firebase: 'https://transcribe.firebaseio.com'
     });
 
     module.config([
