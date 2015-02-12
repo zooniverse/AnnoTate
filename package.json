@@ -26,9 +26,7 @@
     "gulp-util": "3.0.1",
     "panoptes": "0.0.1",
     "qs": "2.3.3",
-    "run-sequence": "1.0.2"
-  },
-  "devDependencies": {
+    "run-sequence": "1.0.2",
     "gulp-shell": "^0.2.11"
   }
 }
