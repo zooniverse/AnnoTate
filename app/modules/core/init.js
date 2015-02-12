@@ -3,11 +3,11 @@
     'use strict';
 
     var module = angular.module('transcribe', [
-        'ngRoute',
-        'ui.bootstrap',
         'cfp.hotkeys',
+        'firebase',
         'ngLoad',
         'ngStorage',
+        'ui.bootstrap',
         'ui.router',
 
         'transcribe.classify',

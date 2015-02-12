@@ -2,12 +2,13 @@
 
     'use strict';
 
-    var module = angular.module('transcribe');
+    var module = angular.module('transcribe.classify');
 
     module.factory('AnnotationsFactory', [
         '$localStorage',
         '$rootScope',
-        function ($localStorage, $rootScope) {
+        'FirebaseFactory',
+        function ($localStorage, $rootScope, Firebase) {
 
             if (_.isUndefined($localStorage.annotations)) {
                 $localStorage.annotations = [];
@@ -38,11 +39,16 @@
                 });
             };
 
+            var submit = function (subject) {
+                return Firebase.submit(subject, $localStorage.annotations);
+            };
+
             return {
                 add: add,
                 destroy: destroy,
                 list: list,
-                reset: reset
+                reset: reset,
+                submit: submit
             };
 
         }

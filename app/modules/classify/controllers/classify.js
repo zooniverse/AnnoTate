@@ -42,6 +42,8 @@
             };
 
             var submitThenGetNextSubject = function (transcriptionComplete) {
+                $scope.subject.data.transcriptionComplete = transcriptionComplete;
+                Annotations.submit($scope.subject.data);
                 Subjects.resetActive();
                 Annotations.reset();
                 // Why you no, two-way binding?
