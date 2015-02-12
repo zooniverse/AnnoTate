@@ -4,21 +4,38 @@
 
 <div class="modal-body">
     <p>Is there still text to transcribe?</p>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="nextOption" name="nextOption" id="nextOption1" value="finished" checked>
-            Yes, there are still lines of text to transcribe
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="nextOption" name="nextOption" id="nextOption2" value="unfinished">
-            No, everything's transcribed
-        </label>
-    </div>
+
+    <form name="form" novalidate>
+        <div class="form-group radio">
+            <label>
+                <input
+                    checked
+                    id="nextOption1"
+                    name="nextOption"
+                    ng-model="nextOption"
+                    ng-required="true"
+                    type="radio"
+                    value="finished"
+                    >Yes, there are still lines of text to transcribe
+            </label>
+        </div>
+        <div class="form-group radio">
+            <label>
+                <input
+                    id="nextOption2"
+                    name="nextOption"
+                    ng-model="nextOption"
+                    ng-required="true"
+                    type="radio"
+                    value="unfinished"
+                    >No, everything's transcribed
+            </label>
+        </div>
+    </form>
+
 </div>
 
 <div class="modal-footer">
     <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">OK</button>
 </div>
