@@ -1,6 +1,5 @@
 {
-  "name": "github-batch",
-  "description": "A batch interface for Github issues",
+  "name": "transcribe",
   "private": true,
   "ignore": [
     "**/.*",
