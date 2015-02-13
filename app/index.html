@@ -17,7 +17,7 @@
 
     <body class="page-{{ slug }}">
 
-        <header role="banner" class="container" ng-include="'core/templates/partials/header.html'"></header>
+        <header id="site-header" role="banner" header></header>
 
         <article id="wrapper" class="container" ui-view></article>
 
@@ -40,7 +40,7 @@
         <!-- build:js(./app/) app.js -->
         <script src="modules/core/init.js"></script>
         <script src="modules/core/config.js"></script>
-        <script src="modules/core/directives/login.js"></script>
+        <script src="modules/core/directives/header.js"></script>
         <script src="modules/core/factories/auth.js"></script>
         <script src="modules/core/factories/panoptes.js"></script>
 

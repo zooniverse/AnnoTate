@@ -1,0 +1,56 @@
+<nav id="site-nav" class="navbar navbar-default navbar-static-top" ng-init="isCollapsed = true;">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ui-sref="home" id="site-logo" class="navbar-brand">Transcribe Tate</a>
+        </div>
+
+        <div class="collapse navbar-collapse" collapse="isCollapsed">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a ui-sref="classify">Classify</a></li>
+                <li dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>
+                        Discuss <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href>Blog</a></li>
+                        <li><a href>Forum</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li dropdown ng-if="Auth.user.login">
+                    <a href class="dropdown-toggle" dropdown-toggle>
+                        {{ Auth.user.display_name }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href>Logout</a></li>
+                    </ul>
+                </li>
+
+                <li dropdown ng-if="!Auth.user.login">
+                    <a href class="dropdown-toggle" dropdown-toggle>
+                        Login <span class="caret"></span>
+                    </a>
+                    <div id="login-form" class="dropdown-menu dropdown-menu-right" ng-click="preventClose($event)">
+                        <form class="form">
+                            <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
+                            <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
+                            <button type="button" class="btn btn-default" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
+                        </form>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>

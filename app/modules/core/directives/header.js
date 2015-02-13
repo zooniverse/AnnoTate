@@ -4,14 +4,13 @@
 
     var module = angular.module('transcribe');
 
-    module.directive('login', [
+    module.directive('header', [
         'Config',
         'AuthFactory',
         function (Config, Auth) {
             return {
                 restrict: 'A',
-                replace: true,
-                templateUrl: 'core/templates/directives/login.html',
+                templateUrl: 'core/templates/directives/header.html',
                 link: function (scope, element, attrs) {
 
                     scope.preventClose = function ($event) {
