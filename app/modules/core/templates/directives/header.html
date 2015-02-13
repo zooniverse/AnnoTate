@@ -27,16 +27,16 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-                <li dropdown ng-if="Auth.user.login">
+                <li dropdown ng-if="Auth.getUser().login">
                     <a href class="dropdown-toggle" dropdown-toggle>
-                        {{ Auth.user.display_name }} <span class="caret"></span>
+                        {{ Auth.getUser().display_name }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href>Logout</a></li>
+                        <li><a href ng-click="Auth.signOut()">Logout</a></li>
                     </ul>
                 </li>
 
-                <li dropdown ng-if="!Auth.user.login">
+                <li dropdown ng-if="!Auth.getUser().login">
                     <a href class="dropdown-toggle" dropdown-toggle>
                         Login <span class="caret"></span>
                     </a>
@@ -44,7 +44,7 @@
                         <form class="form">
                             <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
                             <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
-                            <button type="button" class="btn btn-default" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
+                            <button type="button" class="btn btn-default" ng-click="Auth.signIn({ login: userLogin, password: userPassword })">Login</button>
                         </form>
                     </div>
                 </li>

@@ -25,15 +25,11 @@
         '$rootScope',
         'AuthFactory',
         function ($rootScope, Auth) {
-
-            $rootScope.Auth = Auth;
-
             $rootScope.$on('$stateChangeSuccess', function (event, data) {
                 if (data && data.slug) {
                     $rootScope.slug = data.slug  || '';
                 }
             });
-
         }
     ]);
 

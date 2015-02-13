@@ -17,9 +17,7 @@
                        $event.stopPropagation();
                     };
 
-                    scope.signIn = function (args) {
-                        Auth.signIn(args);
-                    };
+                    scope.Auth = Auth;
 
                 }
             }

@@ -15,29 +15,22 @@
                 $localStorage.user = {};
             }
 
-            var loggingIn = false;
-
             var signIn = function (args) {
-                loggingIn = true;
                 return _auth.signIn(args)
                     .then(function (response) {
-                        console.log(response)
                         $localStorage.user = response;
-                        loggingIn = false;
                     });
             };
 
             var signOut = function () {
                 $localStorage.user = {};
-                $rootScope.apply();
                 return _auth.signOut();
             };
 
             return {
-                loggingIn: loggingIn,
                 signIn: signIn,
                 signOut: signOut,
-                user: $localStorage.user
+                getUser: function () { return $localStorage.user; }
             }
 
         }]);
