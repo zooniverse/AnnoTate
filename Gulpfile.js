@@ -52,7 +52,7 @@
 
     gulp.task('dist', function (callback) {
         PRODUCTION = true;
-        return runSequence('build', callback);
+        return runSequence('build', 'server', callback);
     });
 
     gulp.task('fonts', function () {
