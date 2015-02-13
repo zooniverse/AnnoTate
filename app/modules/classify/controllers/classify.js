@@ -43,7 +43,10 @@
 
             var submitThenGetNextSubject = function (transcriptionComplete) {
                 $scope.subject.data.transcriptionComplete = transcriptionComplete;
-                Annotations.submit($scope.subject.data);
+                console.log($scope.subject.data)
+                Annotations.submit($scope.subject.data).then(function (response) {
+                    console.log('complete', response);
+                });
                 Subjects.resetActive();
                 // Annotations.reset();
                 // Why you no, two-way binding?

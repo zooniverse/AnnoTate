@@ -12,15 +12,24 @@
         function ($firebase, $localStorage, $rootScope, Config) {
 
             var _ref = new Firebase(Config.firebase + '/classifications/');
+            var _sync = $firebase(_ref);
 
-            // $firebase(_ref).then(function (res) {
-            //     console.log(res)
-            // });
-            console.log($firebase(_ref))
+            var _clean = function (subject, annotations) {
+
+                annotations = _.each(annotations, function (annotation) {
+                    delete annotation.$$hashKey;
+                })
+
+                return {
+                    subject: subject.id,
+                    annotations: annotations
+                };
+
+            };
 
             var submit = function (subject, annotations) {
-                console.log('Submitting to Firebase');
-                console.info(subject, annotations);
+                var data = _clean(subject, annotations);
+                return _sync.$push(data);
             };
 
             return {

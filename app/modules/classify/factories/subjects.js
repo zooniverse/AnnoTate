@@ -16,17 +16,7 @@
             }
 
             var _get = function (endpoint, params) {
-                // var url = Config.api + endpoint;
-                // var config = {
-                //     params: _.extend(Config.apiParams, params),
-                //     headers: {
-                //         Accept: 'application/vnd.api+json; version=1'
-                //     }
-                // };
-                // return $http.get(url, config);
-
                 return window.zooAPI.get(endpoint);
-
             };
 
             var getSubject = function () {
@@ -37,6 +27,7 @@
 
             var getDummySubject = function () {
                 var subject = {
+                    id: 1,
                     image: {
                         url: 'images/image_03.jpg'
                     }
