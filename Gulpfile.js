@@ -84,7 +84,9 @@
     }));
 
     gulp.task('processIndex', function () {
-        var assets = useref.assets();
+        var assets = useref.assets({
+            searchPath: baseDir
+        });
         return gulp.src(appDir + '/index.html')
             .pipe(assets)
             .pipe(gulpif(function (file) { return PRODUCTION && match(file, '*.js'); }, uglify()))

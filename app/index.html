@@ -23,21 +23,21 @@
 
         <footer role="content-info" class="container" ng-include="'core/templates/partials/footer.html'"></footer>
 
-        <!-- build:js libraries.js -->
-        <script src="../bower_components/lodash/dist/lodash.js"></script>
-        <script src="../bower_components/firebase/firebase.js"></script>
-        <script src="../bower_components/angular/angular.js"></script>
-        <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="../bower_components/ngstorage/ngStorage.js"></script>
-        <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="../bower_components/svg-pan-zoom/dist/svg-pan-zoom.js"></script>
-        <script src="../bower_components/angular-hotkeys/build/hotkeys.js"></script>
-        <script src="../bower_components/ng-load/ng-load.js"></script>
-        <script src="../bower_components/ngStorage/ngStorage.js"></script>
-        <script src="../bower_components/angularfire/dist/angularfire.js"></script>
+        <!-- build:js(./bower_components/) libraries.js -->
+        <script src="lodash/dist/lodash.js"></script>
+        <script src="firebase/firebase.js"></script>
+        <script src="angular/angular.js"></script>
+        <script src="angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="ngstorage/ngStorage.js"></script>
+        <script src="angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="svg-pan-zoom/dist/svg-pan-zoom.js"></script>
+        <script src="angular-hotkeys/build/hotkeys.js"></script>
+        <script src="ng-load/ng-load.js"></script>
+        <script src="ngStorage/ngStorage.js"></script>
+        <script src="angularfire/dist/angularfire.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js app.js -->
+        <!-- build:js(./app/) app.js -->
         <script src="modules/core/init.js"></script>
         <script src="modules/core/config.js"></script>
         <script src="modules/core/directives/login.js"></script>
