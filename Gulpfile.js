@@ -78,7 +78,7 @@
     });
 
     gulp.task('panoptes', shell.task([
-        'node_modules/.bin/browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
+        baseDir + '/node_modules/.bin/browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
     ], {
         templateData: {
             outputPath: serverDir + '/panoptes.js'
