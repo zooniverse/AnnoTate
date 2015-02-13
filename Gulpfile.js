@@ -4,6 +4,7 @@
 
 
     // Dependencies
+    var browserify = require('browserify');
     var concat = require('gulp-concat');
     var del = require('del');
     var gulp = require('gulp');
@@ -14,6 +15,7 @@
     var runSequence = require('run-sequence');
     var shell = require('gulp-shell')
     var server = require('./server.js');
+    var source = require('vinyl-source-stream');
     var stylus = require('gulp-stylus');
     var templateCache = require('gulp-angular-templatecache');
     var uglify = require('gulp-uglify');
@@ -76,7 +78,7 @@
     });
 
     gulp.task('panoptes', shell.task([
-        'browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
+        'node_modules/.bin/browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
     ], {
         templateData: {
             outputPath: serverDir + '/panoptes.js'
