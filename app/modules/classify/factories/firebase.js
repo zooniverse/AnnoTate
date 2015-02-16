@@ -21,7 +21,7 @@
                 })
 
                 return {
-                    subject: subject.id,
+                    subject: subject,
                     annotations: annotations
                 };
 

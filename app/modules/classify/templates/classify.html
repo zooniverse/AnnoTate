@@ -97,7 +97,8 @@
         </div>
 
         <nav class="navbar navbar-default lower-bar">
-            <p class="navbar-text">Lower information bar</p>
+            <p ng-if="!metadata.isLoaded" class="navbar-text"><em>Loading metadata...</em></p>
+            <p ng-if="metadata.isLoaded" class="navbar-text">From <i>{{ metadata.data.title }}</i> (<a target="_blank" href="http://www.tate.org.uk{{  metadata.data.url }}">More information</a>)</p>
         </nav>
 
     </div>
