@@ -48,7 +48,7 @@
                     console.log('complete', response);
                 });
                 Subjects.resetActive();
-                // Annotations.reset();
+                Annotations.reset();
                 // Why you no, two-way binding?
                 $scope.annotations = Annotations.list();
                 getNextSubject();
