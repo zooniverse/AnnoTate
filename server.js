@@ -12,7 +12,7 @@
     var baseDir = __dirname;
     var serverDir = baseDir + '/.tmp';
     var serverPort = process.env.PORT || 8080;
-    var serverName = process.env.SERVER_NAME.replace(/\/$/, '');
+    var serverName = (process.env.SERVER_NAME) ? process.env.SERVER_NAME.replace(/\/$/, '') : 'http://localhost';
 
     // Server
     exports = module.exports = function runServer () {
