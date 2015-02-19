@@ -20,9 +20,10 @@
                     var viewport = element.parent();
                     var textArea = element.find('textarea');
 
-                    scope.translateX = 0;
-                    scope.translateY = 0;
+                    scope.translateX = (viewport[0].clientWidth - 400) / 2;
+                    scope.translateY = (viewport[0].clientHeight - 169) / 2;
                     scope.text = scope.data.text || '';
+                    element.css('transform', 'translateX(' + scope.translateX + 'px) translateY(' + scope.translateY + 'px)');
 
                     var tag = function (tagText) {
 
