@@ -15,7 +15,6 @@
     var runSequence = require('run-sequence');
     var shell = require('gulp-shell')
     var server = require('./server.js');
-    var source = require('vinyl-source-stream');
     var stylus = require('gulp-stylus');
     var templateCache = require('gulp-angular-templatecache');
     var uglify = require('gulp-uglify');
