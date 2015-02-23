@@ -1,4 +1,4 @@
-(function () {
+(function (angular, _) {
 
     'use strict';
 
@@ -31,6 +31,7 @@
 
             var getNextSubject = function (id) {
                 $scope.subject.isLoaded = false;
+                id = id || false;
                 console.log('Getting', id)
                 Subjects.get(id)
                     .then(function (response) {
@@ -79,4 +80,4 @@
 
     ]);
 
-}());
+}(window.angular, window._));

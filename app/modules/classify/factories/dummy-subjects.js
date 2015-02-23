@@ -18,6 +18,7 @@
             var _dummySubjects = DummySubjects;
 
             var getDummySubject = function (id) {
+                console.log('getDummySubject', id);
                 var subject;
                 if (id) {
                     subject = _.find(_dummySubjects, { 'id': id });
@@ -33,7 +34,8 @@
             };
 
             var checkForSubject = function (id) {
-                if (!$localStorage.activeSubject) {
+                console.log('checkForSubject');
+                if ($localStorage.activeSubject) {
                     return $q.when($localStorage.activeSubject)
                 } else {
                     return getDummySubject(id);
