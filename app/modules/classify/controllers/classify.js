@@ -8,20 +8,13 @@
         '$scope',
         '$modal',
         'AnnotationsFactory',
-        'SubjectsFactory',
+        'DummySubjectsFactory',
         'MetadataFactory',
         function ($scope, $modal, Annotations, Subjects, Metadata) {
 
-            $scope.subject = {
-                isLoaded: false
-            };
-
-            $scope.metadata = {
-                isLoaded: false
-            };
-
+            $scope.subject = { isLoaded: false };
+            $scope.metadata = { isLoaded: false };
             $scope.activeTool = null;
-
             $scope.editingTextAnnotation = null;
 
             $scope.setTool = function (tool) {
@@ -36,9 +29,10 @@
                 }
             };
 
-            var getNextSubject = function () {
+            var getNextSubject = function (id) {
                 $scope.subject.isLoaded = false;
-                Subjects.get()
+                console.log('Getting', id)
+                Subjects.get(id)
                     .then(function (response) {
                         $scope.subject.data = response;
                         $scope.subject.isLoaded = true;
@@ -56,15 +50,13 @@
 
             var submitThenGetNextSubject = function (transcriptionComplete) {
                 $scope.subject.data.transcriptionComplete = transcriptionComplete;
-                console.log($scope.subject.data)
                 Annotations.submit($scope.subject.data).then(function (response) {
                     console.log('complete', response);
                 });
-                Subjects.resetActive();
                 Annotations.reset();
                 // Why you no, two-way binding?
                 $scope.annotations = Annotations.list();
-                getNextSubject();
+                getNextSubject($scope.subject.data.links.next);
             };
 
             $scope.next = function () {

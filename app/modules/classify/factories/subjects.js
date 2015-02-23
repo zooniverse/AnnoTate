@@ -25,22 +25,6 @@
                     .then(_setActiveSubject);
             };
 
-            var _dummySubjects = ['TGA_7247_35_31.jpg', 'TGA_8222_1_68_1.jpg', 'TGA_8313_1_1_50_1.jpg', 'TGA_8812_1_3_2036_1.jpg', 'TGA_9013_1_31_1.jpg', 'TGA_9019_1_2_1_49.jpg', 'TGA_9019_2_1_4_98.jpg', 'TGA_9125_5_88_1.jpg', 'TGA_9510_3_3_20_1.jpg', 'TGA_969_2_4_219.jpg', 'TGA_9715_1_5_1.jpg', 'TGA_9920_2_255_1.jpg'];
-
-            var getDummySubject = function () {
-
-                var subjectImage = _.sample(_dummySubjects);
-
-                var subject = {
-                    tga: subjectImage.replace('TGA_', 'TGA ').replace(/\_/g, '/').replace(/\.[^/.]+$/, ''),
-                    image: {
-                        url: 'images/' + subjectImage
-                    }
-                };
-                _setActiveSubject(subject)
-                return $q.when(subject);
-            };
-
             var _constructSubject = function (response) {
                 var original = response.data.subjects[0];
                 var image = original.locations[0];
@@ -69,7 +53,7 @@
                 if (!_.isEmpty($localStorage.activeSubject)) {
                     return $q.when($localStorage.activeSubject)
                 } else {
-                    return getDummySubject();
+                    return getSubject();
                 }
             };
 
