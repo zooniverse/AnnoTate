@@ -17,7 +17,8 @@
                     };
 
                     svg.panZoom = svgPanZoom(svg.root, {
-                        fit: false
+                        fit: false,
+                        zoomScaleSensitivity: 0.05
                     });
 
                     svg.viewport = svg.root.getElementsByClassName('svg-pan-zoom_viewport')[0];
