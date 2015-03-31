@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('transcribe');
+    var module = angular.module('transcribe.classify');
 
     module.directive('imageAnnotation', [
         'AnnotationsFactory',

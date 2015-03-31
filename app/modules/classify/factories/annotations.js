@@ -9,9 +9,9 @@
         '$rootScope',
         function (storage, $rootScope) {
 
-            // if (storage.get('annotations') === null) {
-            //     storage.set('annotations', []);
-            // }
+            if (storage.get('annotations') === null) {
+                storage.set('annotations', []);
+            }
 
             // var _defer = function (fn) {
             //     ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
