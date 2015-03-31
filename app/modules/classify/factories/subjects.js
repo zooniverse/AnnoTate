@@ -27,6 +27,8 @@
 
             var _loadSubjectsIntoQueue = function () {
 
+                $log.log('Loading new subjects into queue');
+
                 var promise = Project()
                     .then(function (project) {
                         return $window.zooAPI.type('subjects').get({
@@ -57,8 +59,12 @@
 
                         });
 
-                        storage.set('subjectQueue', storage.get('subjectQueue').concat(newSubjects));
-                        return;
+                        if (newSubjects.length) {
+                            storage.set('subjectQueue', storage.get('subjectQueue').concat(newSubjects));
+                            return true;
+                        }
+
+                        return false;
 
                     });
 
@@ -80,22 +86,30 @@
 
             };
 
+            var _returnSubject = function () {
+                return $q.when(storage.get('subjectQueue')[0])
+                    .then(_preloadImage);
+            };
+
             var get = function () {
 
                 var deferred = $q.defer();
 
-                if (!storage.get('subjectQueue').length) {
-                    $log.log('Loading new subjects into queue');
-                    _loadSubjectsIntoQueue().then(deferred.resolve);
+                var nextSubject = storage.get('subjectQueue')[0];
+
+                if (nextSubject) {
+                    deferred.resolve(_returnSubject());
                 } else {
-                    deferred.resolve();
+                    _loadSubjectsIntoQueue().then(function (newSubjects) {
+                        if (newSubjects) {
+                            deferred.resolve(_returnSubject());
+                        } else {
+                            deferred.reject();
+                        }
+                    });
                 }
 
-                return deferred.promise
-                    .then(function () {
-                        return storage.get('subjectQueue')[0];
-                    })
-                    .then(_preloadImage);
+                return deferred.promise;
 
             };
 
