@@ -5,61 +5,107 @@
     var module = angular.module('transcribe.classify');
 
     module.factory('SubjectsFactory', [
-        '$http',
-        '$localStorage',
+        'localStorageService',
+        '$log',
         '$q',
-        'Config',
-        function ($http, $localStorage, $q, Config) {
+        '$window',
+        'ProjectFactory',
+        function (storage, $log, $q, $window, Project) {
 
-            if (_.isUndefined($localStorage.activeSubject)) {
-                $localStorage.activeSubject = {};
-            }
+            if (storage.get('viewedSubjects') === null) storage.set('viewedSubjects', []);
+            if (storage.get('subjectQueue') === null) storage.set('subjectQueue', []);
 
-            var _get = function (endpoint, params) {
-                return window.zooAPI.get(endpoint);
+            // Helper function to return array of IDs from array of subjects
+            var _returnIds = function (storedArray) {
+                if (storedArray.length === 0)
+                    return [];
+
+                return storage.get(storedArray).map(function (subject) {
+                    return subject.id;
+                });
             };
 
-            var getSubject = function () {
-                return _get('/projects/6', { limit: 1 })
-                    .then(_constructSubject)
-                    .then(_setActiveSubject);
+            var _loadSubjectsIntoQueue = function () {
+
+                var promise = Project()
+                    .then(function (project) {
+                        return $window.zooAPI.type('subjects').get({
+                            sort: 'cellect',
+                            workflow_id: project.links.workflows[0]
+                        });
+                    })
+                    .then(function (subjects) {
+
+                        var newSubjects = [];
+
+                        // Create a list of ids of queued items
+                        var rejectedIds = _returnIds('subjectQueue').concat(_returnIds('viewedSubjects'));
+
+                        angular.forEach(subjects, function (subject) {
+
+                            // Skip if its already queued up
+                            if (rejectedIds.length > 0 && rejectedIds.indexOf(subject.id) !== -1)
+                                return false;
+
+                            // Delete any underscore-prefixed properties, as they contain circular refs
+                            for (var property in subject) {
+                                if (subject.hasOwnProperty(property) && property.charAt(0) === '_')
+                                    delete subject[property];
+                            }
+
+                            newSubjects.push(subject);
+
+                        });
+
+                        storage.set('subjectQueue', storage.get('subjectQueue').concat(newSubjects));
+                        return;
+
+                    });
+
+                return promise;
+
             };
 
-            var _constructSubject = function (response) {
-                var original = response.data.subjects[0];
-                var image = original.locations[0];
-                var subject = {
-                    id: original.id,
-                    rawSubject: original,
-                    rawResponse: response,
-                    image: {
-                        type: Object.keys(image)[0],
-                        url: image[Object.keys(image)[0]]
-                    }
+            var _preloadImage = function (subject) {
+
+                var deferred = $q.defer();
+
+                subject.image = new Image();
+                subject.image.src = subject.locations[0]['image/jpeg'];
+                subject.image.onload = function () {
+                    deferred.resolve(subject);
                 };
-                return subject;
+
+                return deferred.promise;
+
             };
 
-            var _setActiveSubject = function (subject) {
-                $localStorage.activeSubject = subject;
-                return subject;
-            };
-
-            var resetActiveSubject = function () {
-                $localStorage.activeSubject = {};
-            };
-
-            var checkForSubject = function () {
-                if (!_.isEmpty($localStorage.activeSubject)) {
-                    return $q.when($localStorage.activeSubject)
+            var get = function () {
+                if (storage.get('subjectQueue').length === 0) {
+                    $log.log('Loading new subjects into queue');
+                    return _loadSubjectsIntoQueue()
+                        .then(function () {
+                            $log.log('Returning next subject');
+                            return storage.get('subjectQueue')[0];
+                        })
+                        .then(_preloadImage);
                 } else {
-                    return getSubject();
+                    return $q.when(storage.get('subjectQueue')[0])
+                        .then(_preloadImage);
                 }
             };
 
+            var advance = function () {
+                var subjects = storage.get('subjectQueue');
+                var viewed = storage.get('viewedSubjects');
+                viewed.unshift(subjects.shift());
+                storage.set('viewedSubjects', viewed.filter(function (n) { return n != undefined }));
+                storage.set('subjectQueue', subjects);
+            };
+
             return {
-                get: checkForSubject,
-                resetActive: resetActiveSubject
+                get: get,
+                advance: advance
             };
 
         }]);

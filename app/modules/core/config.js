@@ -8,11 +8,7 @@
         svg: {
             pointSize: 10
         },
-        api: 'https://panoptes-staging.zooniverse.org/api',
-        apiParams: {
-            'project_id': 6
-        },
-        firebase: 'https://transcribe.firebaseio.com'
+        projectName: 'AnnoTate'
     });
 
     module.config([
@@ -25,5 +21,14 @@
             ]);
 
     }]);
+
+    module.config([
+        'Config',
+        'localStorageServiceProvider',
+        function (Config, localStorageServiceProvider) {
+            localStorageServiceProvider
+                .setPrefix(Config.projectName);
+        }
+    ]);
 
 }());

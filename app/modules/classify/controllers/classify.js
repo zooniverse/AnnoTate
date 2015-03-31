@@ -8,7 +8,8 @@
         '$scope',
         '$modal',
         'AnnotationsFactory',
-        'DummySubjectsFactory',
+        // 'DummySubjectsFactory',
+        'SubjectsFactory',
         function ($scope, $modal, Annotations, Subjects) {
 
             $scope.subject = { isLoaded: false };
@@ -27,16 +28,15 @@
                 }
             };
 
-            var getNextSubject = function (id) {
+            var getNextSubject = function () {
                 $scope.subject.isLoaded = false;
-                id = id || false;
-                console.log('Getting', id)
-                Subjects.get(id)
+                console.log('Getting subject');
+                Subjects.get()
                     .then(function (response) {
                         $scope.subject.data = response;
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();
-                        return $scope.subject.data.tga;
+                        console.log(response)
                     });
             };
 
@@ -48,7 +48,7 @@
                 Annotations.reset();
                 // Why you no, two-way binding?
                 $scope.annotations = Annotations.list();
-                getNextSubject($scope.subject.data.links.next);
+                getNextSubject();
             };
 
             $scope.next = function () {

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('transcribe.classify', ['firebase']);
+    var module = angular.module('transcribe.classify', []);
 
     module.config([
         '$stateProvider',

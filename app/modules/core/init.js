@@ -4,9 +4,8 @@
 
     var module = angular.module('transcribe', [
         'cfp.hotkeys',
-        'firebase',
         'ngLoad',
-        'ngStorage',
+        'LocalStorageModule',
         'ui.bootstrap',
         'ui.router',
 

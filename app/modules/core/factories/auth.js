@@ -5,32 +5,32 @@
     var module = angular.module('transcribe');
 
     module.factory('AuthFactory', [
-        '$localStorage',
+        'localStorageService',
         '$rootScope',
-        function ($localStorage, $rootScope) {
+        function (storage, $rootScope) {
 
             var _auth = window.zooAuth;
 
-            if (_.isUndefined($localStorage.user)) {
-                $localStorage.user = {};
+            if (storage.get('user') === null) {
+                storage.set('user', {});
             }
 
             var signIn = function (args) {
                 return _auth.signIn(args)
                     .then(function (response) {
-                        $localStorage.user = response;
+                        storage.set('user', response);
                     });
             };
 
             var signOut = function () {
-                $localStorage.user = {};
+                storage.set('user') = {};
                 return _auth.signOut();
             };
 
             return {
                 signIn: signIn,
                 signOut: signOut,
-                getUser: function () { return $localStorage.user; }
+                getUser: function () { return storage.get('user'); }
             }
 
         }]);

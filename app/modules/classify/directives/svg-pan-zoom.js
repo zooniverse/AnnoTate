@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('transcribe');
+    var module = angular.module('transcribe.classify');
 
     module.directive('svgPanZoom', [
         '$log',
@@ -18,6 +18,7 @@
 
                     svg.panZoom = svgPanZoom(svg.root, {
                         fit: false,
+                        minZoom: 0.2,
                         zoomScaleSensitivity: 0.05
                     });
 
@@ -51,5 +52,21 @@
             };
         }
     ]);
+
+    module.directive('ngHeight', function() {
+        return function(scope, element, attrs) {
+            scope.$watch(attrs.ngHeight, function (value) {
+                element.attr('height', value);
+            });
+        };
+    });
+
+    module.directive('ngWidth', function() {
+        return function(scope, element, attrs) {
+            scope.$watch(attrs.ngWidth, function (value) {
+                element.attr('width', value);
+            });
+        };
+    });
 
 }(window.angular, window.svgPanZoom));

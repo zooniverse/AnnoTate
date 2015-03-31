@@ -5,51 +5,52 @@
     var module = angular.module('transcribe.classify');
 
     module.factory('AnnotationsFactory', [
-        '$localStorage',
+        'localStorageService',
         '$rootScope',
-        'FirebaseFactory',
-        function ($localStorage, $rootScope, Firebase) {
+        function (storage, $rootScope) {
 
-            if (_.isUndefined($localStorage.annotations)) {
-                $localStorage.annotations = [];
-            }
+            // if (storage.get('annotations') === null) {
+            //     storage.set('annotations', []);
+            // }
 
-            var _defer = function (fn) {
-                ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
-            };
+            // var _defer = function (fn) {
+            //     ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
+            // };
 
-            var reset = function () {
-                $localStorage.annotations.length = 0;
-            };
+            // var reset = function () {
+            //     $localStorage.annotations.length = 0;
+            // };
 
-            var add = function (value) {
-                var copied = angular.copy(value);
-                $localStorage.annotations.push(copied);
-                $rootScope.$apply();
-                return copied;
-            };
+            // var add = function (value) {
+            //     var copied = angular.copy(value);
+            //     $localStorage.annotations.push(copied);
+            //     $rootScope.$apply();
+            //     return copied;
+            // };
 
             var list = function () {
-                return $localStorage.annotations;
+                // return $localStorage.annotations;
             };
 
-            var destroy = function (data) {
-                _defer(function () {
-                    _.remove($localStorage.annotations, { $$hashKey: data.$$hashKey });
-                });
-            };
+            // var destroy = function (data) {
+            //     _defer(function () {
+            //         _.remove($localStorage.annotations, { $$hashKey: data.$$hashKey });
+            //     });
+            // };
 
-            var submit = function (subject) {
-                return Firebase.submit(subject, $localStorage.annotations);
-            };
+            // var submit = function () {
+            //     console.log('Submitting...');
+            // };
 
             return {
-                add: add,
-                destroy: destroy,
+            //     add: add,
+            //     destroy: destroy,
                 list: list,
-                reset: reset,
-                submit: submit
+            //     reset: reset,
+            //     submit: submit
             };
+
+            // return {};
 
         }
 
