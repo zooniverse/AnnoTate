@@ -9,11 +9,9 @@
         '$modal',
         'AnnotationsFactory',
         'DummySubjectsFactory',
-        'MetadataFactory',
-        function ($scope, $modal, Annotations, Subjects, Metadata) {
+        function ($scope, $modal, Annotations, Subjects) {
 
             $scope.subject = { isLoaded: false };
-            $scope.metadata = { isLoaded: false };
             $scope.activeTool = null;
             $scope.editingTextAnnotation = null;
 
@@ -39,13 +37,6 @@
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();
                         return $scope.subject.data.tga;
-                    })
-                    .then(function (tga) {
-                        return Metadata.get(tga);
-                    })
-                    .then(function (response) {
-                        $scope.metadata.isLoaded = true;
-                        $scope.metadata.data = response;
                     });
             };
 
