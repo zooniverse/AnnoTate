@@ -5,12 +5,12 @@
     var module = angular.module('transcribe.classify');
 
     module.controller('ClassifyCtrl', [
+        '$log',
         '$scope',
         '$modal',
         'AnnotationsFactory',
-        // 'DummySubjectsFactory',
         'SubjectsFactory',
-        function ($scope, $modal, Annotations, Subjects) {
+        function ($log, $scope, $modal, Annotations, Subjects) {
 
             $scope.subject = { isLoaded: false };
             $scope.activeTool = null;
@@ -28,44 +28,26 @@
                 }
             };
 
-            var getNextSubject = function () {
+            var getSubject = function () {
                 $scope.subject.isLoaded = false;
-                console.log('Getting subject');
                 Subjects.get()
                     .then(function (response) {
+                        console.log(response)
                         $scope.subject.data = response;
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();
-                        console.log(response)
+                    }, function (error) {
+                        console.log('Out of data');
                     });
             };
 
-            var submitThenGetNextSubject = function (transcriptionComplete) {
-                $scope.subject.data.transcriptionComplete = transcriptionComplete;
-                Annotations.submit($scope.subject.data).then(function (response) {
-                    console.log('complete', response);
-                });
-                Annotations.reset();
-                // Why you no, two-way binding?
-                $scope.annotations = Annotations.list();
-                getNextSubject();
-            };
-
             $scope.next = function () {
-
-                var modalInstance = $modal.open({
-                    templateUrl: 'classify/templates/modal-next.html',
-                    controller: 'ClassifyModalNextCtrl',
-                    size: 'sm',
-                    backdrop: 'static'
-                });
-
-                modalInstance.result.then(submitThenGetNextSubject);
-
+                Subjects.advance();
+                getSubject();
             };
 
             // Go!
-            getNextSubject();
+            getSubject();
 
         }
 

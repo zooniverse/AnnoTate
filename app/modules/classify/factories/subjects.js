@@ -1,4 +1,4 @@
-(function (angular, _, zooAPI) {
+(function (angular, zooAPI) {
 
     'use strict';
 
@@ -81,21 +81,26 @@
             };
 
             var get = function () {
-                if (storage.get('subjectQueue').length === 0) {
+
+                var deferred = $q.defer();
+
+                if (!storage.get('subjectQueue').length) {
                     $log.log('Loading new subjects into queue');
-                    return _loadSubjectsIntoQueue()
-                        .then(function () {
-                            $log.log('Returning next subject');
-                            return storage.get('subjectQueue')[0];
-                        })
-                        .then(_preloadImage);
+                    _loadSubjectsIntoQueue().then(deferred.resolve);
                 } else {
-                    return $q.when(storage.get('subjectQueue')[0])
-                        .then(_preloadImage);
+                    deferred.resolve();
                 }
+
+                return deferred.promise
+                    .then(function () {
+                        return storage.get('subjectQueue')[0];
+                    })
+                    .then(_preloadImage);
+
             };
 
             var advance = function () {
+                $log.log('Advancing subject queue');
                 var subjects = storage.get('subjectQueue');
                 var viewed = storage.get('viewedSubjects');
                 viewed.unshift(subjects.shift());
@@ -110,4 +115,4 @@
 
         }]);
 
-})(window.angular, window._, window.zooAPI);
+})(window.angular, window.zooAPI);
