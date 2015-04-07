@@ -15,6 +15,10 @@
 
             var _annotations = storage.get('annotations');
 
+            var _defer = function (fn) {
+                ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
+            };
+
             var _updateStorage = function () {
                 var annotationsToStore = _.reject(_annotations, { temp: true });
                 storage.set('annotations', annotationsToStore);
@@ -22,16 +26,18 @@
 
             var add = function (annotation) {
                 var copied = angular.copy(annotation);
-                _annotations.push(copied);
-                _updateStorage();
-                $rootScope.$apply();
+                _defer(function () {
+                    _annotations.push(copied);
+                    _updateStorage();
+                });
                 return copied;
             };
 
             var destroy = function (annotation) {
-                _.remove(_annotations, { $$hashKey: annotation.$$hashKey });
-                _updateStorage();
-                $rootScope.$apply();
+                _defer(function () {
+                    _.remove(_annotations, { $$hashKey: annotation.$$hashKey });
+                    _updateStorage();
+                });
             };
 
             var list = function () {
