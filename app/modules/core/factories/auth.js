@@ -1,4 +1,4 @@
-(function (angular, _, zooAuth) {
+(function (angular, zooAuth) {
 
     'use strict';
 
@@ -35,4 +35,4 @@
 
         }]);
 
-})(window.angular, window._, window.zooAuth);
+})(window.angular, window.zooAuth);
