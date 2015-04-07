@@ -32,7 +32,6 @@
                 $scope.subject.isLoaded = false;
                 Subjects.get()
                     .then(function (response) {
-                        console.log(response)
                         $scope.subject.data = response;
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();

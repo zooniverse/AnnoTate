@@ -77,7 +77,8 @@
 
                         addTempPoint: function (event)  {
                             this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.svg.$getPoint(event), {
-                                type: 'tempText'
+                                type: 'tempText',
+                                temp: true
                             }));
                             $log.log('Added tempPoint', this.tempPoint);
                         },

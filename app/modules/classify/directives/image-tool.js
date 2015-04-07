@@ -63,7 +63,8 @@
                             this.tempRect = Annotations.add(_.extend(this.tempOrigin, {
                                 type: 'tempImage',
                                 width: 0,
-                                height: 0
+                                height: 0,
+                                temp: true
                             }));
                             viewport.on('mousemove', this.draw.bind(this));
                         },

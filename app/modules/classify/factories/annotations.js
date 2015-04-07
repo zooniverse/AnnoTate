@@ -13,44 +13,38 @@
                 storage.set('annotations', []);
             }
 
-            // var _defer = function (fn) {
-            //     ($rootScope.$$phase) ? fn() : $rootScope.$apply(fn);
-            // };
+            var _annotations = storage.get('annotations');
 
-            // var reset = function () {
-            //     $localStorage.annotations.length = 0;
-            // };
-
-            // var add = function (value) {
-            //     var copied = angular.copy(value);
-            //     $localStorage.annotations.push(copied);
-            //     $rootScope.$apply();
-            //     return copied;
-            // };
-
-            var list = function () {
-                // return $localStorage.annotations;
+            var _updateStorage = function () {
+                var annotationsToStore = _.reject(_annotations, { temp: true });
+                storage.set('annotations', annotationsToStore);
             };
 
-            // var destroy = function (data) {
-            //     _defer(function () {
-            //         _.remove($localStorage.annotations, { $$hashKey: data.$$hashKey });
-            //     });
-            // };
+            var add = function (annotation) {
+                var copied = angular.copy(annotation);
+                _annotations.push(copied);
+                _updateStorage();
+                $rootScope.$apply();
+                return copied;
+            };
 
-            // var submit = function () {
-            //     console.log('Submitting...');
-            // };
+            var destroy = function (annotation) {
+                _.remove(_annotations, { $$hashKey: annotation.$$hashKey });
+                _updateStorage();
+                $rootScope.$apply();
+            };
+
+            var list = function () {
+                return _annotations;
+            };
 
             return {
-            //     add: add,
-            //     destroy: destroy,
+                add: add,
+                destroy: destroy,
                 list: list,
             //     reset: reset,
             //     submit: submit
             };
-
-            // return {};
 
         }
 
