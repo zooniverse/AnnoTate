@@ -44,11 +44,16 @@
                 return _annotations;
             };
 
+            var reset = function () {
+                _annotations.length = 0;
+                _updateStorage();
+            };
+
             return {
                 add: add,
                 destroy: destroy,
                 list: list,
-            //     reset: reset,
+                reset: reset,
             //     submit: submit
             };
 
