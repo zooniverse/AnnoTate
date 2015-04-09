@@ -1,4 +1,4 @@
-(function (angular, _, zooAPI) {
+(function (angular, moment, zooAPI) {
 
     'use strict';
 
@@ -8,13 +8,22 @@
         '$q',
         '$window',
         'AnnotationsFactory',
+        'Config',
         'ProjectFactory',
         'SubjectsFactory',
-        function ($q, $window, Annotations, Project, Subjects) {
+        function ($q, $window, Annotations, Config, Project, Subjects) {
 
             var submit = function () {
 
-                var newClassification = { links: {} };
+                var newClassification = {
+                    metadata: {
+                        user_agent: Config.projectName,
+                        user_language: 'en_GB',
+                        started_at: Subjects.getStartTime(),
+                        finished_at: moment().format()
+                    },
+                    links: {}
+                };
 
                 var deferred = $q.defer();
 
@@ -32,21 +41,9 @@
                         deferred.resolve(newClassification);
                     });
 
-
-
-
-
-
                 return deferred.promise;
 
-
-
-
-
-
             };
-
-
 
             return {
                 submit: submit
@@ -55,4 +52,4 @@
         }
     ]);
 
-}(window.angular, window._, window.zooAPI));
+}(window.angular, window.moment, window.zooAPI));
