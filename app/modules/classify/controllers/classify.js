@@ -41,8 +41,20 @@
             };
 
             $scope.next = function () {
-                Subjects.advance();
-                getSubject();
+
+                var modalInstance = $modal.open({
+                    templateUrl: 'classify/templates/modal-next.html',
+                    controller: 'ClassifyModalNextCtrl',
+                    size: 'sm',
+                    backdrop: 'static'
+                });
+
+                modalInstance.result.then(function () {
+                    Annotations.reset();
+                    Subjects.advance();
+                    getSubject();
+                });
+
             };
 
             // Go!
