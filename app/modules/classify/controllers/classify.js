@@ -9,8 +9,9 @@
         '$scope',
         '$modal',
         'AnnotationsFactory',
+        'ClassificationsFactory',
         'SubjectsFactory',
-        function ($log, $scope, $modal, Annotations, Subjects) {
+        function ($log, $scope, $modal, Annotations, Classifications, Subjects) {
 
             $scope.subject = { isLoaded: false };
             $scope.activeTool = null;
@@ -50,9 +51,12 @@
                 });
 
                 modalInstance.result.then(function () {
-                    Annotations.reset();
-                    Subjects.advance();
-                    getSubject();
+                    Classifications.submit()
+                        .then(function () {
+                            Annotations.reset();
+                            Subjects.advance();
+                            getSubject();
+                        });
                 });
 
             };
