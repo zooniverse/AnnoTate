@@ -10,11 +10,11 @@
         '$q',
         '$window',
         'ProjectFactory',
-        function (storage, $log, $q, $window, Project) {
+        'TimeFactory',
+        function (storage, $log, $q, $window, Project, Time) {
 
             if (storage.get('viewedSubjects') === null) storage.set('viewedSubjects', []);
             if (storage.get('subjectQueue') === null) storage.set('subjectQueue', []);
-            if (storage.get('subjectStartTime') === null) storage.set('subjectStartTime', '');
 
             // Helper function to return array of IDs from array of subjects
             var _returnIds = function (storedArray) {
@@ -24,10 +24,6 @@
                 return storage.get(storedArray).map(function (subject) {
                     return subject.id;
                 });
-            };
-
-            var _setSubjectStartTime = function () {
-                storage.set('subjectStartTime', moment().format());
             };
 
             var _loadSubjectsIntoQueue = function () {
@@ -92,8 +88,11 @@
             };
 
             var _returnSubject = function () {
-                _setSubjectStartTime();
                 return $q.when(storage.get('subjectQueue')[0])
+                    .then(function (subject) {
+                        Time.setStart(subject);
+                        return subject;
+                    })
                     .then(_preloadImage);
             };
 

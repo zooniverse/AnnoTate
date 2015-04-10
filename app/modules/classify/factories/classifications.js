@@ -11,16 +11,19 @@
         'Config',
         'ProjectFactory',
         'SubjectsFactory',
-        function ($q, $window, Annotations, Config, Project, Subjects) {
+        'TimeFactory',
+        function ($q, $window, Annotations, Config, Project, Subjects, Time) {
 
             var submit = function () {
+
+                var times = Time.getTimes();
 
                 var newClassification = {
                     metadata: {
                         user_agent: Config.projectName,
                         user_language: 'en_GB',
-                        started_at: Subjects.getStartTime(),
-                        finished_at: moment().format()
+                        started_at: times[0],
+                        finished_at: times[1]
                     },
                     links: {}
                 };
