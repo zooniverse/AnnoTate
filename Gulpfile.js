@@ -36,7 +36,7 @@
 
     // Tasks
     gulp.task('build', function (callback) {
-        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts', 'images'], 'panoptes', callback);
+        return runSequence('clean', ['processIndex', 'templates', 'misc', 'stylus', 'fonts', 'images'], callback);
     });
 
     gulp.task('clean', function (callback) {
@@ -75,14 +75,6 @@
         return gulp.src(files)
             .pipe(gulp.dest(serverDir + '/css'));
     });
-
-    gulp.task('panoptes', shell.task([
-        baseDir + '/node_modules/.bin/browserify --require panoptes/index.coffee --extension .coffee > <%= outputPath %> --standalone panoptes'
-    ], {
-        templateData: {
-            outputPath: serverDir + '/panoptes.js'
-        }
-    }));
 
     gulp.task('processIndex', function () {
         var assets = useref.assets({
