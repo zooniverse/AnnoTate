@@ -37,7 +37,7 @@
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();
                     }, function (error) {
-                        console.log('Out of data');
+                        alert('That\'s all the data - thanks for your help!');
                     });
             };
 
@@ -51,13 +51,12 @@
                 });
 
                 modalInstance.result.then(function (isComplete) {
-                    console.log(isComplete)
-                    // Classifications.submit()
-                    //     .then(function () {
-                    //         Annotations.reset();
-                    //         Subjects.advance();
-                    //         getSubject();
-                    //     });
+                    Classifications.submit(isComplete)
+                        .then(function () {
+                            Annotations.reset();
+                            Subjects.advance();
+                            getSubject();
+                        });
                 });
 
             };
