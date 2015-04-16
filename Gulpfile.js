@@ -51,7 +51,8 @@
 
     gulp.task('dist', function (callback) {
         PRODUCTION = true;
-        return runSequence('build', 'server', callback);
+        // return runSequence('build', 'server', callback);
+        return runSequence('build', callback);
     });
 
     gulp.task('fonts', function () {
