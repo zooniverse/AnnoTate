@@ -50,13 +50,14 @@
                     backdrop: 'static'
                 });
 
-                modalInstance.result.then(function () {
-                    Classifications.submit()
-                        .then(function () {
-                            Annotations.reset();
-                            Subjects.advance();
-                            getSubject();
-                        });
+                modalInstance.result.then(function (isComplete) {
+                    console.log(isComplete)
+                    // Classifications.submit()
+                    //     .then(function () {
+                    //         Annotations.reset();
+                    //         Subjects.advance();
+                    //         getSubject();
+                    //     });
                 });
 
             };
