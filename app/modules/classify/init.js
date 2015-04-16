@@ -9,8 +9,7 @@
         function ($stateProvider) {
             $stateProvider
                 .state('classify', {
-                    // url: '/classify',
-                    url: '/',
+                    url: '/classify',
                     templateUrl: 'classify/templates/classify.html',
                     controller: 'ClassifyCtrl',
                     slug: 'classify'
