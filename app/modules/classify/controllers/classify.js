@@ -61,6 +61,18 @@
 
             };
 
+            $scope.tutorial = function () {
+
+                $modal.open({
+                    templateUrl: 'classify/templates/modal-tutorial.html',
+                    controller: 'ClassifyModalTutorialCtrl',
+                    size: 'lg',
+                    backdrop: 'static'
+                });
+
+            };
+
+
             // Go!
             getSubject();
 
