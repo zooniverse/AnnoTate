@@ -27,8 +27,10 @@
                 } else {
 
                     var request = $window.zooAPI.type('projects').get(_config).index(0);
+                    // var request = $window.zooAPI.type('projects').get('251');
 
                     request.then(function (response) {
+                        console.log(response)
                         if (response.id) {
                             $log.info('Project', response);
                             storage.set('project', response);

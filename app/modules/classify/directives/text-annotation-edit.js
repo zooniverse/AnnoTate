@@ -6,7 +6,8 @@
 
     module.directive('textAnnotationEdit', [
         '$window',
-        function ($window) {
+        'AnnotationsFactory',
+        function ($window, Annotations) {
             return {
                 scope: {
                     data: '='
@@ -102,6 +103,11 @@
 
                     scope.save = function () {
                         scope.data.text = scope.text;
+                        scope.close();
+                    };
+
+                    scope.delete = function () {
+                        Annotations.destroy(scope.data);
                         scope.close();
                     };
 
