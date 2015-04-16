@@ -25,31 +25,6 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-
-                <li dropdown ng-if="Auth.getUser().login">
-                    <a href class="dropdown-toggle" dropdown-toggle>
-                        {{ Auth.getUser().display_name }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href ng-click="Auth.signOut()">Logout</a></li>
-                    </ul>
-                </li>
-
-                <li dropdown ng-if="!Auth.getUser().login">
-                    <a href class="dropdown-toggle" dropdown-toggle>
-                        Login <span class="caret"></span>
-                    </a>
-                    <div id="login-form" class="dropdown-menu dropdown-menu-right" ng-click="preventClose($event)">
-                        <form class="form">
-                            <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
-                            <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
-                            <button type="button" class="btn btn-default" ng-click="Auth.signIn({ login: userLogin, password: userPassword })">Login</button>
-                        </form>
-                    </div>
-                </li>
-
-            </ul>
         </div>
 
     </div>
