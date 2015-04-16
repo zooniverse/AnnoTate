@@ -15,6 +15,7 @@
 
             if (storage.get('viewedSubjects') === null) storage.set('viewedSubjects', []);
             if (storage.get('subjectQueue') === null) storage.set('subjectQueue', []);
+            if (storage.get('subjectPage') === null) storage.set('subjectPage', 0);
 
             // Helper function to return array of IDs from array of subjects
             var _returnIds = function (storedArray) {
@@ -30,9 +31,14 @@
 
                 $log.log('Loading new subjects into queue');
 
+                var nextPage = storage.get('subjectPage') + 1;
+
+                storage.set('subjectPage', nextPage);
+
                 var promise = Project()
                     .then(function (project) {
                         return $window.zooAPI.type('subjects').get({
+                            page: nextPage,
                             sort: 'cellect',
                             workflow_id: project.links.workflows[0]
                         });
