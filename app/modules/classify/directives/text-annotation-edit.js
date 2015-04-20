@@ -97,6 +97,10 @@
                         tag('illegible');
                     };
 
+                    scope.foreign = function ($event) {
+                        tag('foreign');
+                    };
+
                     scope.close = function () {
                         ClassifyCtrl.editingTextAnnotation = null;
                     };
