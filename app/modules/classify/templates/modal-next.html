@@ -1,9 +1,10 @@
 <div class="modal-header">
-    <h3 class="modal-title">Next image</h3>
+    <h3 class="modal-title">Next document</h3>
 </div>
 
 <div class="modal-body">
-    <p>Is there still text to transcribe?</p>
+    <p>Did you transcribe everything?</p>
+    <p>(Don't worry if not.)</p>
 
     <form name="form" novalidate>
         <div class="form-group radio">
@@ -16,7 +17,7 @@
                     ng-required="true"
                     type="radio"
                     value="finished">
-                Yes, there are still lines of text to transcribe
+                Yes, I transcribed everything
             </label>
         </div>
         <div class="form-group radio">
@@ -28,7 +29,7 @@
                     ng-required="true"
                     type="radio"
                     value="unfinished">
-                No, everything's transcribed
+                No, I didn't transcribe everything
             </label>
         </div>
     </form>
