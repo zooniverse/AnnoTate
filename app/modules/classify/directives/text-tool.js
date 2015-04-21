@@ -76,7 +76,12 @@
                         },
 
                         addTempPoint: function (event)  {
-                            this.tempPoint = Annotations.add(_.extend(ClassifyCtrl.svg.$getPoint(event), {
+                            var SVGPoints = ClassifyCtrl.svg.$getPoint(event);
+                            var points = {
+                                x: SVGPoints.x,
+                                y: SVGPoints.y
+                            };
+                            this.tempPoint = Annotations.add(_.extend({}, points, {
                                 type: 'tempText',
                                 temp: true
                             }));
