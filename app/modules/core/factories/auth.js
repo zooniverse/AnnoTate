@@ -23,7 +23,7 @@
             };
 
             var signOut = function () {
-                storage.set('user') = {};
+                storage.set('user', {});
                 return _auth.signOut();
             };
 
