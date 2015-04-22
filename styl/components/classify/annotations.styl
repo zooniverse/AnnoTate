@@ -42,21 +42,32 @@
     color: black
     position: absolute
     width: 550px
+    padding: 15px
+
+    > *
+        position: relative
+
+    .drag-handle
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+
+    .text-entry
+        padding-bottom: 15px
 
     .btn-toolbar
         @extend $clearfix
         border-top: 1px solid #e5e5e5
         margin-left: 0
-        padding: 15px
+        padding-top: 15px
 
         .editing
             float: left
             margin-left: 0
         .save-close
             float: right
-
-    .text-entry
-        padding: 15px
 
     &.dragging
         cursor: move

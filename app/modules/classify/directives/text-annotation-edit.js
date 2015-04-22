@@ -52,6 +52,7 @@
 
 
                     var draggie = new Draggabilly(element[0], {
+                        handle: '.drag-handle',
                         containment: true
                     });
 
