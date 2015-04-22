@@ -50,40 +50,10 @@
 
                     };
 
-                    scope.startDrag = function ($event) {
-                        var target = $event.target.tagName;
-                        if (target === 'DIV' && $event.button === 0) {
-                            element.addClass('dragging');
-                            $event.preventDefault();
-                            viewport.on('mousemove', drag);
-                        }
 
-                    };
-
-                    var drag = function (event) {
-
-                        event.preventDefault();
-
-                        if ((scope.translateX + event.movementX) < 0) {
-                            scope.translateX = 0;
-                        } else {
-                            scope.translateX += event.movementX;
-                        }
-
-                        if ((scope.translateY + event.movementY) < 0) {
-                            scope.translateY = 0;
-                        } else {
-                            scope.translateY += event.movementY;
-                        }
-
-                        element.css('transform', 'translateX(' + scope.translateX + 'px) translateY(' + scope.translateY + 'px)');
-                    };
-
-                    scope.endDrag = function ($event) {
-                        var target = $event.target.tagName;
-                        element.removeClass('dragging');
-                        viewport.off('mousemove');
-                    };
+                    var draggie = new Draggabilly(element[0], {
+                        containment: true
+                    });
 
                     scope.deletion = function ($event) {
                         tag('deletion');

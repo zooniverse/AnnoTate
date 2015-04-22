@@ -19,6 +19,7 @@
     "angular-ui-router": "0.2.13",
     "angular-local-storage": "~0.1.5",
     "panoptes-javascript-lib": "~0.0.1",
+    "draggabilly": "~1.2.3",
     "moment": "~2.10.2"
   },
   "resolutions": {
