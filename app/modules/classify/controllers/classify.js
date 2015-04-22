@@ -9,8 +9,9 @@
         '$scope',
         '$modal',
         'AnnotationsFactory',
+        'ClassificationsFactory',
         'SubjectsFactory',
-        function ($log, $scope, $modal, Annotations, Subjects) {
+        function ($log, $scope, $modal, Annotations, Classifications, Subjects) {
 
             $scope.subject = { isLoaded: false };
             $scope.activeTool = null;
@@ -36,7 +37,7 @@
                         $scope.subject.isLoaded = true;
                         $scope.annotations = Annotations.list();
                     }, function (error) {
-                        console.log('Out of data');
+                        alert('That\'s all the data - thanks for your help!');
                     });
             };
 
@@ -49,13 +50,28 @@
                     backdrop: 'static'
                 });
 
-                modalInstance.result.then(function () {
-                    Annotations.reset();
-                    Subjects.advance();
-                    getSubject();
+                modalInstance.result.then(function (isComplete) {
+                    Classifications.submit(isComplete)
+                        .then(function () {
+                            Annotations.reset();
+                            Subjects.advance();
+                            getSubject();
+                        });
                 });
 
             };
+
+            $scope.tutorial = function () {
+
+                $modal.open({
+                    templateUrl: 'classify/templates/modal-tutorial.html',
+                    controller: 'ClassifyModalTutorialCtrl',
+                    size: 'lg',
+                    backdrop: 'static'
+                });
+
+            };
+
 
             // Go!
             getSubject();

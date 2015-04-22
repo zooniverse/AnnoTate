@@ -6,7 +6,8 @@
 
     module.directive('textAnnotationEdit', [
         '$window',
-        function ($window) {
+        'AnnotationsFactory',
+        function ($window, Annotations) {
             return {
                 scope: {
                     data: '='
@@ -66,12 +67,21 @@
                         tag('illegible');
                     };
 
+                    scope.foreign = function ($event) {
+                        tag('foreign');
+                    };
+
                     scope.close = function () {
                         ClassifyCtrl.editingTextAnnotation = null;
                     };
 
                     scope.save = function () {
                         scope.data.text = scope.text;
+                        scope.close();
+                    };
+
+                    scope.delete = function () {
+                        Annotations.destroy(scope.data);
                         scope.close();
                     };
 

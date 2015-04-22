@@ -53,8 +53,7 @@
                 add: add,
                 destroy: destroy,
                 list: list,
-                reset: reset,
-            //     submit: submit
+                reset: reset
             };
 
         }

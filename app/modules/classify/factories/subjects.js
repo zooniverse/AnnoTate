@@ -1,4 +1,4 @@
-(function (angular, zooAPI) {
+(function (angular, moment, zooAPI) {
 
     'use strict';
 
@@ -10,10 +10,12 @@
         '$q',
         '$window',
         'ProjectFactory',
-        function (storage, $log, $q, $window, Project) {
+        'TimeFactory',
+        function (storage, $log, $q, $window, Project, Time) {
 
             if (storage.get('viewedSubjects') === null) storage.set('viewedSubjects', []);
             if (storage.get('subjectQueue') === null) storage.set('subjectQueue', []);
+            if (storage.get('subjectPage') === null) storage.set('subjectPage', 0);
 
             // Helper function to return array of IDs from array of subjects
             var _returnIds = function (storedArray) {
@@ -29,9 +31,14 @@
 
                 $log.log('Loading new subjects into queue');
 
+                var nextPage = storage.get('subjectPage') + 1;
+
+                storage.set('subjectPage', nextPage);
+
                 var promise = Project()
                     .then(function (project) {
                         return $window.zooAPI.type('subjects').get({
+                            page: nextPage,
                             sort: 'cellect',
                             workflow_id: project.links.workflows[0]
                         });
@@ -88,6 +95,10 @@
 
             var _returnSubject = function () {
                 return $q.when(storage.get('subjectQueue')[0])
+                    .then(function (subject) {
+                        Time.setStart(subject);
+                        return subject;
+                    })
                     .then(_preloadImage);
             };
 
@@ -124,9 +135,10 @@
 
             return {
                 get: get,
+                getStartTime: storage.get('subjectStartTime'),
                 advance: advance
             };
 
         }]);
 
-})(window.angular, window.zooAPI);
+})(window.angular, window.moment, window.zooAPI);
