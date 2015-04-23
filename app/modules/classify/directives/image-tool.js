@@ -89,7 +89,7 @@
                             if (!this.drawing) {
                                 return false;
                             }
-                            Annotations.add(_.extend(angular.copy(this.tempRect), {
+                            Annotations.add(_.extend({}, this.tempRect, {
                                 type: 'image',
                                 temp: false
                             }));
