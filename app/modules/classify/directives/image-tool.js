@@ -90,7 +90,8 @@
                                 return false;
                             }
                             Annotations.add(_.extend(angular.copy(this.tempRect), {
-                                type: 'image'
+                                type: 'image',
+                                temp: false
                             }));
                             Annotations.destroy(this.tempRect);
                             this.drawing = false;
