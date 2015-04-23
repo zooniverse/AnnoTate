@@ -57,10 +57,13 @@
                                 return false;
                             }
 
+                            event.preventDefault();
                             event.stopImmediatePropagation();
                             this.drawing = true;
                             this.tempOrigin = svg.$getPoint(event);
-                            this.tempRect = Annotations.add(_.extend(this.tempOrigin, {
+
+                            // Extending an empty object prevents the mad SVGPoint interface errors
+                            this.tempRect = Annotations.add(_.extend({}, this.tempOrigin, {
                                 type: 'tempImage',
                                 width: 0,
                                 height: 0,
@@ -87,7 +90,8 @@
                                 return false;
                             }
                             Annotations.add(_.extend(angular.copy(this.tempRect), {
-                                type: 'image'
+                                type: 'image',
+                                temp: false
                             }));
                             Annotations.destroy(this.tempRect);
                             this.drawing = false;
