@@ -57,6 +57,7 @@
                                 return false;
                             }
 
+                            event.preventDefault();
                             event.stopImmediatePropagation();
                             this.drawing = true;
                             this.tempOrigin = svg.$getPoint(event);
