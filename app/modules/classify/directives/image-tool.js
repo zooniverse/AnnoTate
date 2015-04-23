@@ -61,7 +61,9 @@
                             event.stopImmediatePropagation();
                             this.drawing = true;
                             this.tempOrigin = svg.$getPoint(event);
-                            this.tempRect = Annotations.add(_.extend(this.tempOrigin, {
+
+                            // Extending an empty object prevents the mad SVGPoint interface errors
+                            this.tempRect = Annotations.add(_.extend({}, this.tempOrigin, {
                                 type: 'tempImage',
                                 width: 0,
                                 height: 0,
