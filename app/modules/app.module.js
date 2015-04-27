@@ -2,10 +2,11 @@
 
 var angular = require('angular');
 var bulk = require('bulk-require');
-var appConfig = require('./app.config.js');
 
 // Angular modules
+var appConfig = require('./app.config.js');
 require('angular-ui-router');
+require('angular-bootstrap');
 
 // App modules
 bulk(__dirname, ['./**/!(app.module).js']);
@@ -18,6 +19,7 @@ function startApp() {
     var requires = [
         // Angular modules
         'ui.router',
+        'ui.bootstrap',
 
         // App modules
         'app.core',
