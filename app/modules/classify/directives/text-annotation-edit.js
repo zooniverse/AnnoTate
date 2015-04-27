@@ -19,7 +19,9 @@
 
                     var ClassifyCtrl = scope.$parent.$parent;
                     var viewport = element.parent();
-                    var textArea = element.find('textarea');
+                    var textArea = element.find('textarea')[0];
+
+                    textArea.focus();
 
                     scope.translateX = (viewport[0].clientWidth - 400) / 2;
                     scope.translateY = (viewport[0].clientHeight - 169) / 2;
@@ -46,7 +48,7 @@
                             textArea.val(textBefore + startTag + textInBetween + endTag + textAfter);
                         }
 
-                        textArea[0].focus();
+                        textArea.focus();
 
                     };
 
