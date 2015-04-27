@@ -50,6 +50,7 @@
     });
 
     gulp.task('dist', function (callback) {
+        serverDir = baseDir + '/dist';
         PRODUCTION = true;
         // return runSequence('build', 'server', callback);
         return runSequence('build', callback);
@@ -86,6 +87,14 @@
             .pipe(gulpif(function (file) { return PRODUCTION && match(file, '*.js'); }, uglify()))
             .pipe(assets.restore())
             .pipe(useref())
+            .pipe(gulpif(PRODUCTION, replace({
+                patterns: [
+                    {
+                        match: 'ga_code',
+                        replacement: 'GTM-WDW6V4'
+                    }
+                ]
+            })))
             .pipe(gulp.dest(serverDir));
     });
 
