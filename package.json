@@ -78,7 +78,8 @@
     "uglifyify": "^2.5.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^2.0.0"
+    "watchify": "^2.0.0",
+    "lodash": "^3.7.0"
   },
   "scripts": {
     "pretest": "npm install",
