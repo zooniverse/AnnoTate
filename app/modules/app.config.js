@@ -1,7 +1,8 @@
 'use strict';
 
 var appConfig = {
-    appTitle: 'ng-davai'
+    appTitle: 'AnnoTate',
+    appDescription: 'Help the Tate discover the lives of twentieth-century artists by transcribing their letters, diaries and sketchbooks.'
 };
 
 /**
