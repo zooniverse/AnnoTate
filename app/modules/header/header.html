@@ -1,0 +1,13 @@
+<header class="app-header">
+    <div class="container-fluid">
+
+        <p class="navbar-text">Header</p>
+
+        <ul class="nav navbar-nav">
+            <li ng-repeat="link in vm.links">
+                <a ui-sref="{{ link.state }}" ui-sref-active="-active" class="link">{{ link.label }}</a>
+            </li>
+        </ul>
+
+    </div>
+</header>

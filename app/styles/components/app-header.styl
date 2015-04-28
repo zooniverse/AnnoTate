@@ -1,0 +1,15 @@
+$nav-link-border-size = 4px
+
+.app-header
+    @extend .navbar
+    @extend .navbar-default
+    @extend .navbar-static-top
+    border-bottom: 0
+    margin-bottom: 0
+
+    > .container-fluid > .navbar-nav > li > a
+        padding-bottom: $navbar-padding-vertical - $nav-link-border-size
+        border-bottom: $nav-link-border-size solid transparent
+
+    > .container-fluid > .navbar-nav > li > a.-active
+        border-color: pink
