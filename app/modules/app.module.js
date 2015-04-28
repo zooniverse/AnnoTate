@@ -26,7 +26,9 @@ function startApp() {
         // App modules
         'app.core',
         'app.404',
-        'app.demo'
+        'app.layout',
+        'app.static'
+        // 'app.demo'
     ];
 
     // Mount on window for testing
