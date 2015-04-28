@@ -19,6 +19,8 @@ function appHeader() {
     function HeaderController() {
         var vm = this;
 
+        vm.headerCollapse = true;
+
         vm.links = [
             {
                 label: 'Home',

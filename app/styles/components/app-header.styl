@@ -7,9 +7,11 @@ $nav-link-border-size = 4px
     border-bottom: 0
     margin-bottom: 0
 
-    > .container-fluid > .navbar-nav > li > a
-        padding-bottom: $navbar-padding-vertical - $nav-link-border-size
-        border-bottom: $nav-link-border-size solid transparent
+    > .container-fluid > .collapse > .navbar-nav > li > a
+        @media screen and (min-width: $screen-sm-min)
+            padding-bottom: $navbar-padding-vertical - $nav-link-border-size
+            border-bottom: $nav-link-border-size solid transparent
 
-    > .container-fluid > .navbar-nav > li > a.-active
-        border-color: pink
+    > .container-fluid > .collapse > .navbar-nav > li > a.-active
+        @media screen and (min-width: $screen-sm-min)
+            border-color: pink
