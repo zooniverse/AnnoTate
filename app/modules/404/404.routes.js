@@ -10,9 +10,14 @@ function Routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('404', {
+            parent: 'Base',
             url: '/404',
-            templateUrl: '404/404.html',
-            title: 'Not found'
+            title: 'Not found',
+            views: {
+                'main': {
+                    templateUrl: '404/404.html'
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/404');
