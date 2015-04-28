@@ -15,7 +15,8 @@ function Routes($stateProvider) {
             parent: 'Base',
             views: {
                 'main': {
-                    templateUrl: 'transcribe/transcribe.html'
+                    templateUrl: 'transcribe/transcribe.html',
+                    controller: 'TranscribeCtrl as vm'
                 }
             }
         });
