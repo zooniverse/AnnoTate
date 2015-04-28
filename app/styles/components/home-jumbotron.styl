@@ -1,0 +1,27 @@
+.home-jumbotron
+    @extend .jumbotron
+    background: none
+    margin: 30px 0
+    position: relative
+
+    > .bg
+        background: url('http://static.zooniverse.org/preview.zooniverse.org/transcribe/images/bg.jpeg')
+        border-radius: 6px
+        bottom: 0
+        left: 0
+        opacity: 0.4
+        position: absolute
+        right: 0
+        top: 0
+        z-index: 0
+
+    > .text
+        padding-bottom: 60px
+        position: relative
+        z-index: 1
+
+    > .text > p
+        margin: 2em 0
+
+    > .text > .btn
+        margin: 0 auto

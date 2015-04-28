@@ -28,7 +28,6 @@ function startApp() {
         'app.404',
         'app.layout',
         'app.static'
-        // 'app.demo'
     ];
 
     // Mount on window for testing
