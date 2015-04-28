@@ -27,7 +27,8 @@ function startApp() {
         'app.core',
         'app.404',
         'app.layout',
-        'app.static'
+        'app.static',
+        'app.transcribe'
     ];
 
     // Mount on window for testing

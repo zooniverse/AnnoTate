@@ -1,0 +1,50 @@
+.navbar-transcribe
+    border: 0
+    margin-bottom: 0
+    background: #2a2a2a
+
+    > .container-fluid > .controls
+        display: inline-block
+
+    > .container-fluid > .controls > .button
+        @extend .btn
+        @extend .btn-default
+        @extend .navbar-btn
+
+    > .container-fluid > .controls > .button > .icon
+        @extend .glyphicon
+        color: #909090
+        margin-right: 5px
+
+    > .container-fluid > .controls > .button.-text,
+    > .container-fluid > .controls > .button.-image
+        @extend .btn-primary
+
+    > .container-fluid > .controls > .button.-next
+        @extend .btn-success
+
+    > .container-fluid > .controls > .button.-text > .icon,
+    > .container-fluid > .controls > .button.-image > .icon,
+    > .container-fluid > .controls > .button.-next > .icon
+        color: white
+
+    > .container-fluid > .controls > .button.-rotateleft > .icon
+        @extend .glyphicon-share-alt
+        transform: scaleX(-1)
+
+    > .container-fluid > .controls > .button.-rotateright > .icon
+        @extend .glyphicon-share-alt
+
+    > .container-fluid > .controls > .button.-centre > .icon
+        @extend .glyphicon-screenshot
+
+    > .container-fluid > .controls > .button.-text > .icon
+        @extend .glyphicon-font
+
+    > .container-fluid > .controls > .button.-image > .icon
+        @extend .glyphicon-picture
+
+    > .container-fluid > .controls > .button.-next > .icon
+        @extend .glyphicon-arrow-right
+        margin-right: 0
+        margin-left: 5px
