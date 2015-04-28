@@ -89,5 +89,8 @@
   },
   "browserify-shim": {
     "./node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js": "angular-bootstrap"
+  },
+  "dependencies": {
+    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
   }
 }

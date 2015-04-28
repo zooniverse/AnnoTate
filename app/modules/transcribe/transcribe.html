@@ -2,6 +2,65 @@
 
 <div class="transcription-interface">
 
-    <p>transcribe</p>
+    <svg
+        marking-surface
+        class="svg"
+        height="100%"
+        width="100%"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <g class="pan-zoom">
+
+            <g class="rotate-container">
+
+                <rect
+                    height="0px"
+                    width="0px"
+                    x="0"
+                    y="0"
+                ></rect>
+
+                <image
+                    ng-height="{{ subject.data.image.height }}"
+                    ng-href="{{ subject.data.image.src }}"
+                    ng-if="subject.isLoaded === true"
+                    ng-load="svg.$centre()"
+                    ng-width="{{ subject.data.image.width }}"
+                    x="0"
+                    xlink:href=""
+                    y="0"></image>
+
+                <circle
+                    temp-text-annotation
+                    data="annotation"
+                    ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
+                ></circle>
+
+                <g
+                    text-annotation
+                    data="annotation"
+                    ng-repeat="annotation in annotations | filter:{type:'text'}:true"
+                ></g>
+
+                <g
+                    temp-image-annotation
+                    data="annotation"
+                    ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
+                ></g>
+
+                <g
+                    image-annotation
+                    data="annotation"
+                    ng-repeat="annotation in annotations | filter:{type:'image'}:true"
+                ></g>
+
+            </g>
+
+        </g>
+
+    </svg>
+
 
 </div>
