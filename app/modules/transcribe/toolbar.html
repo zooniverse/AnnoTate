@@ -1,33 +1,33 @@
 <nav class="navbar navbar-transcribe navbar-static-top">
     <div class="container-fluid">
         <div class="controls">
-            <button type="button" class="button -rotateleft">
+            <button type="button" class="button -rotateleft" ng-click="rotate(90)">
                 <span class="icon" aria-hidden="true"></span>
                 Rotate left
             </button>
-            <button type="button" class="button -rotateright">
+            <button type="button" class="button -rotateright" ng-click="rotate(-90)">
                 <span class="icon" aria-hidden="true"></span>
                 Rotate right
             </button>
-            <button type="button" class="button -centre">
+            <button type="button" class="button -centre" ng-click="centre()">
                 <span class="icon" aria-hidden="true"></span>
                 Centre
             </button>
         </div>
 
         <div class="controls">
-            <button type="button" class="button -text">
+            <button type="button" class="button -text" ng-click="activate('text')">
                 <span class="icon" aria-hidden="true"></span>
                 Annotate Text
             </button>
-            <button type="button" class="button -image">
+            <button type="button" class="button -image" ng-click="activate('image')">
                 <span class="icon" aria-hidden="true"></span>
                 Annotate Image
             </button>
         </div>
 
         <div class="controls">
-            <button type="button" class="button -next">
+            <button type="button" class="button -next" ng-click="next()">
                 Next
                 <span class="icon" aria-hidden="true"></span>
             </button>
