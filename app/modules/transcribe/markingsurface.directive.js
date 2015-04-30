@@ -8,7 +8,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function markingSurface() {
+function markingSurface(transcribeUtils) {
     var directive = {
         restrict: 'A',
         controller: markingSurfaceController,
@@ -21,8 +21,6 @@ function markingSurface() {
 
         var vm = this;
         var svg = $element[0];
-        var viewport = svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
-        var rotateContainer = svg.getElementsByClassName('rotate-container')[0];
         var rotation = 0;
 
         var panZoom = svgPanZoom(svg, {
@@ -34,13 +32,6 @@ function markingSurface() {
         vm.$centre = centre;
         vm.$rotate = rotate;
 
-        // vm.$getPoint = function getPoint(event) {
-        //     var point = svg.root.createSVGPoint();
-        //     point.x = event.clientX;
-        //     point.y = event.clientY;
-        //     return point.matrixTransform(svg.rotateContainer.getScreenCTM().inverse());
-        // };
-
         function centre() {
             panZoom.updateBBox();
             panZoom.resize();
@@ -48,49 +39,35 @@ function markingSurface() {
             panZoom.fit();
         }
 
-        function getPoint(event) {
-            var point = svg.createSVGPoint();
-            point.x = event.clientX;
-            point.y = event.clientY;
-            return point.matrixTransform(rotateContainer.getScreenCTM().inverse());
-        }
 
         // We could add on a rotate to the transform as another parameter to the
         // transform attribute, but that gets overwritten by svg-pan-zoom. So we
         // do a bit of maths and apply a rotation matrix to the original transform.
         // via https://developer.mozilla.org/en/docs/Web/SVG/Attribute/transform
-        function rotate(d) {
+        function rotate(theta) {
 
             var panZoom;
-            var currentTransform;
-            var rotateTransform;
-            var newTransform;
+            var size;
+            var transformList;
 
-            rotateTransform = [Math.cos(d), Math.sin(d), Math.sin(d) * -1,
-                Math.cos(d)];
+            // Reset rotation to 0 if it's equivalent to a full rotation
+            rotation = (Math.abs(theta + rotation) / 360 === 1) ? 0 : theta + rotation;
 
             panZoom = svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
-            currentTransform = panZoom.getAttribute('transform');
-            currentTransform = currentTransform.substr(7, currentTransform.length - 1).split(',');
-            currentTransform = currentTransform.map(function (value) {
-                return parseFloat(value);
-            });
-
-            var newTransform = currentTransform.slice(0);
-
-            for (var i = 0; i < rotateTransform.length; i++) {
-                newTransform[i] = newTransform[i] * rotateTransform[i];
-            }
+            transformList = panZoom.transform.baseVal;
+            size = panZoom.getBBox()
 
 
 
 
+            var rotate = svg.createSVGTransform();
+            rotate.setRotate(rotation, size.width / 2, size.height / 2)
 
-            // // newTransform = math.multiply(math.matrix(currentTransform), math.matrix(rotateTransform));
-            // // newTransform = 'matrix(' + newTransform.join(',') + ')';
+            transformList.insertItemBefore(rotate, 0)
+            transformList.consolidate()
 
 
-            panZoom.setAttribute('transform', 'matrix(' + newTransform.join(',') + ')');
+
         }
 
     }
