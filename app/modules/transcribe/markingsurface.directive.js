@@ -67,8 +67,8 @@ function markingSurface() {
             vm.$centre();
         }
 
-        function triggerRotate(event, data) {
-            vm.$rotate(data);
+        function triggerRotate(event, theta) {
+            vm.$rotate(theta);
         }
 
     }
