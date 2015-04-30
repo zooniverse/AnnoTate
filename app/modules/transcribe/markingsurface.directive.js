@@ -8,7 +8,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function markingSurface(transcribeUtils) {
+function markingSurface() {
     var directive = {
         restrict: 'A',
         controller: markingSurfaceController,
