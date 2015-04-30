@@ -10,6 +10,7 @@ require('./transcribe.module.js')
  */
 function markingSurface() {
     var directive = {
+        scope: {},
         restrict: 'A',
         controller: markingSurfaceController,
         controllerAs: 'vm',
@@ -18,7 +19,6 @@ function markingSurface() {
     return directive;
 
     function markingSurfaceController($scope, $element) {
-
         var vm = this;
         var svg = $element[0];
 
@@ -29,6 +29,7 @@ function markingSurface() {
         });
 
         vm.$centre = centre;
+        vm.$loadTool = loadTool;
         vm.$rotate = rotate;
 
         function centre() {
@@ -36,6 +37,10 @@ function markingSurface() {
             panZoom.resize();
             panZoom.center();
             panZoom.fit();
+        }
+
+        function loadTool(tool) {
+            console.log(tool);
         }
 
         // TODO: Fix so that centre and rotate work together normally - centre
@@ -51,17 +56,18 @@ function markingSurface() {
                 x: container.getBBox().width / 2,
                 y: container.getBBox().height / 2
             };
-            rotate = svg.createSVGTransform().setRotate(theta, centre.x, centre.y);
+
+            rotate = svg.createSVGTransform();
+            rotate.setRotate(theta, centre.x, centre.y);
             transforms = container.transform.baseVal;
             transforms.appendItem(rotate);
         }
-
     }
 
     function markingSurfaceLink(scope, element, attr, vm) {
-
         scope.$on('centre', triggerCentre);
         scope.$on('rotate', triggerRotate);
+        scope.$on('setTool', triggerLoadTool);
 
         function triggerCentre(event, data) {
             vm.$centre();
@@ -71,6 +77,9 @@ function markingSurface() {
             vm.$rotate(theta);
         }
 
+        function triggerLoadTool(event, tool) {
+            vm.$loadTool(tool);
+        }
     }
 
 }
