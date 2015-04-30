@@ -21,7 +21,6 @@ function markingSurface(transcribeUtils) {
 
         var vm = this;
         var svg = $element[0];
-        var rotation = 0;
 
         var panZoom = svgPanZoom(svg, {
             fit: false,
@@ -39,35 +38,22 @@ function markingSurface(transcribeUtils) {
             panZoom.fit();
         }
 
-
-        // We could add on a rotate to the transform as another parameter to the
-        // transform attribute, but that gets overwritten by svg-pan-zoom. So we
-        // do a bit of maths and apply a rotation matrix to the original transform.
-        // via https://developer.mozilla.org/en/docs/Web/SVG/Attribute/transform
+        // TODO: Fix so that centre and rotate work together normally - centre
+        // doesn't work when rotated.
         function rotate(theta) {
+            var container;
+            var rotate;
+            var transforms;
+            var centre;
 
-            var panZoom;
-            var size;
-            var transformList;
-
-            // Reset rotation to 0 if it's equivalent to a full rotation
-            rotation = (Math.abs(theta + rotation) / 360 === 1) ? 0 : theta + rotation;
-
-            panZoom = svg.getElementsByClassName('svg-pan-zoom_viewport')[0];
-            transformList = panZoom.transform.baseVal;
-            size = panZoom.getBBox()
-
-
-
-
-            var rotate = svg.createSVGTransform();
-            rotate.setRotate(rotation, size.width / 2, size.height / 2)
-
-            transformList.insertItemBefore(rotate, 0)
-            transformList.consolidate()
-
-
-
+            container = svg.getElementsByClassName('rotate-container')[0];
+            centre = {
+                x: container.getBBox().width / 2,
+                y: container.getBBox().height / 2
+            };
+            rotate = svg.createSVGTransform().setRotate(theta, centre.x, centre.y);
+            transforms = container.transform.baseVal;
+            transforms.appendItem(rotate);
         }
 
     }
