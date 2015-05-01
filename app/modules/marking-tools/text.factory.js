@@ -6,10 +6,11 @@ require('./marking-tools.module.js')
 /**
  * @ngInject
  */
-function textTool(Annotations) {
+function textTool(Annotations, toolUtils) {
 
     var factory;
     var _svg;
+    var _startPoint;
 
     factory = {
         name: 'text',
@@ -32,12 +33,27 @@ function textTool(Annotations) {
         _svg.on('mouseup.text mousemove.text', clickOrDrag);
         function clickOrDrag(event) {
             if (event.type === 'mouseup') {
-                console.log('click');
-            } else {
-                console.log('drag');
+                if (!_startPoint) {
+                   _addStartPoint(event);
+                } else {
+                    _addAnnotation(event);
+                    _removeStartPoint();
+                }
             }
             _svg.off('mouseup.text mousemove.text', clickOrDrag);
         }
+    }
+
+    function _addStartPoint(event) {
+        console.log(toolUtils.getPoint(_svg, event))
+    }
+
+    function _addAnnotation() {
+
+    }
+
+    function _removeStartPoint(event) {
+        console.log('remove')
     }
 
 }
