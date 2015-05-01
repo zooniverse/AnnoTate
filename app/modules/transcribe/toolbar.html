@@ -16,11 +16,11 @@
         </div>
 
         <div class="controls">
-            <button tool-button="text" type="button" class="button -tool" ng-click="toggle('text')">
+            <button type="button" class="button -tool" ng-class="{ '-active': tools.text.active }" ng-click="tools.text.toggle()">
                 <span class="icon -text" aria-hidden="true"></span>
                 Annotate Text
             </button>
-            <button tool-button="image" type="button" class="button -tool" ng-click="toggle('image')">
+            <button type="button" class="button -tool" ng-class="{ '-active': tools.image.active }" ng-click="tools.image.toggle()">
                 <span class="icon -image" aria-hidden="true"></span>
                 Annotate Image
             </button>

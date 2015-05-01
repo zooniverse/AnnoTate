@@ -40,6 +40,14 @@ function markingSurface() {
         }
 
         function loadTool(tool) {
+            if (activeTool) {
+                activeTool.deactivate();
+            }
+            if (tool) {
+                activeTool = tool;
+                activeTool.activate();
+            }
+
             console.log(tool);
         }
 
