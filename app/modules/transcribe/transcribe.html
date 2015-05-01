@@ -22,7 +22,7 @@
                         width="400px"
                         x="0"
                         y="0"
-                        fill="red"
+                        fill="lightgrey"
                     ></rect>
 
                     <image
@@ -37,29 +37,33 @@
 
                 </g>
 
-                <circle
-                    temp-text-annotation
-                    data="annotation"
-                    ng-repeat="annotation in annotations | filter:{type:'tempText'}:true"
-                ></circle>
+                <g class="annotations-group">
 
-                <g
-                    text-annotation
-                    data="annotation"
-                    ng-repeat="annotation in annotations | filter:{type:'text'}:true"
-                ></g>
+                    <circle
+                        temp-text-annotation
+                        data="annotation"
+                        ng-repeat="annotation in vm.annotations | filter:{type:'tempText'}:true"
+                    ></circle>
 
-                <g
-                    temp-image-annotation
-                    data="annotation"
-                    ng-repeat="annotation in annotations | filter:{type:'tempImage'}:true"
-                ></g>
+                    <g
+                        text-annotation
+                        data="annotation"
+                        ng-repeat="annotation in vm.annotations | filter:{type:'text'}:true"
+                    ></g>
 
-                <g
-                    image-annotation
-                    data="annotation"
-                    ng-repeat="annotation in annotations | filter:{type:'image'}:true"
-                ></g>
+                    <g
+                        temp-image-annotation
+                        data="annotation"
+                        ng-repeat="annotation in vm.annotations | filter:{type:'tempImage'}:true"
+                    ></g>
+
+                    <g
+                        image-annotation
+                        data="annotation"
+                        ng-repeat="annotation in vm.annotations | filter:{type:'image'}:true"
+                    ></g>
+
+                </g>
 
             </g>
 
