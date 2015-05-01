@@ -10,6 +10,7 @@ function textTool(Annotations, toolUtils) {
 
     var factory;
     var _svg;
+    var _subject;
     var _startPoint;
 
     factory = {
@@ -22,15 +23,16 @@ function textTool(Annotations, toolUtils) {
 
     function activate(svg) {
         _svg = svg;
-        _svg.on('mousedown.text', _clickHandler);
+        _subject = svg.find('.subject');
+        _subject.on('mousedown.text', _clickHandler);
     }
 
     function deactivate() {
-        _svg.off('.text');
+        _subject.off('.text');
     }
 
     function _clickHandler(event) {
-        _svg.on('mouseup.text mousemove.text', clickOrDrag);
+        _subject.on('mouseup.text mousemove.text', clickOrDrag);
         function clickOrDrag(event) {
             if (event.type === 'mouseup') {
                 if (!_startPoint) {
@@ -40,7 +42,7 @@ function textTool(Annotations, toolUtils) {
                     _removeStartPoint();
                 }
             }
-            _svg.off('mouseup.text mousemove.text', clickOrDrag);
+            _subject.off('mouseup.text mousemove.text', clickOrDrag);
         }
     }
 

@@ -15,30 +15,27 @@
 
             <g class="rotate-container">
 
-                <rect
-                    height="600px"
-                    width="400px"
-                    x="0"
-                    y="0"
-                    fill="red"
-                ></rect>
+                <g class="subject">
 
-                <rect
-                    height="0px"
-                    width="0px"
-                    x="0"
-                    y="0"
-                ></rect>
+                    <rect
+                        height="600px"
+                        width="400px"
+                        x="0"
+                        y="0"
+                        fill="red"
+                    ></rect>
 
-                <image
-                    ng-height="{{ subject.data.image.height }}"
-                    ng-href="{{ subject.data.image.src }}"
-                    ng-if="subject.isLoaded === true"
-                    ng-load="svg.$centre()"
-                    ng-width="{{ subject.data.image.width }}"
-                    x="0"
-                    xlink:href=""
-                    y="0"></image>
+                    <image
+                        ng-height="{{ subject.data.image.height }}"
+                        ng-href="{{ subject.data.image.src }}"
+                        ng-if="subject.isLoaded === true"
+                        ng-load="svg.$centre()"
+                        ng-width="{{ subject.data.image.width }}"
+                        x="0"
+                        xlink:href=""
+                        y="0"></image>
+
+                </g>
 
                 <circle
                     temp-text-annotation
