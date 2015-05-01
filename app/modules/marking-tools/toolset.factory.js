@@ -28,12 +28,11 @@ function toolSet($rootScope) {
         this._deactivate = _deactivate;
 
         function toggle() {
-            var that = this;
-            if (that.active) {
-                that._deactivate();
+            if (this.active) {
+                this._deactivate();
             } else {
                 _.forOwn(_.filter(factory, this), function (tool) { tool._deactivate(); });
-                that._activate();
+                this._activate();
             }
         }
 
