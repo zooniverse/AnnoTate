@@ -1,7 +1,5 @@
 'use strict';
 
-require('jquery');
-
 var angular = require('angular');
 var bulk = require('bulk-require');
 
