@@ -1,18 +1,14 @@
-<g
-    class="text-annotation"
-    ng-click="click($event)"
-    ng-mouseenter="addHoverClass()"
-    ng-mouseleave="removeHoverClass()">
+<g>
 
     <circle
-        class="text-annotation-point"
+        class="text"
         ng-attr-cx="{{ data.x1 }}"
         ng-attr-cy="{{ data.y1 }}"
         ng-attr-r="{{ r }}"
     ></circle>
 
     <circle
-        class="text-annotation-point"
+        class="text"
         ng-attr-cx="{{ data.x2 }}"
         ng-attr-cy="{{ data.y2 }}"
         ng-attr-r="{{ r }}"

@@ -6,7 +6,7 @@ require('./annotations.module.js')
 /**
  * @ngInject
  */
-function textAnnotation() {
+function textAnnotation(annotationsConfig) {
     var directive = {
         scope: {
             data: '='
@@ -20,24 +20,7 @@ function textAnnotation() {
 
     function linkFunction(scope, element, attrs) {
 
-        var ClassifyCtrl = scope.$parent.$parent;
-        var viewport = angular.element(ClassifyCtrl.svg.viewport);
-
-        scope.r = Config.svg.pointSize;
-
-        scope.addHoverClass = function () {
-            element.addClass('hover');
-        };
-
-        scope.removeHoverClass = function () {
-            element.removeClass('hover');
-        };
-
-        scope.click = function ($event) {
-            $event.preventDefault();
-            $event.stopImmediatePropagation();
-            ClassifyCtrl.editingTextAnnotation = scope.data;
-        };
+        scope.r = annotationsConfig.pointRadius;
 
     }
 
