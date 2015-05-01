@@ -9,17 +9,19 @@ require('./marking-tools.module.js')
 function imageTool() {
 
     var factory;
+    var _svg;
 
     factory = {
         name: 'image',
         activate: activate,
         deactivate: deactivate
-    }
+    };
 
     return factory;
 
-    function activate() {
-        console.log('activate', this.name);
+    function activate(svg) {
+        _svg = svg;
+        console.log('activate', this.name, _svg);
     }
 
     function deactivate() {

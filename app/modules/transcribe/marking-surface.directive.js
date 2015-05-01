@@ -8,7 +8,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function markingSurface(toolSet) {
+function markingSurface() {
     var directive = {
         scope: {},
         restrict: 'A',
@@ -23,6 +23,7 @@ function markingSurface(toolSet) {
         var svg = $element[0];
 
         var panZoom = svgPanZoom(svg, {
+            dblClickZoomEnabled: false,
             fit: false,
             minZoom: 0.2,
             zoomScaleSensitivity: 0.05
@@ -42,8 +43,8 @@ function markingSurface(toolSet) {
         // doesn't work when rotated.
         function rotate(theta) {
             var container;
-            var rotate;
-            var transforms;
+            var rotateTransform;
+            var transformList;
             var centre;
 
             container = svg.getElementsByClassName('rotate-container')[0];
@@ -52,16 +53,18 @@ function markingSurface(toolSet) {
                 y: container.getBBox().height / 2
             };
 
-            rotate = svg.createSVGTransform();
-            rotate.setRotate(theta, centre.x, centre.y);
-            transforms = container.transform.baseVal;
-            transforms.appendItem(rotate);
+            rotateTransform = svg.createSVGTransform();
+            rotateTransform.setRotate(theta, centre.x, centre.y);
+            transformList = container.transform.baseVal;
+            transformList.appendItem(rotateTransform);
         }
     }
 
     function markingSurfaceLink(scope, element, attr, vm) {
         scope.$on('centre', triggerCentre);
         scope.$on('rotate', triggerRotate);
+        scope.$on('activateTool', triggerActivateTool);
+        scope.$on('deactivateTool', triggerDeactivateTool);
 
         function triggerCentre(event, data) {
             vm.$centre();
@@ -70,6 +73,16 @@ function markingSurface(toolSet) {
         function triggerRotate(event, theta) {
             vm.$rotate(theta);
         }
+
+        function triggerActivateTool(event, tool) {
+            tool.activate(element);
+        }
+
+        function triggerDeactivateTool(event, tool) {
+            tool.deactivate();
+        }
+
+
     }
 
 }

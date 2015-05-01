@@ -16,15 +16,15 @@ function transcribeToolbar($rootScope, toolSet) {
     };
     return directive;
 
-    function transcribeToolbarLink(scope, element, attrs) {
+    function transcribeToolbarLink(scope) {
 
         scope.rotate = rotate;
         scope.centre = centre;
         scope.next = next;
         scope.tools = toolSet;
 
-        function rotate(value) {
-            $rootScope.$broadcast('rotate', value);
+        function rotate(theta) {
+            $rootScope.$broadcast('rotate', theta);
         }
 
         function centre() {

@@ -40,12 +40,12 @@ function toolSet($rootScope, textTool, imageTool) {
 
         function _activate() {
             this.active = true;
-            this.markingTool.activate();
+            $rootScope.$broadcast('activateTool', this.markingTool);
         }
 
         function _deactivate() {
             this.active = false;
-            this.markingTool.deactivate();
+            $rootScope.$broadcast('deactivateTool', this.markingTool);
         }
 
     }
