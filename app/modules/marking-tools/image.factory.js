@@ -49,7 +49,7 @@ function imageTool($rootScope, Annotations, toolUtils) {
         }
     }
 
-    function _startRect() {
+    function _startRect(event) {
         _origin = toolUtils.getPoint(_svg, event);
         _rectangle = Annotations.add(_.extend({}, _origin, {
             type: 'tempImage',
@@ -60,7 +60,7 @@ function imageTool($rootScope, Annotations, toolUtils) {
         _subject.on('mousemove.image', _drawRect);
     }
 
-    function _drawRect() {
+    function _drawRect(event) {
         var newPoint = toolUtils.getPoint(_svg, event);
         _rectangle.x = (_origin.x < newPoint.x) ? _origin.x : newPoint.x;
         _rectangle.y = (_origin.y < newPoint.y) ? _origin.y : newPoint.y;
@@ -69,7 +69,7 @@ function imageTool($rootScope, Annotations, toolUtils) {
         $rootScope.$apply();
     }
 
-    function _endRect() {
+    function _endRect(event) {
         _subject.off('mousemove.image', _drawRect);
         Annotations.add(_.extend({}, _rectangle, {
             type: 'image',
