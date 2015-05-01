@@ -6,9 +6,11 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function TranscribeCtrl($scope) {
+function TranscribeCtrl($scope, Annotations) {
 
     // ViewModel
     var vm = this;
+
+    vm.annotations = Annotations.list();
 
 }
