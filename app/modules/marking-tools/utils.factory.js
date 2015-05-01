@@ -31,7 +31,7 @@ function toolUtils() {
         return {
             x: +(result.x).toFixed(2),
             y: +(result.y).toFixed(2)
-        }
+        };
     }
 
 }

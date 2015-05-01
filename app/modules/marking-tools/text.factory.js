@@ -31,16 +31,18 @@ function textTool($rootScope, Annotations, toolUtils) {
     }
 
     function deactivate() {
-        if (_startPoint)
+        if (_startPoint) {
             _clearStartPoint();
+        }
         _subject.off('.text');
     }
 
     function _clickHandler(event) {
         _subject.on('mouseup.text mousemove.text', clickOrDrag);
         function clickOrDrag(event) {
-            if (event.type === 'mouseup')
+            if (event.type === 'mouseup') {
                 (!_startPoint) ? _startLine(event) : _endLine(event);
+            }
             _subject.off('mouseup.text mousemove.text', clickOrDrag);
         }
     }

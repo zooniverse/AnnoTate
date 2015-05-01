@@ -15,7 +15,7 @@ function toolSet($rootScope, textTool, imageTool) {
     factory = {
         text: new Tool(textTool),
         image: new Tool(imageTool)
-    }
+    };
 
     return factory;
 
@@ -32,7 +32,9 @@ function toolSet($rootScope, textTool, imageTool) {
                 this._deactivate();
             } else {
                 _.forOwn(factory, function (tool) {
-                    if (tool.active) tool._deactivate();
+                    if (tool.active) {
+                        tool._deactivate();
+                    }
                 });
                 this._activate();
             }

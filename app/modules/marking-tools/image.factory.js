@@ -34,15 +34,17 @@ function imageTool($rootScope, Annotations, toolUtils) {
 
     function deactivate() {
         _subject.off('.image');
-        if (_rectangle)
+        if (_rectangle) {
             _clearRect();
+        }
     }
 
     function _clickHandler(event) {
         _subject.on('mouseup.image mousemove.image', clickOrDrag);
         function clickOrDrag(event) {
-            if (event.type === 'mouseup')
+            if (event.type === 'mouseup') {
                 (!_rectangle) ? _startRect(event) : _endRect(event);
+            }
             _subject.off('mouseup.image mousemove.image', clickOrDrag);
         }
     }
