@@ -8,10 +8,10 @@ var _ = require('lodash');
 /**
  * @ngInject
  */
-function Annotations() {
+function Annotations($rootScope) {
 
     var factory;
-    var _annotations;
+    var _annotations = [];
 
     factory = {
         add: add,
@@ -24,10 +24,14 @@ function Annotations() {
 
     function add(annotation) {
         _annotations.push(annotation);
+        return annotation;
     }
 
+    // TODO: fix so that it only removes a point if it's passed an annotation;
+    // a blank / undefined object will wipe everything
     function destroy(annotation) {
-        _.remove(_annotations, { $$hashKey: annotation.$$hashKey });
+        _.remove(_annotations, annotation);
+        return _annotations;
     }
 
     function list() {
