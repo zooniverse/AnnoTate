@@ -6,7 +6,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function transcribeToolbar(toolSet) {
+function transcribeToolbar($rootScope, toolSet) {
     var directive = {
         scope: {},
         restrict: 'A',
@@ -18,23 +18,21 @@ function transcribeToolbar(toolSet) {
 
     function transcribeToolbarLink(scope, element, attrs) {
 
-        var transcribeCtrl = scope.$parent;
-
         scope.rotate = rotate;
         scope.centre = centre;
         scope.next = next;
         scope.tools = toolSet;
 
         function rotate(value) {
-            transcribeCtrl.$broadcast('rotate', value);
+            $rootScope.$broadcast('rotate', value);
         }
 
         function centre() {
-            transcribeCtrl.$broadcast('centre');
+            $rootScope.$broadcast('centre');
         }
 
         function next() {
-            transcribeCtrl.$broadcast('next');
+            $rootScope.$broadcast('next');
         }
 
     }
