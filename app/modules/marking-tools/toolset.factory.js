@@ -31,7 +31,7 @@ function toolSet($rootScope) {
             if (this.active) {
                 this._deactivate();
             } else {
-                _.forOwn(_.filter(factory, this), function (tool) { tool._deactivate(); });
+                _.forOwn(_.omit(factory, this), function (tool) { tool._deactivate(); });
                 this._activate();
             }
         }
@@ -47,6 +47,5 @@ function toolSet($rootScope) {
         }
 
     }
-
 
 }
