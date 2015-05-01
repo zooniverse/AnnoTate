@@ -1,9 +1,9 @@
 'use strict';
 
+var _ = require('lodash');
+
 require('./marking-tools.module.js')
     .factory('textTool', textTool);
-
-var _ = require('lodash');
 
 /**
  * @ngInject
@@ -25,7 +25,7 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     function activate(svg) {
         _svg = svg;
-        _subject = svg.find('.subject');
+        _subject = svg.find('.pan-zoom');
         _subject.on('mousedown.text', _clickHandler);
         _startPoint = null;
     }
@@ -47,7 +47,7 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     function _startLine(event) {
         var point = toolUtils.getPoint(_svg, event);
-        _startPoint = Annotations.add(_.extend(point, {
+        _startPoint = Annotations.add(_.extend({}, point, {
             type: 'tempText',
             temp: true
         }));
