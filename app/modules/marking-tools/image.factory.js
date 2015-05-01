@@ -34,7 +34,8 @@ function imageTool($rootScope, Annotations, toolUtils) {
 
     function deactivate() {
         _subject.off('.image');
-        _clearRect();
+        if (_rectangle)
+            _clearRect();
     }
 
     function _clickHandler(event) {
