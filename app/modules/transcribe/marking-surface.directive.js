@@ -8,7 +8,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function markingSurface() {
+function markingSurface(toolSet) {
     var directive = {
         scope: {},
         restrict: 'A',
@@ -29,7 +29,6 @@ function markingSurface() {
         });
 
         vm.$centre = centre;
-        vm.$loadTool = loadTool;
         vm.$rotate = rotate;
 
         function centre() {
@@ -37,18 +36,6 @@ function markingSurface() {
             panZoom.resize();
             panZoom.center();
             panZoom.fit();
-        }
-
-        function loadTool(tool) {
-            if (activeTool) {
-                activeTool.deactivate();
-            }
-            if (tool) {
-                activeTool = tool;
-                activeTool.activate();
-            }
-
-            console.log(tool);
         }
 
         // TODO: Fix so that centre and rotate work together normally - centre
@@ -75,8 +62,6 @@ function markingSurface() {
     function markingSurfaceLink(scope, element, attr, vm) {
         scope.$on('centre', triggerCentre);
         scope.$on('rotate', triggerRotate);
-        scope.$on('activateTool', triggerActivateTool);
-        scope.$on('deactivateTool', triggerDeactivateTool);
 
         function triggerCentre(event, data) {
             vm.$centre();
@@ -84,14 +69,6 @@ function markingSurface() {
 
         function triggerRotate(event, theta) {
             vm.$rotate(theta);
-        }
-
-        function triggerActivateTool(event, tool) {
-            console.log(event, tool)
-        }
-
-        function triggerDeactivateTool(event, tool) {
-            console.log(event, tool)
         }
     }
 

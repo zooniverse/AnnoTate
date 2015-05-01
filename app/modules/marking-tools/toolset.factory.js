@@ -8,22 +8,22 @@ var _ = require('lodash');
 /**
  * @ngInject
  */
-function toolSet($rootScope) {
+function toolSet($rootScope, textTool, imageTool) {
 
     var factory;
 
     factory = {
-        text: new Tool(require('./text.tool.js')),
-        image: new Tool(require('./image.tool.js'))
+        text: new Tool(textTool),
+        image: new Tool(imageTool)
     }
 
     return factory;
 
-    function Tool(toolObject) {
-        this.name = toolObject.name;
+    function Tool(toolFactory) {
+        this.name = toolFactory.name;
         this.active = false;
         this.toggle = toggle;
-        this.markingTool = toolObject;
+        this.markingTool = toolFactory;
         this._activate = _activate;
         this._deactivate = _deactivate;
 
@@ -31,19 +31,21 @@ function toolSet($rootScope) {
             if (this.active) {
                 this._deactivate();
             } else {
-                _.forOwn(_.omit(factory, this), function (tool) { tool._deactivate(); });
+                _.forOwn(factory, function (tool) {
+                    if (tool.active) tool._deactivate();
+                });
                 this._activate();
             }
         }
 
         function _activate() {
             this.active = true;
-            $rootScope.$broadcast('activateTool', this);
+            this.markingTool.activate();
         }
 
         function _deactivate() {
             this.active = false;
-            $rootScope.$broadcast('deactivateTool', this);
+            this.markingTool.deactivate();
         }
 
     }
