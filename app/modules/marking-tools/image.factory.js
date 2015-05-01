@@ -19,7 +19,7 @@ function imageTool() {
     return factory;
 
     function activate() {
-        console.log('activate', this.image);
+        console.log('activate', this.name);
     }
 
     function deactivate() {
