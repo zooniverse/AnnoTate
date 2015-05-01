@@ -75,7 +75,8 @@ function markingSurface() {
     function markingSurfaceLink(scope, element, attr, vm) {
         scope.$on('centre', triggerCentre);
         scope.$on('rotate', triggerRotate);
-        scope.$on('setTool', triggerLoadTool);
+        scope.$on('activateTool', triggerActivateTool);
+        scope.$on('deactivateTool', triggerDeactivateTool);
 
         function triggerCentre(event, data) {
             vm.$centre();
@@ -85,8 +86,12 @@ function markingSurface() {
             vm.$rotate(theta);
         }
 
-        function triggerLoadTool(event, tool) {
-            vm.$loadTool(tool);
+        function triggerActivateTool(event, tool) {
+            console.log(event, tool)
+        }
+
+        function triggerDeactivateTool(event, tool) {
+            console.log(event, tool)
         }
     }
 
