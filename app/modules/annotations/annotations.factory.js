@@ -8,10 +8,14 @@ var _ = require('lodash');
 /**
  * @ngInject
  */
-function Annotations() {
+function Annotations(localStorageService) {
+
+    if (localStorageService.get('annotations') === null) {
+        localStorageService.set('annotations', []);
+    }
 
     var factory;
-    var _annotations = [];
+    var _annotations = localStorageService.get('annotations');
 
     factory = {
         add: add,
@@ -24,6 +28,7 @@ function Annotations() {
 
     function add(annotation) {
         _annotations.push(annotation);
+        _updateStorage();
         return annotation;
     }
 
@@ -31,6 +36,7 @@ function Annotations() {
     // a blank / undefined object will wipe everything
     function destroy(annotation) {
         _.remove(_annotations, annotation);
+        _updateStorage();
         return _annotations;
     }
 
@@ -40,7 +46,13 @@ function Annotations() {
 
     function reset() {
         _annotations.length = 0;
+        _updateStorage();
         return _annotations;
+    }
+
+    function _updateStorage() {
+        var annotations = _.reject(_annotations, { temp: true });
+        localStorageService.set('annotations', annotations);
     }
 
 }
