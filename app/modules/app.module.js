@@ -34,7 +34,8 @@ function startApp() {
     window.app = angular
         .module('app', requires)
         .constant('appConfig', appConfig.constants)
-        .config(appConfig.routes);
+        .config(appConfig.routes)
+        .config(appConfig.localStorage);
 
     angular.bootstrap(document, ['app']);
 
