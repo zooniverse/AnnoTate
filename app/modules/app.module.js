@@ -7,7 +7,7 @@ var bulk = require('bulk-require');
 var appConfig = require('./app.config.js');
 require('angular-ui-router');
 require('angular-bootstrap');
-
+require('angular-local-storage');
 // App modules
 bulk(__dirname, ['./**/!(app.module).js']);
 
@@ -20,6 +20,7 @@ function startApp() {
         // Angular modules
         'ui.router',
         'ui.bootstrap',
+        'LocalStorageModule',
 
         // App modules
         'app.core',

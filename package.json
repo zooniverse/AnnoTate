@@ -78,7 +78,11 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^2.0.0",
-    "lodash": "^3.7.0"
+    "lodash": "^3.7.0",
+    "angular-local-storage": "^0.1.5",
+    "install": "^0.1.8",
+    "npm": "^2.9.0",
+    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
   },
   "scripts": {
     "pretest": "npm install",
@@ -88,8 +92,5 @@
   },
   "browserify-shim": {
     "./node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js": "angular-bootstrap"
-  },
-  "dependencies": {
-    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
   }
 }
