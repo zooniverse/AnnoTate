@@ -10,7 +10,12 @@ function TranscribeCtrl($scope, Annotations) {
 
     // ViewModel
     var vm = this;
-
     vm.annotations = Annotations.list();
+
+    $scope.$on('next', loadNextSubject);
+
+    function loadNextSubject() {
+        Annotations.reset();
+    }
 
 }
