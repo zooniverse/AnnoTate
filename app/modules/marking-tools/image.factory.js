@@ -39,11 +39,15 @@ function imageTool($rootScope, Annotations, toolUtils) {
         }
     }
 
-    function _clickHandler(event) {
+    function _clickHandler() {
         _subject.on('mouseup.image mousemove.image', clickOrDrag);
         function clickOrDrag(event) {
             if (event.type === 'mouseup') {
-                (!_rectangle) ? _startRect(event) : _endRect(event);
+                if (!_rectangle) {
+                    _startRect(event);
+                } else {
+                    _endRect();
+                }
             }
             _subject.off('mouseup.image mousemove.image', clickOrDrag);
         }
@@ -69,7 +73,7 @@ function imageTool($rootScope, Annotations, toolUtils) {
         $rootScope.$apply();
     }
 
-    function _endRect(event) {
+    function _endRect() {
         _subject.off('mousemove.image', _drawRect);
         Annotations.add(_.extend({}, _rectangle, {
             type: 'image',

@@ -18,9 +18,7 @@ function tempTextAnnotation(annotationsConfig) {
     };
     return directive;
 
-    function linkFunction(scope, element, attrs) {
-
+    function linkFunction(scope) {
         scope.r = annotationsConfig.pointRadius;
-
     }
 }

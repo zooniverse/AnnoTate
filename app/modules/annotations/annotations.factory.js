@@ -8,7 +8,7 @@ var _ = require('lodash');
 /**
  * @ngInject
  */
-function Annotations($rootScope) {
+function Annotations() {
 
     var factory;
     var _annotations = [];
@@ -18,7 +18,7 @@ function Annotations($rootScope) {
         destroy: destroy,
         list: list,
         reset: reset
-    }
+    };
 
     return factory;
 

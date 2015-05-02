@@ -66,7 +66,7 @@ function markingSurface() {
         scope.$on('activateTool', triggerActivateTool);
         scope.$on('deactivateTool', triggerDeactivateTool);
 
-        function triggerCentre(event, data) {
+        function triggerCentre() {
             vm.$centre();
         }
 
