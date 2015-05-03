@@ -90,8 +90,8 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
         function moveDrag(event) {
             // We update the element, because it's faster than the model.
             var point = toolUtils.getPoint(svg, event);
-            dragData.target.setAttribute('cx', point.x - dragData.offset.x);
-            dragData.target.setAttribute('cy', point.y - dragData.offset.y);
+            dragData.target.setAttribute('cx', point.x + dragData.offset.x);
+            dragData.target.setAttribute('cy', point.y + dragData.offset.y);
         }
 
         function startDrag(event) {
