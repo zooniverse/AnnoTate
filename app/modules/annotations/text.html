@@ -1,4 +1,15 @@
 <g class="text-annotation">
-    <circle ng-if="data.startPoint" point="data.startPoint"></circle>
-    <circle ng-if="data.endPoint" point="data.endPoint"></circle>
+
+    <circle
+        ng-if="data.startPoint"
+        point="data.startPoint"
+        complete="data.complete"
+    ></circle>
+
+    <circle
+        ng-if="data.endPoint"
+        point="data.endPoint"
+        complete="data.complete"
+    ></circle>
+
 </g>

@@ -32,6 +32,7 @@ function textAnnotation($rootScope, Annotations) {
     }
 
     function textAnnotationLink(scope, element, attrs, ctrl) {
+        console.log(scope.data)
     }
 
 }

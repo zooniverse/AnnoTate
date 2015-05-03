@@ -18,7 +18,8 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
         require: ['point', '^textAnnotation', '^markingSurface'],
         restrict: 'A',
         scope: {
-            data: '=point'
+            data: '=point',
+            complete: '='
         },
         templateUrl: 'annotations/point.html'
     };

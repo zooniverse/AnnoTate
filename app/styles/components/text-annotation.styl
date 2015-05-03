@@ -3,8 +3,13 @@
     .text
         fill: blue
         opacity: 0.4
+        transform: scale3d(1, 1, 1)
 
-    .text.-temp
+    .text.-incomplete
+        animation: pulse 0.5s ease-in-out
+        animation-iteration-count: infinite
+        transform-origin: center
+        animation-direction: alternate
         fill: red
 
     .text.-dragging
