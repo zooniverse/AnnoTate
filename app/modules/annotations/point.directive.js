@@ -61,6 +61,8 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
             function clickOrDrag(event) {
                 if (event.type === 'mousemove') {
                     startDrag(event);
+                } else {
+                    textAnnotation.edit();
                 }
                 element.off(events, clickOrDrag);
             }

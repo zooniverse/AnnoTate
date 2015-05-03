@@ -23,7 +23,12 @@ function textAnnotation($rootScope, Annotations) {
 
         var vm = this;
 
+        vm.edit = edit;
         vm.update = update;
+
+        function edit() {
+            // $rootScope('editAnnotation', $scope.data);
+        }
 
         function update(data) {
             Annotations.upsert($scope.data);
