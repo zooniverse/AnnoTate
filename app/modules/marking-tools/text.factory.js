@@ -53,21 +53,27 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     function _startLine(event) {
         var point = toolUtils.getPoint(_svg, event);
-        _startPoint = Annotations.add(_.extend({}, point, {
+        _startPoint = Annotations.add(_.extend({}, {
             type: 'tempText',
-            temp: true
+            temp: true,
+            x: point.x,
+            y: point.y
         }));
         $rootScope.$apply();
     }
 
     function _endLine(event) {
-        var endPoint = toolUtils.getPoint(_svg, event);
+        var point = toolUtils.getPoint(_svg, event);
         Annotations.add({
             type: 'text',
-            x1: _startPoint.x,
-            y1: _startPoint.y,
-            x2: endPoint.x,
-            y2: endPoint.y
+            startPoint: {
+                x: _startPoint.x,
+                y: _startPoint.y
+            },
+            endPoint: {
+                x: point.x,
+                y: point.y
+            }
         });
         _clearStartPoint();
         $rootScope.$apply();

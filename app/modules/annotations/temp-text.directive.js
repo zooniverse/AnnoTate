@@ -13,12 +13,8 @@ function tempTextAnnotation(annotationsConfig) {
         },
         restrict: 'A',
         replace: true,
-        templateUrl: 'annotations/temp-text.html',
-        link: linkFunction
+        templateUrl: 'annotations/temp-text.html'
     };
     return directive;
 
-    function linkFunction(scope) {
-        scope.r = annotationsConfig.pointRadius;
-    }
 }

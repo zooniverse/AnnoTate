@@ -21,14 +21,15 @@ function Annotations(localStorageService) {
         add: add,
         destroy: destroy,
         list: list,
-        reset: reset
+        reset: reset,
+        update: update
     };
 
     return factory;
 
     function add(annotation) {
-        _annotations.push(annotation);
-        _updateStorage();
+        _annotations.push(angular.copy(annotation));
+        update();
         return annotation;
     }
 
@@ -36,7 +37,7 @@ function Annotations(localStorageService) {
     // a blank / undefined object will wipe everything
     function destroy(annotation) {
         _.remove(_annotations, annotation);
-        _updateStorage();
+        update();
         return _annotations;
     }
 
@@ -46,11 +47,11 @@ function Annotations(localStorageService) {
 
     function reset() {
         _annotations.length = 0;
-        _updateStorage();
+        update();
         return _annotations;
     }
 
-    function _updateStorage() {
+    function update() {
         var annotations = _.reject(_annotations, { temp: true });
         localStorageService.set('annotations', annotations);
     }

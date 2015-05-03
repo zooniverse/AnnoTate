@@ -6,7 +6,7 @@ require('./transcribe.module.js')
 /**
  * @ngInject
  */
-function TranscribeCtrl($scope, Annotations) {
+function TranscribeCtrl($scope, Annotations, toolSet) {
 
     // ViewModel
     var vm = this;
@@ -16,6 +16,7 @@ function TranscribeCtrl($scope, Annotations) {
 
     function loadNextSubject() {
         Annotations.reset();
+        // TODO: reset tools
     }
 
 }

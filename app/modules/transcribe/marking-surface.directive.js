@@ -20,9 +20,9 @@ function markingSurface() {
 
     function markingSurfaceController($scope, $element) {
         var vm = this;
-        var svg = $element[0];
+        vm.svg = $element[0];
 
-        var panZoom = svgPanZoom(svg, {
+        var panZoom = svgPanZoom(vm.svg, {
             dblClickZoomEnabled: false,
             fit: false,
             minZoom: 0.2,
@@ -47,13 +47,13 @@ function markingSurface() {
             var transformList;
             var centre;
 
-            container = svg.getElementsByClassName('rotate-container')[0];
+            container = vm.svg.getElementsByClassName('rotate-container')[0];
             centre = {
                 x: container.getBBox().width / 2,
                 y: container.getBBox().height / 2
             };
 
-            rotateTransform = svg.createSVGTransform();
+            rotateTransform = vm.svg.createSVGTransform();
             rotateTransform.setRotate(theta, centre.x, centre.y);
             transformList = container.transform.baseVal;
             transformList.appendItem(rotateTransform);
@@ -81,8 +81,6 @@ function markingSurface() {
         function triggerDeactivateTool(event, tool) {
             tool.deactivate();
         }
-
-
     }
 
 }

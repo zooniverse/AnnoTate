@@ -1,17 +1,4 @@
 <g>
-
-    <circle
-        class="text"
-        ng-attr-cx="{{ data.x1 }}"
-        ng-attr-cy="{{ data.y1 }}"
-        ng-attr-r="{{ r }}"
-    ></circle>
-
-    <circle
-        class="text"
-        ng-attr-cx="{{ data.x2 }}"
-        ng-attr-cy="{{ data.y2 }}"
-        ng-attr-r="{{ r }}"
-    ></circle>
-
+    <circle draggable-point="data.startPoint"></circle>
+    <circle draggable-point="data.endPoint"></circle>
 </g>
