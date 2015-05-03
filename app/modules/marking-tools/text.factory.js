@@ -11,9 +11,9 @@ require('./marking-tools.module.js')
 function textTool($rootScope, Annotations, toolUtils) {
 
     var factory;
+    var _annotation;
+    var _panzoom;
     var _svg;
-    var _subject;
-    var _startPoint;
 
     factory = {
         name: 'text',
@@ -25,63 +25,64 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     function activate(svg) {
         _svg = svg;
-        _subject = svg.find('.pan-zoom');
-        _subject.on('mousedown.text', _clickHandler);
-        _startPoint = null;
+        _panzoom = svg.find('.pan-zoom');
+        _panzoom.on('mousedown.text', _clickHandler);
+        _annotation = null;
     }
 
     function deactivate() {
-        if (_startPoint) {
-            _clearStartPoint();
+        if (_annotation) {
+            Annotations.destroy(_annotation);
+            _annotation = null;
         }
-        _subject.off('.text');
+        _panzoom.off('.text');
+    }
+
+    function _allowedTarget(event) {
+        var element = angular.element(event.target);
+        return element.parents('.text-annotation').length === 0;
+
     }
 
     function _clickHandler() {
-        _subject.on('mouseup.text mousemove.text', clickOrDrag);
+        var events = 'mouseup.text mousemove.text';
+        _panzoom.on(events, clickOrDrag);
         function clickOrDrag(event) {
-            if (event.type === 'mouseup') {
-                if (!_startPoint) {
+            if (event.type === 'mouseup' && _allowedTarget(event)) {
+                if (!_annotation) {
                     _startLine(event);
                 } else {
                     _endLine(event);
                 }
             }
-            _subject.off('mouseup.text mousemove.text', clickOrDrag);
+            _panzoom.off(events, clickOrDrag);
         }
     }
 
     function _startLine(event) {
         var point = toolUtils.getPoint(_svg, event);
-        _startPoint = Annotations.add(_.extend({}, {
-            type: 'tempText',
-            temp: true,
-            x: point.x,
-            y: point.y
-        }));
+        _annotation = Annotations.upsert({
+            type: 'text',
+            complete: false,
+            startPoint: {
+                x: point.x,
+                y: point.y
+            }
+        });
         $rootScope.$apply();
     }
 
     function _endLine(event) {
         var point = toolUtils.getPoint(_svg, event);
-        Annotations.add({
-            type: 'text',
-            startPoint: {
-                x: _startPoint.x,
-                y: _startPoint.y
-            },
+        _annotation = Annotations.upsert(_.extend(_annotation, {
+            complete: true,
             endPoint: {
                 x: point.x,
                 y: point.y
             }
-        });
-        _clearStartPoint();
+        }));
+        _annotation = null;
         $rootScope.$apply();
-    }
-
-    function _clearStartPoint() {
-        Annotations.destroy(_startPoint);
-        _startPoint = null;
     }
 
 }

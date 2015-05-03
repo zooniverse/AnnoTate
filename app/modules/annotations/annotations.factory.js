@@ -18,7 +18,7 @@ function Annotations(localStorageService) {
     var _annotations = localStorageService.get('annotations');
 
     factory = {
-        add: add,
+        upsert: upsert,
         destroy: destroy,
         list: list,
         reset: reset,
@@ -27,8 +27,14 @@ function Annotations(localStorageService) {
 
     return factory;
 
-    function add(annotation) {
-        _annotations.push(angular.copy(annotation));
+    // Update if an annotation exists, create if it doesn't
+    function upsert(annotation) {
+        var inCollection = _.find(_annotations, { $$hashKey: annotation.$$hashKey });
+        if (inCollection) {
+            inCollection = _.extend(inCollection, annotation)
+        } else {
+            _annotations.push(annotation);
+        }
         update();
         return annotation;
     }
@@ -52,7 +58,7 @@ function Annotations(localStorageService) {
     }
 
     function update() {
-        var annotations = _.reject(_annotations, { temp: true });
+        var annotations = _.reject(_annotations, { complete: false });
         localStorageService.set('annotations', annotations);
     }
 

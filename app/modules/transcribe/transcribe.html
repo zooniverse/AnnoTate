@@ -39,29 +39,12 @@
 
                 <g class="annotations-group">
 
-                    <circle
-                        temp-text-annotation
-                        data="annotation"
-                        ng-repeat="annotation in vm.annotations | filter:{type:'tempText'}:true"
-                    ></circle>
-
                     <g
                         text-annotation
                         data="annotation"
                         ng-repeat="annotation in vm.annotations | filter:{type:'text'}:true"
                     ></g>
 
-                    <g
-                        temp-image-annotation
-                        data="annotation"
-                        ng-repeat="annotation in vm.annotations | filter:{type:'tempImage'}:true"
-                    ></g>
-
-                    <g
-                        image-annotation
-                        data="annotation"
-                        ng-repeat="annotation in vm.annotations | filter:{type:'image'}:true"
-                    ></g>
 
                 </g>
 

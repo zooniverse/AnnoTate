@@ -13,7 +13,7 @@ function imageAnnotation($rootScope) {
         },
         restrict: 'A',
         replace: true,
-        templateUrl: 'annotations/image.html',
+        // templateUrl: 'annotations/image.html',
         link: linkFunction,
         require: '^markingSurface'
     };

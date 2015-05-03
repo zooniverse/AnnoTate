@@ -20,9 +20,10 @@ function markingSurface() {
 
     function markingSurfaceController($scope, $element) {
         var vm = this;
+
         vm.svg = $element[0];
 
-        var panZoom = svgPanZoom(vm.svg, {
+        vm.panZoom = svgPanZoom(vm.svg, {
             dblClickZoomEnabled: false,
             fit: false,
             minZoom: 0.2,
@@ -33,15 +34,15 @@ function markingSurface() {
         vm.$rotate = rotate;
 
         function centre() {
-            panZoom.updateBBox();
-            panZoom.resize();
-            panZoom.center();
-            panZoom.fit();
+            vm.panZoom.updateBBox();
+            vm.panZoom.resize();
+            vm.panZoom.center();
+            vm.panZoom.fit();
         }
 
         // TODO: Fix so that centre and rotate work together normally - centre
         // doesn't work when rotated.
-        function rotate(theta) {
+        function rotate(event, theta) {
             var container;
             var rotateTransform;
             var transformList;
@@ -61,18 +62,10 @@ function markingSurface() {
     }
 
     function markingSurfaceLink(scope, element, attr, vm) {
-        scope.$on('centre', triggerCentre);
-        scope.$on('rotate', triggerRotate);
+        scope.$on('centre', vm.$centre);
+        scope.$on('rotate', vm.$rotate);
         scope.$on('activateTool', triggerActivateTool);
         scope.$on('deactivateTool', triggerDeactivateTool);
-
-        function triggerCentre() {
-            vm.$centre();
-        }
-
-        function triggerRotate(event, theta) {
-            vm.$rotate(theta);
-        }
 
         function triggerActivateTool(event, tool) {
             tool.activate(element);

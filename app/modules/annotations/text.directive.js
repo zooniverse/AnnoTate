@@ -1,82 +1,37 @@
 'use strict';
 
-var _ = require('lodash');
-
 require('./annotations.module.js')
     .directive('textAnnotation', textAnnotation);
 
 /**
  * @ngInject
  */
-function textAnnotation($rootScope, annotationsConfig, AnnotationsUtils) {
+function textAnnotation($rootScope, Annotations) {
     var directive = {
+        controller: textAnnotationController,
+        link: textAnnotationLink,
+        replace: true,
+        restrict: 'A',
         scope: {
             data: '='
         },
-        restrict: 'A',
-        replace: true,
-        templateUrl: 'annotations/text.html',
-        link: linkFunction,
-        controller: controller
+        templateUrl: 'annotations/text.html'
     };
     return directive;
 
-    function controller() {
+    function textAnnotationController($scope) {
 
         var vm = this;
 
-        vm.editing = false;
+        vm.update = update;
 
-        vm.enableEdit = function() {
-            console.log('enableEdit');
-            vm.editing = true;
-        };
-
-        vm.disableEdit = function() {
-            console.log('disableEdit');
-            vm.editing = false;
-        };
+        function update(data) {
+            Annotations.upsert($scope.data);
+        }
 
     }
 
-    function linkFunction(scope, element, attrs, ctrl) {
-
-        var namespace;
-
-        namespace = _.partial(AnnotationsUtils.namespace, _, scope.data);
-        scope.$on('$destroy', $destroy);
-        scope.$on('editAnnotation', checkWhetherEditing);
-
-        element.on(namespace('mousedown'), clickHandler);
-
-        function clickHandler(event) {
-            event.stopPropagation();
-
-            var events;
-            events = namespace('mouseup') + ' ' + namespace('mousemove');
-            element.on(events, clickOrDrag);
-
-            function clickOrDrag(event) {
-                if (event.type === 'mouseup') {
-                    $rootScope.$broadcast('editAnnotation', scope.data);
-                }
-                element.off(events, clickOrDrag);
-            }
-        }
-
-        function checkWhetherEditing(event, annotation) {
-            var match = annotation.$$hashKey === scope.data.$$hashKey;
-            if (match && !scope.editing) {
-                ctrl.enableEdit();
-            } else if (!match && scope.editing) {
-                ctrl.disableEdit();
-            }
-        }
-
-        function $destroy() {
-            element.off(namespace());
-        }
-
+    function textAnnotationLink(scope, element, attrs, ctrl) {
     }
 
 }
