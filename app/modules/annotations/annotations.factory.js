@@ -1,9 +1,9 @@
 'use strict';
 
+var _ = require('lodash');
+
 require('./annotations.module.js')
     .factory('Annotations', Annotations);
-
-var _ = require('lodash');
 
 /**
  * @ngInject
@@ -21,8 +21,7 @@ function Annotations(localStorageService) {
         upsert: upsert,
         destroy: destroy,
         list: list,
-        reset: reset,
-        update: update
+        reset: reset
     };
 
     return factory;
@@ -31,11 +30,11 @@ function Annotations(localStorageService) {
     function upsert(annotation) {
         var inCollection = _.find(_annotations, { $$hashKey: annotation.$$hashKey });
         if (inCollection) {
-            inCollection = _.extend(inCollection, annotation)
+            inCollection = _.extend(inCollection, annotation);
         } else {
             _annotations.push(annotation);
         }
-        update();
+        _updateLocalStorage();
         return annotation;
     }
 
@@ -43,7 +42,7 @@ function Annotations(localStorageService) {
     // a blank / undefined object will wipe everything
     function destroy(annotation) {
         _.remove(_annotations, annotation);
-        update();
+        _updateLocalStorage();
         return _annotations;
     }
 
@@ -53,11 +52,11 @@ function Annotations(localStorageService) {
 
     function reset() {
         _annotations.length = 0;
-        update();
+        _updateLocalStorage();
         return _annotations;
     }
 
-    function update() {
+    function _updateLocalStorage() {
         var annotations = _.reject(_annotations, { complete: false });
         localStorageService.set('annotations', annotations);
     }

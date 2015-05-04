@@ -9,7 +9,6 @@ require('./annotations.module.js')
 function textAnnotation($rootScope, Annotations) {
     var directive = {
         controller: textAnnotationController,
-        link: textAnnotationLink,
         replace: true,
         restrict: 'A',
         scope: {
@@ -22,21 +21,17 @@ function textAnnotation($rootScope, Annotations) {
     function textAnnotationController($scope) {
 
         var vm = this;
-
-        vm.edit = edit;
         vm.update = update;
+        vm.destroy = destroy;
 
-        function edit() {
-            // $rootScope('editAnnotation', $scope.data);
-        }
-
-        function update(data) {
+        function update() {
             Annotations.upsert($scope.data);
         }
 
-    }
+        function destroy() {
+            Annotations.destroy($scope.data);
+        }
 
-    function textAnnotationLink(scope, element, attrs, ctrl) {
     }
 
 }

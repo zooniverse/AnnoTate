@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var angular = require('angular');
 
 require('./marking-tools.module.js')
     .factory('textTool', textTool);

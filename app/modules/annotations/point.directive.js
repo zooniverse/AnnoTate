@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var angular = require('angular');
 
 require('./annotations.module.js')
     .directive('point', point);
@@ -35,7 +35,6 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
 
         var dragData;
         var markingSurface;
-        var namespace;
         var panZoom;
         var surface;
         var svg;
@@ -53,7 +52,10 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
         surface = svg.find('.pan-zoom');
 
         // Functions
-        namespace = _.partial(AnnotationsUtils.namespace, _, scope.data);
+        function namespace(name) {
+            return (name) ? name + '.point' : '.point';
+        }
+
 
         function clickHandler() {
             var events = namespace('mouseup') + ' ' + namespace('mousemove');
@@ -61,8 +63,6 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
             function clickOrDrag(event) {
                 if (event.type === 'mousemove') {
                     startDrag(event);
-                } else {
-                    textAnnotation.edit();
                 }
                 element.off(events, clickOrDrag);
             }
@@ -100,7 +100,7 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
             dragData.offset = {
                 x: scope.data.x - point.x,
                 y: scope.data.y - point.y
-            }
+            };
             surface.on(namespace('mousemove'), moveDrag);
             surface.on(namespace('mouseup'), endDrag);
             scope.dragging = true;

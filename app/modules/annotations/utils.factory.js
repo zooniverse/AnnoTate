@@ -18,11 +18,11 @@ function AnnotationsUtils() {
 
     // creates an event namespace based on annotation type and id
     function namespace(eventType, annotation) {
-        var namespace = '.' + annotation.type + 'Annotation.' + annotation.$$hashKey;
+        var eventNamespace = '.' + annotation.type + 'Annotation.' + annotation.$$hashKey;
         if (eventType) {
-            return eventType + namespace;
+            return eventType + eventNamespace;
         }
-        return namespace;
+        return eventNamespace;
     }
 
 }
