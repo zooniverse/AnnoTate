@@ -13,7 +13,6 @@ function textAnnotation($rootScope, Annotations) {
         controller: textAnnotationController,
         link: textAnnotationLink,
         replace: true,
-        // require:
         restrict: 'A',
         scope: {
             data: '='
@@ -49,7 +48,7 @@ function textAnnotation($rootScope, Annotations) {
             hammer.destroy();
         }
 
-        function openContextMenu(event) {
+        function openContextMenu() {
             var contextMenuData = {
                 menuOptions: [{
                     name: 'Edit',

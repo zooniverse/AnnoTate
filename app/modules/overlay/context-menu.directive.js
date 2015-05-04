@@ -30,11 +30,10 @@ function contextMenu() {
             scope.$apply();
         }
 
-        function closeContextMenu(event) {
+        function closeContextMenu() {
             scope.active = false;
             scope.menuOptions = null;
         }
-
 
     }
 }
