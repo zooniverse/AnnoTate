@@ -16,14 +16,12 @@ function contextMenu() {
 
     function contextMenuLink(scope) {
 
-        var surface = angular.element('.transcription-interface');
-
         scope.$on('openContextMenu', openContextMenu);
         scope.doAction = doAction;
 
         function doAction(action) {
             action();
-            scope.active = false;
+            closeContextMenu();
         }
 
         function openContextMenu(event, data) {
@@ -34,7 +32,7 @@ function contextMenu() {
 
         function closeContextMenu(event) {
             scope.active = false;
-            scope.$apply();
+            scope.menuOptions = null;
         }
 
 

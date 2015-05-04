@@ -10,33 +10,23 @@ require('./annotations.module.js')
  */
 function Annotations(localStorageService) {
 
+    var factory;
+    var _annotations;
+
     if (localStorageService.get('annotations') === null) {
         localStorageService.set('annotations', []);
     }
 
-    var factory;
-    var _annotations = localStorageService.get('annotations');
+    _annotations = localStorageService.get('annotations');
 
     factory = {
-        upsert: upsert,
         destroy: destroy,
         list: list,
-        reset: reset
+        reset: reset,
+        upsert: upsert
     };
 
     return factory;
-
-    // Update if an annotation exists, create if it doesn't
-    function upsert(annotation) {
-        var inCollection = _.find(_annotations, { $$hashKey: annotation.$$hashKey });
-        if (inCollection) {
-            inCollection = _.extend(inCollection, annotation);
-        } else {
-            _annotations.push(annotation);
-        }
-        _updateLocalStorage();
-        return annotation;
-    }
 
     // TODO: fix so that it only removes a point if it's passed an annotation;
     // a blank / undefined object will wipe everything
@@ -54,6 +44,18 @@ function Annotations(localStorageService) {
         _annotations.length = 0;
         _updateLocalStorage();
         return _annotations;
+    }
+
+    // Update if an annotation exists, create if it doesn't
+    function upsert(annotation) {
+        var inCollection = _.find(_annotations, { $$hashKey: annotation.$$hashKey });
+        if (inCollection) {
+            inCollection = _.extend(inCollection, annotation);
+        } else {
+            _annotations.push(annotation);
+        }
+        _updateLocalStorage();
+        return annotation;
     }
 
     function _updateLocalStorage() {

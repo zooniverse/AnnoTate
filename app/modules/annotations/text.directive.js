@@ -43,16 +43,14 @@ function textAnnotation($rootScope, Annotations) {
 
         function openContextMenu(event) {
             var contextMenuData = {
-                menuOptions: [
-                    {
-                        name: 'Edit',
-                        action: function () { console.log('Edit'); }
-                    },
-                    {
-                        name: 'Delete',
-                        action: ctrl.destroy
-                    }
-                ]
+                menuOptions: [{
+                    name: 'Edit',
+                    action: function () { console.log('Edit'); }
+                },
+                {
+                    name: 'Delete',
+                    action: ctrl.destroy
+                }]
             };
             $rootScope.$broadcast('openContextMenu', contextMenuData);
         }
