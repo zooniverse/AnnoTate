@@ -25,6 +25,7 @@
   "devDependencies": {
     "angular": "^1.3.15",
     "angular-bootstrap": "^0.12.0",
+    "angular-local-storage": "^0.1.5",
     "angular-mocks": "^1.3.15",
     "angular-ui-router": "^0.2.13",
     "babelify": "^5.0.4",
@@ -56,7 +57,9 @@
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
+    "hammerjs": "^2.0.4",
     "imagemin-pngcrush": "^0.1.0",
+    "install": "^0.1.8",
     "isparta": "git://github.com/douglasduteil/isparta",
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.21",
@@ -66,23 +69,21 @@
     "karma-coverage": "git://github.com/douglasduteil/karma-coverage#next",
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.1.5",
+    "lodash": "^3.7.0",
     "morgan": "^1.2.2",
     "nib": "^1.1.0",
     "node-dir": "^0.1.6",
+    "npm": "^2.9.0",
     "pretty-hrtime": "^0.2.2",
     "protractor": "^1.2.0",
     "q": "^1.2.0",
     "run-sequence": "^0.3.6",
+    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom",
     "tiny-lr": "0.0.9",
     "uglifyify": "^2.5.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^2.0.0",
-    "lodash": "^3.7.0",
-    "angular-local-storage": "^0.1.5",
-    "install": "^0.1.8",
-    "npm": "^2.9.0",
-    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
+    "watchify": "^2.0.0"
   },
   "scripts": {
     "pretest": "npm install",
@@ -90,7 +91,10 @@
     "preprotractor": "npm run update-webdriver",
     "protractor": "npm run protractor test/protractor.conf.js"
   },
-  "browserify-shim": {
+  "browser": {
     "./node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js": "angular-bootstrap"
+  },
+  "browserify-shim": {
+    "angular-bootstrap": "angular-bootstrap"
   }
 }

@@ -1,5 +1,7 @@
 'use strict';
 
+var Hammer = require('hammerjs');
+
 require('./annotations.module.js')
     .directive('textAnnotation', textAnnotation);
 
@@ -38,8 +40,14 @@ function textAnnotation($rootScope, Annotations) {
 
     function textAnnotationLink(scope, element, attrs, ctrl) {
 
-        element.on(namespace('mousedown'), clickHandler);
+        var hammer = new Hammer(element[0]);
+
+        hammer.on('tap', openContextMenu);
         scope.$on('$destroy', destroy);
+
+        function destroy() {
+            hammer.destroy();
+        }
 
         function openContextMenu(event) {
             var contextMenuData = {
@@ -53,25 +61,6 @@ function textAnnotation($rootScope, Annotations) {
                 }]
             };
             $rootScope.$broadcast('openContextMenu', contextMenuData);
-        }
-
-        function clickHandler() {
-            var events = namespace('mouseup') + ' ' + namespace('mousemove');
-            element.on(events, clickOrDrag);
-            function clickOrDrag(event) {
-                if (event.type === 'mouseup') {
-                    openContextMenu(event);
-                }
-                element.off(events, clickOrDrag);
-            }
-        }
-
-        function destroy() {
-            element.off(namespace());
-        }
-
-        function namespace(name) {
-            return (name) ? name + '.textAnnotation' : '.textAnnotation';
         }
 
     }

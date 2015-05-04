@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var angular = require('angular');
+var Hammer = require('hammerjs');
 
 require('./marking-tools.module.js')
     .factory('textTool', textTool);
@@ -26,8 +27,8 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     function activate(svg) {
         _svg = svg;
-        _panzoom = svg.find('.pan-zoom');
-        _panzoom.on('mousedown.text', _clickHandler);
+        _panzoom = new Hammer(svg.find('.pan-zoom')[0]);
+        _panzoom.on('tap', _clickHandler);
         _annotation = null;
     }
 
@@ -36,7 +37,7 @@ function textTool($rootScope, Annotations, toolUtils) {
             Annotations.destroy(_annotation);
             _annotation = null;
         }
-        _panzoom.off('.text');
+        _panzoom.off('tap');
     }
 
     function _allowedTarget(event) {
@@ -45,23 +46,22 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     }
 
-    function _clickHandler() {
-        var events = 'mouseup.text mousemove.text';
-        _panzoom.on(events, clickOrDrag);
-        function clickOrDrag(event) {
-            if (event.type === 'mouseup' && _allowedTarget(event)) {
-                if (!_annotation) {
-                    _startLine(event);
-                } else {
-                    _endLine(event);
-                }
+    function _clickHandler(event) {
+        if (_allowedTarget(event)) {
+            if (!_annotation) {
+                _startLine(event);
+            } else {
+                _endLine(event);
             }
-            _panzoom.off(events, clickOrDrag);
         }
     }
 
+    function _getPoint(event) {
+        return toolUtils.getPoint(_svg, event.srcEvent);
+    }
+
     function _startLine(event) {
-        var point = toolUtils.getPoint(_svg, event);
+        var point = _getPoint(event);
         _annotation = Annotations.upsert({
             type: 'text',
             complete: false,
@@ -74,8 +74,8 @@ function textTool($rootScope, Annotations, toolUtils) {
     }
 
     function _endLine(event) {
-        var point = toolUtils.getPoint(_svg, event);
-        _annotation = Annotations.upsert(_.extend(_annotation, {
+        var point = _getPoint(event);
+        Annotations.upsert(_.extend(_annotation, {
             complete: true,
             endPoint: {
                 x: point.x,
