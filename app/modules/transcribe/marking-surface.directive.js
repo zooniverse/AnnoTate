@@ -32,12 +32,24 @@ function markingSurface() {
 
         vm.$centre = centre;
         vm.$rotate = rotate;
+        vm.$enable = enable;
+        vm.$disable = disable;
 
         function centre() {
             vm.panZoom.updateBBox();
             vm.panZoom.resize();
             vm.panZoom.center();
             vm.panZoom.fit();
+        }
+
+        function disable() {
+            vm.panZoom.disablePan();
+            vm.panZoom.disableZoom();
+        }
+
+        function enable() {
+            vm.panZoom.enablePan();
+            vm.panZoom.enableZoom();
         }
 
         // TODO: Fix so that centre and rotate work together normally - centre
@@ -48,7 +60,7 @@ function markingSurface() {
             var transformList;
             var centre;
 
-            container = vm.svg.getElementsByClassName('rotate-container')[0];
+            container = $element.find('.rotate-container')[0];
             centre = {
                 x: container.getBBox().width / 2,
                 y: container.getBBox().height / 2
@@ -64,6 +76,9 @@ function markingSurface() {
     function markingSurfaceLink(scope, element, attr, vm) {
         scope.$on('centre', vm.$centre);
         scope.$on('rotate', vm.$rotate);
+        scope.$on('openContextMenu', vm.$disable);
+        scope.$on('closeContextMenu', vm.$enable);
+
         scope.$on('activateTool', triggerActivateTool);
         scope.$on('deactivateTool', triggerDeactivateTool);
 

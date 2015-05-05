@@ -22,23 +22,20 @@ function textAnnotation($rootScope, Annotations) {
     return directive;
 
     function textAnnotationController($scope) {
-
         var vm = this;
-        vm.update = update;
         vm.destroy = destroy;
-
-        function update() {
-            Annotations.upsert($scope.data);
-        }
+        vm.update = update;
 
         function destroy() {
             Annotations.destroy($scope.data);
         }
 
+        function update() {
+            Annotations.upsert($scope.data);
+        }
     }
 
     function textAnnotationLink(scope, element, attrs, ctrl) {
-
         var hammer = new Hammer(element[0]);
 
         hammer.on('tap', openContextMenu);
@@ -48,20 +45,24 @@ function textAnnotation($rootScope, Annotations) {
             hammer.destroy();
         }
 
-        function openContextMenu() {
+        function openContextMenu(event) {
             var contextMenuData = {
+                event: event,
                 menuOptions: [{
-                    name: 'Edit',
-                    action: function () { console.log('Edit'); }
-                },
-                {
                     name: 'Delete',
                     action: ctrl.destroy
                 }]
             };
+
+            if (scope.data.complete) {
+                contextMenuData.menuOptions.unshift({
+                    name: 'Edit',
+                    action: function () { console.log('Edit'); }
+                });
+            }
+
             $rootScope.$broadcast('openContextMenu', contextMenuData);
         }
-
     }
 
 }

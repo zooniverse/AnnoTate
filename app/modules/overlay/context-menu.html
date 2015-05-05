@@ -1,5 +1,5 @@
-<ul class="context-menu" role="menu" ng-if="active">
+<ul class="context-menu" role="menu" ng-show="active" ng-hide="!active" style="transform: translate({{ position }})">
     <li ng-repeat="option in menuOptions">
-        <a href ng-click="doAction(option.action)">{{ option.name }}</a>
+        <a href ng-click="option.action()">{{ option.name }}</a>
     </li>
 </ul>

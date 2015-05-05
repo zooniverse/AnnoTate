@@ -10,11 +10,14 @@ require('./marking-tools.module.js')
 /**
  * @ngInject
  */
-function textTool($rootScope, Annotations, toolUtils) {
+function textTool($rootScope, $timeout, Annotations, toolUtils) {
+
+    $rootScope.$on('openContextMenu', _disable);
+    $rootScope.$on('closeContextMenu', _enable);
 
     var factory;
-    var _annotation;
     var _panzoom;
+    var _enabled;
     var _svg;
 
     factory = {
@@ -25,44 +28,73 @@ function textTool($rootScope, Annotations, toolUtils) {
 
     return factory;
 
+
     function activate(svg) {
         _svg = svg;
         _panzoom = new Hammer(svg.find('.pan-zoom')[0]);
         _panzoom.on('tap', _clickHandler);
-        _annotation = null;
+        _enabled = true;
     }
 
     function deactivate() {
-        if (_annotation) {
-            Annotations.destroy(_annotation);
-            _annotation = null;
+        var incomplete = _isLastAnnotationIncomplete();
+        if (incomplete) {
+            Annotations.destroy(incomplete);
         }
         _panzoom.off('tap');
     }
 
-    function _allowedTarget(event) {
-        var element = angular.element(event.target);
-        return element.parents('.text-annotation').length === 0;
-
-    }
-
     function _clickHandler(event) {
-        if (_allowedTarget(event)) {
-            if (!_annotation) {
-                _startLine(event);
+        if (_enabled && _isAllowedTarget(event)) {
+            var incomplete = _isLastAnnotationIncomplete();
+            if (incomplete) {
+                _endLine(event, incomplete);
             } else {
-                _endLine(event);
+                _startLine(event);
             }
         }
+    }
+
+    function _disable() {
+        _enabled = false;
+    }
+
+    function _enable() {
+        function setEnabled() {
+            _enabled = true;
+        }
+        $timeout(setEnabled);
+    }
+
+    function _endLine(event, annotation) {
+        var point = _getPoint(event);
+        Annotations.upsert(_.extend(annotation, {
+            complete: true,
+            endPoint: {
+                x: point.x,
+                y: point.y
+            }
+        }));
+        $rootScope.$apply();
     }
 
     function _getPoint(event) {
         return toolUtils.getPoint(_svg, event.srcEvent);
     }
 
+    function _isAllowedTarget(event) {
+        var element = angular.element(event.target);
+        return element.parents('.text-annotation').length === 0;
+    }
+
+    function _isLastAnnotationIncomplete() {
+        var last = Annotations.list().slice(-1)[0];
+        return (_.isUndefined(last) || last.complete) ? false : last;
+    }
+
     function _startLine(event) {
         var point = _getPoint(event);
-        _annotation = Annotations.upsert({
+        Annotations.upsert({
             type: 'text',
             complete: false,
             startPoint: {
@@ -70,19 +102,6 @@ function textTool($rootScope, Annotations, toolUtils) {
                 y: point.y
             }
         });
-        $rootScope.$apply();
-    }
-
-    function _endLine(event) {
-        var point = _getPoint(event);
-        Annotations.upsert(_.extend(_annotation, {
-            complete: true,
-            endPoint: {
-                x: point.x,
-                y: point.y
-            }
-        }));
-        _annotation = null;
         $rootScope.$apply();
     }
 
