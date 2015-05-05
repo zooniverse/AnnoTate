@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Hammer = require('hammerjs');
 
 require('./overlay.module.js')
@@ -8,7 +9,7 @@ require('./overlay.module.js')
 /**
  * @ngInject
  */
-function contextMenu($rootScope) {
+function contextMenu($rootScope, $window) {
     var directive = {
         controller: contextMenuController,
         link: contextMenuLink,
@@ -42,12 +43,22 @@ function contextMenu($rootScope) {
 
         scope.$on('openContextMenu', openContextMenu);
         scope.$on('closeContextMenu', closeContextMenu);
+        scope.position = {};
 
         function openContextMenu(event, data) {
             contextMenu.open(data);
 
-            var srcEvent = data.event.srcEvent;
-            scope.position = srcEvent.offsetX + 'px, ' + srcEvent.offsetY + 'px';
+            var click = data.event.srcEvent;
+            scope.position = {
+                left: click.offsetX,
+                top: click.offsetY
+            };
+
+            // Firefox doesn't support offset, so we need to polyfill here.
+            if (_.isUndefined(click.left) || _.isUndefined(click.top)) {
+
+            }
+
             scope.$apply();
 
             hammer.on('tap', triggerClose);
