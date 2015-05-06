@@ -1,4 +1,4 @@
-<ul class="context-menu" role="menu" ng-show="active" ng-hide="!active" ng-style="position">
+<ul class="context-menu" role="menu" ng-show="active" ng-style="position" role="dialog">
     <li ng-repeat="option in menuOptions">
         <a href ng-click="option.action()">{{ option.name }}</a>
     </li>

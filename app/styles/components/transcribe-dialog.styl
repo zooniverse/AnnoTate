@@ -1,0 +1,31 @@
+.transcribe-dialog
+    @extend .panel
+    @extend .panel-default
+    // background-color: #fff
+    // border-radius: 6px
+    // box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
+    // color: black
+    position: absolute
+    width: 550px
+    // padding: 15px
+    z-index: 1
+
+    > .heading
+        @extend .panel-heading
+        @extend .panel-default > .panel-heading
+        display: flex
+
+    > .heading > .title
+        @extend .panel-default > .panel-heading
+        @extend .panel-title
+        flex: 1
+
+    > .heading > .close > .icon
+        @extend .glyphicon
+        @extend .glyphicon-remove-circle
+
+    > .heading > .close > .text
+        @extend $hide-text
+
+    > .body
+        @extend .panel-body
