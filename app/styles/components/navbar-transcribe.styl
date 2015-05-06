@@ -14,24 +14,23 @@
     > .container-fluid > .controls > .button.-tool
         @extend .btn-primary
 
+    > .container-fluid > .controls > .button.-tool.-active
+        button-variant($brand-primary, white, $brand-primary)
+
     > .container-fluid > .controls > .button.-next
         @extend .btn-success
-
-    > .container-fluid > .controls > .button.-tool > .icon
-    > .container-fluid > .controls > .button.-next > .icon
-        color: white
-
-    > .container-fluid > .controls > .button.-tool.-active
-        background: white
-        color: $brand-primary
-
-    > .container-fluid > .controls > .button.-tool.-active > .icon
-        color: $brand-primary
 
     > .container-fluid > .controls > .button > .icon
         @extend .glyphicon
         color: #909090
         margin-right: 5px
+
+    > .container-fluid > .controls > .button.-tool > .icon
+    > .container-fluid > .controls > .button.-next > .icon
+        color: white
+
+    > .container-fluid > .controls > .button.-tool.-active > .icon
+        color: $brand-primary
 
     > .container-fluid > .controls > .button > .icon.-rotateleft
         @extend .glyphicon-share-alt
