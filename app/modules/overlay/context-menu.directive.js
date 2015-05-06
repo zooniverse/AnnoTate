@@ -12,7 +12,7 @@ require('./overlay.module.js')
 /**
  * @ngInject
  */
-function contextMenu($rootScope, $window) {
+function contextMenu($rootScope, $window, hotkeys) {
     var directive = {
         controller: contextMenuController,
         link: contextMenuLink,
@@ -25,16 +25,21 @@ function contextMenu($rootScope, $window) {
     function contextMenuController($scope) {
         var vm = this;
 
-        vm.close = close;
-        vm.open = open;
+        vm.close = closeMenu;
+        vm.open = openMenu;
 
-        function close() {
+        function closeMenu() {
             $scope.active = false;
+            hotkeys.del('esc');
         }
 
-        function open(data) {
+        function openMenu(data) {
             $scope.active = true;
             $scope.menuOptions = data.menuOptions;
+            hotkeys.add({
+                combo: 'esc',
+                callback: closeMenu
+            });
         }
     }
 

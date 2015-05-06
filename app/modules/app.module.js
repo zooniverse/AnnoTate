@@ -8,6 +8,7 @@ var appConfig = require('./app.config.js');
 require('angular-bootstrap');
 require('angular-local-storage');
 require('angular-ui-router');
+require('angular-hotkeys');
 
 // App modules
 bulk(__dirname, ['./**/!(app.module).js']);
@@ -22,6 +23,7 @@ function startApp() {
         'ui.router',
         'ui.bootstrap',
         'LocalStorageModule',
+        'cfp.hotkeys',
 
         // App modules
         'app.core',

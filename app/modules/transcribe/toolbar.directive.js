@@ -17,7 +17,6 @@ function transcribeToolbar($rootScope, toolSet) {
     return directive;
 
     function transcribeToolbarLink(scope) {
-
         scope.rotate = rotate;
         scope.centre = centre;
         scope.next = next;
@@ -34,6 +33,5 @@ function transcribeToolbar($rootScope, toolSet) {
         function next() {
             $rootScope.$broadcast('next');
         }
-
     }
 }
