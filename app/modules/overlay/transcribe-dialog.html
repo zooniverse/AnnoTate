@@ -1,8 +1,14 @@
-<div class="transcribe-dialog" role="dialog">
+<div
+    aria-label="Transcribe line"
+    class="transcribe-dialog"
+    ng-show="active"
+    role="dialog"
+    tabindex="-1"
+    >
 
     <div class="heading">
-        <h3 class="title">Panel title</h3>
-        <button class="close" role="button" ng-click="close()">
+        <h3 class="title">Transcribe line</h3>
+        <button class="close" role="button" ng-click="close($event)">
             <span class="icon" aria-hidden="true"></span>
             <span class="text">Close</span>
         </button>

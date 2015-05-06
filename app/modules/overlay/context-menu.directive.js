@@ -6,6 +6,9 @@ var Hammer = require('hammerjs');
 require('./overlay.module.js')
     .directive('contextMenu', contextMenu);
 
+// TODO: Add escape hotkey to close
+// TODO: Add arrow key / spacebar support
+
 /**
  * @ngInject
  */

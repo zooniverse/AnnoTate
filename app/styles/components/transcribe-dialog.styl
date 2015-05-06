@@ -13,12 +13,16 @@
     > .heading
         @extend .panel-heading
         @extend .panel-default > .panel-heading
+        cursor: move
         display: flex
 
     > .heading > .title
         @extend .panel-default > .panel-heading
         @extend .panel-title
         flex: 1
+
+    > .heading > .close
+        cursor: pointer
 
     > .heading > .close > .icon
         @extend .glyphicon
