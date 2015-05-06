@@ -1,13 +1,8 @@
 .transcribe-dialog
     @extend .panel
     @extend .panel-default
-    // background-color: #fff
-    // border-radius: 6px
-    // box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
-    // color: black
     position: absolute
     width: 550px
-    // padding: 15px
     z-index: 1
 
     > .heading
@@ -20,6 +15,7 @@
         @extend .panel-default > .panel-heading
         @extend .panel-title
         flex: 1
+        line-height: 23px
 
     > .heading > .close
         cursor: pointer
@@ -33,3 +29,21 @@
 
     > .body
         @extend .panel-body
+
+    > .body > .transcribe
+        @extend .form-control
+        @extend textarea.form-control
+        margin-bottom: 15px
+
+    > .body > .buttons
+        display: flex
+        justify-content: space-between
+
+    > .body > .buttons .button
+        @extend .btn
+
+    > .body > .buttons .button.-save
+        @extend .btn-success
+
+    > .body > .buttons .button.-tag
+        margin-right: 5px

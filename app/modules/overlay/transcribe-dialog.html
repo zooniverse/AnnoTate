@@ -1,5 +1,6 @@
 <div
     aria-label="Transcribe line"
+    aria-hidden="{{ !active }}"
     class="transcribe-dialog"
     ng-show="active"
     role="dialog"
@@ -15,9 +16,18 @@
     </div>
 
     <div class="body">
-    body
+        <textarea class="transcribe" ng-model="data.text" rows="3"></textarea>
+        <div class="buttons">
+            <div class="editing" role="group">
+                <button
+                    class="button -tag"
+                    ng-bind="button.name"
+                    ng-click="tag(button.tag)"
+                    ng-repeat="button in buttons"
+                ></button>
+            </div>
+            <button class="button -save" ng-click="saveAndClose()">Save</button>
+        </div>
     </div>
-
-
 
 </div>
