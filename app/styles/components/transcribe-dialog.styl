@@ -41,9 +41,21 @@
 
     > .body > .buttons .button
         @extend .btn
+        @extend .btn-default
 
     > .body > .buttons .button.-save
         @extend .btn-success
 
-    > .body > .buttons .button.-tag
-        margin-right: 5px
+    > .body > .buttons .button + .button
+        margin-left: -1px
+
+    > .body > .buttons > .editing > .button:not(:first-child):not(:last-child)
+        border-radius: 0
+
+    > .body > .buttons > .editing > .button:first-child
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+
+    > .body > .buttons > .editing > .button:last-child
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0
