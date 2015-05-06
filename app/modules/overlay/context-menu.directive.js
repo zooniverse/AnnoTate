@@ -39,7 +39,8 @@ function contextMenu($rootScope, $window) {
         // There's a bug in the current version of Hammer preventing event
         // binding to the window object, so we use body as a workaround.
         // https://github.com/hammerjs/hammer.js/issues/759
-        var hammer = new Hammer(element.parents('body')[0]);
+        var bodyEvent = new Hammer(element.parents('body')[0]);
+        var overlay = angular.element('.overlay').first();
 
         scope.$on('openContextMenu', openContextMenu);
         scope.$on('closeContextMenu', closeContextMenu);
@@ -55,19 +56,21 @@ function contextMenu($rootScope, $window) {
             };
 
             // Firefox doesn't support offset, so we need to polyfill here.
-            if (_.isUndefined(click.left) || _.isUndefined(click.top)) {
-
+            if (_.isUndefined(click.offsetX) || _.isUndefined(click.offsetY)) {
+                scope.position = {
+                    left: click.pageX - overlay.offset().left,
+                    top: click.pageY - overlay.offset().top
+                };
             }
 
             scope.$apply();
-
-            hammer.on('tap', triggerClose);
+            bodyEvent.on('tap', triggerClose);
         }
 
         function closeContextMenu() {
             contextMenu.close();
             scope.$apply();
-            hammer.off('tap', triggerClose);
+            bodyEvent.off('tap', triggerClose);
         }
 
         function triggerClose() {
