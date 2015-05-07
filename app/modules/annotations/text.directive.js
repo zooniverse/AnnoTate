@@ -21,7 +21,7 @@ function textAnnotation($rootScope, Annotations) {
     };
     return directive;
 
-    function textAnnotationController($scope) {
+    function textAnnotationController($scope, $element) {
         var vm = this;
         vm.destroy = destroy;
         vm.update = update;
@@ -32,7 +32,10 @@ function textAnnotation($rootScope, Annotations) {
         }
 
         function transcribe() {
-            $rootScope.$broadcast('openTranscribeDialog', $scope.data);
+            $rootScope.$broadcast('openTranscribeDialog', {
+                annotation: $scope.data,
+                element: $element
+            });
         }
 
         function update() {

@@ -48,10 +48,10 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             textarea[0].focus();
         }
 
-        function openDialog(event, data) {
+        function openDialog(data) {
             $scope.active = true;
-            $scope.data = data;
-            $scope.transcription = data.text;
+            $scope.data = data.annotation;
+            $scope.transcription = data.annotation.text;
             hotkeys.add({
                 allowIn: ['TEXTAREA'],
                 callback: closeDialog,
@@ -75,16 +75,16 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             var start = textarea.prop('selectionStart');
             var end = textarea.prop('selectionEnd');
             var text = textarea.val();
+            var textBefore = text.substring(0, start);
 
             if (start === end) {
-                var textBefore = text.substring(0, start);
                 var textAfter = text.substring(start, text.length);
                 textarea.val(textBefore + startTag + endTag + textAfter);
             } else {
-                var textBefore = text.substring(0, start);
                 var textInBetween = text.substring(start, end);
                 var textAfter = text.substring(end, text.length);
-                textarea.val(textBefore + startTag + textInBetween + endTag + textAfter);
+                textarea.val(textBefore + startTag + textInBetween + endTag
+                    + textAfter);
             }
             getFocus();
         }
@@ -95,12 +95,52 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         scope.close = dialog.close;
         scope.saveAndClose = dialog.saveAndClose;
         scope.tag = dialog.tag;
-        scope.$on('openTranscribeDialog', dialog.open);
+        scope.$on('openTranscribeDialog', openDialog);
 
         var draggie = new Draggabilly(element[0], {
             containment: '.overlay',
             handle: '.heading'
         });
-    }
 
+        function openDialog(event, data) {
+            dialog.open(data);
+            positionDialog(event, data)
+        }
+
+        function positionDialog(event, data) {
+            // Make sure that the dialog is positioned in a sensible place each
+            // time it's opened. We always use the left and top positions, as
+            // that's what Dragabilly uses to determine position.
+            var overlay = angular.element('.overlay').first();
+            var group = data.element;
+            var constant = 10;
+            var position = {
+                left: group.offset().left - group[0].getBoundingClientRect().width - (element.width() / 2)
+            };
+
+            var inTopHalf = (group.offset().top + (group[0].getBoundingClientRect()
+                .height / 2)) < (overlay.height() / 2);
+
+            if (inTopHalf) {
+                position.top = group.offset().top + group[0].getBoundingClientRect()
+                    .height - overlay.offset().top + constant;
+            } else {
+                // So element.height is a valid value at this point, but .width
+                // isn't. We could wrap it in a $timeout, but as this makes the
+                // dialog jump around a bit, we'll hardcode it for now.
+                // TODO: replace with element.height() somehow...
+                var elementHeight = 197;
+                position.top = group.offset().top - elementHeight - overlay.offset().top - constant;
+            }
+
+            // Sanity check
+            if (position.left < 0) {
+                position.left = constant;
+            } else if ((position.left + element.width()) > overlay.width()) {
+                position.left = overlay.width() - element.width() - constant;
+            }
+
+            element.css(position);
+        }
+    }
 }
