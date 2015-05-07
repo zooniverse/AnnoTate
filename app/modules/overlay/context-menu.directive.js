@@ -51,12 +51,15 @@ function contextMenu($rootScope, $window, hotkeys) {
         var overlay = angular.element('.overlay').first();
 
         scope.$on('openContextMenu', openContextMenu);
-        scope.$on('closeContextMenu', closeContextMenu);
         scope.position = {};
 
         function openContextMenu(event, data) {
             contextMenu.open(data);
+            positionContextMenu(data)
+            bodyEvent.on('tap', closeContextMenu);
+        }
 
+        function positionContextMenu(data) {
             var click = data.event.srcEvent;
             scope.position = {
                 left: click.offsetX,
@@ -70,19 +73,14 @@ function contextMenu($rootScope, $window, hotkeys) {
                     top: click.pageY - overlay.offset().top
                 };
             }
-
             scope.$apply();
-            bodyEvent.on('tap', triggerClose);
         }
 
         function closeContextMenu() {
+            $rootScope.$broadcast('closeContextMenu');
             contextMenu.close();
             scope.$apply();
-            bodyEvent.off('tap', triggerClose);
-        }
-
-        function triggerClose() {
-            $rootScope.$broadcast('closeContextMenu');
+            bodyEvent.off('tap', this);
         }
     }
 }

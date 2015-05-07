@@ -1,9 +1,13 @@
 .transcribe-dialog
     @extend .panel
     @extend .panel-default
+    margin-bottom: 0
     position: absolute
     width: 550px
-    z-index: 1
+    z-index: -1
+
+    &.-active
+        z-index: 1
 
     > .heading
         @extend .panel-heading

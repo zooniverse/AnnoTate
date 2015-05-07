@@ -1,7 +1,7 @@
 <ul
     aria-hidden="{{ !active }}"
     class="context-menu"
-    ng-show="active"
+    ng-class="{ '-active': active }"
     ng-style="position"
     role="menu"
     >

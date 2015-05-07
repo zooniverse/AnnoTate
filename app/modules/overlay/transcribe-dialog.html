@@ -2,7 +2,8 @@
     aria-label="Transcribe line"
     aria-hidden="{{ !active }}"
     class="transcribe-dialog"
-    ng-show="active"
+    ng-class="{ '-active': active }"
+    ng-style="position"
     role="dialog"
     tabindex="-1"
     >

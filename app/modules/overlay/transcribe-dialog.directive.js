@@ -40,6 +40,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         vm.tag = tag;
 
         function closeDialog() {
+            $rootScope.$broadcast('closeTranscribeDialog');
             $scope.active = false;
             hotkeys.del('esc');
         }
@@ -88,7 +89,6 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             }
             getFocus();
         }
-
     }
 
     function transcribeDialogLink(scope, element, attrs, dialog) {
@@ -109,38 +109,47 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 
         function positionDialog(event, data) {
             // Make sure that the dialog is positioned in a sensible place each
-            // time it's opened. We always use the left and top positions, as
+            // time it's opened. We always use the left and top values, as
             // that's what Dragabilly uses to determine position.
-            var overlay = angular.element('.overlay').first();
-            var group = data.element;
-            var constant = 10;
+            var overlay = getDimensions(angular.element('.overlay').first());
+            var group = getDimensions(data.element);
+            var dialog = getDimensions(element);
+            var constant = 10; // Used to give some space from the annotation
+
             var position = {
-                left: group.offset().left - group[0].getBoundingClientRect().width - (element.width() / 2)
+                left: (group.offset.left + (group.width / 2)) - (dialog.width / 2),
+                top: group.offset.top - overlay.offset.top
             };
 
-            var inTopHalf = (group.offset().top + (group[0].getBoundingClientRect()
-                .height / 2)) < (overlay.height() / 2);
-
+            var inTopHalf = (group.offset.top + group.height) < (overlay.height / 2) + overlay.offset.top;
             if (inTopHalf) {
-                position.top = group.offset().top + group[0].getBoundingClientRect()
-                    .height - overlay.offset().top + constant;
+                position.top = position.top + group.height + constant;
             } else {
-                // So element.height is a valid value at this point, but .width
-                // isn't. We could wrap it in a $timeout, but as this makes the
-                // dialog jump around a bit, we'll hardcode it for now.
-                // TODO: replace with element.height() somehow...
-                var elementHeight = 197;
-                position.top = group.offset().top - elementHeight - overlay.offset().top - constant;
+                position.top = position.top - group.height - dialog.height - constant;
             }
 
-            // Sanity check
+            // Sanity check - is it off the screen?
             if (position.left < 0) {
                 position.left = constant;
-            } else if ((position.left + element.width()) > overlay.width()) {
-                position.left = overlay.width() - element.width() - constant;
+            } else if ((position.left + dialog.width) > overlay.width) {
+                position.left = overlay.width - dialog.width - constant;
             }
 
-            element.css(position);
+            scope.position = position;
         }
     }
+}
+
+// Utility function to derive dimensions and offsets for dialog positioning,
+// using getBoundingClientRect for SVG compatibility. Requires a jQuery element.
+function getDimensions(element) {
+    if (!element.jquery) {
+        console.error('Argument must be a jQuery object')
+        return false;
+    }
+    var dimensions = {};
+    dimensions.offset = element.offset();
+    dimensions.height = element[0].getBoundingClientRect().height;
+    dimensions.width = element[0].getBoundingClientRect().width;
+    return dimensions;
 }
