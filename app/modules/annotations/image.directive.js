@@ -26,7 +26,6 @@ function imageAnnotation($rootScope, Annotations) {
         vm.destroy = destroy;
 
         function destroy() {
-            console.log($scope.data)
             Annotations.destroy($scope.data);
         }
     }
