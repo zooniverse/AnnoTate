@@ -1,6 +1,8 @@
 'use strict';
 
 var _ = require('lodash');
+var angular = require('angular');
+var Hammer = require('hammerjs');
 
 require('./marking-tools.module.js')
     .factory('imageTool', imageTool);
@@ -8,13 +10,15 @@ require('./marking-tools.module.js')
 /**
  * @ngInject
  */
-function imageTool($rootScope, Annotations, toolUtils) {
+function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
+
+    $rootScope.$on('openContextMenu', _disable);
+    $rootScope.$on('closeContextMenu', _enable);
 
     var factory;
-    var _origin;
-    var _rectangle;
+    var _enabled;
+    var _panzoom;
     var _svg;
-    var _subject;
 
     factory = {
         name: 'image',
@@ -24,69 +28,46 @@ function imageTool($rootScope, Annotations, toolUtils) {
 
     return factory;
 
+
     function activate(svg) {
         _svg = svg;
-        _subject = svg.find('.pan-zoom');
-        _subject.on('mousedown.image', _clickHandler);
-        _origin = null;
-        _rectangle = null;
+        _panzoom = new Hammer(svg.find('.pan-zoom')[0]);
+        _panzoom.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+        _panzoom.on('panstart', _startRect);
+        _panzoom.on('panend', _endRect);
+        $rootScope.$broadcast('enableImageTool');
+        _enabled = true;
     }
 
     function deactivate() {
-        _subject.off('.image');
-        if (_rectangle) {
-            _clearRect();
-        }
+        $rootScope.$broadcast('disableImageTool');
+        _panzoom.off('panstart', _startRect);
+        _panzoom.off('panend', _endRect);
     }
 
-    function _clickHandler() {
-        _subject.on('mouseup.image mousemove.image', clickOrDrag);
-        function clickOrDrag(event) {
-            if (event.type === 'mouseup') {
-                if (!_rectangle) {
-                    _startRect(event);
-                } else {
-                    _endRect();
-                }
-            }
-            _subject.off('mouseup.image mousemove.image', clickOrDrag);
-        }
-    }
-
-    function _startRect(event) {
-        _origin = toolUtils.getPoint(_svg, event);
-        _rectangle = Annotations.add(_.extend({}, _origin, {
-            type: 'tempImage',
-            width: 0,
-            height: 0,
-            temp: true
-        }));
-        _subject.on('mousemove.image', _drawRect);
+    function _disable() {
+        _enabled = false;
     }
 
     function _drawRect(event) {
-        var newPoint = toolUtils.getPoint(_svg, event);
-        _rectangle.x = (_origin.x < newPoint.x) ? _origin.x : newPoint.x;
-        _rectangle.y = (_origin.y < newPoint.y) ? _origin.y : newPoint.y;
-        _rectangle.width = (_origin.x < newPoint.x) ? newPoint.x - _rectangle.x : _origin.x - newPoint.x;
-        _rectangle.height = (_origin.y < newPoint.y) ? newPoint.y - _rectangle.y : _origin.y - newPoint.y;
-        $rootScope.$apply();
+        console.log('draw')
     }
 
-    function _endRect() {
-        _subject.off('mousemove.image', _drawRect);
-        Annotations.add(_.extend({}, _rectangle, {
-            type: 'image',
-            temp: false
-        }));
-        _clearRect();
-        $rootScope.$apply();
+    function _enable() {
+        function setEnabled() {
+            _enabled = true;
+        }
+        $timeout(setEnabled);
     }
 
-    function _clearRect() {
-        Annotations.destroy(_rectangle);
-        _origin = null;
-        _rectangle = null;
+    function _endRect(event) {
+        console.log('end', event)
+        _panzoom.off('panmove', _drawRect);
+    }
+
+    function _startRect(event) {
+        console.log('start')
+        _panzoom.on('panmove', _drawRect);
     }
 
 }

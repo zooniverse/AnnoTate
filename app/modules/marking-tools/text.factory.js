@@ -41,7 +41,7 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
         if (incomplete) {
             Annotations.destroy(incomplete);
         }
-        _panzoom.off('tap');
+        _panzoom.off('tap', _clickHandler);
     }
 
     function _clickHandler(event) {

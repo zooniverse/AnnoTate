@@ -57,7 +57,6 @@ function point(annotationsConfig, AnnotationsUtils, toolUtils) {
             return (name) ? name + '.point' : '.point';
         }
 
-
         function clickHandler() {
             var events = namespace('mouseup') + ' ' + namespace('mousemove');
             element.on(events, clickOrDrag);

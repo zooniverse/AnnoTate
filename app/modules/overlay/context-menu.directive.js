@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var angular = require('angular');
 var Hammer = require('hammerjs');
 
 require('./overlay.module.js')
@@ -55,7 +56,7 @@ function contextMenu($rootScope, $window, hotkeys) {
 
         function openContextMenu(event, data) {
             contextMenu.open(data);
-            positionContextMenu(data)
+            positionContextMenu(data);
             bodyEvent.on('tap', closeContextMenu);
         }
 

@@ -78,6 +78,8 @@ function markingSurface() {
         scope.$on('rotate', vm.$rotate);
         scope.$on('openContextMenu', vm.$disable);
         scope.$on('closeContextMenu', vm.$enable);
+        scope.$on('enableImageTool', vm.$disable);
+        scope.$on('disableImageTool', vm.$enable);
 
         scope.$on('activateTool', triggerActivateTool);
         scope.$on('deactivateTool', triggerDeactivateTool);

@@ -1,5 +1,6 @@
 'use strict';
 
+var angular = require('angular');
 var Draggabilly = require('draggabilly');
 
 require('./overlay.module.js')
@@ -77,15 +78,16 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             var end = textarea.prop('selectionEnd');
             var text = textarea.val();
             var textBefore = text.substring(0, start);
+            var textInBetween;
+            var textAfter;
 
             if (start === end) {
-                var textAfter = text.substring(start, text.length);
+                textAfter = text.substring(start, text.length);
                 textarea.val(textBefore + startTag + endTag + textAfter);
             } else {
-                var textInBetween = text.substring(start, end);
-                var textAfter = text.substring(end, text.length);
-                textarea.val(textBefore + startTag + textInBetween + endTag
-                    + textAfter);
+                textInBetween = text.substring(start, end);
+                textAfter = text.substring(end, text.length);
+                textarea.val(textBefore + startTag + textInBetween + endTag + textAfter);
             }
             getFocus();
         }
@@ -97,14 +99,14 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         scope.tag = dialog.tag;
         scope.$on('openTranscribeDialog', openDialog);
 
-        var draggie = new Draggabilly(element[0], {
+        new Draggabilly(element[0], {
             containment: '.overlay',
             handle: '.heading'
         });
 
         function openDialog(event, data) {
             dialog.open(data);
-            positionDialog(event, data)
+            positionDialog(event, data);
         }
 
         function positionDialog(event, data) {
@@ -144,7 +146,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 // using getBoundingClientRect for SVG compatibility. Requires a jQuery element.
 function getDimensions(element) {
     if (!element.jquery) {
-        console.error('Argument must be a jQuery object')
+        console.error('Argument must be a jQuery object');
         return false;
     }
     var dimensions = {};

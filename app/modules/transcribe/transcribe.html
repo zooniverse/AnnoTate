@@ -18,7 +18,6 @@
             <g class="rotate-container">
 
                 <g class="subject">
-
                     <rect
                         height="600px"
                         width="400px"
@@ -36,18 +35,23 @@
                         x="0"
                         xlink:href=""
                         y="0"></image>
-
                 </g>
 
-                <g class="annotations-group">
-
-                    <g
-                        text-annotation
-                        data="annotation"
-                        ng-repeat="annotation in vm.annotations | filter:{type:'text'}:true"
-                    ></g>
-
-
+                <g class="annotations">
+                    <g class="text-annotations">
+                        <g
+                            text-annotation
+                            data="annotation"
+                            ng-repeat="annotation in vm.annotations | filter:{type:'text'}:true"
+                        ></g>
+                    </g>
+                    <g class="image-annotations">
+                        <g
+                            image-annotation
+                            data="annotation"
+                            ng-repeat="annotation in vm.annotations | filter:{type:'image'}:true"
+                        ></g>
+                    </g>
                 </g>
 
             </g>
