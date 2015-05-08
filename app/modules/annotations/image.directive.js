@@ -13,25 +13,7 @@ function imageAnnotation($rootScope) {
         },
         restrict: 'A',
         replace: true,
-        // templateUrl: 'annotations/image.html',
-        link: linkFunction,
-        require: '^markingSurface'
+        templateUrl: 'annotations/image.html',
     };
     return directive;
-
-    function linkFunction(scope, element, attrs, markingSurface) {
-
-        scope.editing = false;
-
-        function enableEdit(event) {
-            scope.editing = true;
-            $rootScope.$apply();
-        }
-
-        function disableEdit(event) {
-            scope.editing = false;
-            $rootScope.$apply();
-        }
-
-    }
 }
