@@ -1,0 +1,37 @@
+<nav class="navbar navbar-transcribe navbar-static-top">
+    <div class="container-fluid">
+        <div class="controls">
+            <button type="button" class="button -markingsurface" ng-click="rotate(-90)">
+                <span class="icon -rotateleft" aria-hidden="true"></span>
+                Rotate left
+            </button>
+            <button type="button" class="button -markingsurface" ng-click="rotate(90)">
+                <span class="icon -rotateright" aria-hidden="true"></span>
+                Rotate right
+            </button>
+            <button type="button" class="button -markingsurface" ng-click="centre()">
+                <span class="icon -centre" aria-hidden="true"></span>
+                Centre
+            </button>
+        </div>
+
+        <div class="controls">
+            <button type="button" class="button -tool" ng-class="{ '-active': tools.text.active }" ng-click="tools.text.toggle()">
+                <span class="icon -text" aria-hidden="true"></span>
+                Annotate Text
+            </button>
+            <button type="button" class="button -tool" ng-class="{ '-active': tools.image.active }" ng-click="tools.image.toggle()">
+                <span class="icon -image" aria-hidden="true"></span>
+                Annotate Image
+            </button>
+        </div>
+
+        <div class="controls">
+            <button type="button" class="button -next" ng-click="next()">
+                Next
+                <span class="icon -next" aria-hidden="true"></span>
+            </button>
+        </div>
+
+    </div>
+</nav>

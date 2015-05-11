@@ -1,0 +1,65 @@
+.transcribe-dialog
+    @extend .panel
+    @extend .panel-default
+    margin-bottom: 0
+    position: absolute
+    width: 550px
+    z-index: -1
+
+    &.-active
+        z-index: 1
+
+    > .heading
+        @extend .panel-heading
+        @extend .panel-default > .panel-heading
+        cursor: move
+        display: flex
+
+    > .heading > .title
+        @extend .panel-default > .panel-heading
+        @extend .panel-title
+        flex: 1
+        line-height: 23px
+
+    > .heading > .close
+        cursor: pointer
+
+    > .heading > .close > .icon
+        @extend .glyphicon
+        @extend .glyphicon-remove-circle
+
+    > .heading > .close > .text
+        @extend $hide-text
+
+    > .body
+        @extend .panel-body
+
+    > .body > .transcribe
+        @extend .form-control
+        @extend textarea.form-control
+        margin-bottom: 15px
+
+    > .body > .buttons
+        display: flex
+        justify-content: space-between
+
+    > .body > .buttons .button
+        @extend .btn
+        @extend .btn-default
+
+    > .body > .buttons .button.-save
+        @extend .btn-success
+
+    > .body > .buttons .button + .button
+        margin-left: -1px
+
+    > .body > .buttons > .editing > .button:not(:first-child):not(:last-child)
+        border-radius: 0
+
+    > .body > .buttons > .editing > .button:first-child
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+
+    > .body > .buttons > .editing > .button:last-child
+        border-top-left-radius: 0
+        border-bottom-left-radius: 0

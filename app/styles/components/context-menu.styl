@@ -1,0 +1,11 @@
+.context-menu
+    @extend .dropdown-menu
+    display: block
+    top: 0
+    z-index: -1
+
+    &.-active
+        z-index: 1
+
+    > li > a
+        @extend .dropdown-menu > li > a

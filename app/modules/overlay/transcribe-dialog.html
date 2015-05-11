@@ -1,0 +1,34 @@
+<div
+    aria-label="Transcribe line"
+    aria-hidden="{{ !active }}"
+    class="transcribe-dialog"
+    ng-class="{ '-active': active }"
+    ng-style="position"
+    role="dialog"
+    tabindex="-1"
+    >
+
+    <div class="heading">
+        <h3 class="title">Transcribe line</h3>
+        <button class="close" role="button" ng-click="close($event)">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="text">Close</span>
+        </button>
+    </div>
+
+    <div class="body">
+        <textarea class="transcribe" ng-model="transcription" rows="3"></textarea>
+        <div class="buttons">
+            <div class="editing" role="group">
+                <button
+                    class="button -tag"
+                    ng-bind="button.name"
+                    ng-click="tag(button.tag)"
+                    ng-repeat="button in buttons"
+                ></button>
+            </div>
+            <button class="button -save" ng-click="saveAndClose()">Save Changes</button>
+        </div>
+    </div>
+
+</div>
