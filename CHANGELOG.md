@@ -1,9 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-
-## [Unreleased][Unreleased]
+## [1.0.0] - 11 May 2015
 ### Added
-- Base project from ng-davai
-- angular-bootstrap via browserify-shim
-- jQuery for JS bugfixes
+- Project rebuilt from [ng-davai](https://github.com/rogerhutchings/ng-davai); check the git history for changes up to this point
+- This CHANGELOG
+- Licence
