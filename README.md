@@ -1,6 +1,20 @@
-# ng-davai
+# AnnoTate
 
-A boilerplate AngularJS project, forked from [jakemmarsh/angularjs-gulp-browserify-boilerplate](https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate).
+A full-text transcription web app, written for the Tate Britain.
+
+---
+
+## Commands
+
+To install, clone the repo and run `npm install`
+
+To develop locally, run `gulp dev`. Your browser will automatically be opened and directed to the browser-sync proxy address, and the server will serve files from the `/build` directory. Any changes in the `/app` directory will be automatically processed by Gulp, and the changes injected to any open browsers pointed at the proxy address.
+
+To prepare assets for production, run the `gulp prod` task (Note: the production task does not fire up the Express server).
+
+To deploy to [preview.zooniverse.org/transcribe](http://preview.zooniverse.org/transcribe), run `make deploy-preview`
+
+---
 
 ## Built using:
 
@@ -13,20 +27,13 @@ A boilerplate AngularJS project, forked from [jakemmarsh/angularjs-gulp-browseri
 
 ## Conventions
 
-- [AngularJS best practices](https://github.com/toddmotto/angularjs-styleguide)
+- [johnpapa's AngularJS Style Guide](https://github.com/johnpapa/angular-styleguide)
 - [Gulp best practices](https://github.com/greypants/gulp-starter)
 - [RSCSS](https://github.com/rstacruz/rscss)
 - [Semantic Versioning](http://semver.org)
 - [Keep A Changelog](http://keepachangelog.com/)
 
----
+## Related links
 
-### Getting up and running
-
-1. Clone this repo from `https://github.com/rogerhutchings/ng-davai.git`
-2. Run `npm install` from the root directory
-3. Run `gulp dev`
-4. Your browser will automatically be opened and directed to the browser-sync proxy address
-5. To prepare assets for production, run the `gulp prod` task (Note: the production task does not fire up the express server, and won't provide you with browser-sync's live reloading. Simply use `gulp dev` during development. More information below)
-
-Now that `gulp dev` is running, the server is up as well and serving files from the `/build` directory. Any changes in the `/app` directory will be automatically processed by Gulp and the changes will be injected to any open browsers pointed at the proxy address.
+* [Alpha version](http://preview.zooniverse.org/transcribe) - as of [5c954ca](https://github.com/zooniverse/transcribe/commit/5c954ca9b14ea719290b6c117b01e5cab5cf9e48)
+* [Data aggregation algorithm](https://github.com/zooniverse/Tate-Transcriptions) by [ggdhines](https://github.com/ggdhines)
