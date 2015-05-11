@@ -2,59 +2,63 @@
 
 module.exports = {
 
-  'serverport': 3000,
+    'browserify': {
+        'bundleName': 'main.js',
+        'entries': ['./app/modules/app.module.js'],
+        'sourcemap' : true
+    },
 
-  'modules': {
-    'src': 'app/modules'
-  },
+    'deploy': {
+        'preview': 's3://zooniverse-static/preview.zooniverse.org/annotate/'
+    },
 
-  'styles': {
-    'watch' : 'app/styles/**/*.styl',
-    'src': 'app/styles/main.styl',
-    'dest': 'build/css'
-  },
+    'dist': {
+        'root': 'build'
+    },
 
-  'scripts': {
-    'src' : 'app/modules/**/*.js',
-    'dest': 'build/js'
-  },
+    'fonts': {
+        'src' : ['app/fonts/**/*'],
+        'dest': 'build/fonts'
+    },
 
-  'images': {
-    'src' : 'app/images/**/*',
-    'dest': 'build/images'
-  },
+    'gzip': {
+        'src': 'build/**/*.{html,xml,json,css,js,js.map}',
+        'dest': 'build/',
+        'options': {}
+    },
 
-  'fonts': {
-    'src' : ['app/fonts/**/*'],
-    'dest': 'build/fonts'
-  },
+    'images': {
+        'src' : 'app/images/**/*',
+        'dest': 'build/images'
+    },
 
-  'views': {
-    'watch': [
-      'app/index.html',
-      'app/modules/**/*.html'
-    ]
-  },
+    'modules': {
+        'src': 'app/modules'
+    },
 
-  'gzip': {
-    'src': 'build/**/*.{html,xml,json,css,js,js.map}',
-    'dest': 'build/',
-    'options': {}
-  },
+    'scripts': {
+        'src' : 'app/modules/**/*.js',
+        'dest': 'build/js'
+    },
 
-  'dist': {
-    'root'  : 'build'
-  },
+    'serverport': 3000,
 
-  'browserify': {
-    'entries'   : ['./app/modules/app.module.js'],
-    'bundleName': 'main.js',
-    'sourcemap' : true
-  },
+    'styles': {
+        'watch': 'app/styles/**/*.styl',
+        'src': 'app/styles/main.styl',
+        'dest': 'build/css'
+    },
 
-  'test': {
-    'karma': 'test/karma.conf.js',
-    'protractor': 'test/protractor.conf.js'
-  }
+    'test': {
+        'karma': 'test/karma.conf.js',
+        'protractor': 'test/protractor.conf.js'
+    },
+
+    'views': {
+        'watch': [
+            'app/index.html',
+            'app/modules/**/*.html'
+        ]
+    }
 
 };
