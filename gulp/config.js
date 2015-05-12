@@ -8,10 +8,6 @@ module.exports = {
         'sourcemap' : true
     },
 
-    'deploy': {
-        'preview': 's3://zooniverse-static/preview.zooniverse.org/annotate/'
-    },
-
     'dist': {
         'root': 'build'
     },
@@ -22,7 +18,7 @@ module.exports = {
     },
 
     'gzip': {
-        'src': 'build/**/*.{html,xml,json,css,js,js.map}',
+        'src': 'build/**/*.{html,xml,json,css,js,js.map,ttf,otf}',
         'dest': 'build/',
         'options': {}
     },
