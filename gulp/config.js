@@ -9,11 +9,19 @@ module.exports = {
     },
 
     'deploy': {
+        'production': {
+            'Bucket': 'zooniverse-static',
+            'Prefix': 'anno.tate.org.uk/',
+        },
+        'alpha': {
+            'Bucket': 'zooniverse-static',
+            'Prefix': 'preview.zooniverse.org/transcribe/',
+        },
         'preview': {
             'Bucket': 'zooniverse-static',
             'Prefix': 'preview.zooniverse.org/annotate/',
         }
-    }
+    },
 
     'dist': {
         'root': 'build'

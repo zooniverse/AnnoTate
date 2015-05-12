@@ -4,7 +4,7 @@ var config = require('../config');
 var gulp = require('gulp');
 var s3Upload = require('../util/s3upload');
 
-gulp.task('deploy-preview', ['production'], function (callback) {
+gulp.task('deploy-production', ['production'], function (callback) {
     callback = callback || function() {};
-    s3Upload(config.deploy.preview, callback);
+    s3Upload(config.deploy.production, callback);
 });
