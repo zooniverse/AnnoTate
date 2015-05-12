@@ -8,6 +8,13 @@ module.exports = {
         'sourcemap' : true
     },
 
+    'deploy': {
+        'preview': {
+            'Bucket': 'zooniverse-static',
+            'Prefix': 'preview.zooniverse.org/annotate/',
+        }
+    }
+
     'dist': {
         'root': 'build'
     },
