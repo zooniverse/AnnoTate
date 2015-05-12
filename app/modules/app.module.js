@@ -40,6 +40,8 @@ function startApp() {
         .config(appConfig.routes)
         .config(appConfig.localStorage);
 
-    angular.bootstrap(document, ['app']);
+    angular.bootstrap(document, ['app'], {
+        strictDi: true
+    });
 
 }

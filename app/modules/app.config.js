@@ -14,6 +14,9 @@ function routes($locationProvider) {
     $locationProvider.html5Mode(true);
 }
 
+/**
+ * @ngInject
+ */
 function localStorage(localStorageServiceProvider) {
     localStorageServiceProvider
         .setPrefix(appConfig.appTitle + '-' + appInfo.version);
