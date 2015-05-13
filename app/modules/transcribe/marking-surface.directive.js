@@ -5,12 +5,14 @@ var svgPanZoom = require('svg-pan-zoom');
 require('./transcribe.module.js')
     .directive('markingSurface', markingSurface);
 
+// TODO: Find out what ngInject isn't working properly for markingSurfaceController
+
 // @ngInject
 function markingSurface() {
     var directive = {
         scope: {},
         restrict: 'A',
-        controller: markingSurfaceController,
+        controller: ['$scope', '$element', markingSurfaceController],
         controllerAs: 'vm',
         link: markingSurfaceLink
     };

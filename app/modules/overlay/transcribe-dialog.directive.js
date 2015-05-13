@@ -7,12 +7,13 @@ require('./overlay.module.js')
     .directive('transcribeDialog', transcribeDialog);
 
 // TODO: Add escape hotkey to close
+// TODO: Find out what ngInject isn't working properly for transcribeDialogController
 
 // @ngInject
 function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
     var directive = {
         link: transcribeDialogLink,
-        controller: transcribeDialogController,
+        controller: ['$scope', '$element', transcribeDialogController],
         replace: true,
         scope: true,
         templateUrl: 'overlay/transcribe-dialog.html'

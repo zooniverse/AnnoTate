@@ -9,11 +9,12 @@ require('./overlay.module.js')
 
 // TODO: Add escape hotkey to close
 // TODO: Add arrow key / spacebar support
+// TODO: Find out what ngInject isn't working properly for contextMenuController
 
 // @ngInject
 function contextMenu($rootScope, $window, hotkeys) {
     var directive = {
-        controller: contextMenuController,
+        controller: ['$scope', contextMenuController],
         link: contextMenuLink,
         replace: true,
         scope: true,
