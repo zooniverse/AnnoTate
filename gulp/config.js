@@ -47,6 +47,10 @@ module.exports = {
         'src': 'app/modules'
     },
 
+    's3Paths': {
+        'src': ['build/index.html', 'build/css/main.css', 'build/js/main.js']
+    },
+
     'scripts': {
         'src' : 'app/modules/**/*.js',
         'dest': 'build/js'

@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var config = require('../config');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -21,7 +22,10 @@ gulp.task('deploy', function (callback) {
 
     var params = {
         localDir: config.dist.root,
-        s3Params: global.s3Params
+        s3Params: _.extend(global.s3Params, {
+            ACL: 'public-read',
+            CacheControl: 'no-cache'
+        })
     };
 
     var uploader = client.uploadDir(params);
