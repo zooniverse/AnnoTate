@@ -5,9 +5,7 @@ var svgPanZoom = require('svg-pan-zoom');
 require('./transcribe.module.js')
     .directive('markingSurface', markingSurface);
 
-/**
- * @ngInject
- */
+// @ngInject
 function markingSurface() {
     var directive = {
         scope: {},
@@ -18,6 +16,9 @@ function markingSurface() {
     };
     return directive;
 
+    /**
+     * @ngInject
+     */
     function markingSurfaceController($scope, $element) {
         var vm = this;
 
@@ -73,6 +74,9 @@ function markingSurface() {
         }
     }
 
+    /**
+     * @ngInject
+     */
     function markingSurfaceLink(scope, element, attr, vm) {
         scope.$on('centre', vm.$centre);
         scope.$on('rotate', vm.$rotate);

@@ -3,9 +3,7 @@
 require('./core.module.js')
     .run(setPageDescription);
 
-/**
- * @ngInject
- */
+// @ngInject
 function setPageDescription($rootScope, appConfig) {
     $rootScope.pageDescription =  appConfig.appDescription;
 }

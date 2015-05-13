@@ -8,9 +8,7 @@ require('./annotations.module.js')
 // Handles dragging and click behaviour for text points
 // TODO: replace events with hammer
 
-/**
- * @ngInject
- */
+// @ngInject
 function point(annotationsConfig, AnnotationsUtils, toolUtils) {
     var directive = {
         controller: pointController,

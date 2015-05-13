@@ -5,9 +5,7 @@ var Hammer = require('hammerjs');
 require('./annotations.module.js')
     .directive('textAnnotation', textAnnotation);
 
-/**
- * @ngInject
- */
+// @ngInject
 function textAnnotation($rootScope, Annotations) {
     var directive = {
         controller: textAnnotationController,

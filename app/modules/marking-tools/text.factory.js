@@ -7,9 +7,7 @@ var Hammer = require('hammerjs');
 require('./marking-tools.module.js')
     .factory('textTool', textTool);
 
-/**
- * @ngInject
- */
+// @ngInject
 function textTool($rootScope, $timeout, Annotations, toolUtils) {
 
     $rootScope.$on('openContextMenu', _disable);

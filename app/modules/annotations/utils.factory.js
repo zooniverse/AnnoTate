@@ -3,9 +3,7 @@
 require('./annotations.module.js')
     .factory('AnnotationsUtils', AnnotationsUtils);
 
-/**
- * @ngInject
- */
+// @ngInject
 function AnnotationsUtils() {
 
     var factory;

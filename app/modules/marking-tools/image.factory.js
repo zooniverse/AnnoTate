@@ -7,9 +7,7 @@ var Hammer = require('hammerjs');
 require('./marking-tools.module.js')
     .factory('imageTool', imageTool);
 
-/**
- * @ngInject
- */
+// @ngInject
 function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
 
     $rootScope.$on('openContextMenu', _disable);

@@ -8,9 +8,7 @@ require('./overlay.module.js')
 
 // TODO: Add escape hotkey to close
 
-/**
- * @ngInject
- */
+// @ngInject
 function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
     var directive = {
         link: transcribeDialogLink,
@@ -21,6 +19,9 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
     };
     return directive;
 
+    /**
+     * @ngInject
+     */
     function transcribeDialogController($scope, $element) {
         $scope.active = false;
         $scope.data = {};
@@ -93,6 +94,9 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         }
     }
 
+    /**
+     * @ngInject
+     */
     function transcribeDialogLink(scope, element, attrs, dialog) {
         scope.close = dialog.close;
         scope.saveAndClose = dialog.saveAndClose;

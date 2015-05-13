@@ -3,9 +3,7 @@
 require('./transcribe.module.js')
     .directive('transcribeToolbar', transcribeToolbar);
 
-/**
- * @ngInject
- */
+// @ngInject
 function transcribeToolbar($rootScope, toolSet) {
     var directive = {
         scope: {},

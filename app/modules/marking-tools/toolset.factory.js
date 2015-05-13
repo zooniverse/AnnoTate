@@ -5,9 +5,7 @@ require('./marking-tools.module.js')
 
 var _ = require('lodash');
 
-/**
- * @ngInject
- */
+// @ngInject
 function toolSet($rootScope, textTool, imageTool) {
 
     var factory;

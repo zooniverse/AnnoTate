@@ -3,9 +3,7 @@
 require('./transcribe.module.js')
     .directive('ngWidth', ngWidth);
 
-/**
- * @ngInject
- */
+// @ngInject
 function ngWidth() {
     var directive = {
         link: linkFunction

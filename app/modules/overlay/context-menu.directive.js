@@ -10,9 +10,7 @@ require('./overlay.module.js')
 // TODO: Add escape hotkey to close
 // TODO: Add arrow key / spacebar support
 
-/**
- * @ngInject
- */
+// @ngInject
 function contextMenu($rootScope, $window, hotkeys) {
     var directive = {
         controller: contextMenuController,
@@ -23,6 +21,9 @@ function contextMenu($rootScope, $window, hotkeys) {
     };
     return directive;
 
+    /**
+     * @ngInject
+     */
     function contextMenuController($scope) {
         var vm = this;
 
@@ -44,6 +45,9 @@ function contextMenu($rootScope, $window, hotkeys) {
         }
     }
 
+    /**
+     * @ngInject
+     */
     function contextMenuLink(scope, element, attrs, contextMenu) {
         // There's a bug in the current version of Hammer preventing event
         // binding to the window object, so we use body as a workaround.

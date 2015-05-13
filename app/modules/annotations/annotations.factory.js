@@ -5,9 +5,7 @@ var _ = require('lodash');
 require('./annotations.module.js')
     .factory('Annotations', Annotations);
 
-/**
- * @ngInject
- */
+// @ngInject
 function Annotations(localStorageService) {
 
     var factory;

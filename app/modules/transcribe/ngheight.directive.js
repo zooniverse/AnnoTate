@@ -3,9 +3,7 @@
 require('./transcribe.module.js')
     .directive('ngHeight', ngHeight);
 
-/**
- * @ngInject
- */
+// @ngInject
 function ngHeight() {
     var directive = {
         link: linkFunction

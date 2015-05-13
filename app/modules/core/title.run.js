@@ -3,9 +3,7 @@
 require('./core.module.js')
     .run(setPageTitle);
 
-/**
- * @ngInject
- */
+// @ngInject
 function setPageTitle($rootScope, appConfig) {
 
   // change page title based on state

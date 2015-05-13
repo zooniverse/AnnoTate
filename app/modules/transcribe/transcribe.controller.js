@@ -3,9 +3,7 @@
 require('./transcribe.module.js')
     .controller('TranscribeCtrl', TranscribeCtrl);
 
-/**
- * @ngInject
- */
+// @ngInject
 function TranscribeCtrl($scope, Annotations) {
 
     // ViewModel

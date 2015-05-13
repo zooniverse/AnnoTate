@@ -3,9 +3,7 @@
 require('./overlay.module.js')
     .directive('overlay', overlay);
 
-/**
- * @ngInject
- */
+// @ngInject
 function overlay() {
     var directive = {
         replace: true,

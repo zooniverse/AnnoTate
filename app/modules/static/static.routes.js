@@ -3,9 +3,7 @@
 require('./static.module.js')
     .config(Routes);
 
-/**
- * @ngInject
- */
+// @ngInject
 function Routes($stateProvider) {
 
     $stateProvider

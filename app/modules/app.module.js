@@ -41,7 +41,7 @@ function startApp() {
         .config(appConfig.localStorage);
 
     angular.bootstrap(document, ['app'], {
-        strictDi: true
+        // strictDi: true
     });
 
 }

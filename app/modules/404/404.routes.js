@@ -3,9 +3,7 @@
 require('./404.module.js')
     .config(Routes);
 
-/**
- * @ngInject
- */
+// @ngInject
 function Routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider

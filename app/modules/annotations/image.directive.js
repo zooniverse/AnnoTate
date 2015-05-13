@@ -5,9 +5,7 @@ var Hammer = require('hammerjs');
 require('./annotations.module.js')
     .directive('imageAnnotation', imageAnnotation);
 
-/**
- * @ngInject
- */
+// @ngInject
 function imageAnnotation($rootScope, Annotations) {
     var directive = {
         controller: imageAnnotationController,
