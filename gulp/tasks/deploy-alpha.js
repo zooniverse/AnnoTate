@@ -2,9 +2,9 @@
 
 var config = require('../config');
 var gulp = require('gulp');
-var s3Upload = require('../util/s3upload');
+var runSequence = require('run-sequence');
 
-gulp.task('deploy-alpha', ['production'], function (callback) {
-    callback = callback || function() {};
-    s3Upload(config.deploy.alpha, callback);
+gulp.task('deploy-alpha', function (callback) {
+    global.s3Params = config.deploy.alpha;
+    runSequence('production', 'deploy', callback);
 });

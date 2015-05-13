@@ -6,22 +6,11 @@ var templateCache = require('gulp-angular-templatecache');
 var dir           = require('node-dir');
 var Q             = require('q');
 
-// Views task
 gulp.task('views', function () {
 
     // We could have a lot of async tasks, so let's return a big array
     // of promises
     var viewsPromises = [];
-
-    // Put our index.html in the dist folder
-    var copyIndexHtml = function () {
-        var deferred = Q.defer();
-        gulp.src('app/index.html')
-            .pipe(gulp.dest(config.dist.root))
-            .on('end', deferred.resolve);
-        return deferred.promise;
-    };
-    viewsPromises.push(copyIndexHtml())
 
     // Process any other view files from app/modules
     var processModuleTemplates = function (subdir) {
@@ -45,7 +34,7 @@ gulp.task('views', function () {
     var processModules = function (err, subdirs) {
         if (err) throw err;
         subdirs.forEach(function (subdir) {
-            viewsPromises.push(processModuleTemplates(subdir))
+            viewsPromises.push(processModuleTemplates(subdir));
         });
     };
 
