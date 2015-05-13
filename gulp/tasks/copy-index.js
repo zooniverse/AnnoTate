@@ -9,7 +9,7 @@ gulp.task('copyIndex', function () {
     var replaceParams = {
         patterns: [{
             match: 'base',
-            replacement: (global.s3Params) ? '//' + global.s3Params.Prefix : ''
+            replacement: (global.s3Params) ? '//' + global.s3Params.Prefix.slice(0, - 1) : ''
         }]
     };
 
