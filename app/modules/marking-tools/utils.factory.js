@@ -3,7 +3,6 @@
 require('./marking-tools.module.js')
     .factory('toolUtils', toolUtils);
 
-// @ngInject
 function toolUtils() {
 
     var factory;

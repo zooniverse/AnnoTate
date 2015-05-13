@@ -5,11 +5,9 @@ require('./layout.module.js')
 
 // @ngInject
 function Routes($stateProvider) {
-
     $stateProvider
         .state('Base', {
             templateUrl: 'layout/base.html',
             abstract: true
         });
-
 }

@@ -3,7 +3,6 @@
 require('./header.module.js')
     .directive('appHeader', appHeader);
 
-// @ngInject
 function appHeader() {
     var directive = {
         restrict: 'A',

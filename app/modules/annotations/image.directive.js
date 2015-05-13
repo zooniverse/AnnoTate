@@ -19,6 +19,7 @@ function imageAnnotation($rootScope, Annotations) {
     };
     return directive;
 
+    // @ngInject
     function imageAnnotationController($scope, $element) {
         var vm = this;
         vm.destroy = destroy;
@@ -28,6 +29,7 @@ function imageAnnotation($rootScope, Annotations) {
         }
     }
 
+    // @ngInject
     function imageAnnotationLink(scope, element, attrs, ctrl) {
         var hammer = new Hammer(element[0]);
         hammer.on('tap', openContextMenu);

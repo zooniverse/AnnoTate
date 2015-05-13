@@ -3,7 +3,6 @@
 require('./footer.module.js')
     .directive('appFooter', appFooter);
 
-// @ngInject
 function appFooter() {
     return {
         restrict: 'A',

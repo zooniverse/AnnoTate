@@ -19,9 +19,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
     };
     return directive;
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function transcribeDialogController($scope, $element) {
         $scope.active = false;
         $scope.data = {};
@@ -94,9 +92,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         }
     }
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function transcribeDialogLink(scope, element, attrs, dialog) {
         scope.close = dialog.close;
         scope.saveAndClose = dialog.saveAndClose;

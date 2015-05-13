@@ -21,9 +21,7 @@ function contextMenu($rootScope, $window, hotkeys) {
     };
     return directive;
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function contextMenuController($scope) {
         var vm = this;
 
@@ -45,9 +43,7 @@ function contextMenu($rootScope, $window, hotkeys) {
         }
     }
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function contextMenuLink(scope, element, attrs, contextMenu) {
         // There's a bug in the current version of Hammer preventing event
         // binding to the window object, so we use body as a workaround.
