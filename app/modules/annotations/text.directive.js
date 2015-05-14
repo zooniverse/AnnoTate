@@ -8,7 +8,7 @@ require('./annotations.module.js')
 // @ngInject
 function textAnnotation($rootScope, Annotations) {
     var directive = {
-        controller: textAnnotationController,
+        controller: ['$scope', '$element', textAnnotationController],
         link: textAnnotationLink,
         replace: true,
         restrict: 'A',
@@ -41,6 +41,7 @@ function textAnnotation($rootScope, Annotations) {
         }
     }
 
+    // @ngInject
     function textAnnotationLink(scope, element, attrs, ctrl) {
         var hammer = new Hammer(element[0]);
         hammer.on('tap', openContextMenu);

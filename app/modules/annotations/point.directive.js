@@ -11,7 +11,7 @@ require('./annotations.module.js')
 // @ngInject
 function point(annotationsConfig, AnnotationsUtils, toolUtils) {
     var directive = {
-        controller: pointController,
+        controller: ['$scope', pointController],
         link: pointLink,
         replace: true,
         require: ['point', '^textAnnotation', '^markingSurface'],
