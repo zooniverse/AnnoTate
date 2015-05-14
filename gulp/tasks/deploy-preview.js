@@ -7,5 +7,4 @@ var runSequence = require('run-sequence');
 gulp.task('deploy-preview', function (callback) {
     global.s3Params = config.deploy.preview;
     runSequence('production', 'deploy', callback);
-    // runSequence('production', callback);
 });
