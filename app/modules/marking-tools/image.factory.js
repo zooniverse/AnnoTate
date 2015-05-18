@@ -10,11 +10,7 @@ require('./marking-tools.module.js')
 // @ngInject
 function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
 
-    $rootScope.$on('openContextMenu', _disable);
-    $rootScope.$on('closeContextMenu', _enable);
-
     var factory;
-    var _enabled;
     var _hammer;
     var _origin;
     var _rect;
@@ -36,13 +32,12 @@ function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
         if (_.isUndefined(_rect)) {
             _rect = angular.element(document.createElementNS(_svg[0].namespaceURI, 'rect'))
                 .attr('class', 'image-annotation -temp')
-                .appendTo(svg.find('.image-annotations').first());
+                .appendTo(svg.find('.image-annotations'));
         }
 
         _hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
         _hammer.on('panstart', _startRect);
         _hammer.on('panend', _endRect);
-        _enabled = true;
         $rootScope.$broadcast('enableImageTool');
     }
 
@@ -75,10 +70,6 @@ function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
         }
     }
 
-    function _disable() {
-        _enabled = false;
-    }
-
     function _drawRect(event) {
         var newPoint = _getPoint(event);
         _rect.attr('x', (_origin.x < newPoint.x) ? _origin.x : newPoint.x);
@@ -86,13 +77,6 @@ function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
         _rect.attr('width', (_origin.x < newPoint.x) ? newPoint.x - _rect.attr('x') : _origin.x - newPoint.x);
         _rect.attr('height', (_origin.y < newPoint.y) ? newPoint.y - _rect.attr('y') : _origin.y - newPoint.y);
         _checkOutOfBounds();
-    }
-
-    function _enable() {
-        function setEnabled() {
-            _enabled = true;
-        }
-        $timeout(setEnabled);
     }
 
     function _endRect() {

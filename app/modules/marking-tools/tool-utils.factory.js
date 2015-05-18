@@ -6,10 +6,6 @@ require('./marking-tools.module.js')
 function toolUtils() {
 
     var factory;
-    var interrupt;
-
-    // Interrupt is just a boolean used to disable tools when e.g. dragging etc.
-    interrupt = false;
 
     factory = {
         getPoint: getPoint,
