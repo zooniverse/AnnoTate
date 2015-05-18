@@ -8,8 +8,7 @@ function toolUtils() {
     var factory;
 
     factory = {
-        getPoint: getPoint,
-        interrupt: interrupt
+        getPoint: getPoint
     };
 
     return factory;
