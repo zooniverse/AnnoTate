@@ -86,7 +86,7 @@ function textTool($rootScope, $timeout, Annotations, toolUtils) {
     }
 
     function _isLastAnnotationIncomplete() {
-        var last = Annotations.list().slice(-1)[0];
+        var last = _.filter(Annotations.list(), { type: 'text' }).slice(-1)[0];
         return (_.isUndefined(last) || last.complete) ? false : last;
     }
 
