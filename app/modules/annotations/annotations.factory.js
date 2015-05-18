@@ -21,7 +21,8 @@ function Annotations(localStorageService) {
         destroy: destroy,
         list: list,
         reset: reset,
-        upsert: upsert
+        upsert: upsert,
+        updateCache: updateCache
     };
 
     return factory;
@@ -30,7 +31,7 @@ function Annotations(localStorageService) {
     // a blank / undefined object will wipe everything
     function destroy(annotation) {
         _.remove(_annotations, annotation);
-        _updateLocalStorage();
+        updateCache();
         return _annotations;
     }
 
@@ -40,7 +41,7 @@ function Annotations(localStorageService) {
 
     function reset() {
         _annotations.length = 0;
-        _updateLocalStorage();
+        updateCache();
         return _annotations;
     }
 
@@ -52,11 +53,11 @@ function Annotations(localStorageService) {
         } else {
             _annotations.push(annotation);
         }
-        _updateLocalStorage();
+        updateCache();
         return annotation;
     }
 
-    function _updateLocalStorage() {
+    function updateCache() {
         var annotations = _.reject(_annotations, { complete: false });
         localStorageService.set('annotations', annotations);
     }
