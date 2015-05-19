@@ -59,7 +59,7 @@ function textAnnotation($rootScope, Annotations) {
             if (scope.data.complete) {
                 contextMenuData.menuOptions.unshift({ name: 'Edit', action: ctrl.transcribe });
             }
-            $rootScope.$broadcast('openContextMenu', contextMenuData);
+            $rootScope.$broadcast('contextMenu:open', contextMenuData);
         }
     }
 

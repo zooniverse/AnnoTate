@@ -52,10 +52,12 @@ function contextMenu($rootScope, $window, hotkeys) {
         var bodyEvent = new Hammer(element.parents('body')[0]);
         var overlay = angular.element('.overlay').first();
 
-        scope.$on('openContextMenu', openContextMenu);
+        scope.$on('contextMenu:open', openContextMenu);
         scope.position = {};
 
         function openContextMenu(event, data) {
+            $rootScope.$broadcast('panZoom:disable');
+            $rootScope.$broadcast('markingTools:disable');
             contextMenu.open(data);
             positionContextMenu(data);
             bodyEvent.on('tap', closeContextMenu);
@@ -79,7 +81,8 @@ function contextMenu($rootScope, $window, hotkeys) {
         }
 
         function closeContextMenu() {
-            $rootScope.$broadcast('closeContextMenu');
+            $rootScope.$broadcast('panZoom:enable');
+            $rootScope.$broadcast('markingTools:enable');
             contextMenu.close();
             scope.$apply();
             bodyEvent.off('tap', this);

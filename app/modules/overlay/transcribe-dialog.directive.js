@@ -41,7 +41,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         vm.tag = tag;
 
         function closeDialog() {
-            $rootScope.$broadcast('closeTranscribeDialog');
+            $rootScope.$broadcast('panZoom:enable');
             $scope.active = false;
             hotkeys.del('esc');
         }
@@ -51,6 +51,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         }
 
         function openDialog(data) {
+            $rootScope.$broadcast('panZoom:disable');
             $scope.active = true;
             $scope.data = data.annotation;
             $scope.transcription = data.annotation.text;

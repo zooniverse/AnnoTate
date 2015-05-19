@@ -10,7 +10,11 @@ require('./marking-tools.module.js')
 // @ngInject
 function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
 
+    $rootScope.$on('markingTools:disable', _disable);
+    $rootScope.$on('markingTools:enable', _enable);
+
     var factory;
+    var _enabled;
     var _hammer;
     var _origin;
     var _rect;
@@ -38,36 +42,48 @@ function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
         _hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
         _hammer.on('panstart', _startRect);
         _hammer.on('panend', _endRect);
-        $rootScope.$broadcast('enableImageTool');
+        _enabled = true;
+        $rootScope.$broadcast('panZoom:disable');
     }
 
     function deactivate() {
         _hammer.destroy();
-        $rootScope.$broadcast('disableImageTool');
+        $rootScope.$broadcast('panZoom:enable');
     }
 
     function _checkOutOfBounds() {
-        // // Out of bounds - left
+        // Out of bounds - left
         if (_rect.attr('x') < 0) {
             _rect.attr('x', 0);
             _rect.attr('width', _origin.x);
         }
 
-        // // Out of bounds - right
+        // Out of bounds - right
         if (_rect.attr('width') > (_subject.width - _rect.attr('x'))) {
             _rect.attr('width', _subject.width - _rect.attr('x'));
         }
 
-        // // Out of bounds - top
+        // Out of bounds - top
         if (_rect.attr('y') < 0) {
             _rect.attr('y', 0);
             _rect.attr('height', _origin.y);
         }
 
-        // // Out of bounds - bottom
+        // Out of bounds - bottom
         if (_rect.attr('height') > (_subject.height - _rect.attr('y'))) {
             _rect.attr('height', _subject.height - _rect.attr('y'));
         }
+    }
+
+    function _disable() {
+        _enabled = false;
+    }
+
+    function _enable() {
+        function setEnabled() {
+            _enabled = true;
+        }
+        $timeout(setEnabled);
     }
 
     function _drawRect(event) {
@@ -100,9 +116,11 @@ function imageTool($document, $rootScope, $timeout, Annotations, toolUtils) {
     }
 
     function _startRect(event) {
-        _hammer.on('panmove', _drawRect);
-        _origin = _getPoint(event);
-        _rect.attr(_origin);
-        _subject = _svg.find('.subject').first()[0].getBBox();
+        if (_enabled) {
+            _hammer.on('panmove', _drawRect);
+            _origin = _getPoint(event);
+            _rect.attr(_origin);
+            _subject = _svg.find('.subject').first()[0].getBBox();
+        }
     }
 }

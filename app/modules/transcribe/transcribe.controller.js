@@ -13,7 +13,7 @@ function TranscribeCtrl($rootScope, $scope, Annotations) {
     $scope.$on('next', loadNextSubject);
 
     vm.centre = function () {
-        $rootScope.$broadcast('centre');
+        $rootScope.$broadcast('panZoom:centre');
     }
 
     vm.subject = {

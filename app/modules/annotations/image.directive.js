@@ -44,7 +44,7 @@ function imageAnnotation($rootScope, Annotations) {
                 event: event,
                 menuOptions: [{ name: 'Delete', action: ctrl.destroy }]
             };
-            $rootScope.$broadcast('openContextMenu', contextMenuData);
+            $rootScope.$broadcast('contextMenu:open', contextMenuData);
         }
     }
 

@@ -21,11 +21,11 @@ function transcribeToolbar($rootScope, toolSet) {
         scope.tools = toolSet;
 
         function rotate(theta) {
-            $rootScope.$broadcast('rotate', theta);
+            $rootScope.$broadcast('panZoom:rotate', theta);
         }
 
         function centre() {
-            $rootScope.$broadcast('centre');
+            $rootScope.$broadcast('panZoom:centre');
         }
 
         function next() {

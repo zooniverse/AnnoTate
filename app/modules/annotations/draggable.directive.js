@@ -7,7 +7,7 @@ require('./annotations.module.js')
     .directive('draggable', draggable);
 
 // @ngInject
-function draggable(Annotations, toolUtils) {
+function draggable($rootScope, Annotations, toolUtils) {
     var directive = {
         link: draggableLink,
         require: ['^markingSurface'],
@@ -22,6 +22,7 @@ function draggable(Annotations, toolUtils) {
         var hammerElement;
         var hammerSurface;
         var markingSurface = ctrl[0];
+        var markingSurfaceWasEnabled;
         var offset = {};
         var x;
         var y;
@@ -46,19 +47,20 @@ function draggable(Annotations, toolUtils) {
         hammerElement = new Hammer.Manager(element[0]);
         hammerElement.add(new Hammer.Press({ time: 5 }));
         hammerElement.add(new Hammer.Pan({ direction: Hammer.DIRECTION_ALL }));
-        hammerElement.on('press', markingSurface.$disable);
-        hammerElement.on('pressup', markingSurface.$enable);
-        hammerElement.on('panstart', startDrag);
+        hammerElement.on('press', startDrag);
 
         // Methods
         function getPoint(event) {
-            if (event.srcEvent) {
-                event = event.srcEvent;
-            }
+            event = event.srcEvent || event;
             return toolUtils.getPoint(angular.element(markingSurface.svg), event);
         }
 
         function startDrag(hammerEvent) {
+            $rootScope.$broadcast('markingTools:disable');
+            markingSurfaceWasEnabled = markingSurface.$isEnabled();
+            if (markingSurfaceWasEnabled) {
+                $rootScope.$broadcast('panZoom:disable');
+            }
             hammerSurface.on('panmove', moveDrag);
             hammerSurface.on('panend', endDrag);
 
@@ -76,7 +78,10 @@ function draggable(Annotations, toolUtils) {
         }
 
         function endDrag(hammerEvent) {
-            markingSurface.$enable();
+            if (markingSurfaceWasEnabled) {
+                $rootScope.$broadcast('panZoom:enable');
+            }
+            $rootScope.$broadcast('markingTools:enable');
             hammerSurface.off('panmove', moveDrag);
             hammerSurface.off('panend', endDrag);
 
