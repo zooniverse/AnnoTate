@@ -6,6 +6,8 @@ var Hammer = require('hammerjs');
 require('./annotations.module.js')
     .directive('draggable', draggable);
 
+// Allows SVG elements to be dragged - should replace the point directive
+
 // @ngInject
 function draggable($rootScope, Annotations, toolUtils) {
     var directive = {
@@ -24,6 +26,7 @@ function draggable($rootScope, Annotations, toolUtils) {
         var markingSurface = ctrl[0];
         var markingSurfaceWasEnabled;
         var offset = {};
+        var subjectDimensions;
         var x;
         var y;
 
@@ -34,11 +37,11 @@ function draggable($rootScope, Annotations, toolUtils) {
         switch (element[0].nodeName) {
             case 'rect':
                 x = 'x';
-                y = 'y'
+                y = 'y';
                 break;
             case 'circle':
                 x = 'cx';
-                y = 'cy'
+                y = 'cy';
                 break;
         }
 
@@ -69,15 +72,39 @@ function draggable($rootScope, Annotations, toolUtils) {
                 x: data.x - point.x,
                 y: data.y - point.y
             };
+            subjectDimensions = angular.element(markingSurface.svg).find('.subject').first()[0].getBBox();
         }
 
         function moveDrag(hammerEvent) {
             var point = getPoint(hammerEvent);
-            element[0].setAttribute(x, point.x + offset.x);
-            element[0].setAttribute(y, point.y + offset.y);
+            element.attr(x, point.x + offset.x);
+            element.attr(y, point.y + offset.y);
+            checkOutOfBounds();
         }
 
-        function endDrag(hammerEvent) {
+        function checkOutOfBounds() {
+            // Out of bounds - left
+            if (element.attr(x) < 0) {
+                element.attr(x, 0);
+            }
+
+            // Out of bounds - right
+            if (element.attr('width') && element.attr('width') > (subjectDimensions.width - element.attr(x))) {
+                element.attr(x, subjectDimensions.width - element.attr('width'));
+            }
+
+            // // Out of bounds - top
+            if (element.attr(y) < 0) {
+                element.attr(y, 0);
+            }
+
+            // // Out of bounds - bottom
+            if (element.attr('height') && element.attr('height') > (subjectDimensions.height - element.attr(y))) {
+                element.attr(y, subjectDimensions.height - element.attr('height'));
+            }
+        }
+
+        function endDrag() {
             if (markingSurfaceWasEnabled) {
                 $rootScope.$broadcast('panZoom:enable');
             }
@@ -85,8 +112,8 @@ function draggable($rootScope, Annotations, toolUtils) {
             hammerSurface.off('panmove', moveDrag);
             hammerSurface.off('panend', endDrag);
 
-            data.x = parseFloat(element[0].getAttribute(x));
-            data.y = parseFloat(element[0].getAttribute(y));
+            data.x = parseFloat(element.attr(x));
+            data.y = parseFloat(element.attr(y));
 
             Annotations.updateCache();
             scope.$apply();
