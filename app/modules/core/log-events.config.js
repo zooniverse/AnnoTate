@@ -16,7 +16,7 @@ function logAllEvents($provide) {
         };
 
         Scope.prototype.$emit = function() {
-            logEvent('$emit', arguments);
+            // logEvent('$emit', arguments);
             return origEmit.apply(this, arguments);
         };
         return $delegate;
