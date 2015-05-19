@@ -1,15 +1,21 @@
-<g class="text-annotation">
+<g class="text-annotation" ng-class="{ '-incomplete': !data.complete }">
 
     <circle
+        draggable="data.startPoint"
         ng-if="data.startPoint"
-        point="data.startPoint"
-        complete="data.complete"
+        class="text"
+        ng-attr-cx="{{ data.startPoint.x }}"
+        ng-attr-cy="{{ data.startPoint.y }}"
+        ng-attr-r="{{ ::r }}"
     ></circle>
 
     <circle
+        draggable="data.endPoint"
         ng-if="data.endPoint"
-        point="data.endPoint"
-        complete="data.complete"
+        class="text"
+        ng-attr-cx="{{ data.endPoint.x }}"
+        ng-attr-cy="{{ data.endPoint.y }}"
+        ng-attr-r="{{ ::r }}"
     ></circle>
 
 </g>

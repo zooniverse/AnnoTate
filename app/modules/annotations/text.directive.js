@@ -6,7 +6,7 @@ require('./annotations.module.js')
     .directive('textAnnotation', textAnnotation);
 
 // @ngInject
-function textAnnotation($rootScope, Annotations) {
+function textAnnotation($rootScope, annotationsConfig, Annotations) {
     var directive = {
         controller: ['$scope', '$element', textAnnotationController],
         link: textAnnotationLink,
@@ -20,11 +20,15 @@ function textAnnotation($rootScope, Annotations) {
     return directive;
 
     function textAnnotationController($scope, $element) {
+
+        // Setup
         var vm = this;
         vm.destroy = destroy;
         vm.update = update;
         vm.transcribe = transcribe;
+        $scope.r = annotationsConfig.pointRadius;
 
+        // Methods
         function destroy() {
             Annotations.destroy($scope.data);
         }
@@ -39,16 +43,23 @@ function textAnnotation($rootScope, Annotations) {
         function update() {
             Annotations.upsert($scope.data);
         }
+
     }
 
     // @ngInject
     function textAnnotationLink(scope, element, attrs, ctrl) {
-        var hammer = new Hammer(element[0]);
-        hammer.on('tap', openContextMenu);
-        scope.$on('$destroy', destroy);
 
-        function destroy() {
-            hammer.destroy();
+        // Setup
+        var hammerElement;
+
+        // Events
+        hammerElement = new Hammer(element[0]);
+        hammerElement.on('tap', openContextMenu);
+        scope.$on('$destroy', $destroy);
+
+        // Methods
+        function $destroy() {
+            hammerElement.destroy();
         }
 
         function openContextMenu(event) {

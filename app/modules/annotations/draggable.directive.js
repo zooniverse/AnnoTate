@@ -6,21 +6,24 @@ var Hammer = require('hammerjs');
 require('./annotations.module.js')
     .directive('draggable', draggable);
 
-// Allows SVG elements to be dragged - should replace the point directive
+// Common functionality for allowing dragging on annotations
 
 // @ngInject
 function draggable($rootScope, Annotations, toolUtils) {
     var directive = {
         link: draggableLink,
         require: ['^markingSurface'],
-        restrict: 'A'
+        restrict: 'A',
+        scope: {
+            data: '=draggable'
+        }
     };
     return directive;
 
     function draggableLink(scope, element, attrs, ctrl) {
 
         // Setup
-        var data = {};
+        var data = scope.data;
         var hammerElement;
         var hammerSurface;
         var markingSurface = ctrl[0];
@@ -29,10 +32,6 @@ function draggable($rootScope, Annotations, toolUtils) {
         var subjectDimensions;
         var x;
         var y;
-
-        if (scope.annotation) {
-            data = scope.annotation;
-        }
 
         switch (element[0].nodeName) {
             case 'rect':
@@ -89,26 +88,32 @@ function draggable($rootScope, Annotations, toolUtils) {
             }
 
             // Out of bounds - right
+            if (element.attr(x) > subjectDimensions.width) {
+                element.attr(x, subjectDimensions.width);
+            }
             if (element.attr('width') && element.attr('width') > (subjectDimensions.width - element.attr(x))) {
                 element.attr(x, subjectDimensions.width - element.attr('width'));
             }
 
-            // // Out of bounds - top
+            // Out of bounds - top
             if (element.attr(y) < 0) {
                 element.attr(y, 0);
             }
 
-            // // Out of bounds - bottom
+            // Out of bounds - bottom
+            if (element.attr(y) > subjectDimensions.height) {
+                element.attr(y, subjectDimensions.height);
+            }
             if (element.attr('height') && element.attr('height') > (subjectDimensions.height - element.attr(y))) {
                 element.attr(y, subjectDimensions.height - element.attr('height'));
             }
         }
 
         function endDrag() {
+            $rootScope.$broadcast('markingTools:enable');
             if (markingSurfaceWasEnabled) {
                 $rootScope.$broadcast('panZoom:enable');
             }
-            $rootScope.$broadcast('markingTools:enable');
             hammerSurface.off('panmove', moveDrag);
             hammerSurface.off('panend', endDrag);
 
