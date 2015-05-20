@@ -105,7 +105,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
             handle: '.heading'
         });
 
-        // Methods
+        // Events
         scope.$on('transcribeDialog:open', openDialog);
 
         // Methods
@@ -148,15 +148,14 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 }
 
 // Utility function to derive dimensions and offsets for dialog positioning,
-// using getBoundingClientRect for SVG compatibility. Requires a jQuery element.
+// using getBoundingClientRect for SVG compatibility.
 function getDimensions(element) {
     if (!element.jquery) {
-        console.error('Argument must be a jQuery object');
-        return false;
+        element = angular.element(element);
     }
-    var dimensions = {};
-    dimensions.offset = element.offset();
-    dimensions.height = element[0].getBoundingClientRect().height;
-    dimensions.width = element[0].getBoundingClientRect().width;
-    return dimensions;
+    return {
+        offset: element.offset(),
+        height: element[0].getBoundingClientRect().height,
+        width: element[0].getBoundingClientRect().width
+    }
 }
