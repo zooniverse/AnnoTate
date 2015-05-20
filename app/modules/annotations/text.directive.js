@@ -34,7 +34,7 @@ function textAnnotation($rootScope, annotationsConfig, Annotations) {
         }
 
         function transcribe() {
-            $rootScope.$broadcast('openTranscribeDialog', {
+            $rootScope.$broadcast('transcribeDialog:open', {
                 annotation: $scope.data,
                 element: $element
             });

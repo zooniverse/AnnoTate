@@ -24,11 +24,13 @@ function contextMenu($rootScope, $window, hotkeys) {
 
     // @ngInject
     function contextMenuController($scope) {
-        var vm = this;
 
+        // Setup
+        var vm = this;
         vm.close = closeMenu;
         vm.open = openMenu;
 
+        // Methods
         function closeMenu() {
             $scope.active = false;
             hotkeys.del('esc');
@@ -46,15 +48,30 @@ function contextMenu($rootScope, $window, hotkeys) {
 
     // @ngInject
     function contextMenuLink(scope, element, attrs, contextMenu) {
+
+        // Setup
+        var bodyEvent;
+        var overlay;
+        overlay = angular.element('.overlay').first();
+        scope.position = {};
+
+        // Events
+        scope.$on('contextMenu:open', openContextMenu);
+
         // There's a bug in the current version of Hammer preventing event
         // binding to the window object, so we use body as a workaround.
         // https://github.com/hammerjs/hammer.js/issues/759
-        var bodyEvent = new Hammer(element.parents('body')[0]);
-        var overlay = angular.element('.overlay').first();
+        bodyEvent = new Hammer(element.parents('body')[0]);
 
-        scope.$on('contextMenu:open', openContextMenu);
-        scope.position = {};
+        // Methods
 
+        function closeContextMenu() {
+            $rootScope.$broadcast('panZoom:enable');
+            $rootScope.$broadcast('markingTools:enable');
+            contextMenu.close();
+            scope.$apply();
+            bodyEvent.off('tap', this);
+        }
         function openContextMenu(event, data) {
             $rootScope.$broadcast('panZoom:disable');
             $rootScope.$broadcast('markingTools:disable');
@@ -78,14 +95,6 @@ function contextMenu($rootScope, $window, hotkeys) {
                 };
             }
             scope.$apply();
-        }
-
-        function closeContextMenu() {
-            $rootScope.$broadcast('panZoom:enable');
-            $rootScope.$broadcast('markingTools:enable');
-            contextMenu.close();
-            scope.$apply();
-            bodyEvent.off('tap', this);
         }
     }
 }

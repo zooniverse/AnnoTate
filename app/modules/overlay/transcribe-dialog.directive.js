@@ -6,7 +6,6 @@ var Draggabilly = require('draggabilly');
 require('./overlay.module.js')
     .directive('transcribeDialog', transcribeDialog);
 
-// TODO: Add escape hotkey to close
 // TODO: Find out what ngInject isn't working properly for transcribeDialogController
 
 // @ngInject
@@ -96,16 +95,20 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 
     // @ngInject
     function transcribeDialogLink(scope, element, attrs, dialog) {
+
+        // Setup
         scope.close = dialog.close;
         scope.saveAndClose = dialog.saveAndClose;
         scope.tag = dialog.tag;
-        scope.$on('openTranscribeDialog', openDialog);
-
         new Draggabilly(element[0], {
             containment: '.overlay',
             handle: '.heading'
         });
 
+        // Methods
+        scope.$on('transcribeDialog:open', openDialog);
+
+        // Methods
         function openDialog(event, data) {
             dialog.open(data);
             positionDialog(event, data);
