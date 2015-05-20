@@ -18,9 +18,7 @@ function markingSurface() {
     };
     return directive;
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function markingSurfaceController($scope, $element) {
         var vm = this;
 
