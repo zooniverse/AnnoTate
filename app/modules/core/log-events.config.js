@@ -5,7 +5,7 @@ require('./core.module.js')
 
 // @ngInject
 function logAllEvents($provide) {
-    $provide.decorator("$rootScope", function($delegate) {
+    $provide.decorator('$rootScope', function($delegate) {
         var Scope = $delegate.constructor;
         var origBroadcast = Scope.prototype.$broadcast;
         var origEmit = Scope.prototype.$emit;
@@ -24,8 +24,11 @@ function logAllEvents($provide) {
 
     function logEvent(type, args) {
         var eventArgs = Array.prototype.slice.call(args);
-        console.log(type, eventArgs.shift(), eventArgs);
+        var message = [type, eventArgs.shift()].join(', ');
+        if (eventArgs.length > 0) {
+            console.log(message, eventArgs);
+        } else {
+            console.log(message);
+        }
     }
 }
-
-
