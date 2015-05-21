@@ -4,7 +4,7 @@ require('./subjects.module.js')
     .directive('subject', subject);
 
 // @ngInject
-function subject($rootScope) {
+function subject($rootScope, subjectsFactory) {
     var directive = {
         link: subjectLink,
         restrict: 'A',
@@ -21,6 +21,15 @@ function subject($rootScope) {
         vm.subject = {
             isLoaded: false
         };
+
+        subjectsFactory.get()
+            .then(function (subject) {
+                if (!subject) {
+                    vm.subject.isLoaded = true;
+                    $rootScope.$broadcast('subject:outOfData');
+                }
+            })
+
 
     }
 
