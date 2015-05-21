@@ -9,5 +9,6 @@ module.exports = require('angular')
 
         'app.annotations',
         'app.markingTools',
-        'app.overlay'
+        'app.overlay',
+        'app.subjects'
     ]);
