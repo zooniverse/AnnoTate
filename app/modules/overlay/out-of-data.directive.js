@@ -14,10 +14,10 @@ function outOfData($rootScope, $window, hotkeys) {
     return directive;
 
     function outOfDataLink(scope) {
-        scope.show = false;
+        scope.active = false;
 
         scope.$on('subject:outOfData', function () {
-            scope.show = true;
+            scope.active = true;
         });
     }
 }

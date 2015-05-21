@@ -1,9 +1,9 @@
 <image
-    ng-height="2500"
-    ng-href="images/TGA_8812_1_3_2036_1.jpg"
-    ng-if="vm.subject.isLoaded === true"
+    ng-height="vm.subject.data.height"
+    ng-href="{{ vm.subject.data.url }}"
+    ng-if="vm.subject.data"
     ng-load="vm.centre()"
-    ng-width="1648"
+    ng-width="vm.subject.data.width"
     x="0"
     xlink:href=""
     y="0"></image>

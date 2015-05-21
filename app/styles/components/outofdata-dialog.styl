@@ -1,0 +1,19 @@
+.outofdata-dialog
+    @extend .panel
+    @extend .panel-default
+    width: 550px
+
+    > .heading
+        @extend .panel-heading
+        @extend .panel-default > .panel-heading
+
+    > .heading > .title
+        @extend .panel-default > .panel-heading
+        @extend .panel-title
+        line-height: 23px
+
+    > .body
+        @extend .panel-body
+
+    > .body > p:last-of-type
+        margin-bottom: 0
