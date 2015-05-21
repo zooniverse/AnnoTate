@@ -16,10 +16,6 @@ function TranscribeCtrl($rootScope, $scope, Annotations) {
         $rootScope.$broadcast('panZoom:centre');
     }
 
-    vm.subject = {
-        isLoaded: true
-    };
-
     function loadNextSubject() {
         Annotations.reset();
         // TODO: reset tools

@@ -99,6 +99,7 @@
     "q": "^1.2.0",
     "run-sequence": "^0.3.6",
     "s3": "^4.4.0",
+    "spin": "0.0.1",
     "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom",
     "tiny-lr": "0.0.9",
     "uglifyify": "^2.5.0",
