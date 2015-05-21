@@ -9,6 +9,7 @@ require('angular-bootstrap');
 require('angular-local-storage');
 require('angular-ui-router');
 require('angular-hotkeys');
+require('angular-animate');
 
 // App modules
 bulk(__dirname, ['./**/!(app.module).js']);
@@ -24,6 +25,7 @@ function startApp() {
         'ui.bootstrap',
         'LocalStorageModule',
         'cfp.hotkeys',
+        'ngAnimate',
 
         // App modules
         'app.core',

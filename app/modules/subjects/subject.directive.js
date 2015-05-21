@@ -28,14 +28,17 @@ function subject($rootScope, $timeout, subjectsFactory) {
         function loadSubject() {
             subjectsFactory.get()
                 .then(function (subject) {
-                    vm.subject.isLoaded = true;
-                    if (!subject) {
-                        $timeout(function () {
-                            $rootScope.$broadcast('subject:outOfData');
-                        });
-                    } else {
-                        vm.subject.data = subject;
-                    }
+                    $timeout(function () {
+                        vm.subject.isLoaded = true;
+                    }, 2000)
+                    // vm.subject.isLoaded = true;
+                    // if (!subject) {
+                    //     $timeout(function () {
+                    //         $rootScope.$broadcast('subject:outOfData');
+                    //     });
+                    // } else {
+                    //     vm.subject.data = subject;
+                    // }
                 });
         }
 
