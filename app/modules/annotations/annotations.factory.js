@@ -28,7 +28,7 @@ function Annotations(localStorageService) {
     return factory;
 
     // TODO: fix so that it only removes a point if it's passed an annotation;
-    // a blank / undefined object will wipe everything
+    // a blank / undefined object will wipe everything lololol
     function destroy(annotation) {
         _.remove(_annotations, annotation);
         updateCache();

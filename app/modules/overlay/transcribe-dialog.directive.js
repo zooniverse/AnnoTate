@@ -6,7 +6,6 @@ var Draggabilly = require('draggabilly');
 require('./overlay.module.js')
     .directive('transcribeDialog', transcribeDialog);
 
-// TODO: Add escape hotkey to close
 // TODO: Find out what ngInject isn't working properly for transcribeDialogController
 
 // @ngInject
@@ -41,7 +40,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         vm.tag = tag;
 
         function closeDialog() {
-            $rootScope.$broadcast('closeTranscribeDialog');
+            $rootScope.$broadcast('panZoom:enable');
             $scope.active = false;
             hotkeys.del('esc');
         }
@@ -51,6 +50,7 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
         }
 
         function openDialog(data) {
+            $rootScope.$broadcast('panZoom:disable');
             $scope.active = true;
             $scope.data = data.annotation;
             $scope.transcription = data.annotation.text;
@@ -95,16 +95,20 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 
     // @ngInject
     function transcribeDialogLink(scope, element, attrs, dialog) {
+
+        // Setup
         scope.close = dialog.close;
         scope.saveAndClose = dialog.saveAndClose;
         scope.tag = dialog.tag;
-        scope.$on('openTranscribeDialog', openDialog);
-
         new Draggabilly(element[0], {
             containment: '.overlay',
             handle: '.heading'
         });
 
+        // Events
+        scope.$on('transcribeDialog:open', openDialog);
+
+        // Methods
         function openDialog(event, data) {
             dialog.open(data);
             positionDialog(event, data);
@@ -144,15 +148,14 @@ function transcribeDialog($rootScope, $timeout, Annotations, hotkeys) {
 }
 
 // Utility function to derive dimensions and offsets for dialog positioning,
-// using getBoundingClientRect for SVG compatibility. Requires a jQuery element.
+// using getBoundingClientRect for SVG compatibility.
 function getDimensions(element) {
     if (!element.jquery) {
-        console.error('Argument must be a jQuery object');
-        return false;
+        element = angular.element(element);
     }
-    var dimensions = {};
-    dimensions.offset = element.offset();
-    dimensions.height = element[0].getBoundingClientRect().height;
-    dimensions.width = element[0].getBoundingClientRect().width;
-    return dimensions;
+    return {
+        offset: element.offset(),
+        height: element[0].getBoundingClientRect().height,
+        width: element[0].getBoundingClientRect().width
+    }
 }

@@ -15,9 +15,19 @@ gulp.task('s3Paths', function () {
         var prefix = '//' + global.s3Params.Prefix;
         var dest = filename.substring(0, filename.lastIndexOf('/'));
         gulp.src(filename)
+
+            // Links
             .pipe(replace(/(href=")(?![http|\/\/])/g, '$1' + prefix))
+
+            // Images
             .pipe(replace(/(src=")(?![http|\/\/])/g, '$1' + prefix))
+
+            // CSS Urls
             .pipe(replace(/(url\("\/)/g, '$1' + prefix.substring(1)))
+
+            // Base tag, needed for ui-router
+            .pipe(replace('<base href="/">', '<base href="' + prefix + '">'))
+
             .pipe(gulp.dest(dest))
             .on('end', deferred.resolve)
             .on('error', deferred.reject);

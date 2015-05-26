@@ -19,11 +19,13 @@ function imageAnnotation($rootScope, Annotations) {
     };
     return directive;
 
-    // @ngInject
     function imageAnnotationController($scope) {
+
+        // Setup
         var vm = this;
         vm.destroy = destroy;
 
+        // Methods
         function destroy() {
             Annotations.destroy($scope.data);
         }
@@ -31,20 +33,25 @@ function imageAnnotation($rootScope, Annotations) {
 
     // @ngInject
     function imageAnnotationLink(scope, element, attrs, ctrl) {
-        var hammer = new Hammer(element[0]);
-        hammer.on('tap', openContextMenu);
-        scope.$on('$destroy', destroy);
 
-        function destroy() {
-            hammer.destroy();
+        // Setup
+        var hammerElement;
+
+        // Events
+        hammerElement = new Hammer(element[0]);
+        hammerElement.on('tap', openContextMenu);
+        scope.$on('$destroy', $destroy);
+
+        // Methods
+        function $destroy() {
+            hammerElement.destroy();
         }
 
         function openContextMenu(event) {
-            var contextMenuData = {
+            $rootScope.$broadcast('contextMenu:open', {
                 event: event,
                 menuOptions: [{ name: 'Delete', action: ctrl.destroy }]
-            };
-            $rootScope.$broadcast('openContextMenu', contextMenuData);
+            });
         }
     }
 

@@ -10,8 +10,8 @@ require('./marking-tools.module.js')
 // @ngInject
 function textTool($rootScope, $timeout, Annotations, toolUtils) {
 
-    $rootScope.$on('openContextMenu', _disable);
-    $rootScope.$on('closeContextMenu', _enable);
+    $rootScope.$on('markingTools:disable', _disable);
+    $rootScope.$on('markingTools:enable', _enable);
 
     var factory;
     var _panzoom;

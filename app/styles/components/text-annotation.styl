@@ -7,13 +7,13 @@
         transform: scale3d(1, 1, 1)
         transition: all 0.2s linear
 
-    > .text.-incomplete
+    > .text.-dragging
+        cursor: move
+        fill: green !important
+
+    &.-incomplete > .text
         animation: pulse 0.5s ease-in-out
         animation-iteration-count: infinite
         transform-origin: center
         animation-direction: alternate
         fill: red
-
-    > .text.-dragging
-        cursor: move
-        fill: green !important

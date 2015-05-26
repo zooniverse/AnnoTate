@@ -18,9 +18,7 @@ function markingSurface() {
     };
     return directive;
 
-    /**
-     * @ngInject
-     */
+    // @ngInject
     function markingSurfaceController($scope, $element) {
         var vm = this;
 
@@ -37,6 +35,7 @@ function markingSurface() {
         vm.$rotate = rotate;
         vm.$enable = enable;
         vm.$disable = disable;
+        vm.$isEnabled = isEnabled;
 
         function centre() {
             vm.panZoom.updateBBox();
@@ -53,6 +52,10 @@ function markingSurface() {
         function enable() {
             vm.panZoom.enablePan();
             vm.panZoom.enableZoom();
+        }
+
+        function isEnabled() {
+            return vm.panZoom.isPanEnabled() && vm.panZoom.isZoomEnabled();
         }
 
         // TODO: Fix so that centre and rotate work together normally - centre
@@ -80,12 +83,10 @@ function markingSurface() {
      * @ngInject
      */
     function markingSurfaceLink(scope, element, attr, vm) {
-        scope.$on('centre', vm.$centre);
-        scope.$on('rotate', vm.$rotate);
-        scope.$on('openContextMenu', vm.$disable);
-        scope.$on('closeContextMenu', vm.$enable);
-        scope.$on('enableImageTool', vm.$disable);
-        scope.$on('disableImageTool', vm.$enable);
+        scope.$on('panZoom:centre', vm.$centre);
+        scope.$on('panZoom:rotate', vm.$rotate);
+        scope.$on('panZoom:disable', vm.$disable);
+        scope.$on('panZoom:enable', vm.$enable);
 
         scope.$on('activateTool', triggerActivateTool);
         scope.$on('deactivateTool', triggerDeactivateTool);
