@@ -4,7 +4,7 @@ require('./subjects.module.js')
     .directive('subject', subject);
 
 // @ngInject
-function subject($rootScope, subjectsFactory) {
+function subject($rootScope, $timeout, subjectsFactory) {
     var directive = {
         link: subjectLink,
         restrict: 'A',

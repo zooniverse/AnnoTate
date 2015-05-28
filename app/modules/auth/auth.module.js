@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = require('angular')
-    .module('app.header', [
-        'app.auth'
+    .module('app.auth', [
+        'app.zooapi'
     ]);
