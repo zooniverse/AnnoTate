@@ -14,7 +14,6 @@ function loadingSpinner($rootScope, $window, hotkeys) {
     };
     return directive;
 
-    // @ngInject
     function loadingSpinnerCompile(tElement) {
         new Spinner({
             color: '#fff'
