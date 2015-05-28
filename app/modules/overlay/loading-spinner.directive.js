@@ -8,18 +8,16 @@ require('./overlay.module.js')
 // @ngInject
 function loadingSpinner($rootScope, $window, hotkeys) {
     var directive = {
-        link: loadingSpinnerLink,
+        compile: loadingSpinnerCompile,
         replace: true,
         templateUrl: 'overlay/loading-spinner.html'
     };
     return directive;
 
     // @ngInject
-    function loadingSpinnerLink(scope, element) {
-        // Setup
-        var spinner = new Spinner({
+    function loadingSpinnerCompile(tElement) {
+        new Spinner({
             color: '#fff'
-        }).spin(element[0]);
+        }).spin(tElement[0]);
     }
-
 }
