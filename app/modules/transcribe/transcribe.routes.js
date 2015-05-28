@@ -14,7 +14,7 @@ function Routes($stateProvider) {
             views: {
                 'main': {
                     templateUrl: 'transcribe/transcribe.html',
-                    controller: 'TranscribeCtrl as vm'
+                    controller: 'TranscribeController as vm'
                 }
             }
         });

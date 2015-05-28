@@ -1,10 +1,10 @@
 'use strict';
 
 require('./transcribe.module.js')
-    .controller('TranscribeCtrl', TranscribeCtrl);
+    .controller('TranscribeController', TranscribeController);
 
 // @ngInject
-function TranscribeCtrl($rootScope, $scope, Annotations, zooAPI, zooAPIProject) {
+function TranscribeController($rootScope, $scope, Annotations, zooAPI, zooAPIProject) {
 
     // ViewModel
     var vm = this;

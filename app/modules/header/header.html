@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" collapse="vm.headerCollapse">
             <ul class="nav navbar-nav">
                 <li ng-repeat="link in vm.links">
-                    <a ui-sref="{{ ::link.state }}" ui-sref-active="-active" class="link">{{ ::link.label }}</a>
+                    <a ui-sref="{{ ::link.state }}" ui-sref-active="-active" class="link" ng-bind="::link.label"></a>
                 </li>
             </ul>
 
