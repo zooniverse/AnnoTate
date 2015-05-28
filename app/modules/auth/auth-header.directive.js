@@ -17,12 +17,9 @@ function authHeader(authFactory) {
     function authHeaderLink(scope, element) {
 
         // Setup
-        // scope.auth = authFactory;
         scope.user = authFactory.getUser();
         scope.signIn = authFactory.signIn;
         scope.signOut = authFactory.signOut;
-
-        console.log(scope.user)
 
         // Events
         element.find('.login-form').on('click', preventClose);

@@ -32,7 +32,7 @@ function subject($rootScope, $timeout, subjectsFactory) {
                     if (!subject) {
                         $timeout(function () {
                             $rootScope.$broadcast('subject:outOfData');
-                        });
+                        }, 300);
                     } else {
                         vm.subject.data = subject;
                     }

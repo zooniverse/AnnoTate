@@ -7,7 +7,7 @@
     >
 
     <li ng-repeat="option in menuOptions">
-        <a href ng-click="option.action()">{{ option.name }}</a>
+        <a href ng-click="option.action()">{{ ::option.name }}</a>
     </li>
 
 </ul>
