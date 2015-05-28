@@ -15,7 +15,7 @@ function subjectsFactory($q, $timeout, zooAPIProject) {
     return factory;
 
     function getDummy() {
-        zooAPIProject.get().then(function (r) { console.log(r) })
+        zooAPIProject.get().then(function (r) { console.log(r); });
 
 
         return $timeout(function () {

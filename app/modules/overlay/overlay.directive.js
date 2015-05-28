@@ -6,10 +6,7 @@ require('./overlay.module.js')
 function overlay() {
     var directive = {
         replace: true,
-        link: overlayLink,
         templateUrl: 'overlay/overlay.html'
     };
     return directive;
-
-    function overlayLink() {}
 }
