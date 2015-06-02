@@ -15,8 +15,6 @@ function zooAPI(zooAPIConfig) {
         host: 'https://panoptes-staging.zooniverse.org'
     });
 
-    console.log(_client);
-
     return _client.api;
 
 }
