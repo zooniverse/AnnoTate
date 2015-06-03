@@ -4,7 +4,7 @@ require('./transcribe.module.js')
     .controller('TranscribeController', TranscribeController);
 
 // @ngInject
-function TranscribeController($rootScope, $scope, Annotations, zooAPI, zooAPIProject) {
+function TranscribeController($rootScope, $scope, Annotations) {
 
     // ViewModel
     var vm = this;
@@ -14,16 +14,7 @@ function TranscribeController($rootScope, $scope, Annotations, zooAPI, zooAPIPro
 
     vm.centre = function () {
         $rootScope.$broadcast('panZoom:centre');
-    }
-
-    // zooAPIProject.get().then(function (r) { console.log(r) })
-    // zooAPIProject.get()
-    //     .then(function (project) {
-    //         return zooAPI.type('')
-    //     })
-
-
-    // zooAPI.type('subject_sets').get
+    };
 
     function loadNextSubject() {
         Annotations.reset();
