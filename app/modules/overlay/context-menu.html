@@ -6,8 +6,8 @@
     role="menu"
     >
 
-    <li ng-repeat="option in menuOptions">
-        <a href ng-click="::option.action()" ng-bind="::option.name"></a>
+    <li ng-repeat="option in ::menuOptions">
+        <a href ng-click="option.action()" ng-bind="option.name"></a>
     </li>
 
 </ul>

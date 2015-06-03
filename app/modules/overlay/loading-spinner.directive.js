@@ -6,7 +6,7 @@ require('./overlay.module.js')
     .directive('loadingSpinner', loadingSpinner);
 
 // @ngInject
-function loadingSpinner($rootScope, $window, hotkeys) {
+function loadingSpinner() {
     var directive = {
         compile: loadingSpinnerCompile,
         replace: true,

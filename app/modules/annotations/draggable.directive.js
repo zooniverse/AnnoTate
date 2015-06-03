@@ -121,7 +121,7 @@ function draggable($rootScope, Annotations, toolUtils) {
             data.y = parseFloat(element.attr(y));
 
             Annotations.updateCache();
-            scope.$apply();
+            scope.$digest();
         }
 
     }

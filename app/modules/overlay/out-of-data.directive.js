@@ -4,7 +4,7 @@ require('./overlay.module.js')
     .directive('outOfData', outOfData);
 
 // @ngInject
-function outOfData($rootScope, $window, hotkeys) {
+function outOfData() {
     var directive = {
         link: outOfDataLink,
         replace: true,

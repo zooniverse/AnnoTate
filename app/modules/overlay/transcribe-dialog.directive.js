@@ -157,5 +157,5 @@ function getDimensions(element) {
         offset: element.offset(),
         height: element[0].getBoundingClientRect().height,
         width: element[0].getBoundingClientRect().width
-    }
+    };
 }
