@@ -2,6 +2,7 @@
 
 var angular = require('angular');
 var Hammer = require('hammerjs');
+var lunar = require('lunar.js/dist/lunar.js')();
 
 require('./annotations.module.js')
     .directive('draggable', draggable);
@@ -66,6 +67,9 @@ function draggable($rootScope, Annotations, toolUtils) {
             hammerSurface.on('panmove', moveDrag);
             hammerSurface.on('panend', endDrag);
 
+            lunar.addClass(markingSurface.svg, '-dragging');
+            lunar.addClass(element[0], '-dragging');
+
             var point = getPoint(hammerEvent);
             offset = {
                 x: data.x - point.x,
@@ -119,6 +123,9 @@ function draggable($rootScope, Annotations, toolUtils) {
 
             data.x = parseFloat(element.attr(x));
             data.y = parseFloat(element.attr(y));
+
+            lunar.removeClass(markingSurface.svg, '-dragging');
+            lunar.removeClass(element[0], '-dragging');
 
             Annotations.updateCache();
             scope.$digest();
