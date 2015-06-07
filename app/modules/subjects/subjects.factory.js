@@ -29,17 +29,14 @@ function subjectsFactory($q, $timeout, localStorageService, zooAPI, zooAPIProjec
     }
 
     function get() {
-        var deferred = $q.defer();
-
         if (_subjects.queue[0]) {
-            deferred.resolve(_subjects.queue[0]);
+            return $q.when(_subjects.queue[0]);
         } else {
-            _populateQueue().then(function () {
-                deferred.resolve(_subjects.queue[0]);
-            });
+            return _populateQueue()
+                .then(function () {
+                    return _subjects.queue[0];
+                });
         }
-
-        return deferred.promise;
     }
 
     function _populateQueue() {
