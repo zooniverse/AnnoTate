@@ -5,10 +5,10 @@ require('ng-load');
 // A module for transcription interface
 module.exports = require('angular')
     .module('app.transcribe', [
-        'ngLoad',
+        // 'ngLoad',
 
-        'app.annotations',
-        'app.markingTools',
-        'app.overlay',
-        'app.subjects'
+        // 'app.transcribe.annotations',
+        // 'app.transcribe.markingTools',
+        // 'app.transcribe.overlay',
+        // 'app.subjects'
     ]);
