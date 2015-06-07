@@ -5,20 +5,38 @@ var svgPanZoom = require('svg-pan-zoom');
 require('./transcribe.module.js')
     .directive('markingSurface', markingSurface);
 
-// TODO: Find out what ngInject isn't working properly for markingSurfaceController
-
 // @ngInject
 function markingSurface() {
     var directive = {
         scope: {},
         restrict: 'A',
-        controller: ['$scope', '$element', markingSurfaceController],
+        controller: markingSurfaceController,
         controllerAs: 'vm',
         link: markingSurfaceLink
     };
     return directive;
 
-    // @ngInject
+    function markingSurfaceLink(scope, element, attr, vm) {
+        scope.$on('panZoom:centre', vm.$centre);
+        scope.$on('panZoom:rotate', vm.$rotate);
+        scope.$on('panZoom:disable', vm.$disable);
+        scope.$on('panZoom:enable', vm.$enable);
+
+        scope.$on('activateTool', triggerActivateTool);
+        scope.$on('deactivateTool', triggerDeactivateTool);
+
+        function triggerActivateTool(event, tool) {
+            tool.activate(element);
+        }
+
+        function triggerDeactivateTool(event, tool) {
+            tool.deactivate();
+        }
+    }
+
+}
+
+// @ngInject
     function markingSurfaceController($scope, $element) {
         var vm = this;
 
@@ -78,26 +96,3 @@ function markingSurface() {
             transformList.appendItem(rotateTransform);
         }
     }
-
-    /**
-     * @ngInject
-     */
-    function markingSurfaceLink(scope, element, attr, vm) {
-        scope.$on('panZoom:centre', vm.$centre);
-        scope.$on('panZoom:rotate', vm.$rotate);
-        scope.$on('panZoom:disable', vm.$disable);
-        scope.$on('panZoom:enable', vm.$enable);
-
-        scope.$on('activateTool', triggerActivateTool);
-        scope.$on('deactivateTool', triggerDeactivateTool);
-
-        function triggerActivateTool(event, tool) {
-            tool.activate(element);
-        }
-
-        function triggerDeactivateTool(event, tool) {
-            tool.deactivate();
-        }
-    }
-
-}
