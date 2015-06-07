@@ -46,7 +46,6 @@ function textAnnotation($rootScope, annotationsConfig, Annotations) {
 
     }
 
-    // @ngInject
     function textAnnotationLink(scope, element, attrs, ctrl) {
 
         // Setup

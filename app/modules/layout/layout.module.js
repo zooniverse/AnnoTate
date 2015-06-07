@@ -2,6 +2,6 @@
 
 module.exports = require('angular')
     .module('app.layout', [
-        'app.header',
-        'app.footer'
+        'app.layout.header',
+        'app.layout.footer'
     ]);

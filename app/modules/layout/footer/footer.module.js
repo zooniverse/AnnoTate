@@ -1,4 +1,4 @@
 'use strict';
 
 module.exports = require('angular')
-    .module('app.footer', []);
+    .module('app.layout.footer', []);
