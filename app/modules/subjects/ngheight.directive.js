@@ -1,6 +1,6 @@
 'use strict';
 
-require('./transcribe.module.js')
+require('./subjects.module.js')
     .directive('ngHeight', ngHeight);
 
 // @ngInject
