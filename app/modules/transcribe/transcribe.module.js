@@ -9,6 +9,6 @@ module.exports = require('angular')
 
         // 'app.transcribe.annotations',
         // 'app.transcribe.markingTools',
-        // 'app.transcribe.overlay',
+        'app.transcribe.overlay',
         // 'app.subjects'
     ]);
