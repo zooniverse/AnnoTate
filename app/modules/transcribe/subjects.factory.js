@@ -29,6 +29,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
     return factory;
 
     function advanceQueue() {
+        factory.loading = true;
         if (_data.current) {
             _data.viewed.push(_data.current);
             _data.current = null;
@@ -38,7 +39,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
             return _populateQueue()
                 .then(_setCurrent);
         } else {
-            return $q.when(_setCurrent);
+            return $q.when(_setCurrent());
         }
     }
 
@@ -73,9 +74,10 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
     }
 
     function _populateQueue() {
-        var pages = [];
-        pages.push(getPage(1));
-        return $q.all(pages);
+        var deferred = $q.defer();
+        var viewedSubjectIDs = _.pluck(_data.viewed, 'id');
+        getPage(1);
+        return deferred.promise;
 
         function getPage(page) {
             return zooAPIProject.get()
@@ -88,20 +90,23 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                 })
                 .then(function (subjects) {
                     if (!subjects.length) {
-                        return $q.reject('outOfData');
+                        return deferred.reject('outOfData');
                     } else {
-                        var newSubjects = _.difference(subjects, _data.viewed);
-                        if (!newSubjects) {
-                            pages.push(getPage(page + 1));
+                        var newSubjects = _.reject(subjects, function (newSubject) {
+                            return viewedSubjectIDs.indexOf(newSubject.id) > -1;
+                        });
+                        if (!newSubjects.length) {
+                            getPage(page + 1);
                         } else {
                             _queue = _queue.concat(newSubjects);
+                            return deferred.resolve(_queue);
                         }
                     }
                 });
         }
     }
 
-    function _setCurrent() {
+    function _setCurrent(result) {
         _data.current = _queue.shift();
         _updateStorage();
     }

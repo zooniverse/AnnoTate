@@ -10,6 +10,7 @@ function TranscribeController($scope, SubjectsFactory) {
     var vm = this;
     vm.loading = SubjectsFactory.loading;
     vm.subject = SubjectsFactory.current;
+    vm.$loadNext = loadNext;
 
     // Watchers
     $scope.$watch(getLoadingStatus, setLoadingStatus);
@@ -22,6 +23,11 @@ function TranscribeController($scope, SubjectsFactory) {
         return SubjectsFactory.loading;
     }
 
+    function loadNext() {
+        SubjectsFactory.$advanceQueue()
+            .then(loadSubject)
+    }
+
     function loadSubject() {
         SubjectsFactory.$getData()
             .then(subjectLoaded, subjectLoadError);
@@ -31,7 +37,7 @@ function TranscribeController($scope, SubjectsFactory) {
         vm.loading = SubjectsFactory.loading;
     }
 
-    function subjectLoaded(result) {
+    function subjectLoaded() {
         vm.subject = SubjectsFactory.current;
     }
 
