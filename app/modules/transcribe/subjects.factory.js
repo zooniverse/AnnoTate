@@ -107,7 +107,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
         }
     }
 
-    function _setCurrent(result) {
+    function _setCurrent() {
         _data.current = _queue.shift();
         _updateStorage();
     }

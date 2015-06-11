@@ -3,8 +3,10 @@
 require('./transcribe.module.js')
     .directive('transcribeToolbar', transcribeToolbar);
 
+// TODO: check if I can replace link with a controller inheriting parent scope
+
 // @ngInject
-function transcribeToolbar(MarkingSurfaceFactory) {
+function transcribeToolbar(MarkingSurfaceFactory, ToolsFactory) {
     var directive = {
         link: transcribeToolbarLink,
         restrict: 'A',
@@ -18,5 +20,6 @@ function transcribeToolbar(MarkingSurfaceFactory) {
         var vm = scope.vm;
         vm.rotate = MarkingSurfaceFactory.rotate;
         vm.centre = MarkingSurfaceFactory.resizeAndCentre;
+        vm.tools = ToolsFactory;
     }
 }
