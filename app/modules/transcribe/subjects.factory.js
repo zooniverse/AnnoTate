@@ -90,9 +90,10 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                 })
                 .then(function (subjects) {
                     if (!subjects.length) {
+                        factory.loading = false;
                         return deferred.reject('outOfData');
                     } else {
-                        var newSubjects = _.reject(subjects, function (newSubject) {
+                        var newSubjects = _.reject(subjects, function rejectViewedSubjects(newSubject) {
                             return viewedSubjectIDs.indexOf(newSubject.id) > -1;
                         });
                         if (!newSubjects.length) {

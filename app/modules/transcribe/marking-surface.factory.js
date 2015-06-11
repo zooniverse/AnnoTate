@@ -7,7 +7,7 @@ require('./transcribe.module.js')
     .factory('MarkingSurfaceFactory', MarkingSurfaceFactory);
 
 // @ngInject
-function MarkingSurfaceFactory() {
+function MarkingSurfaceFactory(TranscribeConstants) {
 
     var factory;
     var _extendedFactory;
@@ -25,19 +25,12 @@ function MarkingSurfaceFactory() {
         rotate: rotate
     };
 
-    _options = {
-        dblClickZoomEnabled: false,
-        fit: false,
-        minZoom: 0.2,
-        zoomScaleSensitivity: 0.05
-    };
-
     return factory;
 
     function init(element) {
         _svgElement = element;
         _svgRotateElement = element.find('.rotate-container');
-        _svgPanZoom = svgPanZoom(element[0], _options);
+        _svgPanZoom = svgPanZoom(element[0], TranscribeConstants.svgPanZoom);
         _.extend(factory, _extendedFactory);
         return factory;
     }

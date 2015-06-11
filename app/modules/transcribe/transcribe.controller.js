@@ -4,7 +4,7 @@ require('./transcribe.module.js')
     .controller('TranscribeController', TranscribeController);
 
 // @ngInject
-function TranscribeController($scope, SubjectsFactory) {
+function TranscribeController($modal, $scope, SubjectsFactory, TranscribeConstants) {
 
     // Setup controller
     var vm = this;
@@ -24,8 +24,16 @@ function TranscribeController($scope, SubjectsFactory) {
     }
 
     function loadNext() {
-        SubjectsFactory.$advanceQueue()
-            .then(loadSubject)
+        var modal = $modal.open(TranscribeConstants.modals.next);
+        modal.result.then(function (isComplete) {
+            console.log(isComplete)
+            // Classifications.submit(isComplete)
+                // .then(function () {
+                    // Annotations.reset();
+                    // SubjectsFactory.$advanceQueue()
+                    //     .then(loadSubject)
+                // });
+        });
     }
 
     function loadSubject() {
@@ -42,7 +50,11 @@ function TranscribeController($scope, SubjectsFactory) {
     }
 
     function subjectLoadError(result) {
-        console.log('fail', result)
+        if (result === 'outOfData') {
+            $scope.$broadcast('subject:outOfData');
+        } else {
+            console.error('Error loading subject', result);
+        }
     }
 
 }

@@ -14,7 +14,7 @@ function transcribeToolbar(MarkingSurfaceFactory) {
     };
     return directive;
 
-    function transcribeToolbarLink(scope, element, attrs) {
+    function transcribeToolbarLink(scope) {
         var vm = scope.vm;
         vm.rotate = MarkingSurfaceFactory.rotate;
         vm.centre = MarkingSurfaceFactory.resizeAndCentre;
