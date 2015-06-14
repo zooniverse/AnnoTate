@@ -1,0 +1,13 @@
+<ul
+    aria-hidden="{{ !vm.active }}"
+    class="context-menu"
+    ng-class="{ '-active': vm.active }"
+    ng-style="vm.position"
+    role="menu"
+    >
+
+    <li ng-repeat="option in vm.menuOptions">
+        <a href ng-click="option.action()" ng-bind="option.name"></a>
+    </li>
+
+</ul>

@@ -1,7 +1,7 @@
 'use strict';
 
 var annotationsConfig = {
-    pointRadius: 10
+    pointRadius: 20
 };
 
 module.exports = {

@@ -37,7 +37,7 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
     }
 
     function _clickHandler(event) {
-        if (_enabled && _isAllowedTarget(event)) {
+        if (_enabled && event.target.nodeName === 'image') {
             var incomplete = _isLastAnnotationIncomplete();
             if (incomplete) {
                 _endLine(event, incomplete);
@@ -70,11 +70,6 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
         $rootScope.$apply();
     }
 
-    function _isAllowedTarget(event) {
-        var element = angular.element(event.target);
-        return element.parents('.text-annotation').length === 0;
-    }
-
     function _isLastAnnotationIncomplete() {
         var last = _.filter(Annotations.list(), { type: 'text' }).slice(-1)[0];
         return (_.isUndefined(last) || last.complete) ? false : last;
@@ -82,7 +77,6 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
 
     function _startLine(event) {
         var point = MarkingSurfaceFactory.getPoint(event);
-        console.log(point)
         Annotations.upsert({
             type: 'text',
             complete: false,
@@ -91,7 +85,7 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
                 y: point.y
             }
         });
-        $rootScope.$apply();
+        $rootScope.$digest();
     }
 
 }

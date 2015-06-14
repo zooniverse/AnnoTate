@@ -73,13 +73,6 @@ function imageTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
         _enabled = false;
     }
 
-    function _enable() {
-        function setEnabled() {
-            _enabled = true;
-        }
-        $timeout(setEnabled);
-    }
-
     function _drawRect(event) {
         var newPoint = _getPoint(event);
         _rect.attr('x', (_origin.x < newPoint.x) ? _origin.x : newPoint.x);
@@ -87,6 +80,13 @@ function imageTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
         _rect.attr('width', (_origin.x < newPoint.x) ? newPoint.x - _rect.attr('x') : _origin.x - newPoint.x);
         _rect.attr('height', (_origin.y < newPoint.y) ? newPoint.y - _rect.attr('y') : _origin.y - newPoint.y);
         _checkOutOfBounds();
+    }
+
+    function _enable() {
+        function setEnabled() {
+            _enabled = true;
+        }
+        $timeout(setEnabled);
     }
 
     function _endRect() {
