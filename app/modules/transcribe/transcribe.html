@@ -1,0 +1,43 @@
+<menu transcribe-toolbar></menu>
+
+<div class="transcription-interface">
+
+    <div overlay class="overlay"></div>
+
+    <svg
+        marking-surface
+        class="svg"
+        height="100%"
+        width="100%"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <g class="pan-zoom">
+            <g class="rotate-container">
+
+                <image subject class="subject"></image>
+
+                <g class="annotations">
+                    <g class="text-annotations">
+                        <g
+                            text-annotation
+                            data="annotation"
+                            ng-repeat="annotation in vm.annotations | filter:{type:'text'}:true"
+                        ></g>
+                    </g>
+                    <g class="image-annotations">
+                        <g
+                            image-annotation
+                            data="annotation"
+                            ng-repeat="annotation in vm.annotations | filter:{type:'image'}:true"
+                        ></g>
+                    </g>
+                </g>
+
+            </g>
+        </g>
+
+    </svg>
+
+</div>

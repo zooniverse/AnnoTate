@@ -1,81 +1,18 @@
 <!doctype html>
-<html ng-app="transcribe">
-
+<html class="no-js">
     <head>
-
+        <base href="/">
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Transcribe</title>
-
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Dancing+Script">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/hotkeys.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title ng-bind="pageTitle"></title>
+        <meta name="description" content="{{ ::pageDescription }}">
+        <meta name="viewport" content="width=device-width">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
     </head>
-
-    <body class="page-{{ slug }}">
-
-        <header id="site-header" role="banner" header></header>
-
-        <article id="site-content" class="container" ui-view></article>
-
-        <footer id="site-footer" role="content-info" class="container" footer></footer>
-
-        <!-- build:js(./bower_components/) libraries.js -->
-        <script src="lodash/dist/lodash.js"></script>
-        <script src="angular/angular.js"></script>
-        <script src="angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="ngstorage/ngStorage.js"></script>
-        <script src="angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="svg-pan-zoom/dist/svg-pan-zoom.js"></script>
-        <script src="angular-hotkeys/build/hotkeys.js"></script>
-        <script src="ng-load/ng-load.js"></script>
-        <script src="panoptes-javascript-lib/dist/panoptes-javascript-lib.js"></script>
-        <script src="angular-local-storage/dist/angular-local-storage.js"></script>
-        <script src="draggabilly/dist/draggabilly.pkgd.js"></script>
-        <script src="moment/moment.js"></script>
-        <!-- endbuild -->
-
-        <!-- build:js(./app/) app.js -->
-        <script src="modules/core/init.js"></script>
-        <script src="modules/core/config.js"></script>
-        <script src="modules/core/directives/header.js"></script>
-        <script src="modules/core/directives/footer.js"></script>
-        <script src="modules/core/factories/auth.js"></script>
-        <script src="modules/core/factories/panoptes.js"></script>
-
-        <script src="modules/classify/init.js"></script>
-        <script src="modules/classify/controllers/classify.js"></script>
-        <script src="modules/classify/controllers/classify-modal-next.js"></script>
-        <script src="modules/classify/controllers/classify-modal-tutorial.js"></script>
-        <script src="modules/classify/directives/image-annotation.js"></script>
-        <script src="modules/classify/directives/image-tool.js"></script>
-        <script src="modules/classify/directives/svg-pan-zoom.js"></script>
-        <script src="modules/classify/directives/text-annotation.js"></script>
-        <script src="modules/classify/directives/text-annotation-edit.js"></script>
-        <script src="modules/classify/directives/temp-image-annotation.js"></script>
-        <script src="modules/classify/directives/temp-text-annotation.js"></script>
-        <script src="modules/classify/directives/text-tool.js"></script>
-        <script src="modules/classify/factories/time.js"></script>
-        <script src="modules/classify/factories/project.js"></script>
-        <script src="modules/classify/factories/subjects.js"></script>
-        <script src="modules/classify/factories/annotations.js"></script>
-        <script src="modules/classify/factories/classifications.js"></script>
-
-        <script src="modules/static/init.js"></script>
-
-        <!-- endbuild -->
-        <script src="templates.js"></script>
-
-        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=@@ga_code"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','@@ga_code');</script>
-
+    <body>
+        <div ui-view></div>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

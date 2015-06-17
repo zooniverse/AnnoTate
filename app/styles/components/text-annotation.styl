@@ -1,0 +1,19 @@
+.text-annotation
+
+    > .text
+        cursor: pointer
+        fill: blue
+        opacity: 0.4
+        transform: scale3d(1, 1, 1)
+        transition: all 0.2s linear
+
+    > .text.-dragging
+        cursor: move
+        fill: green !important
+
+    &.-incomplete > .text
+        animation: pulse 0.5s ease-in-out
+        animation-iteration-count: infinite
+        transform-origin: center
+        animation-direction: alternate
+        fill: red
