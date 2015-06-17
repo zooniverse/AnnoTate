@@ -35,5 +35,5 @@ To deploy to [preview.zooniverse.org/transcribe](http://preview.zooniverse.org/t
 
 ## Related links
 
-* [Alpha version](http://preview.zooniverse.org/transcribe) - as of [5c954ca](https://github.com/zooniverse/transcribe/commit/5c954ca9b14ea719290b6c117b01e5cab5cf9e48)
+* [Alpha version](http://preview.zooniverse.org/transcribe) - as of [5c954ca](https://github.com/zooniverse/annoTate/tree/5c954ca9b14ea719290b6c117b01e5cab5cf9e48)
 * [Data aggregation algorithm](https://github.com/zooniverse/Tate-Transcriptions) by [ggdhines](https://github.com/ggdhines)
