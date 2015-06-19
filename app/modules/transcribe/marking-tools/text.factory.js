@@ -8,7 +8,7 @@ require('./marking-tools.module.js')
     .factory('textTool', textTool);
 
 // @ngInject
-function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
+function textTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFactory) {
 
     var factory;
     var _panzoom;
@@ -31,7 +31,7 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
     function deactivate() {
         var incomplete = _isLastAnnotationIncomplete();
         if (incomplete) {
-            Annotations.destroy(incomplete);
+            AnnotationsFactory.destroy(incomplete);
         }
         _panzoom.off('tap', _clickHandler);
     }
@@ -60,7 +60,7 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
 
     function _endLine(event, annotation) {
         var point = MarkingSurfaceFactory.getPoint(event);
-        Annotations.upsert(_.extend(annotation, {
+        AnnotationsFactory.upsert(_.extend(annotation, {
             complete: true,
             endPoint: {
                 x: point.x,
@@ -71,13 +71,13 @@ function textTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
     }
 
     function _isLastAnnotationIncomplete() {
-        var last = _.filter(Annotations.list(), { type: 'text' }).slice(-1)[0];
+        var last = _.filter(AnnotationsFactory.list(), { type: 'text' }).slice(-1)[0];
         return (_.isUndefined(last) || last.complete) ? false : last;
     }
 
     function _startLine(event) {
         var point = MarkingSurfaceFactory.getPoint(event);
-        Annotations.upsert({
+        AnnotationsFactory.upsert({
             type: 'text',
             complete: false,
             startPoint: {

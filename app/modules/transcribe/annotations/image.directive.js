@@ -6,7 +6,7 @@ require('./annotations.module.js')
     .directive('imageAnnotation', imageAnnotation);
 
 // @ngInject
-function imageAnnotation($rootScope, Annotations) {
+function imageAnnotation($rootScope, AnnotationsFactory) {
     var directive = {
         controller: ['$scope', imageAnnotationController],
         link: imageAnnotationLink,
@@ -27,7 +27,7 @@ function imageAnnotation($rootScope, Annotations) {
 
         // Methods
         function destroy() {
-            Annotations.destroy($scope.data);
+            AnnotationsFactory.destroy($scope.data);
         }
     }
 

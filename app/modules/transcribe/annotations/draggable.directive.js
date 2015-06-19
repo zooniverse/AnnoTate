@@ -10,7 +10,7 @@ require('./annotations.module.js')
 // Common functionality for allowing dragging on annotations
 
 // @ngInject
-function draggable($rootScope, Annotations, MarkingSurfaceFactory) {
+function draggable($rootScope, AnnotationsFactory, MarkingSurfaceFactory) {
     var directive = {
         // link: draggableLink,
         restrict: 'A',
@@ -125,7 +125,7 @@ function draggable($rootScope, Annotations, MarkingSurfaceFactory) {
 //             lunar.removeClass(MarkingSurfaceFactory.svg[0], '-dragging');
 //             lunar.removeClass(element[0], '-dragging');
 
-//             Annotations.updateCache();
+//             AnnotationsFactory.updateCache();
 //             scope.$digest();
 //         }
 

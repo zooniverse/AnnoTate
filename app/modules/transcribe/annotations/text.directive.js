@@ -6,7 +6,7 @@ require('./annotations.module.js')
     .directive('textAnnotation', textAnnotation);
 
 // @ngInject
-function textAnnotation($rootScope, annotationsConfig, Annotations) {
+function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
     var directive = {
         controller: ['$scope', '$element', textAnnotationController],
         link: textAnnotationLink,
@@ -30,7 +30,7 @@ function textAnnotation($rootScope, annotationsConfig, Annotations) {
 
         // Methods
         function destroy() {
-            Annotations.destroy($scope.data);
+            AnnotationsFactory.destroy($scope.data);
         }
 
         function transcribe() {
@@ -41,7 +41,7 @@ function textAnnotation($rootScope, annotationsConfig, Annotations) {
         }
 
         function update() {
-            Annotations.upsert($scope.data);
+            AnnotationsFactory.upsert($scope.data);
         }
 
     }

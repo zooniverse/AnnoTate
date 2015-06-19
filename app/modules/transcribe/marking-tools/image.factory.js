@@ -8,7 +8,7 @@ require('./marking-tools.module.js')
     .factory('imageTool', imageTool);
 
 // @ngInject
-function imageTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
+function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFactory) {
 
     var factory;
     var _enabled;
@@ -91,7 +91,7 @@ function imageTool($rootScope, $timeout, Annotations, MarkingSurfaceFactory) {
 
     function _endRect() {
         _hammer.off('panmove', _drawRect);
-        Annotations.upsert({
+        AnnotationsFactory.upsert({
             type: 'image',
             x: _rect.attr('x'),
             y: _rect.attr('y'),

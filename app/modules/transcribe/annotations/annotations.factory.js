@@ -3,10 +3,10 @@
 var _ = require('lodash');
 
 require('./annotations.module.js')
-    .factory('Annotations', Annotations);
+    .factory('AnnotationsFactory', AnnotationsFactory);
 
 // @ngInject
-function Annotations(localStorageService) {
+function AnnotationsFactory(localStorageService) {
 
     var factory;
     var _annotations;
