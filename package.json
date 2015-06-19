@@ -91,6 +91,7 @@
     "karma-jasmine": "^0.1.5",
     "lodash": "^3.7.0",
     "lunar.js": "git://github.com/toddmotto/lunar.git",
+    "moment": "^2.10.3",
     "morgan": "^1.2.2",
     "ng-load": "^1.0.2",
     "nib": "^1.1.0",

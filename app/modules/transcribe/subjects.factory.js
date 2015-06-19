@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var moment = require('moment');
 
 require('./transcribe.module.js')
     .factory('SubjectsFactory', SubjectsFactory);
@@ -58,6 +59,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
             data: _data.current,
             image: false
         };
+        console.log(factory.current)
         return $q.when(factory.current.data)
             .then(_loadImage);
     }
@@ -109,6 +111,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
 
     function _setCurrent() {
         _data.current = _queue.shift();
+        _data.current.started_at = moment().format();
         _updateStorage();
     }
 
