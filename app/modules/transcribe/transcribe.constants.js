@@ -7,14 +7,8 @@ require('./transcribe.module.js')
                 templateUrl: 'transcribe/transcribe-next.html',
                 controller: 'TranscribeNextController',
                 controllerAs: 'vm',
-                size: 'sm',
+                size: 'md',
                 backdrop: 'static'
             }
-        },
-        svgPanZoom: {
-            dblClickZoomEnabled: false,
-            fit: false,
-            minZoom: 0.2,
-            zoomScaleSensitivity: 0.05
         }
     });

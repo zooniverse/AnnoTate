@@ -3,11 +3,11 @@
 var _ = require('lodash');
 var svgPanZoom = require('svg-pan-zoom');
 
-require('./transcribe.module.js')
+require('./marking-surface.module.js')
     .factory('MarkingSurfaceFactory', MarkingSurfaceFactory);
 
 // @ngInject
-function MarkingSurfaceFactory(TranscribeConstants) {
+function MarkingSurfaceFactory(MarkingSurfaceConstants) {
 
     var factory;
     var svgElement;
@@ -66,7 +66,7 @@ function MarkingSurfaceFactory(TranscribeConstants) {
     function init(element) {
         svgElement = element;
         _svgRotateElement = element.find('.rotate-container');
-        _svgPanZoom = svgPanZoom(element[0], TranscribeConstants.svgPanZoom);
+        _svgPanZoom = svgPanZoom(element[0], MarkingSurfaceConstants.svgPanZoom);
         _.extend(factory, _extendedFactory, { svg: svgElement });
         return factory;
     }

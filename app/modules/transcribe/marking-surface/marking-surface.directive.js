@@ -1,6 +1,6 @@
 'use strict';
 
-require('./transcribe.module.js')
+require('./marking-surface.module.js')
     .directive('markingSurface', markingSurface);
 
 // @ngInject
