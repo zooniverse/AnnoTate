@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Hammer = require('hammerjs');
 
 require('./annotations.module.js')
@@ -8,7 +9,6 @@ require('./annotations.module.js')
 // @ngInject
 function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
     var directive = {
-        controller: ['$scope', '$element', textAnnotationController],
         link: textAnnotationLink,
         replace: true,
         restrict: 'A',
@@ -19,37 +19,11 @@ function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
     };
     return directive;
 
-    function textAnnotationController($scope, $element) {
-
-        // Setup
-        var vm = this;
-        vm.destroy = destroy;
-        vm.update = update;
-        vm.transcribe = transcribe;
-        $scope.r = annotationsConfig.pointRadius;
-
-        // Methods
-        function destroy() {
-            AnnotationsFactory.destroy($scope.data);
-        }
-
-        function transcribe() {
-            $rootScope.$broadcast('transcribeDialog:open', {
-                annotation: $scope.data,
-                element: $element
-            });
-        }
-
-        function update() {
-            AnnotationsFactory.upsert($scope.data);
-        }
-
-    }
-
-    function textAnnotationLink(scope, element, attrs, ctrl) {
+    function textAnnotationLink(scope, element) {
 
         // Setup
         var hammerElement;
+        scope.r = annotationsConfig.pointRadius;
 
         // Events
         hammerElement = new Hammer(element[0]);
@@ -64,13 +38,21 @@ function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
         function openContextMenu(event) {
             var contextMenuData = {
                 event: event,
-                menuOptions: [{ name: 'Delete', action: ctrl.destroy }]
+                menuOptions: [{ name: 'Delete', action: _.partial(AnnotationsFactory.destroy, scope.data) }]
             };
             if (scope.data.complete) {
-                contextMenuData.menuOptions.unshift({ name: 'Edit', action: ctrl.transcribe });
+                contextMenuData.menuOptions.unshift({ name: 'Edit', action: openTranscribeDialog });
             }
             $rootScope.$broadcast('contextMenu:open', contextMenuData);
+        }
+
+        function openTranscribeDialog() {
+            $rootScope.$broadcast('transcribeDialog:open', {
+                annotation: scope.data,
+                element: element
+            });
         }
     }
 
 }
+

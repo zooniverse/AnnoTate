@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var Hammer = require('hammerjs');
 
 require('./annotations.module.js')
@@ -8,7 +9,6 @@ require('./annotations.module.js')
 // @ngInject
 function imageAnnotation($rootScope, AnnotationsFactory) {
     var directive = {
-        controller: ['$scope', imageAnnotationController],
         link: imageAnnotationLink,
         replace: true,
         restrict: 'A',
@@ -19,26 +19,14 @@ function imageAnnotation($rootScope, AnnotationsFactory) {
     };
     return directive;
 
-    function imageAnnotationController($scope) {
-
-        // Setup
-        var vm = this;
-        vm.destroy = destroy;
-
-        // Methods
-        function destroy() {
-            AnnotationsFactory.destroy($scope.data);
-        }
-    }
-
     // @ngInject
-    function imageAnnotationLink(scope, element, attrs, ctrl) {
+    function imageAnnotationLink(scope, element) {
 
         // Setup
         var hammerElement;
+        hammerElement = new Hammer(element[0]);
 
         // Events
-        hammerElement = new Hammer(element[0]);
         hammerElement.on('tap', openContextMenu);
         scope.$on('$destroy', $destroy);
 
@@ -50,7 +38,7 @@ function imageAnnotation($rootScope, AnnotationsFactory) {
         function openContextMenu(event) {
             $rootScope.$broadcast('contextMenu:open', {
                 event: event,
-                menuOptions: [{ name: 'Delete', action: ctrl.destroy }]
+                menuOptions: [{ name: 'Delete', action: _.partial(AnnotationsFactory.destroy, scope.data) }]
             });
         }
     }
