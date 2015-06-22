@@ -59,7 +59,6 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
             data: _data.current,
             image: false
         };
-        console.log(factory.current)
         return $q.when(factory.current.data)
             .then(_loadImage);
     }
