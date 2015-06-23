@@ -19,6 +19,13 @@
                 <image subject class="subject"></image>
 
                 <g class="annotations">
+                    <g class="range-annotations">
+                        <g
+                            range-annotation
+                            data="annotation"
+                            ng-repeat="annotation in vm.annotations | filter:{type:'range'}:true"
+                        ></g>
+                    </g>
                     <g class="text-annotations">
                         <g
                             text-annotation
