@@ -14,17 +14,22 @@ var _artists = [{
 }];
 
 // @ngInject
-function ArtistsFactory() {
+function ArtistsFactory($q) {
 
     var factory;
     // var _artists;
 
     factory = {
+        $getData: getData,
         list: list,
         get: get
     };
 
     return factory;
+
+    function getData() {
+        return $q.when(_artists)
+    }
 
     function get(id) {
         id = parseInt(id, 10);

@@ -6,8 +6,13 @@ require('./set-selector.module.js')
 // @ngInject
 function ArtistListController($state, ArtistsFactory) {
     var vm = this;
-    vm.artists = ArtistsFactory.list();
+    vm.loading = true;
     vm.go = go;
+
+    ArtistsFactory.$getData()
+        .then(function () {
+            vm.artists = ArtistsFactory.list();
+        })
 
     function go(id) {
         $state.go('ArtistDetail', { artistId: id });
