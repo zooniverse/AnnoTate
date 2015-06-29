@@ -14,7 +14,7 @@ var _artists = [{
 }];
 
 // @ngInject
-function ArtistsFactory($q) {
+function ArtistsFactory($q, zooAPIProject, zooAPI) {
 
     var factory;
     // var _artists;
@@ -28,7 +28,18 @@ function ArtistsFactory($q) {
     return factory;
 
     function getData() {
-        return $q.when(_artists)
+        return zooAPIProject.get()
+            .then(function getSets(project) {
+                var promises = [];
+                project.links.subject_sets.forEach(function getSet(setId) {
+                    promises.push(zooAPI.type('subject_sets').get(setId));
+                });
+                return $q.all(promises);
+            })
+            .then(function (data) {
+                console.log(data)
+                return data;
+            })
     }
 
     function get(id) {
