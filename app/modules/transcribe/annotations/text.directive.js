@@ -35,6 +35,14 @@ function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
             hammerElement.destroy();
         }
 
+        scope.$watch(function () {
+            return scope.data.complete;
+        }, function (newVal, oldVal) {
+            if (newVal && !oldVal) {
+                openTranscribeDialog();
+            }
+        });
+
         function openContextMenu(event) {
             var contextMenuData = {
                 event: event,
