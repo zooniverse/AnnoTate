@@ -6,6 +6,6 @@ var del    = require('del');
 
 gulp.task('clean', function(cb) {
 
-  del([config.dist.root], cb);
+  del([config.dist.root, config.modules.src + '/**/*.templates.js'], cb);
 
 });
