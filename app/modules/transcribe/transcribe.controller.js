@@ -36,7 +36,7 @@ function TranscribeController($stateParams, $modal, $scope, AnnotationsFactory, 
         modal.result.then(function () {
             AnnotationsFactory.reset();
             SubjectsFactory.$advanceQueue()
-                .then(loadSubject)
+                .then(loadSubject);
         });
     }
 

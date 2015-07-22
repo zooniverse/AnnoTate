@@ -5,7 +5,6 @@ require('./transcribe.module.js')
 
 // @ngInject
 function Routes($stateProvider) {
-
     $stateProvider
         .state('TranscribeSubjectSet', {
             url: '/transcribe/:subjectSet',
@@ -28,6 +27,5 @@ function Routes($stateProvider) {
                     controller: 'TranscribeController as vm'
                 }
             }
-        })
-
+        });
 }
