@@ -5,19 +5,10 @@ var _ = require('lodash');
 require('./set-selector.module.js')
     .factory('ArtistsFactory', ArtistsFactory);
 
-var _artists = [{
-    id: 1,
-    name: 'Some Guy'
-}, {
-    id: 2,
-    name: 'Some Other Guy'
-}];
-
 // @ngInject
-function ArtistsFactory($q, zooAPIProject, zooAPI) {
+function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
 
     var factory;
-    // var _artists;
 
     factory = {
         $getData: getData,
@@ -29,26 +20,28 @@ function ArtistsFactory($q, zooAPIProject, zooAPI) {
 
     function getData() {
         return zooAPIProject.get()
-            .then(function getSets(project) {
-                var promises = [];
-                project.links.subject_sets.forEach(function getSet(setId) {
-                    promises.push(zooAPI.type('subject_sets').get(setId));
-                });
-                return $q.all(promises);
+            .then(function (project) {
+                console.log(project)
             })
-            .then(function (data) {
-                console.log(data)
-                return data;
-            })
+            // .then(function getSets(project) {
+            //     var promises = [];
+            //     project.links.subject_sets.forEach(function getSet(setId) {
+            //         promises.push(zooAPI.type('subject_sets').get(setId));
+            //     });
+            //     return $q.all(promises);
+            // })
+            // .then(function (data) {
+            //     console.log(data)
+            //     return data;
+            // });
     }
 
     function get(id) {
-        id = parseInt(id, 10);
-        return _.find(_artists, { id: id });
+        return _.find(ArtistListConstants, { artistId: id });
     }
 
     function list() {
-        return _artists;
+        return ArtistListConstants;
     }
 
 }

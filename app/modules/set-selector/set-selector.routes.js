@@ -8,7 +8,7 @@ function Routes($stateProvider) {
 
     $stateProvider
         .state('ArtistList', {
-            url: '/artist',
+            url: '/artists',
             title: 'Choose an artist',
             parent: 'Base',
             views: {
@@ -19,7 +19,7 @@ function Routes($stateProvider) {
             }
         })
         .state('ArtistDetail', {
-            url: '/artist/:artistId',
+            url: '/artists/:artistId',
             title: 'About the artist',
             parent: 'Base',
             views: {

@@ -6,5 +6,5 @@ require('./set-selector.module.js')
 // @ngInject
 function ArtistDetailController($stateParams, ArtistsFactory) {
     var vm = this;
-    console.log(ArtistsFactory.get($stateParams.artistId))
+    vm.artist = ArtistsFactory.get($stateParams.artistId)
 }
