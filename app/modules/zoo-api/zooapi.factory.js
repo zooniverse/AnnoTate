@@ -12,7 +12,7 @@ function zooAPI(zooAPIConfig) {
 
     _client = new Panoptes({
         appID: zooAPIConfig.app_id,
-        host: 'https://panoptes-staging.zooniverse.org'
+        host: 'https://panoptes.zooniverse.org'
     });
 
     return _client.api;
