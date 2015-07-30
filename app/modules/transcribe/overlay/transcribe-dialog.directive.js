@@ -28,7 +28,7 @@ function transcribeDialog($rootScope, $timeout, AnnotationsFactory, hotkeys, Mar
             { name: 'Insertion', tag: 'insertion' },
             { name: 'Deletion', tag: 'deletion' },
             { name: 'Illegible', tag: 'illegible' },
-            { name: 'Foreign Language', tag: 'foreign' }
+            { name: 'Not English', tag: 'notenglish' }
         ];
 
         var textarea = $element.find('textarea').first();
