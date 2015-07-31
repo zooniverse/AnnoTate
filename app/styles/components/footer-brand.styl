@@ -5,9 +5,11 @@
     padding: 20px 0 100px
 
     > .container > .row > p
-        make-sm-column(12)
-        make-md-column(6)
-        margin-bottom: 0
+        @extend .col-sm-8
+        text-align: center
+        @media (min-width: $screen-sm-min)
+            margin-bottom: 0
+            text-align: left
 
     > .container > .row > p > a
         color: grey
@@ -19,12 +21,13 @@
         text-decoration: none
 
     > .container > .row > ul
-        make-sm-column(12)
-        make-md-column(6)
+        @extend .col-sm-4
         display: flex
-        justify-content: flex-end
         list-style-type: none
+        justify-content: center
         margin-bottom: 0
+        @media (min-width: $screen-sm-min)
+            justify-content: flex-end
 
     > .container > .row > ul > li > a > .text
         display: none

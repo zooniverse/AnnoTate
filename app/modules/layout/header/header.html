@@ -1,24 +1,21 @@
 <header class="app-header">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" ng-click="vm.headerCollapse = !vm.headerCollapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="Home">AnnoTate</a>
-        </div>
-
-        <div class="collapse navbar-collapse" collapse="vm.headerCollapse">
-            <ul class="nav navbar-nav">
-                <li ng-repeat="link in ::vm.links">
-                    <a ui-sref="{{ link.state }}" ui-sref-active="-active" class="link" ng-bind="link.label"></a>
-                </li>
-            </ul>
-            <div auth-header></div>
-        </div>
-
+    <div class="container">
+        <section class="mainnav">
+            <a ui-sref="Home" class="homelink">
+                <img src="/images/logo.svg" class="logo">
+            </a>
+            <nav class="links">
+                <a ng-repeat="link in ::vm.links" ui-sref="{{ link.state }}" ui-sref-active="-active" class="link" ng-bind="link.label"></a>
+            </nav>
+        </section>
+        <nav class="auth">
+            annotate
+        </nav>
     </div>
+    <section class="header-hook">
+        <div>
+            <h2>Uncover the <span class="effect -boldline">lives</span> of artists</h2>
+            <p>In addition to creating art, many artists wrote diaries and letters and made sketchbooks that contain rich details about their lives and creative processes. Help transcribe documents from the Tate collection, and reveal the secret lives of artists.</p>
+        </div>
+    </section>
 </header>

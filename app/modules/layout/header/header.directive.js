@@ -16,14 +16,7 @@ function appHeader() {
     function HeaderController() {
         var vm = this;
 
-        // TODO: reset this on resize
-        vm.headerCollapse = true;
-
         vm.links = [
-            {
-                label: 'Home',
-                state: 'Home'
-            },
             {
                 label: 'Start Transcribing',
                 state: 'Transcribe'
@@ -38,5 +31,4 @@ function appHeader() {
             }
         ];
     }
-
 }

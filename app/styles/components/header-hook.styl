@@ -1,0 +1,26 @@
+.header-hook
+    @extend .container
+    color: #39403e
+    margin-top: 50px
+    padding-bottom: 50px
+    @media (min-width: $screen-sm-min)
+        padding-bottom: $overlap * 2
+
+    > div
+        @media (min-width: $screen-sm-min)
+            @extend .row
+
+    > div > h2
+        @extend .col-sm-12
+        font-size: 62px
+        font-weight: 300
+        letter-spacing: -2px
+        margin-bottom: 45px
+
+    > div > p
+        @extend .col-sm-4
+        @extend .col-sm-push-6
+        font-size: 18px
+        padding-top: 15px
+        @media (min-width: $screen-sm-min)
+            border-top: 1px solid #39403e
