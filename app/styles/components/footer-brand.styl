@@ -1,0 +1,41 @@
+.footer-brand
+    grey = #6D6D6D
+    background-color: #2B312F
+    color: grey
+    padding: 20px 0 100px
+
+    > .container > .row > p
+        make-sm-column(12)
+        make-md-column(6)
+        margin-bottom: 0
+
+    > .container > .row > p > a
+        color: grey
+        font-weight: bold
+        margin-right: 0.4em
+
+    > .container > .row > p > a:hover
+        color: #fff
+        text-decoration: none
+
+    > .container > .row > ul
+        make-sm-column(12)
+        make-md-column(6)
+        display: flex
+        justify-content: flex-end
+        list-style-type: none
+        margin-bottom: 0
+
+    > .container > .row > ul > li > a > .text
+        display: none
+
+    > .container > .row > ul > li > a > .icon
+        height: 20px
+        margin-left: 20px
+        width: 20px
+
+    > .container > .row > ul > li > a > .icon > path
+        fill: grey
+
+    > .container > .row > ul > li > a:hover > .icon > path
+        fill: #fff
