@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var angular = require('angular');
 var moment = require('moment');
 
 require('./transcribe.module.js')

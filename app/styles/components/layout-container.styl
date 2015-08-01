@@ -1,9 +1,12 @@
 .layout-container
     display: flex
-    min-height: 100vh
     flex-direction: column
+    font-weight: 300
+    min-height: 100vh
 
     > .main
         display: flex
         flex: 1
         flex-direction: column
+        @media (min-width: $screen-sm-min)
+            margin-top: $overlap * -1

@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 require('./modals.module.js')
     .controller('TranscribeNextController', TranscribeNextController);
 

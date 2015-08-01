@@ -1,18 +1,48 @@
-$nav-link-border-size = 4px
-
 .app-header
-    @extend .navbar
-    @extend .navbar-default
-    @extend .navbar-static-top
-    border-bottom: 0
-    margin-bottom: 0
-    z-index: 1002
+    nav-border = 1px solid black
+    nav-border-placeholder = 1px solid transparent
+    text-border = 4px solid #c8df2c
+    text-border-placeholder = 4px solid transparent
+    background-image: url('/images/bg.jpg')
+    background-repeat: no-repeat
+    background-size: cover
+    padding-top: 30px
 
-    > .container-fluid > .collapse > .navbar-nav > li > a
-        @media screen and (min-width: $screen-sm-min)
-            padding-bottom: $navbar-padding-vertical - $nav-link-border-size
-            border-bottom: $nav-link-border-size solid transparent
+    > .container
+        display: flex
+        flex-direction: row
 
-    > .container-fluid > .collapse > .navbar-nav > li > a.-active
-        @media screen and (min-width: $screen-sm-min)
-            border-color: pink
+    > .container > .mainnav
+        border-bottom: nav-border
+        border-top: navborder-placeholder
+        display: flex
+        flex: 7
+        margin-right: 15px
+        padding: 0 0 15px
+
+    > .container > .mainnav > .homelink
+        flex: 1
+
+    > .container > .mainnav > .links
+        align-items: center
+        display: flex
+        flex: 3
+        justify-content: space-around
+
+    > .container > .mainnav > .links > a
+        border-bottom: text-border-placeholder
+        color: #757575
+        font-size: 14px
+        line-height: 2.8
+
+    > .container > .mainnav > .links > a:hover,
+    > .container > .mainnav > .links > a:active,
+    > .container > .mainnav > .links > a.-active
+        border-bottom: text-border
+        text-decoration: none
+
+    > .container > .auth
+        border-bottom: nav-border
+        border-top: nav-border
+        flex: 1
+        padding: 7px 0

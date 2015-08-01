@@ -4,7 +4,7 @@ require('./transcribe.module.js')
     .controller('TranscribeController', TranscribeController);
 
 // @ngInject
-function TranscribeController($modal, $scope, AnnotationsFactory, SubjectsFactory, ModalsFactory) {
+function TranscribeController($stateParams, $modal, $scope, AnnotationsFactory, SubjectsFactory, ModalsFactory) {
 
     // Setup controller
     var vm = this;
@@ -36,12 +36,12 @@ function TranscribeController($modal, $scope, AnnotationsFactory, SubjectsFactor
         modal.result.then(function () {
             AnnotationsFactory.reset();
             SubjectsFactory.$advanceQueue()
-                .then(loadSubject)
+                .then(loadSubject);
         });
     }
 
     function loadSubject() {
-        return SubjectsFactory.$getData()
+        return SubjectsFactory.$getData($stateParams.subjectSet)
             .then(subjectLoaded, subjectLoadError);
     }
 

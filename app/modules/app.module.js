@@ -31,6 +31,7 @@ function startApp() {
         'app.core',
         'app.404',
         'app.layout',
+        'app.setSelector',
         'app.static',
         'app.transcribe',
         'app.zooapi'
