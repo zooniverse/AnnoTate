@@ -14,7 +14,14 @@
         </div>
     </div>
     <ul class="artist-list">
-        <li class="artist" ng-repeat="artist in vm.artists" ng-click="vm.go(artist)" masonry>
+        <li
+            class="artist"
+            ng-repeat="artist in vm.artists"
+            ng-click="vm.go(artist)"
+            ng-class="{ '-active': hover }"
+            ng-mouseenter="hover = true"
+            ng-mouseleave="hover = false"
+            masonry>
             <div class="wrap1">
                 <div class="wrap2">
                     <img src="http://placehold.it/350x350">

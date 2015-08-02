@@ -1,5 +1,5 @@
 .artist-list
-    @extend .row
+    make-row()
     list-style-type: none
     padding: 0
 
@@ -7,7 +7,6 @@
         @extend .col-xs-6
         @extend .col-sm-4
         @extend .col-md-3
-        @extend .col-lg-2
         margin-bottom: 30px
 
     > .artist > .wrap1
@@ -39,3 +38,13 @@
         margin: 0
         font-size: 18px
 
+    > .artist.-active
+        cursor: pointer
+
+    > .artist.-active > .wrap1 > .wrap2
+        background-color: #d1e54e
+
+
+    > .artist.-active > .title
+        background-color: #d1e54e
+        color: #39403e
