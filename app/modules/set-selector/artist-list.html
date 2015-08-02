@@ -1,14 +1,29 @@
 <div class="container">
     <div class="typeahead-area">
-        <input type="text"
-            ng-model="selected"
-            typeahead="artist.name for artist in vm.artists | filter:$viewValue | limitTo:8"
-            typeahead-on-select="vm.go($item.id)"
-            class="input">
+        <div class="content">
+            <div class="input-group">
+                <input type="text"
+                    ng-model="selected"
+                    typeahead="artist.name for artist in vm.artists | filter:$viewValue | limitTo:8"
+                    typeahead-on-select="vm.go($item)"
+                    class="input">
+                <div class="input-group-addon" aria-hidden="true">
+                    <span class="icon"></span>
+                </div>
+            </div>
+        </div>
     </div>
     <ul class="artist-list">
-        <li class="artist" ng-repeat="artist in vm.artists" ng-click="vm.go(artist.artistId)">
-            <span class="artistname" ng-bind="artist.name"></span>
+        <li class="artist" ng-repeat="artist in vm.artists" ng-click="vm.go(artist)">
+            <div class="wrap1">
+                <div class="wrap2">
+                    <img src="http://placehold.it/350x350">
+                </div>
+            </div>
+            <div class="title">
+                <h4>{{ artist.name }}</h4>
+                <div>Explore sketchbooks</div>
+            </div>
         </li>
     </ul>
 </div>

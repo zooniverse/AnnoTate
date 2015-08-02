@@ -14,7 +14,7 @@ function ArtistListController($state, ArtistsFactory) {
             vm.artists = ArtistsFactory.list();
         })
 
-    function go(id) {
-        $state.go('ArtistDetail', { artistId: id });
+    function go(artist) {
+        $state.go('ArtistDetail', { artistId: artist.artistId });
     }
 }

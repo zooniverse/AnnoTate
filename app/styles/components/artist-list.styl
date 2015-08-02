@@ -1,23 +1,41 @@
 .artist-list
-    margin-top: 40px
+    @extend .row
+    list-style-type: none
     padding: 0
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-
 
     > .artist
-        height: 120px
-        width: 120px
-        background: #ddd
-        display: flex
-        margin: 0 20px 20px
-        justify-content: center
+        @extend .col-xs-6
+        @extend .col-sm-4
+        @extend .col-md-3
+        @extend .col-lg-2
+        margin-bottom: 30px
+
+    > .artist > .wrap1
+        position: relative
+        padding-top: 100%
+
+    > .artist > .wrap1 > .wrap2
         align-items: center
+        background-color: #39403e
+        display: flex
+        flex-direction: column
+        height: 100%
+        justify-content: center
+        position: absolute
+        top: 0
+        width: 100%
+        z-index: 1
 
-    > .artist:hover
-        background: #aaa
-        color: white
+    > .artist > .wrap1 > .wrap2 > img
+        @extend .img-responsive
 
-    > .artist > .artistname
+    > .artist > .title
+        background-color: #39403e
+        color: #fff
+        padding: 15px
         text-align: center
+
+    > .artist > .title > h4
+        margin: 0
+        font-size: 18px
+

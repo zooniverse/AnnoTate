@@ -1,5 +1,45 @@
 .typeahead-area
-    margin-top: 40px
+    @extend .row
 
-    > .input
+    > .content
+        @extend .col-sm-8
+        @extend .col-sm-push-2
+
+    > .content > .input-group > .input
         @extend .form-control
+        box-shadow: none
+        border-radius: 0
+        border: 0
+        color: #757575
+        height: 64px
+        font-family: Montserrat
+        font-size: 28px
+        font-weight: bold
+        padding: 6px 18px
+
+    > .content > .input-group > .input-group-addon
+        background: white
+        border: 0
+        border-radius: 0
+        padding-right: 18px
+
+    > .content > .input-group > .input-group-addon > .icon
+        @extend .glyphicon
+        @extend .glyphicon-search
+        font-size: 2em
+
+    > .content > .input-group > .dropdown-menu
+        background-color: #d1e54e
+        border: 0
+        border-radius: 0
+        color: #39403e
+        font-size: 22px
+        font-weight: 300
+        margin: 0
+        width: 100%
+
+    > .content > .input-group > .dropdown-menu > li > a
+        padding: 14px 20px
+
+    > .content > .input-group > .dropdown-menu > li.active > a
+        background-color: #39403e
