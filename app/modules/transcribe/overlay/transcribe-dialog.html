@@ -18,16 +18,19 @@
 
     <div class="body">
         <textarea class="transcribe" ng-model="transcription" rows="3"></textarea>
-        <div class="buttons">
+        <button class="button -save" ng-click="saveAndClose()">
+            <span>Save Changes</span>
+        </button>
+        <div class="container-fluid">
             <div class="editing" role="group">
                 <button
                     class="button -tag"
-                    ng-bind="button.name"
                     ng-click="tag(button.tag)"
                     ng-repeat="button in buttons"
-                ></button>
+                >
+                    <span ng-bind="button.name"></span>
+                </button>
             </div>
-            <button class="button -save" ng-click="saveAndClose()">Save Changes</button>
         </div>
     </div>
 

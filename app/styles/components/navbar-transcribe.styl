@@ -1,7 +1,9 @@
 .navbar-transcribe
     border: 0
     margin-bottom: 0
-    background: #2a2a2a
+    background: rgba(#f8f8f8, 0.7)
+    position: absolute
+    width: 100%
 
     > .container-fluid > .controls
         display: inline-block
@@ -10,6 +12,7 @@
         @extend .btn
         @extend .navbar-btn
         button-variant(light-grey, dark-grey, dark-grey)
+        border-radius: 0
 
     > .container-fluid > .controls > .button.-tool
         @extend .btn-primary
@@ -27,7 +30,7 @@
 
     > .container-fluid > .controls > .button.-tool > .icon
     > .container-fluid > .controls > .button.-next > .icon
-        color: white
+        color: $btn-primary-color
 
     > .container-fluid > .controls > .button.-tool.-active > .icon
         color: $brand-primary
