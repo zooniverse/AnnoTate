@@ -1,0 +1,40 @@
+.artist-items
+    font-size: 18px
+
+    > .title
+        background-color: #d1e54e
+        font-weight: bold
+        padding-bottom: 15px
+        padding-top: 15px
+
+    > .body
+        background-color: #ebeaea
+
+    > .body > .container > .row
+        padding-bottom: 15px
+        padding-top: 15px
+
+    // Common sizes for title and body
+    .row > .name
+        @extend .col-sm-3
+        @extend .col-sm-push-1
+
+    .row > .date
+        @extend .col-sm-1
+        @extend .col-sm-push-1
+
+    .row > .completion
+        @extend .col-sm-3
+        @extend .col-sm-push-1
+
+    .row > .items
+        @extend .col-sm-1
+        @extend .col-sm-push-1
+
+    .row > .action
+        @extend .col-sm-2
+        @extend .col-sm-push-1
+
+    .row > .noitems
+        @extend .col-sm-10
+        @extend .col-sm-push-1

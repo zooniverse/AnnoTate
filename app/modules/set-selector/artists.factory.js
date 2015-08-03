@@ -40,8 +40,8 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
         return _.find(ArtistListConstants, { artistId: id });
     }
 
-    function list() {
-        return ArtistListConstants;
+    function list(listLength) {
+        return (listLength) ? _.sample(ArtistListConstants, listLength) : ArtistListConstants;
     }
 
 }

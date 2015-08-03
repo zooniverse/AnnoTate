@@ -1,4 +1,62 @@
-<div class="container">
-    <h1 ng-bind="vm.artist.name"></h1>
-    <p ng-bind="vm.artist.bio"></p>
+<div class="artist-detail">
+    <div class="container">
+        <div class="info">
+            <img src="http://placehold.it/350x350">
+            <div class="bio">
+                <h1 ng-bind="vm.artist.name"></h1>
+                <p ng-bind="vm.artist.bio"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="artist-items">
+    <div class="title">
+        <div class="container">
+            <div class="row">
+                <div class="name">Document Name</div>
+                <div class="date">Date</div>
+                <div class="completion">% Complete</div>
+                <div class="items">Pages</div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="container">
+            <div class="row" ng-show="vm.artist.items.length">
+                <div class="name">Sketchbook</div>
+                <div class="date">1996</div>
+                <div class="completion">20%</div>
+                <div class="items">20</div>
+                <div class="action">Start Transcribing</div>
+            </div>
+            <div class="row" ng-show="!vm.artist.items.length">
+                <div class="noitems">No items found for this artist</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="more-artists">
+    <h3>More Artists</h3>
+    <ul class="artist-list">
+        <li
+            class="artist"
+            ng-repeat="artist in vm.artists"
+            ng-click="vm.go(artist)"
+            ng-class="{ '-active': hover }"
+            ng-mouseenter="hover = true"
+            ng-mouseleave="hover = false"
+            masonry>
+            <div class="wrap1">
+                <div class="wrap2">
+                    <img src="http://placehold.it/350x350">
+                </div>
+            </div>
+            <div class="title">
+                <h4>{{ artist.name }}</h4>
+                <div>Explore sketchbooks</div>
+            </div>
+        </li>
+    </ul>
 </div>
