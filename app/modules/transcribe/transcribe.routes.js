@@ -15,6 +15,10 @@ function Routes($stateProvider) {
                     templateUrl: 'transcribe/transcribe.html',
                     controller: 'TranscribeController as vm'
                 }
+            },
+            params: {
+                hideHook: true,
+                smallFooter: true
             }
         })
         .state('Transcribe', {
@@ -26,6 +30,10 @@ function Routes($stateProvider) {
                     templateUrl: 'transcribe/transcribe.html',
                     controller: 'TranscribeController as vm'
                 }
+            },
+            params: {
+                hideHook: true,
+                smallFooter: true
             }
         });
 }
