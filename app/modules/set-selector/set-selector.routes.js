@@ -15,7 +15,14 @@ function Routes($stateProvider) {
                 'main': {
                     templateUrl: 'set-selector/artist-list.html',
                     controller: 'ArtistListController as vm'
-                }
+                },
+                'lower-header': {
+                    templateUrl: 'set-selector/artist-search.html',
+                    controller: 'ArtistListController as vm'
+                },
+            },
+            params: {
+                overlap: true
             }
         })
         .state('ArtistDetail', {

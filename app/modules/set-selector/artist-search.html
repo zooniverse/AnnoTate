@@ -1,0 +1,16 @@
+<div class="artist-search">
+    <div class="row">
+        <div class="content">
+            <div class="input-group">
+                <input type="text"
+                    ng-model="selected"
+                    typeahead="artist.name for artist in vm.artists | filter:$viewValue | limitTo:8"
+                    typeahead-on-select="vm.go($item)"
+                    class="input">
+                <div class="input-group-addon" aria-hidden="true">
+                    <span class="icon"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

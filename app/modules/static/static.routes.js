@@ -15,6 +15,9 @@ function Routes($stateProvider) {
                 'main': {
                     templateUrl: 'static/home.html'
                 }
+            },
+            params: {
+                overlap: true
             }
         })
         .state('About', {

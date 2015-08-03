@@ -12,23 +12,31 @@ function appHeader() {
         controllerAs: 'vm'
     };
     return directive;
+}
 
-    function HeaderController() {
-        var vm = this;
+// @ngInject
+function HeaderController($scope, $state) {
+    var vm = this;
 
-        vm.links = [
-            {
-                label: 'Start Transcribing',
-                state: 'Transcribe'
-            },
-            {
-                label: 'About annoTate',
-                state: 'About'
-            },
-            {
-                label: 'The Team',
-                state: 'Team'
-            }
-        ];
-    }
+    $scope.$watch(function () {
+        return $state.current.params;
+    }, function (params) {
+        vm.hideHook = (params && params.hideHook) ? true : false;
+        vm.overlap = (params && params.overlap) ? true : false;
+    })
+
+    vm.links = [
+        {
+            label: 'Start Transcribing',
+            state: 'Transcribe'
+        },
+        {
+            label: 'About annoTate',
+            state: 'About'
+        },
+        {
+            label: 'The Team',
+            state: 'Team'
+        }
+    ];
 }
