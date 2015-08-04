@@ -9,7 +9,7 @@
             <form class="form">
                 <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
                 <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
-                <button type="button" class="btn btn-default" ng-click="signIn({ display_name: userLogin, password: userPassword })">Login</button>
+                <button type="button" class="btn btn-default" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
             </form>
         </div>
     </li>
