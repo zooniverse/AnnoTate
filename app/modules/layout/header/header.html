@@ -2,7 +2,7 @@
     <div class="container">
         <section class="mainnav">
             <a ui-sref="Home" class="homelink">
-                <img src="/images/logo.svg" class="logo">
+                <img src="images/logo.svg" class="logo">
             </a>
             <nav class="links">
                 <a ng-repeat="link in ::vm.links" ui-sref="{{ link.state }}" ui-sref-active="-active" class="link" ng-bind="link.label"></a>

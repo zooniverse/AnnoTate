@@ -17,7 +17,7 @@ gulp.task('s3Paths', function () {
         gulp.src(filename)
 
             // Links
-            .pipe(replace(/(href=")(?![http|\/\/])/g, '$1' + prefix))
+            // .pipe(replace(/(href=")(?![http|\/\/])/g, '$1' + prefix))
 
             // Images
             .pipe(replace(/(src=")(?![http|\/\/])/g, '$1' + prefix))
