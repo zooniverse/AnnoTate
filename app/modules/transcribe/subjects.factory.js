@@ -98,7 +98,8 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                             page: page,
                             sort: 'queued',
                             workflow_id: project.links.workflows[0],
-                            subject_set_id: _subjectSet
+                            subject_set_id: _subjectSet,
+                            order: 'desc'
                         });
                     } else {
                         return zooAPI.type('subjects').get({
