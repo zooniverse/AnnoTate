@@ -5,53 +5,60 @@
     position: absolute
     width: 100%
 
-    > .container-fluid > .controls
-        display: inline-block
+    > .container-fluid > .row > .controls.-left
+        @extend .col-sm-5
 
-    > .container-fluid > .controls > .button
+    > .container-fluid > .row > .controls.-middle
+        @extend .col-sm-5
+
+    > .container-fluid > .row > .controls.-right
+        @extend .col-sm-2
+        text-align: right
+
+    > .container-fluid > .row > .controls > .button
         @extend .btn
         @extend .navbar-btn
         button-variant(light-grey, dark-grey, dark-grey)
         border-radius: 0
 
-    > .container-fluid > .controls > .button.-tool
+    > .container-fluid > .row > .controls > .button.-tool
         @extend .btn-primary
 
-    > .container-fluid > .controls > .button.-tool.-active
+    > .container-fluid > .row > .controls > .button.-tool.-active
         button-variant($brand-primary, white, $brand-primary)
 
-    > .container-fluid > .controls > .button.-next
+    > .container-fluid > .row > .controls > .button.-next
         @extend .btn-success
 
-    > .container-fluid > .controls > .button > .icon
+    > .container-fluid > .row > .controls > .button > .icon
         @extend .glyphicon
         color: #909090
         margin-right: 5px
 
-    > .container-fluid > .controls > .button.-tool > .icon
-    > .container-fluid > .controls > .button.-next > .icon
+    > .container-fluid > .row > .controls > .button.-tool > .icon
+    > .container-fluid > .row > .controls > .button.-next > .icon
         color: $btn-primary-color
 
-    > .container-fluid > .controls > .button.-tool.-active > .icon
+    > .container-fluid > .row > .controls > .button.-tool.-active > .icon
         color: $brand-primary
 
-    > .container-fluid > .controls > .button > .icon.-rotateleft
+    > .container-fluid > .row > .controls > .button > .icon.-rotateleft
         @extend .glyphicon-share-alt
         transform: scaleX(-1)
 
-    > .container-fluid > .controls > .button > .icon.-rotateright
+    > .container-fluid > .row > .controls > .button > .icon.-rotateright
         @extend .glyphicon-share-alt
 
-    > .container-fluid > .controls > .button > .icon.-centre
+    > .container-fluid > .row > .controls > .button > .icon.-centre
         @extend .glyphicon-screenshot
 
-    > .container-fluid > .controls > .button > .icon.-text
+    > .container-fluid > .row > .controls > .button > .icon.-text
         @extend .glyphicon-font
 
-    > .container-fluid > .controls > .button > .icon.-image
+    > .container-fluid > .row > .controls > .button > .icon.-image
         @extend .glyphicon-picture
 
-    > .container-fluid > .controls > .button > .icon.-next
+    > .container-fluid > .row > .controls > .button > .icon.-next
         @extend .glyphicon-arrow-right
         margin-right: 0
         margin-left: 5px
