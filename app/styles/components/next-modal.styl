@@ -1,0 +1,28 @@
+.next-modal .modal-content
+    border-radius: 0
+
+    > .modal-header
+        background: green
+
+    > .modal-header > .modal-title
+        font-weight: bold
+
+    > .modal-body
+        font-size: 18px
+
+    > .modal-body > .buttons
+        display: flex
+        justify-content: space-around
+
+    > .modal-body > .buttons > .button
+        @extend .btn
+
+    > .modal-body > .buttons > .button.-blank
+        @extend .btn-default
+
+    > .modal-body > .buttons > .button.-yes
+        @extend .btn-success
+
+    > .modal-body > .buttons > .button.-no
+        @extend .btn-warning
+

@@ -3,12 +3,14 @@
 </div>
 
 <div class="modal-body">
-    <p>Did you transcribe everything?</p>
-    <p>(Don't worry if not.)</p>
+    <p>Has everything been transcribed?</p>
+    <p>That includes your transcriptions, and any that have already been done. Don't worry if it's not complete!</p>
 
-    <p><button ng-click="vm.submitBlank()" class="btn btn-default">The page was blank</button></p>
-    <p><button ng-click="vm.submitComplete()" class="btn btn-default">Yes, everything is transcribed</button></p>
-    <p><button ng-click="vm.submitIncomplete()" class="btn btn-default">No, there are still things to transcribe</button></p>
+    <div class="buttons">
+        <button ng-click="vm.submitBlank()" class="button -blank">The page was blank</button>
+        <button ng-click="vm.submitComplete()" class="button -yes">Yes</button>
+        <button ng-click="vm.submitIncomplete()" class="button -no">No</button>
+    </div>
 
 </div>
 

@@ -7,6 +7,7 @@ require('./modals.module.js')
             controller: 'TranscribeNextController',
             controllerAs: 'vm',
             size: 'md',
-            backdrop: 'static'
+            backdrop: 'static',
+            windowClass: 'next-modal'
         }
     });
