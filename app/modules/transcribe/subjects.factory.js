@@ -96,13 +96,16 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                     if (_subjectSet) {
                         return zooAPI.type('subjects').get({
                             page: page,
+                            sort: 'queued',
+                            workflow_id: project.links.workflows[0],
                             subject_set_id: _subjectSet
                         });
                     } else {
                         return zooAPI.type('subjects').get({
                             page: page,
-                            sort: 'cellect',
-                            workflow_id: project.links.workflows[0]
+                            sort: 'queued',
+                            workflow_id: project.links.workflows[0],
+                            subject_set_id: _.sample(project.links.subject_sets)
                         });
                     }
                 })
