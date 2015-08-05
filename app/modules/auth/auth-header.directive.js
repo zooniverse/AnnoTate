@@ -33,6 +33,7 @@ function authHeader(authFactory) {
 
         function setUser() {
             scope.user = authFactory.getUser();
+            scope.$digest();
         }
 
     }
