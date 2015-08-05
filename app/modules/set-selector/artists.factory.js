@@ -10,6 +10,8 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
 
     var factory;
 
+    var _artistsAndSets = [];
+
     factory = {
         $getData: getData,
         list: list,
@@ -20,28 +22,32 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
 
     function getData() {
         return zooAPIProject.get()
-            .then(function (project) {
-                console.log(project)
+            .then(function getSets(project) {
+                var deferred = [];
+                project.links.subject_sets.forEach(function getSet(setId) {
+                    deferred.push(zooAPI.type('subject_sets').get(setId));
+                });
+                return $q.all(deferred);
             })
-            // .then(function getSets(project) {
-            //     var promises = [];
-            //     project.links.subject_sets.forEach(function getSet(setId) {
-            //         promises.push(zooAPI.type('subject_sets').get(setId));
-            //     });
-            //     return $q.all(promises);
-            // })
-            // .then(function (data) {
-            //     console.log(data)
-            //     return data;
-            // });
+            .then(function (data) {
+                var artistsList = _.clone(ArtistListConstants);
+                _.forEach(artistsList, function (artist) {
+                    artist.sets = _.filter(data, function (set) {
+                        return artist.artistId === set.metadata.artistId.toString();
+                    });
+                });
+                _artistsAndSets = _.filter(artistsList, function (artist) {
+                    return artist.sets.length > 0
+                });
+            });
     }
 
     function get(id) {
-        return _.find(ArtistListConstants, { artistId: id });
+        return _.find(_artistsAndSets, { artistId: id });
     }
 
     function list(listLength) {
-        return (listLength) ? _.sample(ArtistListConstants, listLength) : ArtistListConstants;
+        return (listLength) ? _.sample(_artistsAndSets, listLength) : _artistsAndSets;
     }
 
 }
