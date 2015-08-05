@@ -5,6 +5,5 @@ require('./zooapi.module.js')
         display_name: 'AnnoTate',
         project_id: '245',
 
-        // https://github.com/zooniverse/Panoptes-Front-End/blob/master/app/api/config.coffee#L10
-        app_id: 'f79cf5ea821bb161d8cbb52d061ab9a2321d7cb169007003af66b43f7b79ce2a'
+        app_id: '40557049c91840f89c2df75f44dbac5de2dfdfda3b44c49f2aa8f4a2381414ba'
     });
