@@ -11,6 +11,7 @@ function ArtistListController($state, ArtistsFactory) {
 
     ArtistsFactory.$getData()
         .then(function () {
+            vm.loading = false;
             vm.artists = ArtistsFactory.list();
         })
 

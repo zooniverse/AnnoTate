@@ -21,8 +21,8 @@ function zooAPIProject($q, localStorageService, zooAPIConfig, zooAPI) {
         } else {
             return zooAPI.type('projects').get(zooAPIConfig.project_id)
                 .then(function (response) {
-                    localStorageService.set('project', response[0]);
-                    return response[0];
+                    localStorageService.set('project', response);
+                    return response;
                 });
         }
     }

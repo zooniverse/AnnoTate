@@ -16,21 +16,23 @@
             <div class="row">
                 <div class="name">Document Name</div>
                 <div class="date">Date</div>
-                <div class="completion">% Complete</div>
+                <!-- <div class="completion">% Complete</div> -->
                 <div class="items">Pages</div>
             </div>
         </div>
     </div>
     <div class="body">
         <div class="container">
-            <div class="row" ng-show="vm.artist.items.length">
-                <div class="name">Sketchbook</div>
-                <div class="date">1996</div>
-                <div class="completion">20%</div>
-                <div class="items">20</div>
-                <div class="action">Start Transcribing</div>
+            <div class="row" ng-show="vm.artist.sets.length > 0" ng-repeat="set in vm.artist.sets">
+                <div class="name">{{ set.metadata.title }}</div>
+                <div class="date">{{ set.metadata.year }}</div>
+                <!-- <div class="completion">20%</div> -->
+                <div class="items">{{ set.set_member_subjects_count }}</div>
+                <div class="action">
+                    <a ui-sref="TranscribeSubjectSet({ subjectSet: set.id })">Start Transcribing</a>
+                </div>
             </div>
-            <div class="row" ng-show="!vm.artist.items.length">
+            <div class="row" ng-show="vm.artist.items.length === 0">
                 <div class="noitems">No items found for this artist</div>
             </div>
         </div>
@@ -42,7 +44,7 @@
     <ul class="artist-list">
         <li
             class="artist"
-            ng-repeat="artist in vm.artists"
+            ng-repeat="artist in vm.moreArtists"
             ng-click="vm.go(artist)"
             ng-class="{ '-active': hover }"
             ng-mouseenter="hover = true"

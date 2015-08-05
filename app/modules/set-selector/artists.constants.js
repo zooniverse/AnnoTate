@@ -25,7 +25,7 @@ require('./set-selector.module.js')
         {
             artistId: "682",
             name: "Francis Bacon",
-            bio: "Francis Bacon (1909-1992) was an English painter born in Dublin who began his career during the Second World War and the artistic milieu of post-war Soho. Known for figurative and emotionally charged imagery, Bacon‚??s images depicted the bleakness of the human condition. He was inspired, in part, by an illicit lifestyle of gambling and homosexuality, as well as frequent travels abroad."
+            bio: "Francis Bacon (1909-1992) was an English painter born in Dublin who began his career during the Second World War and the artistic milieu of post-war Soho. Known for figurative and emotionally charged imagery, Bacon's images depicted the bleakness of the human condition. He was inspired, in part, by an illicit lifestyle of gambling and homosexuality, as well as frequent travels abroad."
         },
         {
             artistId: "691",
@@ -50,7 +50,7 @@ require('./set-selector.module.js')
         {
             artistId: "813",
             name: "Stuart Brisley",
-            bio: "Stuart Brisley (b.1933) is an English artist and sculptor. Influenced by Marxist counter-cultural politics in the 1960s, he adopted performance as the democratic basis for a new relationship between artist and audience. Despite changes in media over time, Brisley‚??s critical motivations remain unchanged: the production of a political art capable of capturing the ‚??morbid symptoms' of capitalist culture."
+            bio: "Stuart Brisley (b.1933) is an English artist and sculptor. Influenced by Marxist counter-cultural politics in the 1960s, he adopted performance as the democratic basis for a new relationship between artist and audience. Despite changes in media over time, Brisley's critical motivations remain unchanged: the production of a political art capable of capturing the 'morbid symptoms' of capitalist culture."
         },
         {
             artistId: "22430",
@@ -80,7 +80,7 @@ require('./set-selector.module.js')
         {
             artistId: "217",
             name: "Thomas Cooper Gotch",
-            bio: "Thomas Cooper Gotch (1854-1931) was an English painter associated with the Newlyn school. Portrait painting was Gotch‚??s primary source of income, but he experimented with subjects, styles, and media. He was a founding member of the New English Art Club and the Royal British Colonial Society of Artists, serving as president between 1913‚??28."
+            bio: "Thomas Cooper Gotch (1854-1931) was an English painter associated with the Newlyn school. Portrait painting was Gotch's primary source of income, but he experimented with subjects, styles, and media. He was a founding member of the New English Art Club and the Royal British Colonial Society of Artists, serving as president between 1913-28."
         },
         {
             artistId: "555",
@@ -100,7 +100,7 @@ require('./set-selector.module.js')
         {
             artistId: "1143",
             name: "Henri Gaudier-Brzeska",
-            bio: "Henri Gaudier-Brzeska (1891-1915) was a French sculptor and draughtsman. He moved to London in 1911 and was inspired to take a more experimental style after a crucial meeting with Jacob Epstein. Gaudier-Brzeska‚??s work often featured proto-geometrical simplification and impish humour. He was killed in action while serving in the French Army in the First World War."
+            bio: "Henri Gaudier-Brzeska (1891-1915) was a French sculptor and draughtsman. He moved to London in 1911 and was inspired to take a more experimental style after a crucial meeting with Jacob Epstein. Gaudier-Brzeska's work often featured proto-geometrical simplification and impish humour. He was killed in action while serving in the French Army in the First World War."
         },
         {
             artistId: "1165",
@@ -125,7 +125,7 @@ require('./set-selector.module.js')
         {
             artistId: "1274",
             name: "Dame Barbara Hepworth",
-            bio: "Dame Barbara Hepworth (1903-1975) was a British abstract sculptor connected to the modernist movement. Hepworth represented a link with pre-war ideals in a post-1945 climate of social and physical reconstruction, and came to international prominence after the Grand Prix of the 1959 S√£o Paulo Bienal. Scholarly interest has focused on her status as one of the few women artists to achieve international prominence."
+            bio: "Dame Barbara Hepworth (1903-1975) was a British abstract sculptor connected to the modernist movement. Hepworth represented a link with pre-war ideals in a post-1945 climate of social and physical reconstruction, and came to international prominence after the Grand Prix of the 1959 São Paulo Bienal. Scholarly interest has focused on her status as one of the few women artists to achieve international prominence."
         },
         {
             artistId: "1276",
@@ -145,7 +145,7 @@ require('./set-selector.module.js')
         {
             artistId: "1370",
             name: "David Jones",
-            bio: "David Jones (1895-1974) was an English painter, draughtsman, printmaker, illustrator and poet. His primary influences included his service during World War I and his subsequent conversion to Roman Catholicism. Jones‚?? work can be divided into three main phases punctuated by his two breakdowns in 1932 and 1947, and included a focus on epics and myths represented with modern motifs."
+            bio: "David Jones (1895-1974) was an English painter, draughtsman, printmaker, illustrator and poet. His primary influences included his service during World War I and his subsequent conversion to Roman Catholicism. Jones' work can be divided into three main phases punctuated by his two breakdowns in 1932 and 1947, and included a focus on epics and myths represented with modern motifs."
         },
         {
             artistId: "9811",
@@ -160,7 +160,7 @@ require('./set-selector.module.js')
         {
             artistId: "1613",
             name: "F.E. McWilliam",
-            bio: "F.E. McWilliam (1909-1992) was an Irish sculptor who studied painting in Belfast and London before turning to sculpture in the early 1930s. Although initially influenced by archaic and primitive art, McWilliam‚??s work increasingly took a Surrealist spirit. Later in life, McWilliam worked with a wide variety of media and experimented with both subject and style."
+            bio: "F.E. McWilliam (1909-1992) was an Irish sculptor who studied painting in Belfast and London before turning to sculpture in the early 1930s. Although initially influenced by archaic and primitive art, McWilliam's work increasingly took a Surrealist spirit. Later in life, McWilliam worked with a wide variety of media and experimented with both subject and style."
         },
         {
             artistId: "",
@@ -175,7 +175,7 @@ require('./set-selector.module.js')
         {
             artistId: "2298",
             name: "Ronald Moody",
-            bio: "Ronald Moody (1900-1984) was a British sculptor and writer of Jamaican birth. Influenced by the Second World War, Moody used his later work to examine the dichotomy between man‚??s power for self-destruction and for spiritual evolution. He experimented with a variety of media including concrete and metallic resins, and was a member of the Caribbean Artists Movement."
+            bio: "Ronald Moody (1900-1984) was a British sculptor and writer of Jamaican birth. Influenced by the Second World War, Moody used his later work to examine the dichotomy between man's power for self-destruction and for spiritual evolution. He experimented with a variety of media including concrete and metallic resins, and was a member of the Caribbean Artists Movement."
         },
         {
             artistId: "1659",
@@ -205,7 +205,7 @@ require('./set-selector.module.js')
         {
             artistId: "1702",
             name: "Ben Nicholson",
-            bio: "Ben Nicholson OM (1894-1982) was a painter of the Post-Impressionistic and Cubist styles. His work advocated the use of ‚??constructivist‚?ù principles of mathematical precision, clean lines, and the absence of ornamentation in public and private art. Along with Henry Moore, Nicholson represents the quintessence of British modernism."
+            bio: "Ben Nicholson OM (1894-1982) was a painter of the Post-Impressionistic and Cubist styles. His work advocated the use of constructivist principles of mathematical precision, clean lines, and the absence of ornamentation in public and private art. Along with Henry Moore, Nicholson represents the quintessence of British modernism."
         },
         {
             artistId: "1774",
@@ -250,7 +250,7 @@ require('./set-selector.module.js')
         {
             artistId: "2096",
             name: "Keith Vaughn",
-            bio: "Keith Vaughn (1912-1977) was an English painter and writer whose drawings of army life during the First World War brought him to prominence. Influenced heavily by early Neo-Romantics including Graham Sutherland, Henry Moore, and William Blake, Vaughn‚??s pieces attempted to balance male nudes with abstract environments."
+            bio: "Keith Vaughn (1912-1977) was an English painter and writer whose drawings of army life during the First World War brought him to prominence. Influenced heavily by early Neo-Romantics including Graham Sutherland, Henry Moore, and William Blake, Vaughn's pieces attempted to balance male nudes with abstract environments."
         },
         {
             artistId: "2314",
