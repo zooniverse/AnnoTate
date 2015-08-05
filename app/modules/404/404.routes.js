@@ -18,6 +18,6 @@ function Routes($stateProvider, $urlRouterProvider) {
             }
         });
 
-    $urlRouterProvider.otherwise('/404');
+    $urlRouterProvider.otherwise('/');
 
 }

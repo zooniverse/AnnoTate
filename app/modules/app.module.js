@@ -29,10 +29,10 @@ function startApp() {
 
         // App modules
         'app.core',
+        'app.static',
         'app.404',
         'app.layout',
         'app.setSelector',
-        'app.static',
         'app.transcribe',
         'app.zooapi'
     ];
@@ -41,7 +41,6 @@ function startApp() {
     window.app = angular
         .module('app', requires)
         .constant('appConfig', appConfig.constants)
-        .config(appConfig.routes)
         .config(appConfig.localStorage);
 
     angular.bootstrap(document, ['app'], {
