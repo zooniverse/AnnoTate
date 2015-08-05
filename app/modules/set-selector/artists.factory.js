@@ -39,6 +39,7 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
                 _artistsAndSets = _.filter(artistsList, function (artist) {
                     return artist.sets.length > 0
                 });
+                return _artistsAndSets;
             });
     }
 

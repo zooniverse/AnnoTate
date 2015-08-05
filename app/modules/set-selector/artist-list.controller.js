@@ -4,8 +4,9 @@ require('./set-selector.module.js')
     .controller('ArtistListController', ArtistListController);
 
 // @ngInject
-function ArtistListController($state, ArtistsFactory) {
+function ArtistListController($scope, $state, ArtistsFactory) {
     var vm = this;
+    vm.artists = []
     vm.loading = true;
     vm.go = go;
 
@@ -13,6 +14,7 @@ function ArtistListController($state, ArtistsFactory) {
         .then(function () {
             vm.loading = false;
             vm.artists = ArtistsFactory.list();
+            $scope.$digest();
         })
 
     function go(artist) {
