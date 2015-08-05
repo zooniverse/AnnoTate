@@ -8,15 +8,17 @@
         <div class="login-form dropdown-menu dropdown-menu-right">
             <form class="form">
                 <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
-                <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control"><br>
-                <button type="button" class="btn btn-default" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
+                <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control">
+                <a href="https://www.zooniverse.org/#/reset-password" target="_blank">Forgotten your password?</a>
+                <button type="button" class="button" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
             </form>
         </div>
     </li>
 
     <li dropdown ng-show="user">
         <a href class="dropdown-toggle" dropdown-toggle>
-            {{ user.display_name }} <span class="caret"></span>
+            {{ user.display_name }}
+            <span class="caret"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
             <li><a href ng-click="signOut()">Logout</a></li>

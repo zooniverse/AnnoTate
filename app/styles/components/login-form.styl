@@ -1,2 +1,33 @@
 .login-form
     padding: 10px
+    min-width: 230px
+    border-radius: 0
+
+    input
+        margin-bottom: 15px
+        border-radius: 0
+
+    a
+        margin-bottom: 15px
+        display: block
+
+    .button
+        @extend .btn
+        @extend .btn-success
+        border-radius: 0
+        color: #3e3e3e
+        font-weight: bold
+        width: 100%
+
+// HACKS. To be tidied up properly later
+.auth
+
+    .dropdown-toggle
+        color: #3e3e3e
+
+    .navbar-nav
+        width: 100%
+        text-align: center
+
+    .navbar-nav > li
+        float: none
