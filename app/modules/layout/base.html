@@ -2,7 +2,7 @@
 
     <header app-header></header>
 
-    <div class="main" ui-view="main"></div>
+    <div class="main" ui-view="main" ng-class="{ 'transcription-container': vm.transcription }"></div>
 
     <footer app-footer>
         <section app-copyright></section>

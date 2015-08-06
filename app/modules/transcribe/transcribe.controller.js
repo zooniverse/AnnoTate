@@ -10,6 +10,7 @@ function TranscribeController($stateParams, $modal, $scope, AnnotationsFactory, 
     var vm = this;
     vm.loading = SubjectsFactory.loading;
     vm.subject = SubjectsFactory.current;
+    vm.transcription = true;
     vm.$loadNext = loadNext;
 
     // Watchers
