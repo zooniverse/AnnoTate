@@ -23,7 +23,7 @@ function Routes($stateProvider) {
         .state('About', {
             parent: 'Base',
             url: '/about',
-            title: 'About annoTate',
+            title: 'About AnnoTate',
             views: {
                 'main': {
                     templateUrl: 'static/about.html'
