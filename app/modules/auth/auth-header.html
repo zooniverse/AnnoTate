@@ -15,14 +15,14 @@
         </div>
     </li>
 
-    <li dropdown ng-show="user">
-        <a href class="dropdown-toggle" dropdown-toggle>
+    <li ng-show="user" class="logged-in">
+        <div class="user">
             {{ user.display_name }}
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><a href ng-click="signOut()">Logout</a></li>
-        </ul>
+        </div>
+        <div class="controls">
+            <a href ng-click="signOut()">Logout</a>
+            <a href="https://www.zooniverse.org/#/settings">Account</a>
+        </div>
     </li>
 
 </ul>
