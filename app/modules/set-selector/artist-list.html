@@ -8,11 +8,7 @@
             ng-mouseenter="hover = true"
             ng-mouseleave="hover = false"
             masonry>
-            <div class="wrap1">
-                <div class="wrap2">
-                    <img src="http://placehold.it/350x350">
-                </div>
-            </div>
+            <img ng-src="{{ artist.image }}">
             <div class="title">
                 <h4>{{ artist.name }}</h4>
                 <div>Explore sketchbooks</div>

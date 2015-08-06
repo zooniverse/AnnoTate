@@ -45,6 +45,7 @@ require('./set-selector.module.js')
         {
             artistId: "805",
             name: "Ian Breakwell",
+            image: "images/artists/breakwell.jpg",
             bio: "Ian Breakwell (1943-2004) was a multi-media artist born in Derby.  He ran the innovative Bristol Arts Centre, and was interested in a range of media including painting, concrete, poetry, literature, film, video performance, and installation.  A number of his intensely observational notebooks have been digitized."
         },
         {
@@ -125,6 +126,7 @@ require('./set-selector.module.js')
         {
             artistId: "1274",
             name: "Dame Barbara Hepworth",
+            image: "images/artists/hepworth.jpg",
             bio: "Dame Barbara Hepworth (1903-1975) was a British abstract sculptor connected to the modernist movement. Hepworth represented a link with pre-war ideals in a post-1945 climate of social and physical reconstruction, and came to international prominence after the Grand Prix of the 1959 São Paulo Bienal. Scholarly interest has focused on her status as one of the few women artists to achieve international prominence."
         },
         {
@@ -205,6 +207,7 @@ require('./set-selector.module.js')
         {
             artistId: "1702",
             name: "Ben Nicholson",
+            image: "images/artists/nicholson.jpg",
             bio: "Ben Nicholson OM (1894-1982) was a painter of the Post-Impressionistic and Cubist styles. His work advocated the use of constructivist principles of mathematical precision, clean lines, and the absence of ornamentation in public and private art. Along with Henry Moore, Nicholson represents the quintessence of British modernism."
         },
         {

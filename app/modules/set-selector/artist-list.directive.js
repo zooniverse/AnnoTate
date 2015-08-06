@@ -22,7 +22,7 @@ function masonry($timeout) {
         }
 
         function initMasonry() {
-            $timeout(function () {
+            scope.$on('$viewContentLoaded', function(){
                 msnry = new Masonry(element.parent()[0], {
                     columnWidth: '.artist',
                     itemSelector: '.artist',
