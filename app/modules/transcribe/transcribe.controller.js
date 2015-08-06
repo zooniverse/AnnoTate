@@ -12,6 +12,7 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
     vm.subject = SubjectsFactory.current;
     vm.transcription = true;
     vm.$loadNext = loadNext;
+    vm.$openTutorial = openTutorial;
 
     // Watchers
     $scope.$watch(getLoadingStatus, setLoadingStatus);
@@ -52,6 +53,10 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
         return SubjectsFactory.$getData($stateParams.subjectSet)
             .then(subjectLoaded, subjectLoadError)
             .then(loadAggregations);
+    }
+
+    function openTutorial() {
+        ModalsFactory.openTutorial();
     }
 
     function setLoadingStatus() {

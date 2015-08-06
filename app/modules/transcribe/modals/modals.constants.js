@@ -9,5 +9,12 @@ require('./modals.module.js')
             size: 'md',
             backdrop: 'static',
             windowClass: 'next-modal'
+        },
+        tutorial: {
+            templateUrl: 'modals/tutorial.html',
+            controller: 'TutorialController',
+            controllerAs: 'vm',
+            size: 'lg',
+            windowClass: 'tutorial-modal'
         }
     });

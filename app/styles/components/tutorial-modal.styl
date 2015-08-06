@@ -1,0 +1,23 @@
+.tutorial-modal .modal-content
+    border-radius: 0
+
+    > .modal-header
+        background: green
+
+    > .modal-header > .modal-title
+        font-weight: bold
+
+    > .modal-body
+        font-size: 14px
+
+    > .modal-body > section > img
+        @extend .img-responsive
+        margin-bottom: 15px
+
+    > .modal-footer > .button
+        @extend .btn
+        @extend .btn-default
+        border-radius: 0
+
+    > .modal-footer > .button.-start
+        @extend .btn-primary

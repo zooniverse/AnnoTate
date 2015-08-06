@@ -10,12 +10,17 @@ function ModalsFactory($modal, ModalsConstants) {
 
     factory = {
         openNext: openNext,
+        openTutorial: openTutorial
     };
 
     return factory;
 
     function openNext() {
         return $modal.open(ModalsConstants.next);
+    }
+
+    function openTutorial() {
+        return $modal.open(ModalsConstants.tutorial);
     }
 
 }

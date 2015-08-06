@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h3 class="modal-title">Tutorial ({{ vm.page + 1 }} of 7)</h3>
+</div>
+
+<div class="modal-body">
+
+    <section ng-show="vm.page === 0">
+        <img src="images/tutorial/Step1_select.gif">
+        <p>To get started either click the ‘Find Artists’ tab and browse for something interesting or just click ‘Start Transcribing’. Pages can contain print, handwritten material or both. All of it is fair game for transcription.</p>
+        <p>Some artists’ handwriting is easier to read than others, but don’t be put off! AnnoTate is designed to allow you to skip pages you don’t want to do and to let you transcribe only those lines that you can read. To skip a document, click ‘Next Document’ and ‘No’. If the page is blank select ‘blank page’.</p>
+    </section>
+
+    <section ng-show="vm.page === 1">
+        <img src="images/tutorial/Step2ManipulateImage.gif">
+        <p>Once you have found a page you want to work on, find a line you can read with confidence. You can transcribe as little as one line or as much as the whole page, and in any order you want. You can rotate the page, zoom and centre it.</p>
+    </section>
+
+
+    <section ng-show="vm.page === 2">
+        <img src="images/tutorial/Step4_AnnotateText.gif">
+        <p>To begin transcribing, click the ‘Annotate Text’ button above the image. Click near the start of the line you want to transcribe and a dot will appear. Add another at the end of the line: this will bring up the transcription box. You can delete dots by clicking on them and selecting ‘delete’. Deleting them will delete the transcription. If you want to place all of your dots and then transcribe, you can do so. Just click on the end of line dot and select ‘edit’ for each line you want to transcribe.</p>
+        <p>Once your pair of dots is in place, just type what you see into the box. Please preserve misspellings, punctuation and capitalization. Symbols such as * & % £ should be transcribed instead of written out as ‘and’ ‘percent’ ‘pound’ etc.</p>
+    </section>
+
+    <section ng-show="vm.page === 3">
+        <img src="images/tutorial/Step1.1_TranscribingDeletions.gif">
+        <p>Sometimes you’ll encounter deleted text, text that has been added over a line (inserted), text in a language other than English, and things that are illegible because they have been crossed out or the paper has been damaged. There are special buttons to capture this information: ‘deletion ‘insertion’ ‘illegible’ and ‘Not English’. If something is illegible either because it is heavily crossed out or the paper is damaged, press the ‘illegible’ button. You can add any letters or parts of the word you can read if you want, but you don’t have to.</p>
+        <p>Sometimes artists or Tate archivists added information to the AnnoTate documents after the original composition, and sometimes one document is written by several people. If you can detect different writers, and even if they are writing on the same line, treat their contributions as separate lines by placing pairs of points at the start and end of the individual contributions.</p>
+    </section>
+
+    <section ng-show="vm.page === 4">
+        <img src="images/tutorial/Step1.2_TranscribingWonky.gif">
+        <p>Transcribe text in the margin, known as marginalia, one line at a time, even if there is only one word or a small amount of text on each line. Treat this text as separate from the body of the main text.</p>
+    </section>
+
+    <section ng-show="vm.page === 5">
+        <img src="images/tutorial/AnnotateImage.gif">
+        <p>Select ‘Annotate Image’ to draw bounding boxes around images.</p>
+    </section>
+
+    <section ng-show="vm.page === 6">
+        <img src="images/tutorial/Step1.3_Skipping.gif">
+        <p>When you have transcribed as much as you want, click ‘Next Document’ and select either ‘Yes’ or ‘No’.</p>
+        <p>There is no need to transcribe page numbers or catalogue marks, as this information is already in the Tate catalog.</p>
+    </section>
+
+
+</div>
+
+<div class="modal-footer">
+    <button class="button -prev" ng-click="vm.page = vm.page - 1" ng-show="vm.page > 0">Previous</button>
+    <button class="button -next" ng-click="vm.page = vm.page + 1" ng-show="vm.page < 6">Next</button>
+    <button class="button -start" ng-click="vm.close()" ng-show="vm.page === 6">Get Started!</button>
+</div>
