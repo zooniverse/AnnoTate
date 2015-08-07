@@ -16,6 +16,7 @@ function CopyrightFactory() {
         set: set
     };
 
+    // Init
     set();
 
     return factory;
@@ -25,7 +26,7 @@ function CopyrightFactory() {
     }
 
     function set(data) {
-        data = (_.isArray(data)) ? data : [];
+        data = (_.isArray(data)) ? _.unique(data) : [];
         var copyright = ['Banner: © Tate Photography © Tate, 2015.'].concat(data);
         _copyrightString = copyright.join(' ');
     }

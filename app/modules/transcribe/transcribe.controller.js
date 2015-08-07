@@ -70,6 +70,7 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
 
     function subjectLoaded() {
         vm.subject = SubjectsFactory.current;
+        vm.copyright = vm.subject.data.metadata.acno + ' ' + vm.subject.data.metadata.copyright + '.';
     }
 
     function subjectLoadError(result) {
