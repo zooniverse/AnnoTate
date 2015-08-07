@@ -14,6 +14,7 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
 
     factory = {
         $getData: getData,
+        extractCopyright: extractCopyright,
         list: list,
         get: get
     };
@@ -49,6 +50,10 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
 
     function list(listLength) {
         return (listLength) ? _.sample(_artistsAndSets, listLength) : _artistsAndSets;
+    }
+
+    function extractCopyright(list) {
+        return _.pluck(list, 'imageCopyright');
     }
 
 }

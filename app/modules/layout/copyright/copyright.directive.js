@@ -3,6 +3,7 @@
 require('./copyright.module.js')
     .directive('appCopyright', appCopyright);
 
+// @ngInject
 function appCopyright() {
     var directive = {
         restrict: 'A',
@@ -15,6 +16,10 @@ function appCopyright() {
 }
 
 // @ngInject
-function CopyrightController() {
-    // var vm = this;
+function CopyrightController($scope, CopyrightFactory) {
+    var vm = this;
+
+    $scope.$watch(CopyrightFactory.get, function () {
+        vm.copyright = CopyrightFactory.get();
+    });
 }
