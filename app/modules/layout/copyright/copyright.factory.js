@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 require('./copyright.module.js')
     .factory('CopyrightFactory', CopyrightFactory);
 
@@ -23,6 +25,7 @@ function CopyrightFactory() {
     }
 
     function set(data) {
+        data = (_.isArray(data)) ? data : [];
         var copyright = ['Banner: © Tate Photography © Tate, 2015.'].concat(data);
         _copyrightString = copyright.join(' ');
     }

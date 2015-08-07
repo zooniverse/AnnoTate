@@ -19,6 +19,8 @@ function appCopyright() {
 function CopyrightController($scope, CopyrightFactory) {
     var vm = this;
 
+    $scope.$on('$stateChangeStart', CopyrightFactory.set);
+
     $scope.$watch(CopyrightFactory.get, function () {
         vm.copyright = CopyrightFactory.get();
     });
