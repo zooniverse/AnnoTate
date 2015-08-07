@@ -1,7 +1,7 @@
 <div class="artist-detail">
     <div class="container">
         <div class="info">
-            <img src="http://placehold.it/350x350">
+            <img ng-src="{{ vm.artist.image }}">
             <div class="bio">
                 <h1 ng-bind="vm.artist.name"></h1>
                 <p ng-bind="vm.artist.bio"></p>
@@ -50,11 +50,7 @@
             ng-mouseenter="hover = true"
             ng-mouseleave="hover = false"
             masonry>
-            <div class="wrap1">
-                <div class="wrap2">
-                    <img src="http://placehold.it/350x350">
-                </div>
-            </div>
+            <img ng-src="{{ artist.image }}">
             <div class="title">
                 <h4>{{ artist.name }}</h4>
                 <div>Explore sketchbooks</div>
