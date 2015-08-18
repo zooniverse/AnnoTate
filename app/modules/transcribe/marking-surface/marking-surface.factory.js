@@ -44,7 +44,6 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
         _svgPanZoom.enableZoom();
     }
 
-
     function getPoint(event) {
         var rotateContainer;
         var point;
@@ -68,8 +67,7 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
         svgElement = element;
         _svgRotateElement = element.find('.rotate-container');
         _svgPanZoom = svgPanZoom(element[0], MarkingSurfaceConstants.svgPanZoom);
-        _.extend(factory, _extendedFactory, { svg: svgElement });
-        return factory;
+        return _.extend(factory, _extendedFactory, { svg: svgElement });
     }
 
     function rotate(theta) {
@@ -102,6 +100,5 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
     function zoomOut() {
         _svgPanZoom.zoomOut();
     }
-
 
 }
