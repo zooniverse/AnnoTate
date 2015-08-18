@@ -29,7 +29,7 @@
                 <!-- <div class="completion">20%</div> -->
                 <div class="items">{{ set.set_member_subjects_count }}</div>
                 <div class="action">
-                    <a ui-sref="TranscribeSubjectSet({ subjectSet: set.id })">Start Transcribing</a>
+                    <a class="link" ui-sref="TranscribeSubjectSet({ subjectSet: set.id })">Transcribe</a>
                 </div>
             </div>
             <div class="row" ng-show="vm.artist.items.length === 0">
