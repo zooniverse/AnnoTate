@@ -4,30 +4,34 @@ require('./overlay.module.js')
     .directive('zoomControls', zoomControls);
 
 // @ngInject
-function zoomControls($interval, MarkingSurfaceFactory) {
+function zoomControls() {
     var directive = {
-        link: zoomControlsLink,
+        bindToController: true,
+        controller: ZoomControlsController,
+        controllerAs: 'vm',
         replace: true,
         restrict: 'A',
         scope: true,
         templateUrl: 'overlay/zoom-controls.html'
     };
     return directive;
+}
 
-    function zoomControlsLink(scope) {
-        var promise;
-        scope.zoomStart = zoomStart;
-        scope.zoomStop = zoomStop;
+// @ngInject
+function ZoomControlsController($interval, MarkingSurfaceFactory) {
+    var vm = this;
+    var promise;
+    vm.zoomStart = zoomStart;
+    vm.zoomStop = zoomStop;
 
-        function zoomStart(direction) {
+    function zoomStart(direction) {
+        MarkingSurfaceFactory[direction]();
+        promise = $interval(function () {
             MarkingSurfaceFactory[direction]();
-            promise = $interval(function () {
-                MarkingSurfaceFactory[direction]();
-            }, 150);
-        }
+        }, 150);
+    }
 
-        function zoomStop() {
-            $interval.cancel(promise);
-        }
+    function zoomStop() {
+        $interval.cancel(promise);
     }
 }
