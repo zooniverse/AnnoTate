@@ -9,19 +9,24 @@ function zoomControls($interval, MarkingSurfaceFactory) {
         link: zoomControlsLink,
         replace: true,
         restrict: 'A',
+        scope: true,
         templateUrl: 'overlay/zoom-controls.html'
     };
     return directive;
 
     function zoomControlsLink(scope) {
         var promise;
-        scope.zoomStart = function (direction) {
+        scope.zoomStart = zoomStart;
+        scope.zoomStop = zoomStop;
+
+        function zoomStart(direction) {
             MarkingSurfaceFactory[direction]();
             promise = $interval(function () {
                 MarkingSurfaceFactory[direction]();
             }, 150);
         }
-        scope.zoomStop = function () {
+
+        function zoomStop() {
             $interval.cancel(promise);
         }
     }
