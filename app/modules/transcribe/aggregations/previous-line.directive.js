@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 require('./aggregations.module.js')
     .directive('previousLine', previousLine);
 
@@ -16,6 +14,5 @@ function previousLine() {
         templateUrl: 'aggregations/previous-line.html'
     };
     return directive;
-
 }
 

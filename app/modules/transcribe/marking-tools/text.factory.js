@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var angular = require('angular');
 var Hammer = require('hammerjs');
 
 require('./marking-tools.module.js')

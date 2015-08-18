@@ -12,7 +12,6 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
     var factory;
     var svgElement;
     var _extendedFactory;
-    var _options;
     var _svgPanZoom;
     var _svgRotateElement;
 

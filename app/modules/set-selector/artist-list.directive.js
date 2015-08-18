@@ -6,7 +6,7 @@ require('./set-selector.module.js')
     .directive('masonry', masonry);
 
 // @ngInject
-function masonry($timeout) {
+function masonry() {
     var directive = {
         link: masonryLink,
         restrict: 'A',
@@ -22,7 +22,7 @@ function masonry($timeout) {
         }
 
         function initMasonry() {
-            scope.$on('$viewContentLoaded', function(){
+            scope.$on('$viewContentLoaded', function () {
                 msnry = new Masonry(element.parent()[0], {
                     columnWidth: '.artist',
                     itemSelector: '.artist',

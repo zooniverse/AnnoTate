@@ -23,7 +23,7 @@ function HeaderController($scope, $state) {
     }, function (params) {
         vm.hideHook = (params && params.hideHook) ? true : false;
         vm.overlap = (params && params.overlap) ? true : false;
-    })
+    });
 
     vm.links = [
         {

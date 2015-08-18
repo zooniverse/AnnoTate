@@ -40,7 +40,7 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
 
     function loadAggregations() {
         return AggregationsFactory.$getData()
-            .then(function (res) {
+            .then(function () {
                 vm.aggregations = AggregationsFactory.list();
             });
     }
@@ -50,7 +50,7 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
         modal.result.then(function () {
             AnnotationsFactory.reset();
             SubjectsFactory.$advanceQueue()
-                .then(loadSubject)
+                .then(loadSubject);
         });
     }
 

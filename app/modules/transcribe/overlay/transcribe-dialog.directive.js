@@ -58,7 +58,7 @@ function transcribeDialog($rootScope, $timeout, AnnotationsFactory, hotkeys, Mar
                 allowIn: ['TEXTAREA'],
                 callback: closeDialog,
                 combo: 'esc'
-            })
+            });
             hotkeys.add({
                 allowIn: ['TEXTAREA'],
                 callback: function(event) {

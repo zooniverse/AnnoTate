@@ -16,7 +16,7 @@ function Routes($stateProvider) {
                     templateUrl: 'static/home.html',
                     // @ngInject
                     controller: function (CopyrightFactory) {
-                        CopyrightFactory.set(['TGA-200817-1-62-1, © The estate of Keith Vaughan.', 'TGA-9920-2-86-1, © The Kenneth Armitage Foundation.'])
+                        CopyrightFactory.set(['TGA-200817-1-62-1, © The estate of Keith Vaughan.', 'TGA-9920-2-86-1, © The Kenneth Armitage Foundation.']);
                     }
                 }
             },
