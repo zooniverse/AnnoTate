@@ -1,0 +1,30 @@
+.zoom-controls
+    $position = 20px
+    $size = 40px
+    $bg = #313131
+    $color = #f8f8f8
+
+    @extend .btn-group-vertical
+    background: none
+    left: $position
+    position: absolute
+    top: $position
+    z-index: 1
+
+    .button
+        @extend .btn
+        @extend .btn-group-vertical > .btn
+        button-variant($color, $bg, $bg)
+        box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.5)
+        height: $size
+        margin-bottom: 5px
+        width: $size
+
+    .button.-zoomin > .icon
+        @extend .glyphicon
+        @extend .glyphicon-plus
+
+    .button.-zoomout > .icon
+        @extend .glyphicon
+        @extend .glyphicon-minus
+

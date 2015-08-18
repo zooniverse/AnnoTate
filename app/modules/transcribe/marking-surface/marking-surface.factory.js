@@ -25,7 +25,9 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
         isEnabled: true,
         getPoint: getPoint,
         resizeAndCentre: resizeAndCentre,
-        rotate: rotate
+        rotate: rotate,
+        zoomIn: zoomIn,
+        zoomOut: zoomOut
     };
 
     return factory;
@@ -92,4 +94,14 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
         _svgPanZoom.center();
         _svgPanZoom.fit();
     }
+
+    function zoomIn() {
+        _svgPanZoom.zoomIn();
+    }
+
+    function zoomOut() {
+        _svgPanZoom.zoomOut();
+    }
+
+
 }
