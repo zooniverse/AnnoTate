@@ -24,11 +24,13 @@ function ZoomControlsController($interval, MarkingSurfaceFactory) {
     vm.zoomStart = zoomStart;
     vm.zoomStop = zoomStop;
 
-    function zoomStart(direction) {
-        MarkingSurfaceFactory[direction]();
-        promise = $interval(function () {
+    function zoomStart(direction, $event) {
+        if ($event.button === 0) {
             MarkingSurfaceFactory[direction]();
-        }, 150);
+            promise = $interval(function () {
+                MarkingSurfaceFactory[direction]();
+            }, 150);
+        }
     }
 
     function zoomStop() {
