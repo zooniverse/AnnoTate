@@ -1,9 +1,9 @@
 <div class="zoom-controls" role="group">
-    <button class="button -zoomin" ng-mousedown="vm.zoomStart('zoomIn')" ng-mouseup="vm.zoomStop()">
+    <button class="button -zoomin" ng-mousedown="vm.zoomStart('zoomIn', $event)" ng-mouseup="vm.zoomStop()">
         <span class="sr-only">Zoom In</span>
         <span class="icon"></span>
     </button>
-    <button class="button -zoomout" ng-mousedown="vm.zoomStart('zoomOut')" ng-mouseup="vm.zoomStop()">
+    <button class="button -zoomout" ng-mousedown="vm.zoomStart('zoomOut', $event)" ng-mouseup="vm.zoomStop()">
         <span class="sr-only">Zoom Out</span>
         <span class="icon"></span>
     </button>
