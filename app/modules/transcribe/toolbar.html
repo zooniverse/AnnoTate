@@ -1,44 +1,41 @@
-<nav class="navbar navbar-transcribe navbar-static-top">
+<nav class="navbar-transcribe">
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="controls -left">
+            <button type="button" class="button -rotateleft" ng-click="vm.rotate(-90)">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Rotate left</span>
+            </button>
+            <button type="button" class="button -rotateright" ng-click="vm.rotate(90)">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Rotate right</span>
+            </button>
+            <button type="button" class="button -centre" ng-click="vm.centre()">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Centre</span>
+            </button>
+        </div>
 
-            <div class="controls -left">
-                <button type="button" class="button -markingsurface" ng-click="vm.rotate(-90)">
-                    <span class="icon -rotateleft" aria-hidden="true"></span>
-                    Rotate left
-                </button>
-                <button type="button" class="button -markingsurface" ng-click="vm.rotate(90)">
-                    <span class="icon -rotateright" aria-hidden="true"></span>
-                    Rotate right
-                </button>
-                <button type="button" class="button -markingsurface" ng-click="vm.centre()">
-                    <span class="icon -centre" aria-hidden="true"></span>
-                    Centre
-                </button>
-            </div>
+        <div class="controls -middle">
+            <button type="button" class="button -texttool" ng-class="{ '-active': vm.tools.text.active }" ng-click="vm.tools.text.toggle()">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Annotate Text</span>
+            </button>
+            <button type="button" class="button -imagetool" ng-class="{ '-active': vm.tools.image.active }" ng-click="vm.tools.image.toggle()">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Annotate Image</span>
+            </button>
+        </div>
 
-            <div class="controls -middle">
-                <button type="button" class="button -tool" ng-class="{ '-active': vm.tools.text.active }" ng-click="vm.tools.text.toggle()">
-                    <span class="icon -text" aria-hidden="true"></span>
-                    Annotate Text
-                </button>
-                <button type="button" class="button -tool" ng-class="{ '-active': vm.tools.image.active }" ng-click="vm.tools.image.toggle()">
-                    <span class="icon -image" aria-hidden="true"></span>
-                    Annotate Image
-                </button>
-            </div>
-
-            <div class="controls -right">
-                <button type="button" class="button -next" ng-click="vm.$openTutorial()">
-                    Tutorial
-                </button>
-                <button type="button" class="button -next" ng-click="vm.$loadNext()">
-                    Next
-                    <span class="icon -next" aria-hidden="true"></span>
-                </button>
-            </div>
-
+        <div class="controls -right">
+            <button type="button" class="button -tutorial" ng-click="vm.$openTutorial()">
+                <span class="icon" aria-hidden="true"></span>
+                <span class="text">Tutorial</span>
+            </button>
+            <button type="button" class="button -next" ng-click="vm.$loadNext()">
+                <span class="text">Next</span>
+                <span class="icon" aria-hidden="true"></span>
+            </button>
         </div>
 
     </div>

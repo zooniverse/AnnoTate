@@ -1,63 +1,66 @@
 .navbar-transcribe
-    border: 0
-    margin-bottom: 0
     background: rgba(#f8f8f8, 0.7)
-    width: 100%
 
-    > .container-fluid > .row > .controls.-left
-        @extend .col-sm-5
+    > .container-fluid
+        display: flex
+        flex-direction: row
+        justify-content: space-between
 
-    > .container-fluid > .row > .controls.-middle
-        @extend .col-sm-5
+    > .controls
+        background: none
 
-    > .container-fluid > .row > .controls.-right
-        @extend .col-sm-2
-        text-align: right
-
-    > .container-fluid > .row > .controls > .button
+    .button
         @extend .btn
         @extend .navbar-btn
-        button-variant(light-grey, dark-grey, dark-grey)
-        border-radius: 0
 
-    > .container-fluid > .row > .controls > .button.-tool
-        @extend .btn-primary
-
-    > .container-fluid > .row > .controls > .button.-tool.-active
-        button-variant(#39403e, white, white)
-
-    > .container-fluid > .row > .controls > .button.-next
-        @extend .btn-success
-
-    > .container-fluid > .row > .controls > .button > .icon
+    .button > .icon
         @extend .glyphicon
-        color: #909090
-        margin-right: 5px
 
-    > .container-fluid > .row > .controls > .button.-tool > .icon
-    > .container-fluid > .row > .controls > .button.-next > .icon
-        color: $btn-primary-color
-
-    > .container-fluid > .row > .controls > .button.-tool.-active > .icon
-        color: #39403e
-
-    > .container-fluid > .row > .controls > .button > .icon.-rotateleft
+    .button.-rotateleft > .icon
         @extend .glyphicon-share-alt
         transform: scaleX(-1)
 
-    > .container-fluid > .row > .controls > .button > .icon.-rotateright
+    .button.-rotateright > .icon
         @extend .glyphicon-share-alt
 
-    > .container-fluid > .row > .controls > .button > .icon.-centre
+    .button.-centre > .icon
         @extend .glyphicon-screenshot
 
-    > .container-fluid > .row > .controls > .button > .icon.-text
+    .button.-texttool > .icon
         @extend .glyphicon-font
 
-    > .container-fluid > .row > .controls > .button > .icon.-image
+    .button.-imagetool > .icon
         @extend .glyphicon-picture
 
-    > .container-fluid > .row > .controls > .button > .icon.-next
+    .button.-tutorial > .icon
+        @extend .glyphicon-question-sign
+
+    .button.-next > .icon
         @extend .glyphicon-arrow-right
-        margin-right: 0
-        margin-left: 5px
+
+    .button > .text
+        display: none
+        @media (min-width: 868px)
+            display: inline
+            margin-left: 5px
+
+    .button.-next > .text
+        @media (min-width: $screen-xs-min)
+            display: inline
+            margin-left: 0
+            margin-right: 5px
+
+    .button.-rotateleft,
+    .button.-rotateright,
+    .button.-centre
+        button-variant(light-grey, dark-grey, dark-grey)
+        button-active-variant(light-grey, lighten(dark-grey, 30%), lighten(dark-grey, 30%))
+        .icon
+            color: #909090
+
+    .button.-texttool,
+    .button.-imagetool,
+    .button.-tutorial,
+    .button.-next
+        button-variant(blue-grey, green, green)
+        button-active-variant(blue-grey, lighten(green, 30%), lighten(green, 30%))

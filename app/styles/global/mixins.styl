@@ -5,3 +5,14 @@ $hide-text
     height: 0
     width: 0
     overflow: hidden
+
+button-active-variant($color, $background, $border)
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle&
+        color $color
+        background-color $background
+        border-color $border
