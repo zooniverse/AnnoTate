@@ -6,8 +6,6 @@ var Draggabilly = require('draggabilly');
 require('./overlay.module.js')
     .directive('transcribeDialog', transcribeDialog);
 
-// TODO: Find out what ngInject isn't working properly for transcribeDialogController
-
 // @ngInject
 function transcribeDialog($rootScope, $timeout, AnnotationsFactory, hotkeys, MarkingSurfaceFactory) {
     var directive = {
@@ -115,8 +113,15 @@ function transcribeDialog($rootScope, $timeout, AnnotationsFactory, hotkeys, Mar
 
         // Events
         scope.$on('transcribeDialog:open', openDialog);
+        scope.$on('annotation:delete', closeDialogAfterDelete);
 
         // Methods
+        function closeDialogAfterDelete(event, deleted) {
+            if (scope.data && scope.data.$$hashKey && deleted.$$hashKey === scope.data.$$hashKey) {
+                dialog.close();
+            }
+        }
+
         function openDialog(event, data) {
             dialog.open(data);
             positionDialog(event, data);
@@ -158,9 +163,7 @@ function transcribeDialog($rootScope, $timeout, AnnotationsFactory, hotkeys, Mar
 // Utility function to derive dimensions and offsets for dialog positioning,
 // using getBoundingClientRect for SVG compatibility.
 function getDimensions(element) {
-    if (!element.jquery) {
-        element = angular.element(element);
-    }
+    element = (element.jquery) ? element : angular.element(element);
     return {
         offset: element.offset(),
         height: element[0].getBoundingClientRect().height,

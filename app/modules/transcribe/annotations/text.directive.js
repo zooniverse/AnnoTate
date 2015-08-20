@@ -33,6 +33,8 @@ function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
         // Methods
         function $destroy() {
             hammerElement.destroy();
+            var data = _.clone(scope.data, true);
+            $rootScope.$broadcast('annotation:delete', data);
         }
 
         scope.$watch(function () {
