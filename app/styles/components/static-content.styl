@@ -1,21 +1,23 @@
-.static-content
-    background-color: #39403e
-    color: #f5f5f5
-    font-size: 15px
-    padding: 50px 0
-    > div
-        @extend .container
-    > div > h1
-        @extend .col-sm-12
-        border-bottom: 1px solid
-        padding-bottom: 5px
-    > div > h2
-        @extend .col-sm-12
-    > div > div
-        @extend .row
-    > div > div > p
-        @extend .col-sm-6
-    > div > div > ul
-        @extend .col-sm-6
+.static-content > .container > .row > section
+    @extend .col-md-8
+    @extend .col-md-push-2
+    padding-top: 40px
+    font-size: 18px
 
+    > h1
+       margin-bottom: 2em
 
+    > p
+        margin-bottom: 1em
+
+    > p:first-of-type
+        padding-top: 1em
+        border-top: 1px solid dark-grey
+
+    a
+        color: dark-grey
+        text-decoration: underline
+
+    a:hover,
+    a:active
+        color: green
