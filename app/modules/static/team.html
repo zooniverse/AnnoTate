@@ -1,3 +1,17 @@
 <article class="team-content">
+
     <h1>The Team</h1>
+
+    <div class="people">
+        <section class="person" ng-repeat="person in ::vm.team">
+            <div class="row">
+                <img ng-src="{{ 'images/team/' + person.slug + '.jpg' }}">
+                <div class="bio">
+                    <h2 ng-bind="person.name"></h2>
+                    <p ng-repeat="para in person.bio" ng-bind="para"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
 </article>

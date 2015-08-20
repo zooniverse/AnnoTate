@@ -33,10 +33,10 @@ function HeaderController($scope, $state) {
         {
             label: 'About AnnoTate',
             state: 'About'
+        },
+        {
+            label: 'The Team',
+            state: 'Team'
         }
-        // {
-        //     label: 'The Team',
-        //     state: 'Team'
-        // }
     ];
 }

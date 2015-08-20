@@ -40,7 +40,13 @@ function Routes($stateProvider) {
             title: 'The Team',
             views: {
                 'main': {
-                    templateUrl: 'static/team.html'
+                    templateUrl: 'static/team.html',
+                    // @ngInject
+                    controller: function (TeamConstants) {
+                        var vm = this;
+                        vm.team = TeamConstants;
+                    },
+                    controllerAs: 'vm'
                 }
             }
         });
