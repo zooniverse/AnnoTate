@@ -38,9 +38,12 @@
     .button.-next > .icon
         @extend .glyphicon-arrow-right
 
+    .button.-original > .icon
+        @extend .glyphicon-file
+
     .button > .text
         display: none
-        @media (min-width: 868px)
+        @media (min-width: 986px)
             display: inline
             margin-left: 5px
 
@@ -60,6 +63,7 @@
 
     .button.-texttool,
     .button.-imagetool,
+    .button.-original,
     .button.-tutorial,
     .button.-next
         button-variant(blue-grey, green, green)

@@ -2,36 +2,19 @@
     <div class="container-fluid">
 
         <div class="controls -left">
-            <button type="button" class="button -rotateleft" ng-click="vm.rotate(-90)">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Rotate left</span>
-            </button>
-            <button type="button" class="button -rotateright" ng-click="vm.rotate(90)">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Rotate right</span>
-            </button>
-            <button type="button" class="button -centre" ng-click="vm.centre()">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Centre</span>
-            </button>
+            <toolbar-button label="Rotate left" class="-rotateleft" ng-click="vm.rotate(-90)"></toolbar-button>
+            <toolbar-button label="Rotate right" class="-rotateright" ng-click="vm.rotate(90)"></toolbar-button>
+            <toolbar-button label="Centre" class="-centre" ng-click="vm.centre()"></toolbar-button>
         </div>
 
         <div class="controls -middle">
-            <button type="button" class="button -texttool" ng-class="{ '-active': vm.tools.text.active }" ng-click="vm.tools.text.toggle()">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Annotate Text</span>
-            </button>
-            <button type="button" class="button -imagetool" ng-class="{ '-active': vm.tools.image.active }" ng-click="vm.tools.image.toggle()">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Annotate Image</span>
-            </button>
+            <toolbar-button label="Annotate Text" class="-texttool" ng-class="{ '-active': vm.tools.text.active }" ng-click="vm.tools.text.toggle()"></toolbar-button>
+            <toolbar-button label="Annotate Image" class="-imagetool" ng-class="{ '-active': vm.tools.image.active }" ng-click="vm.tools.image.toggle()"></toolbar-button>
         </div>
 
         <div class="controls -right">
-            <button type="button" class="button -tutorial" ng-click="vm.$openTutorial()">
-                <span class="icon" aria-hidden="true"></span>
-                <span class="text">Tutorial</span>
-            </button>
+            <toolbar-button label="View Original" class="-original" ng-click="vm.$viewOriginal()"></toolbar-button>
+            <toolbar-button label="Tutorial" class="-tutorial" ng-click="vm.$openTutorial()"></toolbar-button>
             <button type="button" class="button -next" ng-click="vm.$loadNext()">
                 <span class="text">Next</span>
                 <span class="icon" aria-hidden="true"></span>

@@ -4,7 +4,7 @@ require('./transcribe.module.js')
     .controller('TranscribeController', TranscribeController);
 
 // @ngInject
-function TranscribeController($stateParams, $modal, $scope, AggregationsFactory, AnnotationsFactory, SubjectsFactory, ModalsFactory, localStorageService) {
+function TranscribeController($stateParams, $modal, $scope, $window, AggregationsFactory, AnnotationsFactory, SubjectsFactory, ModalsFactory, localStorageService) {
 
     // Setup controller
     var vm = this;
@@ -13,6 +13,7 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
     vm.transcription = true;
     vm.$loadNext = loadNext;
     vm.$openTutorial = openTutorial;
+    vm.$viewOriginal = viewOriginal;
 
     // Watchers
     $scope.$watch(getLoadingStatus, setLoadingStatus);
@@ -31,7 +32,6 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
             .then(function () {
                 vm.annotations = AnnotationsFactory.list();
             });
-
     }
 
     function getLoadingStatus() {
@@ -81,6 +81,12 @@ function TranscribeController($stateParams, $modal, $scope, AggregationsFactory,
         } else {
             console.error('Error loading subject', result);
         }
+    }
+
+    function viewOriginal() {
+        var url = 'http://www.tate.org.uk/art/archive/';
+        url = url + vm.subject.data.metadata.acno.replace(/[\s|\/]/g, '-').toLowerCase();
+        $window.open(url, '_blank');
     }
 
 }
