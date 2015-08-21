@@ -5,7 +5,6 @@ require('./set-selector.module.js')
 
 // @ngInject
 function Routes($stateProvider) {
-
     $stateProvider
         .state('ArtistList', {
             parent: 'Base',
@@ -14,10 +13,22 @@ function Routes($stateProvider) {
             views: {
                 'lower-header': {
                     controller: 'ArtistListController as vm',
+                    resolve: {
+                        // @ngInject
+                        'ArtistData': function(ArtistsFactory) {
+                            return ArtistsFactory.$getData();
+                        }
+                    },
                     templateUrl: 'set-selector/artist-search.html'
                 },
                 'main': {
                     controller: 'ArtistListController as vm',
+                    resolve: {
+                        // @ngInject
+                        'ArtistData': function(ArtistsFactory) {
+                            return ArtistsFactory.$getData();
+                        }
+                    },
                     templateUrl: 'set-selector/artist-list.html'
                 }
             },
@@ -42,5 +53,4 @@ function Routes($stateProvider) {
                 }
             }
         });
-
 }

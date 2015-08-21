@@ -6,17 +6,10 @@ require('./set-selector.module.js')
 // @ngInject
 function ArtistListController($scope, $state, ArtistsFactory, CopyrightFactory) {
     var vm = this;
-    vm.artists = [];
-    vm.loading = true;
-    vm.go = go;
 
-    ArtistsFactory.$getData()
-        .then(function () {
-            vm.artists = ArtistsFactory.list();
-            vm.loading = false;
-            CopyrightFactory.set(ArtistsFactory.extractCopyright(vm.artists));
-            $scope.$apply();
-        });
+    vm.artists = ArtistsFactory.list();
+    vm.go = go;
+    CopyrightFactory.set(ArtistsFactory.extractCopyright(vm.artists));
 
     function go(artist) {
         $state.go('ArtistDetail', { artistId: artist.artistId });
