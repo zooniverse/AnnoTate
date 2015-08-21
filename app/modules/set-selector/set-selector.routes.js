@@ -8,31 +8,37 @@ function Routes($stateProvider) {
 
     $stateProvider
         .state('ArtistList', {
-            url: '/artists',
-            title: 'Choose an artist',
             parent: 'Base',
+            title: 'Choose an artist',
+            url: '/artists',
             views: {
-                'main': {
-                    templateUrl: 'set-selector/artist-list.html',
-                    controller: 'ArtistListController as vm'
-                },
                 'lower-header': {
-                    templateUrl: 'set-selector/artist-search.html',
-                    controller: 'ArtistListController as vm'
+                    controller: 'ArtistListController as vm',
+                    templateUrl: 'set-selector/artist-search.html'
                 },
+                'main': {
+                    controller: 'ArtistListController as vm',
+                    templateUrl: 'set-selector/artist-list.html'
+                }
             },
             params: {
                 overlap: true
             }
         })
         .state('ArtistDetail', {
-            url: '/artists/:artistId',
-            title: 'About the artist',
             parent: 'Base',
+            title: 'About the artist',
+            url: '/artists/:artistId',
             views: {
                 'main': {
-                    templateUrl: 'set-selector/artist-detail.html',
-                    controller: 'ArtistDetailController as vm'
+                    controller: 'ArtistDetailController as vm',
+                    resolve: {
+                        // @ngInject
+                        'ArtistData': function(ArtistsFactory) {
+                            return ArtistsFactory.$getData();
+                        }
+                    },
+                    templateUrl: 'set-selector/artist-detail.html'
                 }
             }
         });

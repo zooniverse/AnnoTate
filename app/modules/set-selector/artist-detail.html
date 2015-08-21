@@ -5,6 +5,9 @@
             <div class="bio">
                 <h1 ng-bind="vm.artist.name"></h1>
                 <p ng-bind="vm.artist.bio"></p>
+                <p>
+                    <a target="_blank" ng-href="http://www.tate.org.uk/art/artists/{{ vm.artist.artistId }}">Read more on the Tate website...</a>
+                </p>
             </div>
         </div>
     </div>
