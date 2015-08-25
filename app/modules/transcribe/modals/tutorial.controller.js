@@ -8,7 +8,7 @@ function TutorialController($modalInstance) {
 
     var vm = this;
     vm.close = close;
-    vm.page = 0;
+    vm.page = 1;
 
     function close() {
         $modalInstance.close();
