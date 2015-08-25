@@ -14,7 +14,7 @@ require('./modals.module.js')
             templateUrl: 'modals/tutorial.html',
             controller: 'TutorialController',
             controllerAs: 'vm',
-            size: 'lg',
+            size: 'md',
             windowClass: 'tutorial-modal'
         }
     });
