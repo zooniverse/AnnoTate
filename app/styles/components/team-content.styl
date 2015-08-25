@@ -6,27 +6,27 @@
     > h1
         margin-bottom: 40px
 
-    > .people
+    > section > .people
         border-top: 1px solid dark-grey
         padding-top: 30px
         @media (min-width: $screen-sm-min)
             -webkit-columns: 2
             columns: 2
 
-    > .people > .person
+    > section > .people > .person
         margin-bottom: 30px
 
-    > .people > .person > .row > img
+    > section > .people > .person > .row > img
         @extend .img-responsive
         @extend .col-xs-3
         @extend .col-sm-4
         border-radius: 100%
 
-    > .people > .person > .row > .bio
+    > section > .people > .person > .row > .bio
         @extend .col-xs-9
         @extend .col-sm-8
 
-    > .people > .person > .row > .bio > h2
+    > section > .people > .person > .row > .bio > h2
         background-color: green
         display: inline-block
         font-size: 20px
@@ -36,7 +36,7 @@
         padding: 5px 10px
         position: relative
 
-    > .people > .person > *
+    > section > .people > .person > *
         -webkit-column-break-inside: avoid
         page-break-inside: avoid
         break-inside: avoid
