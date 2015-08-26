@@ -27,7 +27,7 @@
     <div class="body">
         <div class="container">
             <div class="row" ng-show="vm.artist.sets.length > 0" ng-repeat="set in vm.artist.sets">
-                <div class="name">{{ set.metadata.title }}</div>
+                <div class="name">{{ set.metadata.title || set.metadata.set_title }}</div>
                 <div class="date">{{ set.metadata.year }}</div>
                 <!-- <div class="completion">20%</div> -->
                 <div class="items">{{ set.set_member_subjects_count }}</div>
