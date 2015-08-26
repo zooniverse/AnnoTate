@@ -6,7 +6,7 @@ require('./set-selector.module.js')
     .factory('ArtistsFactory', ArtistsFactory);
 
 // @ngInject
-function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
+function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
 
     var factory;
 
@@ -22,13 +22,9 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIProject, zooAPI) {
     return factory;
 
     function getData() {
-        return zooAPIProject.get()
-            .then(function getSets(project) {
-                var deferred = [];
-                project.links.subject_sets.forEach(function getSet(setId) {
-                    deferred.push(zooAPI.type('subject_sets').get(setId));
-                });
-                return $q.all(deferred);
+        return zooAPI.type('subject_sets').get({
+                project_id: zooAPIConfig.project_id,
+                page_size: 1200
             })
             .then(function (data) {
                 var artistsList = _.clone(ArtistListConstants);
