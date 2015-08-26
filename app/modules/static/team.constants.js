@@ -74,7 +74,7 @@ require('./static.module.js')
                     ]
                 },
                 {
-                    name: 'Victoria van Hyning',
+                    name: 'Victoria Van Hyning',
                     slug: 'victoria-vanhyning',
                     bio: [
                         'Victoria Van Hyning is the Humanities lead at Zooniverse. She joined the team in 2014 in order to develop the humanities program, and selected Tate from a strong field of potential project partners. She is particularly interested in manuscript transcription, and is a medieval and renaissance English literature specialist by training.'
