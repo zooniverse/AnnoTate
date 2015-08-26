@@ -153,7 +153,7 @@ require('./set-selector.module.js')
         },
         {
             artistId: "9811",
-            name: "Barbara Key-Seymer",
+            name: "Barbara Ker-Seymer",
             bio: ""
         },
         {
