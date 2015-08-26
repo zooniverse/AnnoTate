@@ -17,13 +17,19 @@ function zooAPIProject($q, localStorageService, zooAPIConfig, zooAPI) {
     function get() {
         var cache = localStorageService.get('project');
         if (cache) {
+            _retrieveAndCache();
             return $q.when(cache);
         } else {
-            return zooAPI.type('projects').get(zooAPIConfig.project_id)
-                .then(function (response) {
-                    localStorageService.set('project', response);
-                    return response;
-                });
+            return _retrieveAndCache();
         }
     }
+
+    function _retrieveAndCache() {
+        return zooAPI.type('projects').get(zooAPIConfig.project_id)
+            .then(function (response) {
+                localStorageService.set('project', response);
+                return response;
+            });
+    }
+
 }
