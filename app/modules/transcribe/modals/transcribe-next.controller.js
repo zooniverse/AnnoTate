@@ -21,23 +21,19 @@ function TranscribeNextController($modalInstance, ClassificationFactory) {
         $modalInstance.close(result);
     }
 
-    function error(result) {
-        console.log('oh noes', result);
-    }
-
     function submitBlank() {
-        return ClassificationFactory.submitBlank()
-            .then(close, error);
+        ClassificationFactory.submitBlank();
+        return close();
     }
 
     function submitComplete() {
-        return ClassificationFactory.submitComplete()
-            .then(close, error);
+        ClassificationFactory.submitComplete();
+        return close();
     }
 
     function submitIncomplete() {
-        return ClassificationFactory.submitIncomplete()
-            .then(close, error);
+        ClassificationFactory.submitIncomplete();
+        return close();
     }
 
 }

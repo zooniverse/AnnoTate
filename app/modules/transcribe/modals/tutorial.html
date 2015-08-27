@@ -6,15 +6,15 @@
 <div class="modal-body">
 
     <section ng-show="vm.page === 1">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">Banner: © Tate Photography © Tate 2015. Journal TGA/200817/1/62 © The estate of Keith Vaughan &amp; Letter TGA 9920/2/86 © The Kenneth Armitage Foundation. Postcard TGA 8717/3/1 © Tate Photography © Tate 2015</p>
-        <p>To get started, either click the 'Find Artists' tab and browse for something interesting, or click 'Start Transcribing'. Pages can contain print, handwritten material or both. All of it is fair game for transcription.</p>
+        <p>To get started either click the ‘Find Artists’ tab and browse for something interesting or click ‘Start Transcribing’. To return to the home page click on ‘AnnoTate’ in the top left.</p>
     </section>
 
     <section ng-show="vm.page === 2">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">TGA 8717/3/1 © Tate Photography © Tate 2015</p>
-        <p>Some artists' handwriting is easier to read than others, but don't be put off! You can skip pages you don't want to do by clicking 'Next Document' and 'No'. If the page is blank select 'blank page'. If you choose to transcribe the whole page, press 'Yes'.</p>
+        <p> Some artists’ handwriting is easier to read than others, but don’t be put off! You can skip pages you don’t want to do by clicking ‘Next Document’ and ‘No’. If the page is blank select ‘blank page’. If you choose to transcribe the whole page, press ‘Yes’. Pages can contain print, handwritten material or both. All of it is fair game for transcription.</p>
     </section>
 
 
@@ -23,25 +23,25 @@
     </section>
 
     <section ng-show="vm.page === 4">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">TGA 8717/3/1 © Tate Photography © Tate 2015</p>
         <p>To begin transcribing lines, click the 'Annotate Text' button above the image. Click near the start of the line you want to transcribe and a dot will appear. Add another dot at the end of the line to trigger the transcription box. Transcribe spelling, grammar and capitalization exactly as you see it, but not the page layout. Symbols such as * & % £ should be transcribed as they are. After transcribing each line click 'save changes'.</p>
     </section>
 
     <section ng-show="vm.page === 5">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">TGA 8717/3/1 © Tate Photography © Tate 2015</p>
         <p>You can delete dots by clicking on them and selecting 'delete', which also deletes the transcription for that line (but not the whole page).</p>
     </section>
 
     <section ng-show="vm.page === 6">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">TGA 7247/1/3 © Bowness Photography © Tate 2015</p>
         <p>You can rotate, zoom and centre images. Rotation and centre buttons are located on the top left. Zoom can be done in a variety of ways on different devices, including trackpads, the mouse and with your keyboard.</p>
     </section>
 
     <section ng-show="vm.page === 7">
-        <img src="images/tutorial/step{{ vm.page }}.gif">
+        <img ng-src="images/tutorial/step{{ vm.page }}.gif">
         <p class="copyright">TGA 8717/3/1 © Tate Photography © Tate 2015</p>
         <p>There are special buttons to facilitate your transcription when you find deleted, illegible, inserted or non-English text: 'Deletion', 'Insertion', 'Illegible' and 'Not English'. You can use more than one tag to describe text, i.e. something can be deleted and inserted, as well as in a language other than English.</p>
     </section>
@@ -67,6 +67,6 @@
 
 <div class="modal-footer">
     <button class="button -prev" ng-click="vm.page = vm.page - 1" ng-show="vm.page > 1">Previous</button>
-    <button class="button -next" ng-click="vm.page = vm.page + 1" ng-show="vm.page < 7">Next</button>
-    <button class="button -start" ng-click="vm.close()" ng-show="vm.page === 7">Get Started!</button>
+    <button class="button -next" ng-click="vm.page = vm.page + 1" ng-show="vm.page < 10">Next</button>
+    <button class="button -start" ng-click="vm.close()" ng-show="vm.page === 10">Get Started!</button>
 </div>
