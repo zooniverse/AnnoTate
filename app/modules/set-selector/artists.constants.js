@@ -182,7 +182,7 @@ require('./set-selector.module.js')
             artistId: "9811",
             name: "Barbara Ker-Seymer",
             image: "images/artists/ker-seymer.jpg",
-            bio: ""
+            bio: "Barbara Ker-Seymer (1905–1993) was an English painter and self-taught photographer who opened a studio in London in the 1930s where she painted and photographed members of the British art scene and society. She made a photographic series for Harper's Bazar and travelled to Toulon to photograph Jean Cocteau. During the Second World War London's art scene changed dramatically and access to photographic equipment dried up. Ker-Seymer put her camera aside in order to raise her child and later started a laundry business in London. She never returned to her art."
         },
         {
             artistId: "1533",
