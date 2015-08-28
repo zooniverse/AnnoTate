@@ -67,4 +67,7 @@
     .button.-tutorial,
     .button.-next
         button-variant(blue-grey, green, green)
-        button-active-variant(blue-grey, lighten(green, 30%), lighten(green, 30%))
+        &.-active
+            color blue-grey
+            background-color lighten(green, 80%)
+            border-color lighten(green, 80%)
