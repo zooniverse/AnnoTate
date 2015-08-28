@@ -7,9 +7,15 @@ require('./set-selector.module.js')
 function ArtistListController($scope, $state, ArtistsFactory, CopyrightFactory) {
     var vm = this;
 
-    vm.artists = ArtistsFactory.list();
     vm.go = go;
-    CopyrightFactory.set(ArtistsFactory.extractCopyright(vm.artists));
+
+    ArtistsFactory.$getData()
+        .then(function () {
+            vm.artists = ArtistsFactory.list();
+            CopyrightFactory.set(ArtistsFactory.extractCopyright(vm.artists));
+            // TODO: fix this ugly business
+            if (!$scope.$$phase) $scope.$digest();
+        });
 
     function go(artist) {
         $state.go('ArtistDetail', { artistId: artist.artistId });
