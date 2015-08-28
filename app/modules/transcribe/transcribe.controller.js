@@ -46,12 +46,17 @@ function TranscribeController($stateParams, $modal, $scope, $window, Aggregation
     }
 
     function loadNext() {
-        var modal = ModalsFactory.openNext();
-        modal.result.then(function () {
-            AnnotationsFactory.reset();
-            SubjectsFactory.$advanceQueue()
-                .then(loadSubject);
-        });
+        var modal1 = ModalsFactory.openNext();
+        modal1.result
+            .then(function () {
+                var modal2 = ModalsFactory.openTalk();
+                modal2.result
+                    .then(function () {
+                        AnnotationsFactory.reset();
+                        SubjectsFactory.$advanceQueue()
+                            .then(loadSubject);
+                    });
+            });
     }
 
     function loadSubject() {

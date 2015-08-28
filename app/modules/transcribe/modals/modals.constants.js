@@ -10,6 +10,13 @@ require('./modals.module.js')
             backdrop: 'static',
             windowClass: 'next-modal'
         },
+        talk: {
+            templateUrl: 'modals/talk.html',
+            controller: 'TalkController',
+            controllerAs: 'vm',
+            size: 'md',
+            windowClass: 'talk-modal'
+        },
         tutorial: {
             templateUrl: 'modals/tutorial.html',
             controller: 'TutorialController',

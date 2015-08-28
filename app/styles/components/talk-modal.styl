@@ -1,0 +1,25 @@
+.talk-modal .modal-content
+
+    > .modal-header
+        display: flex
+
+    > .modal-header > .modal-title
+        flex: 1
+
+    > .modal-body
+        font-size: 14px
+
+    > .modal-body > .buttons
+        display: flex
+        flex-direction: row
+        justify-content: space-around
+
+    > .modal-body > .buttons > .button
+        @extend .btn
+        @extend .btn-lg
+
+    > .modal-body > .buttons > .button.-yes
+        @extend .btn-primary
+
+    > .modal-body > .buttons > .button.-no
+        @extend .btn-default
