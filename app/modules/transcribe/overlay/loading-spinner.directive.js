@@ -10,7 +10,7 @@ function loadingSpinner() {
     var directive = {
         compile: loadingSpinnerCompile,
         replace: true,
-        template: '<div class="loading-spinner" ng-show="vm.loading"></div>'
+        template: '<div class="loading-spinner"></div>'
     };
     return directive;
 

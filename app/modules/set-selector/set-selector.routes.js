@@ -13,22 +13,10 @@ function Routes($stateProvider) {
             views: {
                 'lower-header': {
                     controller: 'ArtistListController as vm',
-                    // resolve: {
-                    //     // @ngInject
-                    //     'ArtistData': function(ArtistsFactory) {
-                    //         return ArtistsFactory.$getData();
-                    //     }
-                    // },
                     templateUrl: 'set-selector/artist-search.html'
                 },
                 'main': {
                     controller: 'ArtistListController as vm',
-                    // resolve: {
-                    //     // @ngInject
-                    //     'ArtistData': function(ArtistsFactory) {
-                    //         return ArtistsFactory.$getData();
-                    //     }
-                    // },
                     templateUrl: 'set-selector/artist-list.html'
                 }
             },
@@ -43,12 +31,6 @@ function Routes($stateProvider) {
             views: {
                 'main': {
                     controller: 'ArtistDetailController as vm',
-                    // resolve: {
-                    //     // @ngInject
-                    //     'ArtistData': function(ArtistsFactory) {
-                    //         return ArtistsFactory.$getData();
-                    //     }
-                    // },
                     templateUrl: 'set-selector/artist-detail.html'
                 }
             }

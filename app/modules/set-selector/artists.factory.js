@@ -27,11 +27,10 @@ function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConf
 
     function getData() {
         if (_artistsAndSets.length > 0) {
-            console.log('sets loaded', _artistsAndSets);
             _getSetsFromApi();
             return $q.when(_artistsAndSets);
         } else {
-            console.log('sets not loaded');
+            console.log('sets not ');
             return _getSetsFromApi();
         }
     }
