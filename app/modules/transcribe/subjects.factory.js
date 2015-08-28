@@ -37,7 +37,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
             _data.current = null;
             _updateStorage();
         }
-        if (!_queue.length) {
+        if (_queue.length === 0) {
             return _populateQueue()
                 .then(_setCurrent);
         } else {
