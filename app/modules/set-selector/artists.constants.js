@@ -136,7 +136,7 @@ require('./set-selector.module.js')
             bio: "Stephen Gilbert (1910-2007) was a Scottish painter, architectural designer and sculptor who became increasingly abstract after 1948. In 1954 he began making three-dimensional constructions, joined the Groupe Espace, and began exhibiting at the Salon de la Jeune Sculpture. His later work included the use of curvilinear planes in aluminium."
         },
         {
-            artistId: "1203",
+            artistId: "4475",
             name: "Duncan Grant",
             image: "images/artists/grant.jpg",
             imageCopyright: "Grant, TGA 8010/5/1415. Artist Image © The estate of Duncan Grant Photography © Tate, 2015.",
