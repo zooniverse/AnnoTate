@@ -6,11 +6,15 @@ require('./set-selector.module.js')
     .factory('ArtistsFactory', ArtistsFactory);
 
 // @ngInject
-function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
+function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConfig, zooAPI) {
+
+    if (localStorageService.get('artistsAndSets') === null) {
+        localStorageService.set('artistsAndSets', []);
+    }
 
     var factory;
 
-    var _artistsAndSets = [];
+    var _artistsAndSets = localStorageService.get('artistsAndSets');
 
     factory = {
         $getData: getData,
@@ -22,6 +26,15 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
     return factory;
 
     function getData() {
+        if (_artistsAndSets.length > 0) {
+            _getSetsFromApi();
+            return _artistsAndSets;
+        } else {
+            return _getSetsFromApi()
+        }
+    }
+
+    function _getSetsFromApi() {
         return zooAPI.type('subject_sets').get({
                 project_id: zooAPIConfig.project_id,
                 page_size: 1200
@@ -36,6 +49,7 @@ function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
                 _artistsAndSets = _.filter(artistsList, function (artist) {
                     return artist.sets.length > 0;
                 });
+                localStorageService.set('artistsAndSets', _artistsAndSets);
                 return _artistsAndSets;
             });
     }
