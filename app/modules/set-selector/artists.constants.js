@@ -12,7 +12,7 @@ require('./set-selector.module.js')
         {
             artistId: "633",
             name: "Eileen Agar",
-            image: "images/artists/agar.jpg", 
+            image: "images/artists/agar.jpg",
             imageCopyright: "Agar, TGA 8712/2/2. Artist Image © Tate Photography © Tate, 2015.",
             bio: "Eileen Agar (1889-1991) was an English painter of Argentine birth. She was a member of the London Group from 1933, and exhibited with the Surrealists both in England and abroad. In her later life she experimented with automatic techniques and new materials, taking photographs and making collages and objects."
         },
@@ -69,7 +69,7 @@ require('./set-selector.module.js')
             artistId: "813",
             name: "Stuart Brisley",
             image: "images/artists/brisley.jpg",
-            imageCopyright: "Brisley, TGA 201114/4/20. Artist Image © Stuart Brisley & © Durham County Record Office   Photography © Tate, 2015.", 
+            imageCopyright: "Brisley, TGA 201114/4/20. Artist Image © Stuart Brisley & © Durham County Record Office   Photography © Tate, 2015.",
             bio: "Stuart Brisley (b.1933) is an English artist and sculptor. Influenced by Marxist counter-cultural politics in the 1960s, he adopted performance as the democratic basis for a new relationship between artist and audience. Despite changes in media over time, Brisley's critical motivations remain unchanged: the production of a political art capable of capturing the 'morbid symptoms' of capitalist culture."
         },
         {
@@ -90,7 +90,7 @@ require('./set-selector.module.js')
             artistId: "921",
             name: "Prunella Clough",
             image: "images/artists/clough.jpg",
-            imageCopyright: "Clough, TGA 200511/4/1/8/6. Artist Image © Geoffrey Dann 1982 Photography © Tate, 2015.", 
+            imageCopyright: "Clough, TGA 200511/4/1/8/6. Artist Image © Geoffrey Dann 1982 Photography © Tate, 2015.",
             bio: "Prunella Clough (1919-1999) was an English painter, draughtsman, and printmaker. Her early work was characterised by the proletarian subject matter of labour and the urban landscape described within a narrow tonal range. Towards the end of her life she became regarded largely as an abstractionist, but her work always retained a figurative base."
         },
         {
@@ -279,7 +279,7 @@ require('./set-selector.module.js')
             artistId: "1774",
             name: "John Piper",
             image: "images/artists/piper.jpg",
-            imageCopyright:imageCopyright: "Piper, TGA 8728/1/3/128. Artist Image © The Piper Estate Photography © Tate, 2015.",
+            imageCopyright: "Piper, TGA 8728/1/3/128. Artist Image © The Piper Estate Photography © Tate, 2015.",
             bio: "John Piper (1903-1992) was a painter, theatre and stained-glass window designer, and writer on the arts. He focused primarily on architecture, landscape, and abstract compositions, and served as an Official War Artist from 1940-1942. Later in life, Piper designed windows and decorations for a number of religious and governmental buildings."
         },
         {
@@ -300,7 +300,7 @@ require('./set-selector.module.js')
             artistId: "1896",
             name: "Ethel Sands",
             image: "images/artists/sands.jpg",
-            imageCopyright: "Sands, TGA 9125/5/88. Artist Image Walter Sicker © Henry Lessore Photography © Tate, 2015.", 
+            imageCopyright: "Sands, TGA 9125/5/88. Artist Image Walter Sicker © Henry Lessore Photography © Tate, 2015.",
             bio: "Ethel Sands (1873-1962) was an artistic hostess and painter whose primary influence on British art came from her interest in hosting social events for artists. She was a founding member of the London Group, and her painting was often exhibited alongside the work of her Impressionist and Cubist colleagues. Sands was the lifelong partner of Anna (Nan) Hope Hudson, another painter influential in British art."
         },
         {
@@ -364,7 +364,7 @@ require('./set-selector.module.js')
             artistId: "2152",
             name: "Robert \"Scottie\" Wilson",
             image: "images/artists/wilson.jpg",
-            imageCopyright: "Wilson", TGA 9024/1. Photography © Tate, 2015.",
+            imageCopyright: "Wilson, TGA 9024/1. Photography © Tate, 2015.",
             bio: "Robert \"Scottie\" Wilson (1889-1972) was a self-taught painter of imaginative subjects. He began to draw only after his second-hand furniture shop in Toronto was unsuccessful. He exhibited in the 1947 International Surrealism Exhibition, and his designs were used for tapestries and pottery designs."
         }
     ]);
