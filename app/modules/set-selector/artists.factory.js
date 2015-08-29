@@ -44,7 +44,11 @@ function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConf
                 var artistsList = _.clone(ArtistListConstants);
                 _.forEach(artistsList, function (artist) {
                     artist.sets = _.filter(data, function (set) {
-                        return artist.artistId === set.metadata.artistId.toString();
+                        if (!set.metadata.artistId) {
+                            return false
+                        } else {
+                            return artist.artistId === set.metadata.artistId.toString();
+                        }
                     });
                 });
                 _artistsAndSets = _.filter(artistsList, function (artist) {
