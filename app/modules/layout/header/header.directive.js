@@ -31,6 +31,10 @@ function HeaderController($scope, $state) {
             state: 'Transcribe'
         },
         {
+            label: 'Artists',
+            state: 'ArtistList'
+        },
+        {
             label: 'About AnnoTate',
             state: 'About'
         },
