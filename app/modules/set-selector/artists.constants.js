@@ -212,13 +212,13 @@ require('./set-selector.module.js')
             imageCopyright: "McWilliam, TGA 885/2/4. Artist Image YNEOS 75/22 © The estate of F.E McWilliam  Photography © Tate, 2015.",
             bio: "F.E. McWilliam (1909-1992) was an Irish sculptor who studied painting in Belfast and London before turning to sculpture in the early 1930s. Although initially influenced by archaic and primitive art, McWilliam's work increasingly took a Surrealist spirit. Later in life, McWilliam worked with a wide variety of media and experimented with both subject and style."
         },
-        {
-            artistId: "",
-            name: "Eileen Mayo",
-            image: "images/artists/mayo.jpg",
-            imageCopyright: "Mayo, TGA 916/140. Photography © Tate, 2015.",
-            bio: "Eileen Mayo (1906-1994) was an artist, designer, and teacher who started her career as a model for other artists including Laura Knight and Dod Procter.  She was in high demand as an illustrator and lithographer throughout her life, and after her divorce in 1952 lived in both Australia and New Zealand."
-        },
+        // {
+        //     artistId: "",
+        //     name: "Eileen Mayo",
+        //     image: "images/artists/mayo.jpg",
+        //     imageCopyright: "Mayo, TGA 916/140. Photography © Tate, 2015.",
+        //     bio: "Eileen Mayo (1906-1994) was an artist, designer, and teacher who started her career as a model for other artists including Laura Knight and Dod Procter.  She was in high demand as an illustrator and lithographer throughout her life, and after her divorce in 1952 lived in both Australia and New Zealand."
+        // },
         {
             artistId: "1622",
             name: "Bernard Meninsky",
