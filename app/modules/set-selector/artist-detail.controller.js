@@ -8,11 +8,11 @@ function ArtistDetailController($scope, $state, $stateParams, ArtistsFactory, Co
     var vm = this;
     vm.loading = true;
 
-    ArtistsFactory.$getData()
-        .then(function () {
-            vm.artist = ArtistsFactory.get($stateParams.artistId);
+    ArtistsFactory.detail($stateParams.artistId)
+        .then(function (artist) {
+            vm.artist = artist;
             vm.moreArtists = ArtistsFactory.list(3);
-            CopyrightFactory.set(ArtistsFactory.extractCopyright(vm.moreArtists.concat(vm.artist)));
+            CopyrightFactory.set(vm.artist, vm.moreArtists);
             vm.loading = false;
             // TODO: fix this ugly business
             if (!$scope.$$phase) $scope.$digest();

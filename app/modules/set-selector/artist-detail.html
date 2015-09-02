@@ -35,7 +35,7 @@
                     <a class="link" ui-sref="TranscribeSubjectSet({ subjectSet: set.id })">Transcribe</a>
                 </div>
             </div>
-            <div class="row" ng-show="vm.artist.items.length === 0">
+            <div class="row" ng-show="!vm.artist.sets || vm.artist.sets.length === 0">
                 <div class="noitems">No items found for this artist</div>
             </div>
         </div>
