@@ -27,8 +27,15 @@ function authFactory($rootScope, localStorageService, zooAPI) {
     function signIn(args) {
         return zooAPI.auth.signIn(args)
             .then(function (response) {
-                localStorageService.set('user', response);
-                $rootScope.$broadcast('auth:signin');
+                console.log(response)
+                var user = response;
+                return response.get('avatar')
+                    .then(function (response) {
+                        user.avatar = response;
+                        localStorageService.set('user', user);
+                        console.log(user);
+                        $rootScope.$broadcast('auth:signin');
+                    });
             });
     }
 

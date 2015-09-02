@@ -10,6 +10,7 @@ function ModalsFactory($modal, ModalsConstants) {
 
     factory = {
         openNext: openNext,
+        openSignIn: openSignIn,
         openTutorial: openTutorial,
         openTalk: openTalk
     };
@@ -20,12 +21,16 @@ function ModalsFactory($modal, ModalsConstants) {
         return $modal.open(ModalsConstants.next);
     }
 
-    function openTutorial() {
-        return $modal.open(ModalsConstants.tutorial);
+    function openSignIn() {
+        return $modal.open(ModalsConstants.signIn);
     }
 
     function openTalk() {
         return $modal.open(ModalsConstants.talk);
+    }
+
+    function openTutorial() {
+        return $modal.open(ModalsConstants.tutorial);
     }
 
 }

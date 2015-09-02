@@ -10,6 +10,14 @@ require('./modals.module.js')
             backdrop: 'static',
             windowClass: 'next-modal'
         },
+        signIn: {
+            templateUrl: 'modals/sign-in.html',
+            controller: 'SignInController',
+            controllerAs: 'vm',
+            size: 'md',
+            backdrop: 'static',
+            windowClass: 'signin-modal'
+        },
         talk: {
             templateUrl: 'modals/talk.html',
             controller: 'TalkController',

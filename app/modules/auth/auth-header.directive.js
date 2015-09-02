@@ -4,7 +4,7 @@ require('./auth.module.js')
     .directive('authHeader', authHeader);
 
 // @ngInject
-function authHeader(authFactory) {
+function authHeader(authFactory, ModalsFactory) {
     var directive = {
         link: authHeaderLink,
         replace: true,
@@ -14,26 +14,22 @@ function authHeader(authFactory) {
     };
     return directive;
 
-    function authHeaderLink(scope, element) {
+    function authHeaderLink(scope) {
 
         // Setup
         scope.user = authFactory.getUser();
-        scope.signIn = authFactory.signIn;
+        scope.signIn = ModalsFactory.openSignIn //authFactory.signIn;
         scope.signOut = authFactory.signOut;
 
         // Events
-        element.find('.login-form').on('click', preventClose);
         scope.$on('auth:signin', setUser);
         scope.$on('auth:signout', setUser);
 
         // Methods
-        function preventClose(event) {
-            event.stopPropagation();
-        }
-
         function setUser() {
-            scope.user = authFactory.getUser();
-            scope.$digest();
+            scope.$digest(function () {
+                scope.user = authFactory.getUser();
+            });
         }
 
     }
