@@ -13,7 +13,6 @@ function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConf
 
     factory = {
         detail: detail,
-        extractCopyright: extractCopyright,
         list: list
     };
 
@@ -29,13 +28,9 @@ function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConf
             artist.sets = sets;
             return artist;
         }, function (response) {
-             console.log(response);
-             return artist;
+            console.error('Error getting sets', response);
+            return artist;
         });
-    }
-
-    function extractCopyright(list) {
-        return _.pluck(list, 'imageCopyright');
     }
 
     function list(listLength) {
