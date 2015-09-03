@@ -8,67 +8,50 @@ require('./set-selector.module.js')
 // @ngInject
 function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConfig, zooAPI) {
 
-    if (localStorageService.get('artistsAndSets') === null) {
-        localStorageService.set('artistsAndSets', []);
+    if (localStorageService.get('artistSets') === null) {
+        localStorageService.set('artistSets', {});
     }
 
     var factory;
-
-    var _artistsAndSets = localStorageService.get('artistsAndSets');
+    var _artists = _.filter(ArtistListConstants, { active: true });
+    var _artistSets = localStorageService.get('artistSets');
 
     factory = {
-        $getData: getData,
-        extractCopyright: extractCopyright,
-        list: list,
-        get: get
+        detail: detail,
+        list: list
     };
 
     return factory;
 
-    function getData() {
-        if (_artistsAndSets.length > 0) {
-            _getSetsFromApi();
-            return $q.when(_artistsAndSets);
+    function _getSets(artist) {
+        return zooAPI.type('subject_sets').get({
+            'project_id': zooAPIConfig.project_id,
+            'metadata.artistId': parseInt(artist.artistId, 10),
+            'page_size': 150
+        }).then(function (sets) {
+            artist.sets = sets;
+            _artistSets[artist.artistId] = sets;
+            localStorageService.set('artistSets', _artistSets);
+            return artist;
+        }, function (response) {
+            console.error('Error getting sets', response);
+            return artist;
+        });
+    }
+
+    function detail(artistId) {
+        var artist = _.find(_artists, { artistId: artistId });
+        if (_artistSets[artistId]) {
+            artist.sets = _artistSets[artistId];
+            _getSets(artist);
+            return $q.when(artist);
         } else {
-            console.log('sets not ');
-            return _getSetsFromApi();
+            return _getSets(artist);
         }
     }
 
-    function _getSetsFromApi() {
-        return zooAPI.type('subject_sets').get({
-                project_id: zooAPIConfig.project_id,
-                page_size: 1200
-            })
-            .then(function (data) {
-                var artistsList = _.clone(ArtistListConstants);
-                _.forEach(artistsList, function (artist) {
-                    artist.sets = _.filter(data, function (set) {
-                        if (!set.metadata.artistId) {
-                            return false
-                        } else {
-                            return artist.artistId === set.metadata.artistId.toString();
-                        }
-                    });
-                });
-                _artistsAndSets = _.filter(artistsList, function (artist) {
-                    return artist.sets.length > 0;
-                });
-                localStorageService.set('artistsAndSets', _artistsAndSets);
-                return _artistsAndSets;
-            });
-    }
-
-    function get(id) {
-        return _.find(_artistsAndSets, { artistId: id });
-    }
-
     function list(listLength) {
-        return (listLength) ? _.sample(_artistsAndSets, listLength) : _artistsAndSets;
-    }
-
-    function extractCopyright(list) {
-        return _.pluck(list, 'imageCopyright');
+        return (listLength) ? _.sample(_artists, listLength) : _artists;
     }
 
 }

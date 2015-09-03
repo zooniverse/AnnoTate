@@ -10,6 +10,7 @@ require('./set-selector.module.js')
             bio: "Robert Adams (1917-1984) was an English sculptor and painter. He studied at the Northampton School of Art from 1933 to 1944. During World War II he was employed as an engineer, and after the war he spent two years teaching himself to sculpt in wood. He also produced abstract paintings, but soon came to specialise in sculpture."
         },
         {
+            active: true,
             artistId: "633",
             name: "Eileen Agar",
             image: "images/artists/agar.jpg",
@@ -17,6 +18,7 @@ require('./set-selector.module.js')
             bio: "Eileen Agar (1889-1991) was an English painter of Argentine birth. She was a member of the London Group from 1933, and exhibited with the Surrealists both in England and abroad. In her later life she experimented with automatic techniques and new materials, taking photographs and making collages and objects."
         },
         {
+            active: true,
             artistId: "664",
             name: "Kenneth Armitage",
             image: "images/artists/armitage.jpg",
@@ -31,6 +33,7 @@ require('./set-selector.module.js')
             bio: "Conrad Atkinson (b.1940) is an English artist whose work focuses on political and social issues ranging from the industrial strikes of the 1970s and 1980s to more recent events including September 11th.  His art often catalyses discussions about these social issues.  He has held teaching positions in both Britain and the United States."
         },
         {
+            active: true,
             artistId: "682",
             name: "Francis Bacon",
             image: "images/artists/bacon.jpg",
@@ -52,6 +55,7 @@ require('./set-selector.module.js')
             bio: "Anita Bartle (1876-1962) was an author and journalist who regularly contributed to both Punch and the Daily Chronicle.  She also produces a number of other publications between 1900 and the 1920s, and was the subject of William Orpenís 1905 portrait, Anita."
         },
         {
+            active: true,
             artistId: "787",
             name: "James Boswell",
             image: "images/artists/boswell.jpg",
@@ -59,6 +63,7 @@ require('./set-selector.module.js')
             bio: "James Boswell (1906-1971) was a painter, illustrator, print-maker, and art editor born in New Zealand who ultimately settled in London.  A member of the London Group from 1927, Boswell gave up painting in 1932 and joined the Communist Party, which influenced his later work.  After serving in the Second World War, Boswell began painting again, and increased his literary output."
         },
         {
+            active: true,
             artistId: "805",
             name: "Ian Breakwell",
             image: "images/artists/breakwell.jpg",
@@ -66,6 +71,7 @@ require('./set-selector.module.js')
             bio: "Ian Breakwell (1943-2004) was a multi-media artist born in Derby.  He ran the innovative Bristol Arts Centre, and was interested in a range of media including painting, concrete, poetry, literature, film, video performance, and installation.  A number of his intensely observational notebooks have been digitized."
         },
         {
+            active: true,
             artistId: "813",
             name: "Stuart Brisley",
             image: "images/artists/brisley.jpg",
@@ -87,6 +93,7 @@ require('./set-selector.module.js')
             bio: "Edward Burra (1905-1976) was a painter in watercolour of sardonic genre and of scenes of violence and destruction, as well as large-scale landscapes and still life paintings with macabre overtones. He exhibited both alone and with English Surrealists in the 1930s, and travelled in Europe, the United States, and Mexico."
         },
         {
+            active: true,
             artistId: "921",
             name: "Prunella Clough",
             image: "images/artists/clough.jpg",
@@ -94,6 +101,7 @@ require('./set-selector.module.js')
             bio: "Prunella Clough (1919-1999) was an English painter, draughtsman, and printmaker. Her early work was characterised by the proletarian subject matter of labour and the urban landscape described within a narrow tonal range. Towards the end of her life she became regarded largely as an abstractionist, but her work always retained a figurative base."
         },
         {
+            active: true,
             artistId: "930",
             name: "Cecil Collins",
             image: "images/artists/collins.jpg",
@@ -108,6 +116,7 @@ require('./set-selector.module.js')
             bio: "Ithell Colquhoun (1906-1988) an English painter born in India and trained in England. Known for botanical works inspired in part by Surrealism, Colquhoun broke with the movement in 1940 in lieu of sacrificing her interest in the occult. She was an acknowledged authority and writer on the occult and Surrealism."
         },
         {
+            active: true,
             artistId: "217",
             name: "Thomas Cooper Gotch",
             image: "images/artists/cooper-gotch.jpg",
@@ -115,6 +124,7 @@ require('./set-selector.module.js')
             bio: "Thomas Cooper Gotch (1854-1931) was an English painter associated with the Newlyn school. Portrait painting was Gotch's primary source of income, but he experimented with subjects, styles, and media. He was a founding member of the New English Art Club and the Royal British Colonial Society of Artists, serving as president between 1913-28."
         },
         {
+            active: true,
             artistId: "1061",
             name: "Jacob Epstein",
             image: "images/artists/epstein.jpg",
@@ -122,6 +132,7 @@ require('./set-selector.module.js')
             bio: "Jacob Epstein (1880-1959) made his name as a sculptor of monuments and portraits, and as an occasional painter and illustrator. In his lifetime he championed many of the concepts central to modernist sculpture, including 'truth to material', direct carving, and inspiration from primitive art, all of which became central to twentieth-century practice."
         },
         {
+            active: true,
             artistId: "1143",
             name: "Henri Gaudier-Brzeska",
             image: "images/artists/gaudier-brzeska.jpg",
@@ -129,6 +140,7 @@ require('./set-selector.module.js')
             bio: "Henri Gaudier-Brzeska (1891-1915) was a French sculptor and draughtsman. He moved to London in 1911 and was inspired to take a more experimental style after a crucial meeting with Jacob Epstein. Gaudier-Brzeska's work often featured proto-geometrical simplification and impish humour. He was killed in action while serving in the French Army in the First World War."
         },
         {
+            active: true,
             artistId: "1165",
             name: "Stephen Gilbert",
             image: "images/artists/gilbert.jpg",
@@ -136,6 +148,7 @@ require('./set-selector.module.js')
             bio: "Stephen Gilbert (1910-2007) was a Scottish painter, architectural designer and sculptor who became increasingly abstract after 1948. In 1954 he began making three-dimensional constructions, joined the Groupe Espace, and began exhibiting at the Salon de la Jeune Sculpture. His later work included the use of curvilinear planes in aluminium."
         },
         {
+            active: true,
             artistId: "4475",
             name: "Duncan Grant",
             image: "images/artists/grant.jpg",
@@ -157,6 +170,7 @@ require('./set-selector.module.js')
             bio: "Nigel Henderson (1917-1985) was a painter, collagist, and photographer who often collaborated with Eduardo Paolozzi.  He was one of the founding members of the Independent Group, and taught in both the Colchester and Norwich Schools of Art."
         },
         {
+            active: true,
             artistId: "1274",
             name: "Dame Barbara Hepworth",
             image: "images/artists/hepworth.jpg",
@@ -164,6 +178,7 @@ require('./set-selector.module.js')
             bio: "Dame Barbara Hepworth (1903-1975) was a British abstract sculptor connected to the modernist movement. Hepworth represented a link with pre-war ideals in a post-1945 climate of social and physical reconstruction, and came to international prominence after the Grand Prix of the 1959 São Paulo Bienal. Scholarly interest has focused on her status as one of the few women artists to achieve international prominence."
         },
         {
+            active: true,
             artistId: "1276",
             name: "Josef Herman",
             image: "images/artists/herman.jpg",
@@ -171,6 +186,7 @@ require('./set-selector.module.js')
             bio: "Josef Herman (1911-2000) was a figure painter and draughtsman inspired in part by Expressionism. Herman was born in Warsaw, the son of a Jewish cobbler, but became a naturalised British subject in 1948 after living in Britain for 8 years. His subjects, treated in sombre tones, were taken mainly from miners and field labourers in Wales."
         },
         {
+            active: true,
             artistId: "19033",
             name: "Klaus Hinrichsen",
             image: "images/artists/hinrichsen.jpg",
@@ -178,6 +194,7 @@ require('./set-selector.module.js')
             bio: "Klaus Hinrichsen (1912-2004) was an art historian and businessman born in Germany who avoided enlistment in the German army in 1939 by feigning a broken leg while visiting English relatives.  He was later interned in Hutchinson Camp, Douglas, Isle of Man, and afterwards joined the Home Guard.  After the war he pursued a career in pharmaceuticals but maintained an interest in the arts."
         },
         {
+            active: true,
             artistId: "1291",
             name: "Ivon Hitchens",
             image: "images/artists/hitchens.jpg",
@@ -185,6 +202,7 @@ require('./set-selector.module.js')
             bio: "Ivon Hitchens (1893-1979) was an English painter who was part of the London Group in his early life. After his house was bombed in 1940 he moved to a patch of woodland near Petworth, W. Sussex. He worked there for the next 40 years, distanced from the predominantly literary currents of British modern art."
         },
         {
+            active: true,
             artistId: "1370",
             name: "David Jones",
             image: "images/artists/jones.jpg",
@@ -192,6 +210,7 @@ require('./set-selector.module.js')
             bio: "David Jones (1895-1974) was an English painter, draughtsman, printmaker, illustrator and poet. His primary influences included his service during World War I and his subsequent conversion to Roman Catholicism. Jones' work can be divided into three main phases punctuated by his two breakdowns in 1932 and 1947, and included a focus on epics and myths represented with modern motifs."
         },
         {
+            active: true,
             artistId: "9811",
             name: "Barbara Ker-Seymer",
             image: "images/artists/ker-seymer.jpg",
@@ -227,6 +246,7 @@ require('./set-selector.module.js')
             bio: "Bernard Meninsky (1891-1950) was a landscape and figure painter born in the Ukraine to Jewish parents but raised in Liverpool. He was a member of the London Group and an Official War Artist during the First World War. Meninsky painted mostly with oils, watercolour, and gouache."
         },
         {
+            active: true,
             artistId: "2298",
             name: "Ronald Moody",
             image: "images/artists/moody.jpg",
@@ -255,6 +275,7 @@ require('./set-selector.module.js')
             bio: "John Nash (1893-1977) was a self-trained painter, wood engraver, and illustrator. He was a member of the London Group, and an Official War Artist in 1918 and again in 1940. Nash focused primarily on watercolour landscapes and comic drawings, and held a variety of teaching positions in the south of England."
         },
         {
+            active: true,
             artistId: "1690",
             name: "Paul Nash",
             image: "images/artists/nash.jpg",
@@ -262,6 +283,7 @@ require('./set-selector.module.js')
             bio: "Paul Nash (1889-1946) was a landscape painter, book illustrator, writer, and designer for applied art. In 1917 he was appointed as an Official War Artist after his exhibition Ypres Salient. Nash exhibited at the 1936 and 1938 International Surrealist Exhibitions, and served again as a War Artist during the Second World War."
         },
         {
+            active: true,
             artistId: "1692",
             name: "Paul Neagu",
             image: "images/artists/neagu.jpg",
@@ -269,6 +291,7 @@ require('./set-selector.module.js')
             bio: "Paul Neagu (1938-2004) was a Romanian artist who established his reputation in Britain through art shows in Edinburgh, Oxford, and London in the 1970s.  Known best for his sculpture work, Neagu also produced paintings, drawings, and performances."
         },
         {
+            active: true,
             artistId: "1702",
             name: "Ben Nicholson",
             image: "images/artists/nicholson.jpg",
@@ -283,6 +306,7 @@ require('./set-selector.module.js')
             bio: "John Piper (1903-1992) was a painter, theatre and stained-glass window designer, and writer on the arts. He focused primarily on architecture, landscape, and abstract compositions, and served as an Official War Artist from 1940-1942. Later in life, Piper designed windows and decorations for a number of religious and governmental buildings."
         },
         {
+            active: true,
             artistId: "3076",
             name: "Donald Rodney",
             image: "images/artists/rodney.jpg",
@@ -297,6 +321,7 @@ require('./set-selector.module.js')
             bio: "Sir William Rothenstein (1872-1945) was a painter, printmaker, teacher, and writer who was inspired by the grim landscapes of his native Yorkshire. His style gradually evolved towards brighter colours in response to Post-Impressionism, and drew later inspiration from the Gloucestershire landscape. His pupils at the Royal College of Art included Henry Moore and Barbara Hepworth."
         },
         {
+            active: true,
             artistId: "1896",
             name: "Ethel Sands",
             image: "images/artists/sands.jpg",
@@ -325,6 +350,7 @@ require('./set-selector.module.js')
             bio: "Stanhope Alexander Forbes (1857-1947) was a painter of the realistic genre, frequently focusing on the open air, historical subjects, and landscapes. A leading member of the Newlyn School, Forbes was trained in both England and Paris."
         },
         {
+            active: true,
             artistId: "2014",
             name: "Graham Sutherland",
             image: "images/artists/sutherland.jpg",
@@ -346,6 +372,7 @@ require('./set-selector.module.js')
             bio: "Henry Scott Tuke (1858-1929) was an English painter and founder member of the Newlyn school. Impersonality and detachment combined with sincere commitment to subject and atmosphere characterise his mature style and challenged artistic expectations of the time, broadening the parameters of British plein-air painting."
         },
         {
+            active: true,
             artistId: "2096",
             name: "Keith Vaughn",
             image: "images/artists/vaughn.jpg",
@@ -361,6 +388,7 @@ require('./set-selector.module.js')
             bio: "Aubrey Williams (1926-1990) was an artist, teacher, and cultural activist who studied in Guyana and arrived in Britain in 1952 to take up a scholarship for Agricultural Engineering at Leicester University.  His style became increasingly abstract over time, and he was active with the Caribbean Artists Movement."
         },
         {
+            active: true,
             artistId: "2152",
             name: "Robert \"Scottie\" Wilson",
             image: "images/artists/wilson.jpg",

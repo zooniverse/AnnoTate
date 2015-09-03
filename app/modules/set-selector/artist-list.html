@@ -1,13 +1,6 @@
 <div class="container">
 
-    <div class="loading-message" ng-show="vm.loading">
-        <div class="message">
-            <div loading-spinner class="-artistlist"></div>
-            <p>Loading artists - this will take a few seconds...</p>
-        </div>
-    </div>
-
-    <ul class="artist-list" ng-hide="vm.loading">
+    <ul class="artist-list">
         <li
             class="artist"
             ng-repeat="artist in vm.artists"
