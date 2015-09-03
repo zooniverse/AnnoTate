@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Changed
 - Fixed dependency injection in app config
 - Misc formatting, cosmetic tweaks
+- Artist subject sets are now retrieved by metadata filtering on artistId, not grabbing all of the sets
 
 ## [1.0.0] - 11 May 2015
 ### Added
