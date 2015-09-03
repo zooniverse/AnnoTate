@@ -149,7 +149,7 @@ require('./set-selector.module.js')
         },
         {
             active: true,
-            artistId: "4475",
+            artistId: "1203",
             name: "Duncan Grant",
             image: "images/artists/grant.jpg",
             imageCopyright: "Grant, TGA 8010/5/1415. Artist Image © The estate of Duncan Grant Photography © Tate, 2015.",
