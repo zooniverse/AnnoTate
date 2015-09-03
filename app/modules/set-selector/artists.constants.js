@@ -116,7 +116,7 @@ require('./set-selector.module.js')
             bio: "Ithell Colquhoun (1906-1988) an English painter born in India and trained in England. Known for botanical works inspired in part by Surrealism, Colquhoun broke with the movement in 1940 in lieu of sacrificing her interest in the occult. She was an acknowledged authority and writer on the occult and Surrealism."
         },
         {
-            active: true,
+            active: false,
             artistId: "217",
             name: "Thomas Cooper Gotch",
             image: "images/artists/cooper-gotch.jpg",
@@ -365,6 +365,7 @@ require('./set-selector.module.js')
             bio: "Julian Trevelyan (1910-1988) was a painter and engraver of Surrealist and Expressionist tendencies. He was a member of the English Surrealist Group and London Group, and served as a Camouflage Officer from 1940-1943."
         },
         {
+            active: true,
             artistId: "555",
             name: "Henry Scott Tuke",
             image: "images/artists/tuke.jpg",
