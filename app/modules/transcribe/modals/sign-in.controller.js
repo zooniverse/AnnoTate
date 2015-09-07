@@ -4,7 +4,7 @@ require('./modals.module.js')
     .controller('SignInController', SignInController);
 
 // @ngInject
-function SignInController($modalInstance, $scope, authFactory) {
+function SignInController($modalInstance, $scope, authFactory, hotkeys) {
 
     var vm = this;
     vm.cancel = cancel;
@@ -15,6 +15,15 @@ function SignInController($modalInstance, $scope, authFactory) {
         login: '',
         password: ''
     };
+
+    hotkeys.add({
+        callback: signIn,
+        combo: 'enter'
+    });
+
+    $scope.$on('$destroy', function() {
+        hotkeys.del('enter');
+    });
 
     function cancel() {
         $modalInstance.close();
