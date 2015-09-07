@@ -25,10 +25,16 @@ function CopyrightFactory() {
         return _copyrightString;
     }
 
-    function set(data) {
-        data = (_.isArray(data)) ? _.unique(data) : [];
-        var copyright = ['Banner: © Tate Photography © Tate, 2015.'].concat(data);
-        _copyrightString = copyright.join(' ');
+    function set() {
+        var copyrights = _.toArray(arguments);
+        copyrights.unshift('Banner: © Tate Photography © Tate, 2015.')
+        copyrights = _.flatten(copyrights, true);
+        _.forEach(copyrights, function (item, i) {
+            if (_.isPlainObject(item)) {
+                copyrights[i] = item.imageCopyright;
+            }
+        });
+        _copyrightString = copyrights.join(' ');
     }
 
 }

@@ -1,4 +1,11 @@
-<div class="artist-detail">
+<div class="loading-message" ng-show="vm.loading">
+    <div class="message">
+        <div loading-spinner class="-artistlist"></div>
+        <p>Loading artists - this will take a few seconds...</p>
+    </div>
+</div>
+
+<div class="artist-detail" ng-show="!vm.loading">
     <div class="container">
         <div class="info">
             <img ng-src="{{ vm.artist.image }}">
@@ -13,7 +20,7 @@
     </div>
 </div>
 
-<div class="artist-items">
+<div class="artist-items" ng-show="!vm.loading">
     <div class="title">
         <div class="container">
             <div class="row">
@@ -35,7 +42,7 @@
                     <a class="link" ui-sref="TranscribeSubjectSet({ subjectSet: set.id })">Transcribe</a>
                 </div>
             </div>
-            <div class="row" ng-show="vm.artist.items.length === 0">
+            <div class="row" ng-show="!vm.artist.sets || vm.artist.sets.length === 0">
                 <div class="noitems">No items found for this artist</div>
             </div>
         </div>
