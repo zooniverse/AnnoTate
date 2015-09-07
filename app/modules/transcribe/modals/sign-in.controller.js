@@ -9,6 +9,7 @@ function SignInController($modalInstance, $scope, authFactory) {
     var vm = this;
     vm.cancel = cancel;
     vm.error = false;
+    vm.loading = false;
     vm.signIn = signIn;
     vm.user = {
         login: '',
@@ -20,14 +21,16 @@ function SignInController($modalInstance, $scope, authFactory) {
     }
 
     function signIn() {
+        vm.error = false;
+        vm.loading = true;
         authFactory.signIn(vm.user)
             .then(function (res) {
-                console.log('the', res)
-                // $modalInstance.close();
-            })
-            .catch(function (res) {
-                console.log('catch', res)
-                // $modalInstance.close();
+                $modalInstance.close();
+            }, function (error) {
+                $scope.$apply(function () {
+                    vm.error = error;
+                    vm.loading = false;
+                });
             });
     }
 }

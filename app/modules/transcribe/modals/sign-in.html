@@ -9,15 +9,15 @@
         <div class="form-group">
             <label for="name" class="col-sm-3 control-label">Login</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" placeholder="Username or email address" ng-model="vm.user.login">
+                <input type="text" class="form-control" id="name" placeholder="Username or email address" ng-model="vm.user.login" ng-disabled="vm.loading">
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.user.password">
+                <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.user.password" ng-disabled="vm.loading">
                 <p class="forgot">Forgot password?</p>
-                <p class="error" ng-show="vm.error">Invalid username or password, please try again.</p>
+                <p class="error" ng-show="vm.error" ng-bind="vm.error"></p>
             </div>
         </div>
     </form>
@@ -25,6 +25,6 @@
 </div>
 
 <div class="modal-footer">
-    <a class="button -new" href="https://www.zooniverse.org/#/accounts/register" target="_blank">New user?</a>
-    <a class="button -signin" href ng-click="vm.signIn()">Sign In</a>
+    <a class="button -new" href="https://www.zooniverse.org/#/accounts/register" target="_blank">Don't have a Zooniverse account?</a>
+    <button class="button -signin" ng-click="vm.signIn()" ng-disabled="vm.loading">Sign In</button>
 </div>

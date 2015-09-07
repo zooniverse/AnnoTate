@@ -1,27 +1,13 @@
-<ul class="nav navbar-nav">
-
-    <li dropdown ng-show="!user">
-        <a href class="dropdown-toggle" dropdown-toggle>
-            Login
-            <span class="caret"></span>
-        </a>
-        <div class="login-form dropdown-menu dropdown-menu-right">
-            <form class="form">
-                <input name="login" ng-model="userLogin" type="text" placeholder="Login" class="form-control">
-                <input name="password" ng-model="userPassword" type="password" placeholder="Password" class="form-control">
-                <a href="https://www.zooniverse.org/#/reset-password" target="_blank">Forgotten your password?</a>
-                <button type="submit" class="button" ng-click="signIn({ login: userLogin, password: userPassword })">Login</button>
-            </form>
-        </div>
-    </li>
-
-    <li ng-show="user" class="logged-in">
-        <div class="user">
-            {{ user.display_name || 'NAME'}}
-        </div>
-        <div class="controls">
-            <a href="https://www.zooniverse.org/#/settings" target="_blank">Settings</a>
-            <a href ng-click="signOut()">Logout</a>
+<div class="auth-header">
+    <a href ng-click="signIn()" ng-show="!user" class="signin">Sign in via Zooniverse</a>
+    <div class="signedin" ng-show="user">
+        <img class="avatar" ng-src="{{ user.avatar.src }}">
+        <div class="text">
+            <div class="user">{{ user.display_name }}</div>
+            <div class="controls">
+                <a href="https://www.zooniverse.org/#/settings" target="_blank">Settings</a>
+                <a href ng-click="signOut()">Logout</a>
+            </div>
         </div>
     </div>
 </div>

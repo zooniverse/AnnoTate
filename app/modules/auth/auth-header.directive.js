@@ -18,7 +18,7 @@ function authHeader(authFactory, ModalsFactory) {
 
         // Setup
         scope.user = authFactory.getUser();
-        scope.signIn = ModalsFactory.openSignIn //authFactory.signIn;
+        scope.signIn = ModalsFactory.openSignIn;
         scope.signOut = authFactory.signOut;
 
         // Events
@@ -27,9 +27,7 @@ function authHeader(authFactory, ModalsFactory) {
 
         // Methods
         function setUser() {
-            scope.$digest(function () {
-                scope.user = authFactory.getUser();
-            });
+            scope.user = authFactory.getUser();
         }
 
     }

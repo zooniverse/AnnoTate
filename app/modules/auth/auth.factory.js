@@ -4,13 +4,22 @@ require('./auth.module.js')
     .factory('authFactory', authFactory);
 
 // @ngInject
-function authFactory($rootScope, localStorageService, zooAPI) {
+function authFactory($q, $rootScope, localStorageService, zooAPI) {
 
     var factory;
 
     if (localStorageService.get('user') === null) {
         localStorageService.set('user', null);
     }
+
+    zooAPI.auth.checkCurrent()
+        .then(function (response) {
+            if (response === null) {
+                clearUser();
+            } else {
+                return setUser(response);
+            }
+        });
 
     factory = {
         signIn: signIn,
@@ -20,28 +29,40 @@ function authFactory($rootScope, localStorageService, zooAPI) {
 
     return factory;
 
+    function clearUser() {
+        localStorageService.set('user', null);
+        $rootScope.$broadcast('auth:signout');
+    }
+
     function getUser() {
         return localStorageService.get('user');
     }
 
-    function signIn(args) {
-        return zooAPI.auth.signIn(args)
+    function setUser(userData) {
+        var user = userData;
+        return userData.get('avatar')
             .then(function (response) {
-                console.log(response)
-                var user = response;
-                return response.get('avatar')
-                    .then(function (response) {
-                        user.avatar = response;
-                        localStorageService.set('user', user);
-                        console.log(user);
-                        $rootScope.$broadcast('auth:signin');
-                    });
+                user.avatar = response[0];
+                localStorageService.set('user', user);
+                $rootScope.$broadcast('auth:signin');
+            });
+    }
+
+    function signIn(signInObject) {
+        return zooAPI.auth.signIn(signInObject)
+            .then(setUser, function (response) {
+                var error;
+                if (response.message === 'null') {
+                    error = 'There was an error logging in, please try again later.';
+                } else {
+                    error = 'Invalid username or password, please try again.';
+                }
+                return $q.reject(error)
             });
     }
 
     function signOut() {
-        localStorageService.set('user', null);
-        $rootScope.$broadcast('auth:signout');
+        clearUser();
         return zooAPI.auth.signOut();
     }
 
