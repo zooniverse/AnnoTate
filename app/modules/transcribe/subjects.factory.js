@@ -98,12 +98,6 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                             subject_set_id: _subjectSet,
                             order: 'asc'
                         });
-                        // Sorting subjects by priority on the frontend
-                        // .then(function (subjects) {
-                        //     return _.sortBy(subjects, function (subject) {
-                        //         return subject
-                        //     });
-                        // });
                     } else {
                         return zooAPI.type('subjects').get({
                             page: page,
@@ -115,8 +109,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                 })
                 .then(function (subjects) {
                     if (!subjects.length) {
-                        factory.loading = false;
-                        return deferred.reject('outOfData');
+                        outOfData();
                     } else {
                         var newSubjects = _.reject(subjects, function rejectViewedSubjects(newSubject) {
                             return viewedSubjectIDs.indexOf(newSubject.id) > -1;
@@ -128,7 +121,13 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
                             return deferred.resolve(_queue);
                         }
                     }
-                });
+                }, outOfData);
+        }
+
+        function outOfData(error) {
+            console.error(error);
+            factory.loading = false;
+            return deferred.reject('outOfData');
         }
     }
 
