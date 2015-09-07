@@ -1,0 +1,29 @@
+.signin-modal .modal-content
+
+    > .modal-header
+        display: flex
+
+    > .modal-header > .modal-title
+        flex: 1
+
+    > .modal-body .form-group:last-of-type
+        margin-bottom: 0
+
+    > .modal-body .forgot
+        margin-top: 7px
+
+    > .modal-body .error
+        color: red
+
+    > .modal-footer
+        text-align: left
+
+    > .modal-footer > .button
+        @extend .btn
+
+    > .modal-footer > .button.-new
+        @extend .btn-default
+
+    > .modal-footer > .button.-signin
+        @extend .btn-primary
+        @extend .pull-right

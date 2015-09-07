@@ -20,7 +20,7 @@ gulp.task('s3Paths', function () {
             // .pipe(replace(/(href=")(?![http|\/\/])/g, '$1' + prefix))
 
             // Images
-            .pipe(replace(/(src=")(?![http|\/\/])/g, '$1' + prefix))
+            .pipe(replace(/(\ src=")(?![http|\/\/])/g, '$1' + prefix))
 
             // CSS Urls
             .pipe(replace(/(url\("\/)/g, '$1' + prefix.substring(1)))

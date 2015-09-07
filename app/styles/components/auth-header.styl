@@ -1,0 +1,40 @@
+.auth-header
+    background: transparent
+    color: #757575
+    display: flex
+    align-items: center
+    justify-content: center
+
+    > .signin
+        padding: 8px
+        text-align: center
+        color: #757575
+
+
+    > .signin:hover
+        background: rgba(green, 0.4)
+        text-decoration: none
+
+    > .signedin
+        color: #757575
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+
+    > .signedin > .avatar
+        $size = 40px
+        border-radius: 50%
+        height: $size
+        margin-right: 10px;
+        width: $size
+
+    > .signedin .user
+        font-weight: bold
+
+    > .signedin a
+        color: #757575
+        text-decoration: underline
+
+    > .signedin a:hover
+        color: lighten(#757575, 30%)

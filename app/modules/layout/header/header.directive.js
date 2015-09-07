@@ -27,7 +27,7 @@ function HeaderController($scope, $state) {
 
     vm.links = [
         {
-            label: 'Start Transcribing',
+            label: 'Transcribe',
             state: 'Transcribe'
         },
         {
@@ -35,11 +35,11 @@ function HeaderController($scope, $state) {
             state: 'ArtistList'
         },
         {
-            label: 'About AnnoTate',
+            label: 'About',
             state: 'About'
         },
         {
-            label: 'The Team',
+            label: 'Team',
             state: 'Team'
         }
     ];
