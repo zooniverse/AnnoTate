@@ -58,7 +58,7 @@ function draggable($rootScope, AnnotationsFactory, MarkingSurfaceFactory) {
 
 //         function startDrag(hammerEvent) {
 //             // $rootScope.$broadcast('markingTools:disable');
-//             markingSurfaceWasEnabled = MarkingSurfaceFactory.isEnabled;
+//             markingSurfaceWasEnabled = MarkingSurfaceFactory.isEnabled();
 //             if (markingSurfaceWasEnabled) {
 //                 MarkingSurfaceFactory.disable();
 //             }
