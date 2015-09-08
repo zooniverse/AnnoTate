@@ -2,6 +2,23 @@
 
 module.exports = {
 
+    'analytics': {
+        'src': 'build/index.html',
+        'dest': 'build/',
+        'containers': [
+            {
+                dataLayer: 'zooDataLayer',
+                tag: 'GTM-WDW6V4',
+                name: 'Zoo'
+            },
+            {
+                dataLayer: 'dataLayer',
+                tag: 'GTM-WQPJ9H',
+                name: 'Tate'
+            }
+        ]
+    },
+
     'browserify': {
         'bundleName': 'main.js',
         'entries': ['./app/modules/app.module.js'],
