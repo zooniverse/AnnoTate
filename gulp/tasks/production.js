@@ -11,10 +11,10 @@ gulp.task('production', ['clean'], function(cb) {
 
     runSequence(
         ['styles', 'images', 'fonts', 'views'],
-        // 'browserify',
+        'browserify',
         'analytics',
-        // 's3Paths',
-        // 'gzip',
+        's3Paths',
+        'gzip',
         cb);
 
 });
