@@ -34,8 +34,12 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
                 .appendTo(MarkingSurfaceFactory.svg.find('.image-annotations'));
         }
 
-        _hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+        _hammer.get('pan').set({
+            direction: Hammer.DIRECTION_ALL,
+            threshold: 0
+        });
         _hammer.on('panstart', _startRect);
+
         _enable();
         MarkingSurfaceFactory.disable();
     }
