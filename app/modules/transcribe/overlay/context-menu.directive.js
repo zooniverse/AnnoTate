@@ -62,14 +62,18 @@ function contextMenu(hotkeys) {
 function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFactory) {
 
     // Setup
+    var reactivateMarkingSurface;
     var vm = this;
     vm.close = closeMenu;
     vm.open = openMenu;
 
+
     // Methods
     function closeMenu() {
         $rootScope.$broadcast('markingTools:enable');
-        MarkingSurfaceFactory.enable();
+        if (reactivateMarkingSurface === true) {
+            MarkingSurfaceFactory.enable();
+        }
         vm.active = false;
         // Might be called by the event or the hotkey, so need to optionally run a digest
         $timeout(function () {
@@ -79,7 +83,10 @@ function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFacto
 
     function openMenu(data) {
         $rootScope.$broadcast('markingTools:disable');
-        MarkingSurfaceFactory.disable();
+        reactivateMarkingSurface = (MarkingSurfaceFactory.isEnabled()) ? true : false;
+        if (MarkingSurfaceFactory.isEnabled()) {
+            MarkingSurfaceFactory.disable();
+        }
         _positionMenu(data);
         vm.active = true;
         vm.menuOptions = data.menuOptions;

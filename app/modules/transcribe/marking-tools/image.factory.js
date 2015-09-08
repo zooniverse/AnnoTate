@@ -36,7 +36,7 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
 
         _hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
         _hammer.on('panstart', _startRect);
-        _enabled = true;
+        _enable();
         MarkingSurfaceFactory.disable();
     }
 
@@ -70,7 +70,9 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
     }
 
     function _disable() {
-        _enabled = false;
+        $timeout(function () {
+            _enabled = false;
+        });
     }
 
     function _drawRect(event) {
@@ -83,10 +85,9 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
     }
 
     function _enable() {
-        function setEnabled() {
+        $timeout(function () {
             _enabled = true;
-        }
-        $timeout(setEnabled);
+        });
     }
 
     function _endRect() {
