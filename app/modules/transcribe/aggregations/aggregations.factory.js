@@ -36,7 +36,7 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
         return zooAPIProject.get()
             .then(function (project) {
                 return {
-                    subject_id: SubjectsFactory.current.data.id,
+                    subject_id: '603260', //SubjectsFactory.current.data.id,
                     workflow_id: project.links.workflows[0]
                 };
             });
@@ -48,10 +48,14 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
     }
 
     function _formatAggregations(aggregations) {
+        console.log(aggregations)
         if (aggregations.length === 0) {
             return;
         } else {
             var rawAggs = _.omit(aggregations[0].aggregation.T2['text clusters'], 'param');
+            rawAggs = _.filter(rawAggs, function (line) {
+                return line['num users'] > 4;
+            });
             return _.map(rawAggs, function (line) {
                 return {
                     startPoint: {
