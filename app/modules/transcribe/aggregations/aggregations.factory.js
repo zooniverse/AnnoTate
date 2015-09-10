@@ -36,7 +36,7 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
         return zooAPIProject.get()
             .then(function (project) {
                 return {
-                    subject_id: '603260', //SubjectsFactory.current.data.id,
+                    subject_id: SubjectsFactory.current.data.id,
                     workflow_id: project.links.workflows[0]
                 };
             });
@@ -48,7 +48,6 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
     }
 
     function _formatAggregations(aggregations) {
-        console.log(aggregations)
         if (aggregations.length === 0) {
             return;
         } else {
