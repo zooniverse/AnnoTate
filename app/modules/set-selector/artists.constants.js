@@ -375,11 +375,11 @@ require('./set-selector.module.js')
         {
             active: true,
             artistId: "2096",
-            name: "Keith Vaughn",
+            name: "Keith Vaughan",
             image: "images/artists/vaughn.jpg",
-            imageCopyright: "Vaughn, TGA 9013/1/70. Artist Image © The estate of Keith Vaughan Photography © Tate, 2015.",
+            imageCopyright: "Vaughan, TGA 9013/1/70. Artist Image © The estate of Keith Vaughan Photography © Tate, 2015.",
             note: "Some material in this artists' collection is of a sensitive or explicit nature.",
-            bio: "Keith Vaughn (1912-1977) was an English painter and writer whose drawings of army life during the First World War brought him to prominence. Influenced heavily by early Neo-Romantics including Graham Sutherland, Henry Moore, and William Blake, Vaughn's pieces attempted to balance male nudes with abstract environments."
+            bio: "Keith Vaughan (1912-1977) was an English painter and writer whose drawings of army life during the First World War brought him to prominence. Influenced heavily by early Neo-Romantics including Graham Sutherland, Henry Moore, and William Blake, Vaughan's pieces attempted to balance male nudes with abstract environments."
         },
         {
             artistId: "2314",
