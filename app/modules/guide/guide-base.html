@@ -1,0 +1,17 @@
+<div class="guide-page">
+
+    <div class="row">
+
+        <nav class="nav">
+            <a
+                ng-repeat="section in vm.sections"
+                ui-sref-active="-active"
+                ui-sref="GuidePage({ page: section.slug })"
+                >{{ section.title }}</a>
+        </nav>
+
+        <div class="page" ui-view="page"></div>
+
+    </div>
+
+</div>
