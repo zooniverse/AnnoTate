@@ -12,35 +12,31 @@ require('./guide.module.js')
         },
         {
             slug: 'transcribing',
-            title: 'How to transcribe a line'
+            title: 'Annotating text'
         },
         {
             slug: 'images',
-            title: 'Images'
+            title: 'Annotating images'
         },
         {
             slug: 'blank',
             title: 'Blank pages'
         },
         {
-            slug: 'keyboard',
-            title: 'Keyboard shortcuts'
-        },
-        {
             slug: 'insertion',
-            title: 'Insertion'
+            title: 'Inserted text'
         },
         {
             slug: 'deletion',
-            title: 'Deletion'
+            title: 'Deleted text'
         },
         {
             slug: 'illegible',
-            title: 'Illegible'
+            title: 'Illegible text'
         },
         {
             slug: 'not-english',
-            title: 'Not English'
+            title: 'Non-English languages'
         }
     ]);
 
