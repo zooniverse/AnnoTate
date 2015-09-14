@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3 class="modal-title">Tutorial ({{ vm.page }} of 10)</h3>
+    <h3 class="modal-title">Tutorial ({{ vm.page }} of 11)</h3>
     <close-button ng-click="vm.close()"></close-button>
 </div>
 
@@ -63,10 +63,16 @@
         <p>Select 'Annotate Image' to draw bounding boxes around images. We are not gathering keywords about images, but you can discuss them on Talk. Use the hashtag symbol # to generate discussions around particular concepts, e.g. #sculpture, #loveletter etc.</p>
     </section>
 
+    <section ng-show="vm.page === 11">
+        <img src="/images/guide/black-dots.jpg">
+        <p class="copyright">TGA 8717/1/1/687 © Desmond Banks</p>
+        <p>Black dots are lines that have been transcribed by other users - <b>you don't need to transcribe them as well</b>.</p>
+    </section>
+
 </div>
 
 <div class="modal-footer">
     <button class="button -prev" ng-click="vm.page = vm.page - 1" ng-show="vm.page > 1">Previous</button>
-    <button class="button -next" ng-click="vm.page = vm.page + 1" ng-show="vm.page < 10">Next</button>
-    <button class="button -start" ng-click="vm.close()" ng-show="vm.page === 10">Get Started!</button>
+    <button class="button -next" ng-click="vm.page = vm.page + 1" ng-show="vm.page < 11">Next</button>
+    <button class="button -start" ng-click="vm.close()" ng-show="vm.page === 11">Get Started!</button>
 </div>

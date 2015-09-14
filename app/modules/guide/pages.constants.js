@@ -19,6 +19,10 @@ require('./guide.module.js')
             title: 'Annotating images'
         },
         {
+            slug: 'already-transcribed',
+            title: 'Black dots / previously transcribed lines'
+        },
+        {
             slug: 'blank',
             title: 'Blank pages'
         },
