@@ -29,6 +29,7 @@ function startApp() {
 
         // App modules
         'app.core',
+        'app.guide',
         'app.static',
         'app.404',
         'app.layout',
