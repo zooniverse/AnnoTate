@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 require('./guide.module.js')
     .config(Routes);
 
@@ -15,8 +13,7 @@ function Routes($stateProvider, $urlRouterProvider, GuidePages) {
             views: {
                 'main': {
                     templateUrl: 'guide/guide-base.html',
-                    // @ngInject
-                    controller: function ($state) {
+                    controller: function () {
                         var vm = this;
                         vm.sections = GuidePages;
                     },
@@ -42,9 +39,6 @@ function Routes($stateProvider, $urlRouterProvider, GuidePages) {
             }
         });
 
-    $urlRouterProvider
-        .when('/guide', '/guide/overview')
+    $urlRouterProvider.when('/guide', '/guide/overview');
 
 }
-
-
