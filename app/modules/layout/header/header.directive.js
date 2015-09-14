@@ -39,6 +39,10 @@ function HeaderController($scope, $state) {
             state: 'About'
         },
         {
+            label: 'Guide',
+            state: 'GuideBase'
+        },
+        {
             label: 'Team',
             state: 'Team'
         }
