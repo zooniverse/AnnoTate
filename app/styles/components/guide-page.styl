@@ -1,0 +1,25 @@
+.guide-page
+    @extend .container
+
+    > .row > .nav
+        @extend .col-xs-3
+        margin-top: 19px
+
+    > .row > .nav > a
+        display: block
+        padding: $padding-base-vertical 0
+        color: dark-grey
+
+    > .row > .nav > a.-active
+        font-weight: bold
+
+    > .row > .page
+        @extend .col-xs-9
+        font-size: 16px
+
+    > .row > .page a
+        color: dark-grey
+        text-decoration: underline
+
+    > .row > .page a:hover
+        color: darken(green, 40%)
