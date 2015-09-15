@@ -7,11 +7,10 @@ var Hammer = require('hammerjs');
 require('./overlay.module.js')
     .directive('contextMenu', contextMenu);
 
-// TODO: Add escape hotkey to close
 // TODO: Add arrow key / spacebar support
 
 // @ngInject
-function contextMenu(hotkeys) {
+function contextMenu(hotkeys, $timeout) {
     var directive = {
         controller: contextMenuController,
         controllerAs: 'vm',
@@ -26,8 +25,7 @@ function contextMenu(hotkeys) {
 
         // Setup
         var bodyEvent;
-        var overlay;
-        overlay = angular.element('.overlay').first();
+        scope.overlay = angular.element('.overlay').first();
         scope.position = {};
 
         // Events
@@ -48,10 +46,12 @@ function contextMenu(hotkeys) {
 
         function openContextMenu(event, data) {
             contextMenu.open(data);
-            bodyEvent.on('tap', closeContextMenu);
             hotkeys.add({
                 combo: 'esc',
                 callback: closeContextMenu
+            });
+            $timeout(function () {
+                bodyEvent.on('tap', closeContextMenu);
             });
         }
 
@@ -75,7 +75,8 @@ function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFacto
             MarkingSurfaceFactory.enable();
         }
         vm.active = false;
-        // Might be called by the event or the hotkey, so need to optionally run a digest
+        // Might be called by the event or the hotkey, so need to optionally run
+        // a digest. This is pretty ugly, but works for now.
         $timeout(function () {
             $scope.$digest();
         });
@@ -88,24 +89,19 @@ function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFacto
             MarkingSurfaceFactory.disable();
         }
         _positionMenu(data);
-        vm.active = true;
         vm.menuOptions = data.menuOptions;
-        $scope.$digest();
+        $timeout(function () {
+            vm.active = true;
+        });
     }
 
     function _positionMenu(data) {
-        var click = data.event.srcEvent;
-        vm.position = {
-            left: click.offsetX,
-            top: click.offsetY
-        };
-
-        // Firefox doesn't support offset, so we need to polyfill here.
-        if (_.isUndefined(click.offsetX) || _.isUndefined(click.offsetY)) {
+        var click = data.event.center;
+        $timeout(function () {
             vm.position = {
-                left: click.pageX - overlay.offset().left,
-                top: click.pageY - overlay.offset().top
+                left: click.x - $scope.overlay.offset().left,
+                top: click.y - $scope.overlay.offset().top
             };
-        }
+        });
     }
 }
