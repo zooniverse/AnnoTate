@@ -45,16 +45,15 @@ function MarkingSurfaceFactory(MarkingSurfaceConstants) {
         _svgPanZoom.enableZoom();
     }
 
-    function getPoint(event) {
+    function getPoint(hammerEvent) {
         var rotateContainer;
         var point;
         var result;
 
         rotateContainer = svgElement.find('.rotate-container')[0];
         point = svgElement[0].createSVGPoint();
-        event = (event.srcEvent) ? event.srcEvent : event;
-        point.x = event.clientX;
-        point.y = event.clientY;
+        point.x = hammerEvent.center.x;
+        point.y = hammerEvent.center.y;
 
         result = point.matrixTransform(rotateContainer.getScreenCTM().inverse());
 
