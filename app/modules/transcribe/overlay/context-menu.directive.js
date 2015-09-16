@@ -70,13 +70,13 @@ function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFacto
 
     // Methods
     function closeMenu() {
-        console.info('closing menu!')
         $rootScope.$broadcast('markingTools:enable');
         if (reactivateMarkingSurface === true) {
             MarkingSurfaceFactory.enable();
         }
         vm.active = false;
-        // Might be called by the event or the hotkey, so need to optionally run a digest
+        // Might be called by the event or the hotkey, so need to optionally run
+        // a digest. This is pretty ugly, but works for now.
         $timeout(function () {
             $scope.$digest();
         });
