@@ -5,12 +5,12 @@ var bulk = require('bulk-require');
 
 // Angular modules
 var appConfig = require('./app.config.js');
+require('es6-promise').polyfill();
 require('angular-bootstrap');
 require('angular-local-storage');
 require('angular-ui-router');
 require('angular-hotkeys');
 require('angular-animate');
-
 // App modules
 bulk(__dirname, ['./**/!(app.module).js']);
 
