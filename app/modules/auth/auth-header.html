@@ -1,5 +1,5 @@
 <div class="auth-header">
-    <a href ng-click="signIn()" ng-show="!user" class="signin">Sign in via Zooniverse</a>
+    <a ng-href="{{ signIn() }}" ng-show="!user" class="signin">Sign in via Zooniverse</a>
     <div class="signedin" ng-show="user">
         <img class="avatar" ng-src="{{ user.avatar.src }}">
         <div class="text">

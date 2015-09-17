@@ -4,7 +4,7 @@ require('./auth.module.js')
     .directive('authHeader', authHeader);
 
 // @ngInject
-function authHeader(authFactory, ModalsFactory) {
+function authHeader(authFactory) {
     var directive = {
         link: authHeaderLink,
         replace: true,
@@ -17,18 +17,9 @@ function authHeader(authFactory, ModalsFactory) {
     function authHeaderLink(scope) {
 
         // Setup
-        scope.user = authFactory.getUser();
-        scope.signIn = ModalsFactory.openSignIn;
+        // scope.user = authFactory.getUser();
+        scope.signInUrl = authFactory.signInUrl;
         scope.signOut = authFactory.signOut;
-
-        // Events
-        scope.$on('auth:signin', setUser);
-        scope.$on('auth:signout', setUser);
-
-        // Methods
-        function setUser() {
-            scope.user = authFactory.getUser();
-        }
 
     }
 
