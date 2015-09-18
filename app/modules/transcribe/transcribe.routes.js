@@ -5,7 +5,7 @@ require('./transcribe.module.js')
 
 // @ngInject
 function Routes($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.when('/classify', '/transcribe')
+    $urlRouterProvider.when('/classify', '/transcribe');
 
     $stateProvider
         .state('TranscribeSubjectSet', {

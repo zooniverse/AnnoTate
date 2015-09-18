@@ -9,20 +9,20 @@ function ModalsFactory($modal, ModalsConstants) {
     var factory;
 
     factory = {
+        openExpired: openExpired,
         openNext: openNext,
-        openSignIn: openSignIn,
         openTutorial: openTutorial,
         openTalk: openTalk
     };
 
     return factory;
 
-    function openNext() {
-        return $modal.open(ModalsConstants.next);
+    function openExpired() {
+        return $modal.open(ModalsConstants.expired);
     }
 
-    function openSignIn() {
-        return $modal.open(ModalsConstants.signIn);
+    function openNext() {
+        return $modal.open(ModalsConstants.next);
     }
 
     function openTalk() {

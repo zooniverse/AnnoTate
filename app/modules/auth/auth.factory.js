@@ -4,7 +4,7 @@ require('./auth.module.js')
     .factory('authFactory', authFactory);
 
 // @ngInject
-function authFactory($q, $rootScope, localStorageService, zooAPI) {
+function authFactory($interval, $location, $window, localStorageService, ModalsFactory, zooAPI, zooAPIConfig) {
 
     var factory;
 
@@ -12,16 +12,21 @@ function authFactory($q, $rootScope, localStorageService, zooAPI) {
         localStorageService.set('user', null);
     }
 
-    zooAPI.auth.checkCurrent()
-        .then(function (response) {
-            if (response === null) {
-                clearUser();
-            } else {
-                return setUser(response);
-            }
-        });
+    if (localStorageService.get('auth') === null) {
+        localStorageService.set('auth', null);
+    } else {
+        var auth = localStorageService.get('auth');
+        if (0 < (Math.floor(Date.now() / 1000) - auth.token_start) < auth.expires_in) {
+            _setToken(auth.access_token);
+            _startTimer();
+            _setUserData();
+        } else {
+            signOut();
+        }
+    }
 
     factory = {
+        completeSignIn: completeSignIn,
         signIn: signIn,
         signOut: signOut,
         getUser: getUser
@@ -29,41 +34,74 @@ function authFactory($q, $rootScope, localStorageService, zooAPI) {
 
     return factory;
 
-    function clearUser() {
-        localStorageService.set('user', null);
-        $rootScope.$broadcast('auth:signout');
+    function completeSignIn(params) {
+        localStorageService.set('auth', {
+            access_token: params.access_token,
+            token_start: Date.now(),
+            // Convert to milliseconds for consistency
+            expires_in: params.expires_in * 1000
+        });
+        _setToken(params.access_token);
+        _startTimer();
+        return _setUserData()
+            .then(function () {
+                $window.location.href = localStorageService.get('redirectOnSignIn');
+            });
     }
 
     function getUser() {
         return localStorageService.get('user');
     }
 
-    function setUser(userData) {
-        var user = userData;
-        return userData.get('avatar')
+    function _setToken(token) {
+        zooAPI.headers.Authorization = 'Bearer ' + token;
+    }
+
+    function _setUserData() {
+        return zooAPI.type('me').get()
             .then(function (response) {
-                user.avatar = response[0];
-                localStorageService.set('user', user);
-                $rootScope.$broadcast('auth:signin');
+                response = response[0];
+                var user = {};
+                user.display_name = response.display_name;
+                return response.get('avatar')
+                    .then(function (response) {
+                        response = response[0];
+                        if (response.src) {
+                            user.avatar = response.src;
+                        }
+                    })
+                    .then(function () {
+                        localStorageService.set('user', user);
+                    });
+            }, function (error) {
+                console.warn('Error logging in', error);
             });
     }
 
-    function signIn(signInObject) {
-        return zooAPI.auth.signIn(signInObject)
-            .then(setUser, function (response) {
-                var error;
-                if (response.message === 'null') {
-                    error = 'There was an error logging in, please try again later.';
-                } else {
-                    error = 'Invalid username or password, please try again.';
-                }
-                return $q.reject(error)
-            });
+    function signIn() {
+        localStorageService.set('redirectOnSignIn', $location.absUrl());
+        $window.location.href = zooAPI.root.match(/^(.*)\/[^/]*$/)[1] +
+            '/oauth/authorize' +
+            '?response_type=token' +
+            '&client_id=' +
+            zooAPIConfig.app_id +
+            '&redirect_uri=' +
+            $location.absUrl();
     }
 
     function signOut() {
-        clearUser();
-        return zooAPI.auth.signOut();
+        delete zooAPI.headers.Authorization;
+        localStorageService.set('auth', null);
+        localStorageService.set('user', null);
+    }
+
+    function _startTimer() {
+        var auth = localStorageService.get('auth');
+        var expiry = auth.token_start + auth.expires_in - Date.now();
+        $interval(function () {
+            signOut();
+            ModalsFactory.openExpired();
+        }, expiry, 1);
     }
 
 }
