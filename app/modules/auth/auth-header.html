@@ -1,12 +1,12 @@
 <div class="auth-header">
-    <a ng-href="{{ signIn() }}" ng-show="!user" class="signin">Sign in via Zooniverse</a>
-    <div class="signedin" ng-show="user">
-        <img class="avatar" ng-src="{{ user.avatar.src }}">
+    <a href ng-click="vm.signIn()" ng-show="!vm.user" class="signin">Sign in via Zooniverse</a>
+    <div class="signedin" ng-show="vm.user">
+        <img class="avatar" ng-src="{{ vm.user.avatar }}">
         <div class="text">
-            <div class="user">{{ user.display_name }}</div>
+            <div class="user">{{ vm.user.display_name }}</div>
             <div class="controls">
                 <a href="https://www.zooniverse.org/#/settings" target="_blank">Settings</a>
-                <a href ng-click="signOut()">Logout</a>
+                <a href ng-click="vm.signOut()">Logout</a>
             </div>
         </div>
     </div>

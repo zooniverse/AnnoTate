@@ -4,22 +4,24 @@ require('./auth.module.js')
     .config(Routes);
 
 // @ngInject
-function Routes($stateProvider, $urlRouterProvider, AuthFactory) {
+function Routes($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.when(/\/access_token/, fixAuthUrl);
 
     $stateProvider.state('completeAuth', {
         url: '/auth',
-        onEnter: completeAuth
+        template: '',
+        controller: CompleteAuthController
     });
 
-    // @ngInject
-    function completeAuth($location) {
-        AuthFactory.completeAuth($location.search());
-    }
+}
 
-    // @ngInject
-    function fixAuthUrl($match) {
-        return '/auth?' + $match.input.substr(1);
-    }
+// @ngInject
+function CompleteAuthController($location, authFactory) {
+    authFactory.completeSignIn($location.search());
+}
+
+// @ngInject
+function fixAuthUrl($match) {
+    return '/auth?' + $match.input.substr(1);
 }
