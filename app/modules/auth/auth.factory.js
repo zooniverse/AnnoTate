@@ -4,7 +4,7 @@ require('./auth.module.js')
     .factory('authFactory', authFactory);
 
 // @ngInject
-function authFactory($location, $window, localStorageService, zooAPI, zooAPIConfig) {
+function authFactory($interval, $location, $window, localStorageService, ModalsFactory, zooAPI, zooAPIConfig) {
 
     var factory;
 
@@ -16,8 +16,9 @@ function authFactory($location, $window, localStorageService, zooAPI, zooAPIConf
         localStorageService.set('auth', null);
     } else {
         var auth = localStorageService.get('auth');
-        if ((Math.floor(Date.now() / 1000) - auth.token_start) < auth.expires_in) {
+        if (0 < (Math.floor(Date.now() / 1000) - auth.token_start) < auth.expires_in) {
             _setToken(auth.access_token);
+            _startTimer();
             _setUserData();
         } else {
             signOut();
@@ -36,10 +37,12 @@ function authFactory($location, $window, localStorageService, zooAPI, zooAPIConf
     function completeSignIn(params) {
         localStorageService.set('auth', {
             access_token: params.access_token,
-            token_start: Math.floor(Date.now() / 1000),
-            expires_in: params.expires_in
+            token_start: Date.now(),
+            // Convert to milliseconds for consistency
+            expires_in: params.expires_in * 1000
         });
         _setToken(params.access_token);
+        _startTimer();
         return _setUserData()
             .then(function () {
                 $window.location.href = localStorageService.get('redirectOnSignIn');
@@ -90,6 +93,15 @@ function authFactory($location, $window, localStorageService, zooAPI, zooAPIConf
         delete zooAPI.headers.Authorization;
         localStorageService.set('auth', null);
         localStorageService.set('user', null);
+    }
+
+    function _startTimer() {
+        var auth = localStorageService.get('auth');
+        var expiry = auth.token_start + auth.expires_in - Date.now();
+        $interval(function () {
+            signOut();
+            ModalsFactory.openExpired();
+        }, expiry, 1);
     }
 
 }

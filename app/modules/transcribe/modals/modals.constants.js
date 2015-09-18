@@ -31,5 +31,12 @@ require('./modals.module.js')
             controllerAs: 'vm',
             size: 'md',
             windowClass: 'tutorial-modal'
+        },
+        expired: {
+            templateUrl: 'modals/expired.html',
+            controller: 'ExpiredController',
+            controllerAs: 'vm',
+            size: 'md',
+            windowClass: 'expired-modal'
         }
     });
