@@ -10,7 +10,7 @@ function Routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state('completeAuth', {
         url: '/auth',
-        template: '',
+        template: 'Logging in...',
         controller: CompleteAuthController
     });
 

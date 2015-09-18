@@ -86,7 +86,7 @@ function authFactory($interval, $location, $window, localStorageService, ModalsF
             '&client_id=' +
             zooAPIConfig.app_id +
             '&redirect_uri=' +
-            $location.absUrl();
+            $location.absUrl().match(/.+?(?=\/\#\/)/)[0];
     }
 
     function signOut() {
