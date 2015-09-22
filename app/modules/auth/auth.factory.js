@@ -69,6 +69,8 @@ function authFactory($interval, $location, $window, localStorageService, ModalsF
                         if (response.src) {
                             user.avatar = response.src;
                         }
+                    }, function () {
+                        return;
                     })
                     .then(function () {
                         localStorageService.set('user', user);
