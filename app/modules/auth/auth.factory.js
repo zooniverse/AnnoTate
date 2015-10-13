@@ -8,6 +8,8 @@ function authFactory($interval, $location, $window, localStorageService, ModalsF
 
     var factory;
 
+    console.log(zooAPI)
+
     if (localStorageService.get('user') === null) {
         localStorageService.set('user', null);
     }
@@ -95,6 +97,7 @@ function authFactory($interval, $location, $window, localStorageService, ModalsF
         delete zooAPI.headers.Authorization;
         localStorageService.set('auth', null);
         localStorageService.set('user', null);
+        zooAPI.auth.signOut();
     }
 
     function _startTimer() {
