@@ -3,12 +3,15 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased][Unreleased]
 ### Added
-- s3 upload util, and production, preview and alpha deploy targets
+- S3 upload util, and production, preview and alpha deploy targets
 
 ### Changed
 - Fixed dependency injection in app config
 - Misc formatting, cosmetic tweaks
 - Artist subject sets are now retrieved by metadata filtering on artistId, not grabbing all of the sets
+- Login flow swapped for OAuth
+- Signing out now closes the Panoptes session as well
+- ...lots more, have a look at the git log.
 
 ## [1.0.0] - 11 May 2015
 ### Added
