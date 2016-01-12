@@ -96,6 +96,8 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
 
     function _endRect() {
         _hammer.off('panmove', _drawRect);
+        _hammer.off('panend', _endRect);
+
         AnnotationsFactory.upsert({
             type: 'image',
             x: _rect.attr('x'),
@@ -103,10 +105,12 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
             width: _rect.attr('width'),
             height: _rect.attr('height')
         });
+
         _rect.attr({
             width: 0,
             height: 0
         });
+
         $rootScope.$digest();
     }
 
