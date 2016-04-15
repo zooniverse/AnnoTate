@@ -43,7 +43,9 @@ function authFactory($location, $rootScope, localStorageService, zooAPI) {
             .then(function (response) {
                 var response = response[0];
                 _user.avatar = (response.src) ? response.src : null;
-                $rootScope.$broadcast('auth:loginChange', _user);
+                return _user;
+            }, function(error) {
+                console.info('No avatar found for', _user.id);
                 return _user;
             })
             .catch(function (error) {
