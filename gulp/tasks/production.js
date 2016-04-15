@@ -3,9 +3,9 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
-gulp.task('production', ['clean'], function(cb) {
+gulp.task('production', ['clean'], function(callback) {
 
-    cb = cb || function() {};
+    callback = callback || function() {};
 
     global.isProd = true;
 
@@ -15,6 +15,6 @@ gulp.task('production', ['clean'], function(cb) {
         'analytics',
         's3Paths',
         'gzip',
-        cb);
+        callback);
 
 });
