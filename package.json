@@ -113,7 +113,9 @@
     "watchify": "^2.0.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/gulp dev"
+    "start": "gulp dev",
+    "deploy-staging": "NODE_ENV=production gulp deploy-staging",
+    "deploy-production": "NODE_ENV=production gulp deploy-production"
   },
   "browser": {
     "./node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js": "angular-bootstrap"
