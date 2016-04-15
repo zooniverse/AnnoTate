@@ -121,5 +121,8 @@
   },
   "browserify-shim": {
     "angular-bootstrap": "angular-bootstrap"
+  },
+  "dependencies": {
+    "envify": "^3.4.0"
   }
 }

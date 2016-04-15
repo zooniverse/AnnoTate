@@ -6,6 +6,7 @@ var browserSync = require('browser-sync');
 var buffer = require('vinyl-buffer');
 var config = require('../config');
 var debowerify = require('debowerify');
+var envify = require('envify');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
@@ -46,6 +47,10 @@ function buildScript(file) {
 
     transforms.forEach(function(transform) {
         bundler.transform(transform);
+    });
+
+    bundler.transform(envify, {
+        global: true
     });
 
     function rebundle() {
