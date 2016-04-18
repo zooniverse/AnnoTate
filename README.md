@@ -8,11 +8,13 @@ A full-text transcription web app, written for the Tate Britain.
 
 To install, clone the repo and run `npm install`
 
-To develop locally, run `gulp dev`. Your browser will automatically be opened and directed to the browser-sync proxy address, and the server will serve files from the `/build` directory. Any changes in the `/app` directory will be automatically processed by Gulp, and the changes injected to any open browsers pointed at the proxy address.
+To develop locally, run `npm start`. Your browser will automatically be opened and directed to the browser-sync proxy address, and the server will serve files from the `/build` directory. Any changes in the `/app` directory will be automatically processed by Gulp, and the changes injected to any open browsers pointed at the proxy address.
 
-To prepare assets for production, run the `gulp prod` task (Note: the production task does not fire up the Express server).
+__NOTE__: this app wasn't developed against staging, so while there is a staging app for testing auth, it _probably won't work otherwise_. To get it running locally as expected, run `NODE_ENV=production npm start`;
 
-To deploy to [preview.zooniverse.org/transcribe](http://preview.zooniverse.org/transcribe), run `make deploy-preview`
+To deploy to [http://preview.zooniverse.org/annotate/](http://preview.zooniverse.org/annotate/) run `npm run deploy-staging`.
+
+To deploy to [https://anno.tate.org.uk/](https://anno.tate.org.uk) run `npm run deploy-production`.
 
 ---
 

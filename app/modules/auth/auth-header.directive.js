@@ -21,10 +21,16 @@ function AuthHeaderController($scope, authFactory) {
     vm.signIn = authFactory.signIn;
     vm.signOut = authFactory.signOut;
     vm.user = authFactory.getUser();
-
-    $scope.$on('LocalStorageModule.notification.setitem', function (event, data) {
-        if (data.key === 'user') {
-            vm.user = authFactory.getUser();
+    $scope.$on('auth:loginChange', function (event, data) {
+        // Weirdly, the digest cycle is firing when the user logs out, but not
+        // when we log in, so we're wrapping auth data in an `$apply` here. It's
+        // not the most elegant solution, but it works.
+        if (data && data.id) {
+            $scope.$apply(function () {
+                vm.user = data;
+            });
+        } else {
+            vm.user = false;
         }
     });
 }

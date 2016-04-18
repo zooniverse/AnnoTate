@@ -99,7 +99,6 @@
     "nib": "^1.1.0",
     "node-dir": "^0.1.6",
     "npm": "^2.9.0",
-    "panoptes-client": "^0.1.1",
     "pretty-hrtime": "^0.2.2",
     "protractor": "^1.2.0",
     "q": "^1.2.0",
@@ -114,12 +113,18 @@
     "watchify": "^2.0.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/gulp dev"
+    "start": "gulp dev",
+    "deploy-staging": "NODE_ENV=production gulp deploy-staging",
+    "deploy-production": "NODE_ENV=production gulp deploy-production"
   },
   "browser": {
     "./node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js": "angular-bootstrap"
   },
   "browserify-shim": {
     "angular-bootstrap": "angular-bootstrap"
+  },
+  "dependencies": {
+    "envify": "^3.4.0",
+    "panoptes-client": "^2.2.1"
   }
 }

@@ -34,7 +34,7 @@ module.exports = {
             'Bucket': 'zooniverse-static',
             'Prefix': 'preview.zooniverse.org/transcribe/',
         },
-        'preview': {
+        'staging': {
             'Bucket': 'zooniverse-static',
             'Prefix': 'preview.zooniverse.org/annotate/',
         }
