@@ -48,6 +48,9 @@ function authFactory($location, $rootScope, localStorageService, zooAPI) {
                 console.info('No avatar found for', _user.id);
                 return _user;
             })
+            .then(function(user) {
+                $rootScope.$broadcast('auth:loginChange', user);
+            })
             .catch(function (error) {
                 console.error('Error setting user data', error);
             });
