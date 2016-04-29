@@ -80,7 +80,7 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
     }
 
     function _drawRect(event) {
-        var newPoint = _getPoint(event);
+        var newPoint = MarkingSurfaceFactory.getPoint(event);
         _rect.attr('x', (_origin.x < newPoint.x) ? _origin.x : newPoint.x);
         _rect.attr('y', (_origin.y < newPoint.y) ? _origin.y : newPoint.y);
         _rect.attr('width', (_origin.x < newPoint.x) ? newPoint.x - _rect.attr('x') : _origin.x - newPoint.x);
@@ -114,15 +114,11 @@ function imageTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFacto
         $rootScope.$digest();
     }
 
-    function _getPoint(event) {
-        return MarkingSurfaceFactory.getPoint(event.srcEvent);
-    }
-
     function _startRect(event) {
         if (_enabled && event.target.nodeName === 'image') {
             _hammer.on('panmove', _drawRect);
             _hammer.on('panend', _endRect);
-            _origin = _getPoint(event);
+            _origin = MarkingSurfaceFactory.getPoint(event);
             _rect.attr(_origin);
             _subject = MarkingSurfaceFactory.svg.find('.subject').first()[0].getBBox();
         }

@@ -47,14 +47,15 @@ function textTool($rootScope, $timeout, AnnotationsFactory, MarkingSurfaceFactor
     }
 
     function _disable() {
-        _enabled = false;
+        $timeout(function () {
+            _enabled = false;
+        });
     }
 
     function _enable() {
-        function setEnabled() {
+        $timeout(function () {
             _enabled = true;
-        }
-        $timeout(setEnabled);
+        });
     }
 
     function _endLine(event, annotation) {
