@@ -1,6 +1,6 @@
 'use strict';
 
-var PanoptesClient = require('panoptes-client');
+var oauth = require('panoptes-client/lib/oauth');
 
 require('./auth.module.js')
     .factory('authFactory', authFactory);
@@ -12,7 +12,7 @@ function authFactory($location, $rootScope, localStorageService, zooAPI) {
 
     var _user = {};
 
-    PanoptesClient.oauth.checkCurrent()
+    oauth.checkCurrent()
       .then(function (user) {
         if (user) {
             _setUserData();
@@ -57,13 +57,13 @@ function authFactory($location, $rootScope, localStorageService, zooAPI) {
     }
 
     function signIn() {
-        PanoptesClient.oauth.signIn($location.absUrl())
+        oauth.signIn($location.absUrl())
     }
 
     function signOut() {
         _user = {};
         $rootScope.$broadcast('auth:loginChange');
-        PanoptesClient.oauth.signOut();
+        oauth.signOut();
     }
 
 }

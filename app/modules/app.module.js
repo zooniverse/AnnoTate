@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 var bulk = require('bulk-require');
-var oauth = require('panoptes-client').oauth;
+var oauth = require('panoptes-client/lib/oauth');
 
 // Angular modules
 var appConfig = require('./app.config.js');

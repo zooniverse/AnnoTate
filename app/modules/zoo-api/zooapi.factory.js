@@ -3,9 +3,9 @@
 require('./zooapi.module.js')
     .factory('zooAPI', zooAPI);
 
-var Panoptes = require('panoptes-client');
+var apiClient = require('panoptes-client/lib/api-client');
 
 // @ngInject
 function zooAPI(zooAPIConfig) {
-    return Panoptes.apiClient;
+    return apiClient;
 }
