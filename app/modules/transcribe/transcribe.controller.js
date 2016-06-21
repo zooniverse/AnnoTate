@@ -75,7 +75,7 @@ function TranscribeController($stateParams, $modal, $scope, $window, Aggregation
 
     function subjectLoaded() {
         vm.subject = SubjectsFactory.current;
-
+        console.log(vm.subject)
         var metadata = vm.subject.data.metadata;
         vm.copyright = metadata.acno.substring(0, metadata.acno.lastIndexOf('/')) + ' ' + metadata.copyright + '.';
     }

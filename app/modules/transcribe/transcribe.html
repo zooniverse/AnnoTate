@@ -25,6 +25,33 @@
 
                 <image subject class="subject"></image>
 
+                <g class="ribbons" ng-show="vm.subject.data.already_seen || vm.subject.data.retired">
+                    <path
+                        d="M100,0 L150,0 L0,150 L0,100 Z"
+                        fill="#d1e54e" />
+                    <text
+                        x="0"
+                        y="93"
+                        text-anchor="middle"
+                        transform="rotate(-45)"
+                        fill="#39403e"
+                        font-weight="bold"
+                        ng-show="vm.subject.data.already_seen && !vm.subject.data.retired"
+                    >ALREADY SEEN!</text>
+                    <text
+                        x="0"
+                        y="93"
+                        text-anchor="middle"
+                        transform="rotate(-45)"
+                        fill="#39403e"
+                        font-weight="bold"
+                        ng-show="vm.subject.data.retired"
+                    >ALREADY FINISHED!</text>
+                </g>
+
+
+
+
                 <g class="previous-lines">
                     <g
                         previous-line
