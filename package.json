@@ -14,13 +14,13 @@
     }
   ],
   "description": "A full-text transcription web app, written for the Tate Britain.",
-  "homepage": "http://anno.tate.org.uk/",
+  "homepage": "https://anno.tate.org.uk/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zooniverse/transcribe"
+    "url": "https://github.com/zooniverse/AnnoTate"
   },
   "bugs": {
-    "url": "https://github.com/zooniverse/transcribe/issues"
+    "url": "https://github.com/zooniverse/AnnoTate/issues"
   },
   "license": "Apache-2.0",
   "keywords": [

@@ -16,6 +16,10 @@ To deploy to [http://preview.zooniverse.org/annotate/](http://preview.zooniverse
 
 To deploy to [https://anno.tate.org.uk/](https://anno.tate.org.uk) run `npm run deploy-production`.
 
+## Adding new artists
+
+To upload new subjects and sets, use [annotate-uploader](https://github.com/rogerhutchings/annotate-uploader), which will add all the required metadata needed to group by artist. You'll also need to add any new artists to `app/modules/set-selector/artists.constants.js`.
+
 ---
 
 ## Built using:
