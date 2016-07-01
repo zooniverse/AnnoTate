@@ -45,6 +45,13 @@ require('./set-selector.module.js')
             bio: "Stuart Brisley (b.1933) is an English artist and sculptor. Influenced by Marxist counter-cultural politics in the 1960s, he adopted performance as the democratic basis for a new relationship between artist and audience. Despite changes in media over time, Brisley's critical motivations remain unchanged: the production of a political art capable of capturing the 'morbid symptoms' of capitalist culture."
         },
         {
+            artistId: "22430",
+            name: "Felicia Browne",
+            image: "images/artists/browne.jpg",
+            imageCopyright: "Browne, TGA 201023/3/1. Photography © Tate, 2015.",
+            bio: "Felicia Browne (1904-1936) was a painter, sculptor, and teacher whose studies in Berlin made her a witness to the rise of Nazism.  After a driving trip to Spain, Browne and photographer Edith Bone joined a Communist militia fighting in the Spanish Civil War, and was killed in action on 25 August 1936 after a failed attempt to blow up a Fascist munitions train."
+        },
+        {
             artistId: "921",
             name: "Prunella Clough",
             image: "images/artists/clough.jpg",
