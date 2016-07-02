@@ -6,7 +6,7 @@ require('./set-selector.module.js')
     .factory('ArtistsFactory', ArtistsFactory);
 
 // @ngInject
-function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConfig, zooAPI) {
+function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
 
     var factory;
     var _artistSets = {};
