@@ -6,15 +6,10 @@ require('./set-selector.module.js')
     .factory('ArtistsFactory', ArtistsFactory);
 
 // @ngInject
-function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConfig, zooAPI) {
-
-    if (localStorageService.get('artistSets') === null) {
-        localStorageService.set('artistSets', {});
-    }
+function ArtistsFactory($q, ArtistListConstants, zooAPIConfig, zooAPI) {
 
     var factory;
-    var _artists = _.filter(ArtistListConstants, { active: true });
-    var _artistSets = localStorageService.get('artistSets');
+    var _artistSets = {};
 
     factory = {
         detail: detail,
@@ -23,35 +18,33 @@ function ArtistsFactory($q, ArtistListConstants, localStorageService, zooAPIConf
 
     return factory;
 
-    function _getSets(artist) {
-        return zooAPI.type('subject_sets').get({
-            'project_id': zooAPIConfig.project_id,
-            'metadata.artistId': parseInt(artist.artistId, 10),
-            'page_size': 150
-        }).then(function (sets) {
-            artist.sets = sets;
-            _artistSets[artist.artistId] = sets;
-            localStorageService.set('artistSets', _artistSets);
-            return artist;
-        }, function (response) {
-            console.error('Error getting sets', response);
-            return artist;
-        });
+    function _getSets(artistId) {
+        return zooAPI.type('subject_sets')
+            .get({
+                'project_id': zooAPIConfig.project_id,
+                'metadata.artistId': artistId,
+                'page_size': 150
+            })
+            .then(function (sets) {
+                _artistSets[artistId] = sets;
+                return sets;
+            })
+            .catch(function (error) {
+                console.error('Error getting sets for artist ID ' + artist, error);
+            });
     }
 
     function detail(artistId) {
-        var artist = _.find(_artists, { artistId: artistId });
-        if (_artistSets[artistId]) {
-            artist.sets = _artistSets[artistId];
-            _getSets(artist);
-            return $q.when(artist);
-        } else {
-            return _getSets(artist);
-        }
+        var artist = _.assign({}, _.find(ArtistListConstants, { artistId: artistId }));
+        return $q.when(_artistSets[artistId] || _getSets(artistId))
+            .then(function (sets) {
+                artist.sets = sets;
+                return artist;
+            });
     }
 
     function list(listLength) {
-        return (listLength) ? _.sample(_artists, listLength) : _artists;
+        return (listLength) ? _.sample(ArtistListConstants, listLength) : ArtistListConstants;
     }
 
 }
