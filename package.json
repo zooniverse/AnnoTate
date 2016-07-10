@@ -114,6 +114,7 @@
   },
   "scripts": {
     "start": "gulp dev",
+    "build": "NODE_ENV=production gulp production",
     "deploy-staging": "NODE_ENV=production gulp deploy-staging",
     "deploy-production": "NODE_ENV=production gulp deploy-production"
   },
