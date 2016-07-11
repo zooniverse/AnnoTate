@@ -1,0 +1,42 @@
+language: node_js
+
+node_js:
+  - "4"
+
+# Requirements for Node v4
+# https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-(or-io.js-v3)-compiler-requirements
+env:
+  - CXX=g++-4.8
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+before_deploy:
+  - npm install -g gulp
+  - npm run build
+
+deploy:
+  skip_cleanup: true
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: "zooniverse-static"
+  upload-dir: anno.tate.org.uk
+  acl: public_read
+  local_dir: public
+  on:
+    branch: master
+
+notifications:
+  email: false
