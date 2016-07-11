@@ -34,7 +34,7 @@ deploy:
   bucket: "zooniverse-static"
   upload-dir: anno.tate.org.uk
   acl: public_read
-  local_dir: public
+  local_dir: build
   on:
     branch: master
 
