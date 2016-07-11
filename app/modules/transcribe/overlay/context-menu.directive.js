@@ -59,7 +59,7 @@ function contextMenu(hotkeys) {
 }
 
 // @ngInject
-function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFactory) {
+function contextMenuController($element, $rootScope, $scope, $timeout, MarkingSurfaceFactory) {
 
     // Setup
     var reactivateMarkingSurface;
@@ -87,25 +87,51 @@ function contextMenuController($rootScope, $scope, $timeout, MarkingSurfaceFacto
         if (MarkingSurfaceFactory.isEnabled()) {
             MarkingSurfaceFactory.disable();
         }
-        _positionMenu(data);
-        vm.active = true;
-        vm.menuOptions = data.menuOptions;
-        $scope.$digest();
+        $timeout(function () {
+            vm.menuOptions = data.menuOptions;
+            vm.active = true;
+        });
+        $timeout(function () {
+            _positionMenu(data);
+        }, 10);
+    }
+
+    // via http://stackoverflow.com/a/28857255/3122450
+    function _getElementOffset(element) {
+        var de = document.documentElement;
+        var box = element.getBoundingClientRect();
+        var top = box.top + window.pageYOffset - de.clientTop;
+        var left = box.left + window.pageXOffset - de.clientLeft;
+        return { top: top, left: left };
     }
 
     function _positionMenu(data) {
         var click = data.event.srcEvent;
-        vm.position = {
-            left: click.offsetX,
-            top: click.offsetY
+        var overlay = document.getElementsByClassName('overlay-layer')[0];
+        var overlaySize = overlay.getBoundingClientRect();
+        var menuSize = $element[0].getBoundingClientRect();
+        var newPosition = {
+            left: click.clientX,
+            top: click.clientY - _getElementOffset(overlay).top,
         };
 
-        // Firefox doesn't support offset, so we need to polyfill here.
-        if (_.isUndefined(click.offsetX) || _.isUndefined(click.offsetY)) {
-            vm.position = {
-                left: click.pageX - overlay.offset().left,
-                top: click.pageY - overlay.offset().top
-            };
+        if (newPosition.left + menuSize.width > overlaySize.width) {
+            newPosition.left = click.clientX - menuSize.width;
         }
+
+        if (newPosition.top + menuSize.height > overlaySize.height) {
+            newPosition.top = newPosition.top - menuSize.height;
+        }
+
+        console.log('click', click)
+        vm.position = newPosition;
+
+        // Firefox doesn't support offset, so we need to polyfill here.
+        // if (_.isUndefined(click.offsetX) || _.isUndefined(click.offsetY)) {
+        //     vm.position = {
+        //         left: click.pageX - overlay.offset().left,
+        //         top: click.pageY - overlay.offset().top
+        //     };
+        // }
     }
 }
