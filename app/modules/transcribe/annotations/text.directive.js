@@ -10,7 +10,6 @@ require('./annotations.module.js')
 function textAnnotation($rootScope, annotationsConfig, AnnotationsFactory) {
     var directive = {
         link: textAnnotationLink,
-        replace: true,
         restrict: 'A',
         scope: {
             data: '='

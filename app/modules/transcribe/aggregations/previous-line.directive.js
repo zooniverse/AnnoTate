@@ -7,7 +7,6 @@ require('./aggregations.module.js')
 function previousLine() {
     var directive = {
         replace: true,
-        restrict: 'A',
         scope: {
             data: '='
         },
