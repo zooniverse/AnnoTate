@@ -6,7 +6,7 @@ require('./aggregations.module.js')
 // @ngInject
 function previousLine() {
     var directive = {
-        replace: true,
+        restrict: 'A',
         scope: {
             data: '='
         },
