@@ -91,17 +91,15 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
             return zooAPIProject.get()
                 .then(function (project) {
                     if (_subjectSet) {
-                        return zooAPI.type('subjects').get({
+                        return zooAPI.get('/subjects/queued', {
                             page: page,
-                            sort: 'queued',
                             workflow_id: project.links.workflows[0],
                             subject_set_id: _subjectSet,
                             order: 'asc'
                         });
                     } else {
-                        return zooAPI.type('subjects').get({
+                        return zooAPI.get('/subjects/queued', {
                             page: page,
-                            sort: 'queued',
                             workflow_id: project.links.workflows[0],
                             subject_set_id: _.sample(project.links.subject_sets)
                         });
