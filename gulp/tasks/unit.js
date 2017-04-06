@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp   = require('gulp');
-var karma  = require('gulp-karma');
+var karma  = require('karma');
 var config = require('../config');
 
 gulp.task('unit', function() {
