@@ -81,11 +81,6 @@ module.exports = {
         'dest': 'build/css'
     },
 
-    'test': {
-        'karma': 'test/karma.conf.js',
-        'protractor': 'test/protractor.conf.js'
-    },
-
     'views': {
         'watch': [
             'app/index.html',
