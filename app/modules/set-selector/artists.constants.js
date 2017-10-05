@@ -205,5 +205,55 @@ require('./set-selector.module.js')
             image: "images/artists/wilson.jpg",
             imageCopyright: "Wilson, TGA 9024/1. Photography © Tate, 2015.",
             bio: "Robert \"Scottie\" Wilson (1889-1972) was a self-taught painter of imaginative subjects. He began to draw only after his second-hand furniture shop in Toronto was unsuccessful. He exhibited in the 1947 International Surrealism Exhibition, and his designs were used for tapestries and pottery designs."
+        },
+        {
+            artistId: "671",
+            name: "Conrad Atkinson",
+            image: "images/artists/atkinson.jpg",
+            imageCopyright: "Atkinson, TGA-201020-3-2-1. © Conrad Atkinson",
+            bio: "Conrad Atkinson was born in Cumbria in 1940 and worked as a teacher and artist using a varied range of media. He gained degrees from Carlisle College of Art, Liverpool College of Art and the Royal Academy Schools between 1957 and 1965, later winning a Granada Fellowship."
+        },
+        {
+            artistId: "18996",
+            name: "Dame Eileen Mayo",
+            image: "images/artists/mayo.jpg",
+            imageCopyright: "Mayo, TGA-916-24-1. © Reproduced with permission of the Estate of Dame Laura Knight DBE RA RWS 2015.  All rights reserved.",
+            bio: "Dame Eileen Rosemary Mayo (1906–1994) was an artist and designer who worked in England, Australia and New Zealand in almost every available medium — drawings, woodcuts, lithographs on stone and tempera, tapestry and silk screening. In addition to being a printmaker, illustrator, calligrapher and muralist, she designed coins, stamps, tapestry and posters, and wrote and illustrated eight books on natural science."
+        },
+        {
+            name: "Ian Hamilton Finlay",
+            artistId: "1093",
+            imageCopyright: "Finlay, TGA 20012/35/1/10. © The estate of Ian Hamilton Finlay.",
+            image: "images/artists/finlay.jpg",
+            bio: "Ian Hamilton Finlay (1925–2006) was a Scottish poet, writer, artist and gardener. He was nominated for the Turner Prize in 1985, awarded honorary doctorates from Aberdeen University in 1987, Heriot-Watt University in 1993 and the University of Glasgow in 2001, and an honorary and/or visiting professorship from the University of Dundee in 1999."
+        },
+        {
+            name: "Ithell Colquhoun",
+            artistId: "931",
+            image: "images/artists/colquhoun.jpg",
+            imageCopyright: "Colquhoun. © Samaritans, © Noise Abatement Society & © Spire Healthcare",
+            bio: "Ithell Colquhoun (1906–1988) was a Surrealist painter and author. Colquhoun did take some art courses, but she was largely self-taught. She studied for a period at the Slade School of Art in London, under Henry Tonks and Randolph Schwabe, before travelling to France in 1931. It was in Paris that she discovered surrealism and was especially influenced by the works of Salvador Dalí."
+        },
+        {
+            name: "John Banting",
+            artistId: "691",
+            image: "images/artists/banting.jpg",
+            imageCopyright: "TGA 779/8/117. © Reserved",
+            bio: "The son of a commercial bookbinder and a teacher, John Banting (1902-1972) was born in Chelsea, London on 12 May 1902. He made drawings and poems under the influence of Vorticism at the age of eighteen. While working as a clerk, he attended life classes at Vincent Square art school under Bernard Meninsky (1921) and the free academies in Paris, including the Grande Chaumière and Colarossi's (1922). By 1925 he had established a studio in Fitzroy Street and was associated with the Bloomsbury group; he made designs for Leonard and Virginia Woolf's Hogarth Press and for the ballets Pomona (1929) and Prometheus (1936) at Sadler's Wells. He was notable for shaving his head (a response to premature hair-loss), and for his relationships with Nancy Cunard and the poet Brian Howard."
+        },
+        {
+            name: "L. S. Lowry",
+            artistId: "1533",
+            image: "images/artists/lowry.jpg",
+            imageCopyright: "Lowry, TGA 8019/1/1. © The estate of L. S. Lowry.  All Rights Reserved, DACS 2016",
+            bio: "Laurence Stephen Lowry (1 November 1887 – 23 February 1976) was an English artist. Many of his drawings and paintings depict Pendlebury, Lancashire, where he lived and worked for more than 40 years, and also Salford and its surrounding areas."
+
+        },
+        {
+            name: "Henry Moore",
+            artistId: "1659",
+            image: "images/artists/moore.jpg",
+            imageCopyright: "Allan Warren, used under CC 3.0",
+            bio: "Henry Moore (1898–1986) was best known for his semi-abstract monumental bronze sculptures which are located around the world as public works of art. As well as sculpture, Moore produced many drawings, including a series depicting Londoners sheltering from the Blitz during the Second World War, along with other graphic works on paper."
         }
     ]);
