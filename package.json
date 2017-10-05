@@ -97,7 +97,7 @@
     "morgan": "^1.2.2",
     "ng-load": "^1.0.2",
     "nib": "^1.1.0",
-    "node-dir": "^0.1.6",
+    "node-dir": "0.1.16",
     "npm": "^2.9.0",
     "pretty-hrtime": "^0.2.2",
     "protractor": "^1.2.0",
