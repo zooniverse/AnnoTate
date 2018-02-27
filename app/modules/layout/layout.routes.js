@@ -4,7 +4,8 @@ require('./layout.module.js')
     .config(Routes);
 
 // @ngInject
-function Routes($stateProvider) {
+function Routes($locationProvider, $stateProvider) {
+    $locationProvider.hashPrefix('');
     $stateProvider
         .state('Base', {
             templateUrl: 'layout/base.html',
