@@ -11,7 +11,8 @@ var appConfig = {
             production: '40557049c91840f89c2df75f44dbac5de2dfdfda3b44c49f2aa8f4a2381414ba',
         };
         return APP_IDS[process.env.NODE_ENV] || APP_IDS.staging;
-    })()
+    })(),
+    graphqlEndpoint: 'https://caesar.zooniverse.org/graphql',
 };
 
 // @ngInject

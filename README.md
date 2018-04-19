@@ -20,6 +20,10 @@ To deploy to [https://anno.tate.org.uk/](https://anno.tate.org.uk) run `npm run 
 
 To upload new subjects and sets, use [annotate-uploader](https://github.com/rogerhutchings/annotate-uploader), which will add all the required metadata needed to group by artist. You'll also need to add any new artists to `app/modules/set-selector/artists.constants.js`.
 
+## Aggregation
+
+The project now uses Caesar to request aggregated lines via the GraphQL endpoint. To show an aggregated line, the minimum consensus score on a line must be > **2.5**, or the number of views on the line must be > **4** . The minimum number of views is set as the consensus score can be artificially low if a user decides to type a bunch of words that aren't there/try to do the full page of text but only has dots round the first line.
+
 ---
 
 ## Built using:

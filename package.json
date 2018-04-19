@@ -113,6 +113,7 @@
   },
   "dependencies": {
     "envify": "^3.4.0",
+    "graphql-request": "^1.5.1",
     "panoptes-client": "^2.2.1"
   }
 }
