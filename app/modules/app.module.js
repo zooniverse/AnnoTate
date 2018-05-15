@@ -9,7 +9,7 @@ var appConfig = require('./app.config.js');
 require('es6-promise').polyfill();
 require('angular-bootstrap');
 require('angular-local-storage');
-require('angular-ui-router');
+require('@uirouter/angularjs');
 require('angular-hotkeys');
 require('angular-animate');
 // App modules
