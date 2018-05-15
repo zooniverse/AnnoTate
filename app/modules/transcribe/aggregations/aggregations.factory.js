@@ -10,18 +10,18 @@ require('./aggregations.module.js')
     .factory('AggregationsFactory', AggregationsFactory);
 
 // @ngInject
-function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIConfig, zooAPIProject, appConfig) {
+function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject, appConfig) {
 
     var factory;
 
     var _aggregations = [];
     var _client = new GraphQLClient(appConfig.graphqlEndpoint);
-    var _query = `query Aggregation($workflowId: ID!, $subjectId: ID!) {
-        workflow(id: $workflowId) {
-            subject_reductions(subjectId: $subjectId, reducerKey: "poly_line_text") {
-                data
-            }
-        }
+    var _query = `query Aggregation($workflowId: ID!, $subjectId: ID!) {\
+        workflow(id: $workflowId) {\
+            subject_reductions(subjectId: $subjectId, reducerKey: "poly_line_text") {\
+                data\
+            }\
+        }\
     }`;
 
     factory = {
@@ -55,7 +55,7 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIConfig, zooAPIPr
             .then(function (project) {
                 return {
                     subjectId: SubjectsFactory.current.data.id,
-                    workflowId: zooAPIConfig.workflow_id
+                    workflowId: project.links.workflows[0]
                 };
             });
     }
