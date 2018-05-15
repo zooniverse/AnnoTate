@@ -18,7 +18,7 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject, appConf
     var _client = new GraphQLClient(appConfig.graphqlEndpoint);
     var _query = `query Aggregation($workflowId: ID!, $subjectId: ID!) {\
         workflow(id: $workflowId) {\
-            subject_reductions(subjectId: $subjectId, reducerKey: "poly_line_text") {\
+            subject_reductions(subjectId: $subjectId, reducerKey: "T2-text") {\
                 data\
             }\
         }\
