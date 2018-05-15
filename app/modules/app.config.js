@@ -12,7 +12,7 @@ var appConfig = {
         };
         return APP_IDS[process.env.NODE_ENV] || APP_IDS.staging;
     })(),
-    graphqlEndpoint: 'https://caesar.zooniverse.org/graphql',
+    graphqlEndpoint: 'https://caesar.zooniverse.org/graphql'
 };
 
 // @ngInject
