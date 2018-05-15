@@ -1,15 +1,28 @@
 'use strict';
 
 var _ = require('lodash');
+var GraphQLClient = require('graphql-request').GraphQLClient;
+
+var MIN_NUMBER_VIEWS = 4;
+var MIN_CONSENSUS_SCORE = 2.5;
 
 require('./aggregations.module.js')
     .factory('AggregationsFactory', AggregationsFactory);
 
 // @ngInject
-function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
+function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIConfig, zooAPIProject, appConfig) {
 
     var factory;
+
     var _aggregations = [];
+    var _client = new GraphQLClient(appConfig.graphqlEndpoint);
+    var _query = `query Aggregation($workflowId: ID!, $subjectId: ID!) {\
+        workflow(id: $workflowId) {\
+            subject_reductions(subjectId: $subjectId, reducerKey: "T2-text") {\
+                data\
+            }\
+        }\
+    }`;
 
     factory = {
         $getData: $getData,
@@ -22,10 +35,15 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
         _aggregations.length = 0;
         return _createParamsObject()
             .then(_getAggregations)
+
+            .then(_filterAggregations)
+            .then(_formatAggregations)
             .then(function (newAggregations) {
                 _aggregations = _aggregations.concat(newAggregations);
+            })
+            .catch(function (error) {
+                console.error('Error fetching aggregations', error);
             });
-
     }
 
     function list() {
@@ -36,38 +54,47 @@ function AggregationsFactory($q, SubjectsFactory, zooAPI, zooAPIProject) {
         return zooAPIProject.get()
             .then(function (project) {
                 return {
-                    subject_id: SubjectsFactory.current.data.id,
-                    workflow_id: project.links.workflows[0]
+                    subjectId: SubjectsFactory.current.data.id,
+                    workflowId: zooAPIConfig.workflow_id
                 };
             });
     }
 
     function _getAggregations(params) {
-        return zooAPI.type('aggregations').get(params)
-            .then(_formatAggregations);
+        return _client.request(_query, params)
+            .then(function (aggregations) {
+                var path = 'workflow.subject_reductions[0].data.frame0';
+                return _.get(aggregations, path, []);
+            });
+    }
+
+    function _filterAggregations(aggregations) {
+        if (aggregations.length === 0) {
+            return aggregations;
+        }
+
+        return aggregations.filter(function (aggregation) {
+            return aggregation.number_views >= MIN_NUMBER_VIEWS ||
+                aggregation.consensus_score >= MIN_CONSENSUS_SCORE;
+        });
     }
 
     function _formatAggregations(aggregations) {
         if (aggregations.length === 0) {
-            return;
-        } else {
-            var rawAggs = _.omit(aggregations[0].aggregation.T2['text clusters'], 'param');
-            rawAggs = _.filter(rawAggs, function (line) {
-                return line['num users'] > 4;
-            });
-            return _.map(rawAggs, function (line) {
-                return {
-                    startPoint: {
-                        x: line.center[0],
-                        y: line.center[2],
-                    },
-                    endPoint: {
-                        x: line.center[1],
-                        y: line.center[3],
-                    },
-                    text: line.center[4]
-                };
-            });
+            return aggregations;
         }
+
+        return aggregations.map(function (aggregation) {
+            return {
+                startPoint: {
+                    x: aggregation.clusters_x[0],
+                    y: aggregation.clusters_y[0],
+                },
+                endPoint: {
+                    x: aggregation.clusters_x[1],
+                    y: aggregation.clusters_y[1],
+                }
+            };
+        });
     }
 }
