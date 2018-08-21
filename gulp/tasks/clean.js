@@ -4,8 +4,8 @@ var config = require('../config');
 var gulp   = require('gulp');
 var del    = require('del');
 
-gulp.task('clean', function(callback) {
+gulp.task('clean', function() {
 
-  del([config.dist.root, config.modules.src + '/**/*.templates.js'], callback);
+  return del([config.dist.root]);
 
 });

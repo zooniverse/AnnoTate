@@ -83,7 +83,7 @@ function SubjectsFactory($q, localStorageService, zooAPI, zooAPIProject) {
 
     function _populateQueue() {
         var deferred = $q.defer();
-        var viewedSubjectIDs = _.pluck(_data.viewed, 'id');
+        var viewedSubjectIDs = _.map(_data.viewed, 'id');
         getPage(1);
         return deferred.promise;
 
