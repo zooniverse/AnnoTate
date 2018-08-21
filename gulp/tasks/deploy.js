@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var config = require('../config');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
