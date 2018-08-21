@@ -25,17 +25,6 @@ module.exports = {
         'sourcemap': true
     },
 
-    'deploy': {
-        'production': {
-            'Bucket': 'zooniverse-static',
-            'Prefix': 'anno.tate.org.uk/',
-        },
-        'staging': {
-            'Bucket': 'zooniverse-static',
-            'Prefix': 'preview.zooniverse.org/annotate/',
-        }
-    },
-
     'dist': {
         'root': 'build'
     },
