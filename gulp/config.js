@@ -22,17 +22,13 @@ module.exports = {
     'browserify': {
         'bundleName': 'main.js',
         'entries': ['./app/modules/app.module.js'],
-        'sourcemap' : true
+        'sourcemap': true
     },
 
     'deploy': {
         'production': {
             'Bucket': 'zooniverse-static',
             'Prefix': 'anno.tate.org.uk/',
-        },
-        'alpha': {
-            'Bucket': 'zooniverse-static',
-            'Prefix': 'preview.zooniverse.org/transcribe/',
         },
         'staging': {
             'Bucket': 'zooniverse-static',
@@ -45,7 +41,7 @@ module.exports = {
     },
 
     'fonts': {
-        'src' : ['app/fonts/**/*'],
+        'src': ['app/fonts/**/*'],
         'dest': 'build/fonts'
     },
 
@@ -56,7 +52,7 @@ module.exports = {
     },
 
     'images': {
-        'src' : 'app/images/**/*',
+        'src': 'app/images/**/*',
         'dest': 'build/images'
     },
 
@@ -69,7 +65,7 @@ module.exports = {
     },
 
     'scripts': {
-        'src' : 'app/modules/**/*.js',
+        'src': 'app/modules/**/*.js',
         'dest': 'build/js'
     },
 

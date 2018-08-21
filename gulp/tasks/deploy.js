@@ -8,11 +8,6 @@ var s3 = require('s3');
 
 gulp.task('deploy', function (callback) {
 
-    if (!global.s3Params) {
-        throw new Error('No deploy parameters defined');
-        process.exit(1);
-    }
-
     var client = s3.createClient({
         s3Options: {
             accessKeyId: process.env.AMAZON_ACCESS_KEY_ID,
@@ -22,10 +17,12 @@ gulp.task('deploy', function (callback) {
 
     var params = {
         localDir: config.dist.root,
-        s3Params: _.extend(global.s3Params, {
+        s3Params: {
             ACL: 'public-read',
-            CacheControl: 'no-cache'
-        })
+            Bucket: process.env.BUCKET,
+            CacheControl: 'no-cache',
+            Prefix: process.env.PREFIX,
+        }
     };
 
     var uploader = client.uploadDir(params);

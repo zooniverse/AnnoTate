@@ -11,6 +11,7 @@
  * To add a new task, simply add a new task file to gulp/tasks.
  */
 
-global.isProd = false;
+global.isProd = process.env.NODE_ENV === 'production';
+console.log('Environment set to', (global.isProd) ? 'production' : 'staging');
 
-require('./gulp');
+require('./gulp/index.js');

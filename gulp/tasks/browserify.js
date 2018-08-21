@@ -1,12 +1,12 @@
 'use strict';
 
+var babel = require('gulp-babel')
 var babelify = require('babelify');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var buffer = require('vinyl-buffer');
 var config = require('../config');
 var debowerify = require('debowerify');
-var envify = require('envify');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
@@ -17,6 +17,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
+var envify = require('envify');
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
@@ -37,9 +38,9 @@ function buildScript(file) {
     }
 
     var transforms = [
-        babelify,
         debowerify,
         ngAnnotate,
+        envify,
         'brfs',
         'bulkify',
         'browserify-shim'
@@ -59,13 +60,20 @@ function buildScript(file) {
 
         gutil.log('Rebundle...');
 
-        return stream.on('error', handleErrors)
+        return stream
+            .on('error', handleErrors)
             .pipe(source(file))
             .pipe(gulpif(createSourcemap, buffer()))
             .pipe(gulpif(createSourcemap, sourcemaps.init()))
-            .pipe(gulpif(global.isProd, streamify(uglify({
-                compress: { drop_console: true }
-            }))))
+            .pipe(streamify(babel({
+                presets: ['es2015']
+            })))
+            .pipe(gulpif(global.isProd, streamify(
+                uglify({
+                    compress: { drop_console: true }
+                })
+                .on('error', handleErrors)
+            )))
             .pipe(gulpif(createSourcemap, sourcemaps.write('./')))
             .pipe(gulp.dest(config.scripts.dest))
             .pipe(gulpif(browserSync.active, browserSync.reload({ stream: true, once: true })));
