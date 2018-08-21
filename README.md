@@ -24,6 +24,17 @@ The project now uses Caesar to request aggregated lines via the GraphQL endpoint
 
 Deploys happen automatically on the `master` and `staging` branches via [Jenkins](https://jenkins.zooniverse.org/job/Zooniverse%20GitHub/job/AnnoTate/).
 
+### Manual Deployment
+
+To deploy from your local machine, you'll need to set the `BUCKET`, `PREFIX`  and `BASE_URL` environment variables before running the build and deploy scripts.
+
+```sh
+export BUCKET="zooniverse-static"
+export PREFIX="anno.tate.org.uk/"
+export BASE_URL="https://anno.tate.org.uk"
+npm run build && npm run deploy
+```
+
 ---
 
 ## Built using:
