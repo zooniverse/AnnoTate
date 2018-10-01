@@ -13,6 +13,8 @@ gulp.task('s3Paths', function () {
         var deferred = Q.defer();
         var baseUrl = process.env.BASE_URL;
         var dest = filename.substring(0, filename.lastIndexOf('/'));
+        var lastChar = baseUrl.slice(-1);
+        baseUrl = lastChar === '/' ? baseUrl : baseUrl + '/';
 
         gulp.src(filename)
 
