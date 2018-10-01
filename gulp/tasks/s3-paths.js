@@ -18,6 +18,9 @@ gulp.task('s3Paths', function () {
 
             // Base tag, needed for ui-router
             .pipe(replace('<base href="/">', '<base href="' + baseUrl + '">'))
+            // Search for URLs that begin with / and rewrite them as fully-qualified URLs.
+            // This allows the browser to resolve linked files correctly on
+            // preview.zooniverse.org/annotate/ and on anno.tate.org.uk/
             .pipe(replace(/[ ](href|src)="\//g, ' $1="' + baseUrl))
             .pipe(replace(/(url\(")\//g, ' $1' + baseUrl))
 
