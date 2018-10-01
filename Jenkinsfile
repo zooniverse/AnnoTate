@@ -17,13 +17,13 @@ node {
   stage('Deploy') {
     if (BRANCH_NAME == 'staging') {
       newImage.inside {
-        sh 'export BUCKET="zooniverse-static"; export PREFIX="preview.zooniverse.org/annotate/"; export BASE_URL="https://preview.zooniverse.org/annotate"; npm run build && npm run deploy'
+        sh 'export BUCKET="zooniverse-static"; export PREFIX="preview.zooniverse.org/annotate/"; export BASE_URL="https://preview.zooniverse.org/annotate/"; npm run build && npm run deploy'
       }
     }
 
     if (BRANCH_NAME == 'master') {
       newImage.inside {
-        sh 'export BUCKET="zooniverse-static"; export PREFIX="anno.tate.org.uk/"; export BASE_URL="https://anno.tate.org.uk"; npm run build && npm run deploy'
+        sh 'export BUCKET="zooniverse-static"; export PREFIX="anno.tate.org.uk/"; export BASE_URL="https://anno.tate.org.uk/"; npm run build && npm run deploy'
       }
     }
   }
