@@ -18,8 +18,6 @@ gulp.task('s3Paths', function () {
 
             // Base tag, needed for ui-router
             .pipe(replace('<base href="/">', '<base href="' + baseUrl + '">'))
-            .pipe(replace(/[ ](href|src)="(?!http)/g, ' $1="' + baseUrl))
-            .pipe(replace(/(url\(")/g, ' $1' + baseUrl))
 
             .pipe(gulp.dest(dest))
                 .on('end', deferred.resolve)
