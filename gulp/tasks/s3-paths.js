@@ -13,13 +13,18 @@ gulp.task('s3Paths', function () {
         var deferred = Q.defer();
         var baseUrl = process.env.BASE_URL;
         var dest = filename.substring(0, filename.lastIndexOf('/'));
+        var lastChar = baseUrl.slice(-1);
+        baseUrl = lastChar === '/' ? baseUrl : baseUrl + '/';
 
         gulp.src(filename)
 
             // Base tag, needed for ui-router
             .pipe(replace('<base href="/">', '<base href="' + baseUrl + '">'))
-            .pipe(replace(/[ ](href|src)="(?!http)/g, ' $1="' + baseUrl))
-            .pipe(replace(/(url\(")/g, ' $1' + baseUrl))
+            // Search for URLs that begin with / and rewrite them as fully-qualified URLs.
+            // This allows the browser to resolve linked files correctly on
+            // preview.zooniverse.org/annotate/ and on anno.tate.org.uk/
+            .pipe(replace(/[ ](href|src)="\//g, ' $1="' + baseUrl))
+            .pipe(replace(/(url\(")\//g, ' $1' + baseUrl))
 
             .pipe(gulp.dest(dest))
                 .on('end', deferred.resolve)

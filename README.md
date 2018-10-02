@@ -31,7 +31,7 @@ To deploy from your local machine, you'll need to set the `BUCKET`, `PREFIX`  an
 ```sh
 export BUCKET="zooniverse-static"
 export PREFIX="anno.tate.org.uk/"
-export BASE_URL="https://anno.tate.org.uk"
+export BASE_URL="https://anno.tate.org.uk/"
 npm run build && npm run deploy
 ```
 
