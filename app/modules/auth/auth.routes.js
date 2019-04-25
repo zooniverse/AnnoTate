@@ -11,14 +11,7 @@ function Routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state('completeAuth', {
         url: '/auth',
         template: 'Logging in...',
-        controller: CompleteAuthController
     });
-
-}
-
-// @ngInject
-function CompleteAuthController($location, authFactory) {
-    authFactory.completeSignIn($location.search());
 }
 
 // @ngInject
