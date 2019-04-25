@@ -6,7 +6,6 @@ var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var buffer = require('vinyl-buffer');
 var config = require('../config');
-var debowerify = require('debowerify');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
@@ -38,7 +37,6 @@ function buildScript(file) {
     }
 
     var transforms = [
-        debowerify,
         ngAnnotate,
         envify,
         'brfs',
