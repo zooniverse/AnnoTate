@@ -1,19 +1,12 @@
 {
+  "private": true,
   "name": "annotate",
-  "version": "3.2.0",
-  "author": {
-    "name": "Roger Hutchings",
-    "email": "roger@hutchin.gs",
-    "url": "http://rogerhutchin.gs"
-  },
-  "contributors": [
-    {
-      "name": "Perry Roper",
-      "email": "perryroper@gmail.com",
-      "url": "https://perry.io"
-    }
-  ],
   "description": "A full-text transcription web app, written for the Tate Britain.",
+  "license": "Apache-2.0",
+  "author": "Roger Hutchings <roger@hutchin.gs> (http://rogerhutchin.gs)",
+  "contributors": [
+    "Perry Roper <perryroper@gmail.com> (https://perry.io)"
+  ],
   "homepage": "https://anno.tate.org.uk/",
   "repository": {
     "type": "git",
@@ -22,18 +15,14 @@
   "bugs": {
     "url": "https://github.com/zooniverse/AnnoTate/issues"
   },
-  "license": "Apache-2.0",
-  "keywords": [
-    "express",
-    "gulp",
-    "browserify",
-    "angular",
-    "stylus",
-    "boilerplate"
-  ],
-  "private": true,
-  "engines": {
-    "node": "8"
+  "version": "3.2.0",
+  "browser": {
+    "./node_modules/angular-bootstrap-npm/dist/angular-bootstrap.min.js": "angular-bootstrap-npm"
+  },
+  "scripts": {
+    "build": "check-engines && NODE_ENV=production gulp production",
+    "deploy": "check-engines && NODE_ENV=production gulp deploy",
+    "start": "check-engines && gulp dev"
   },
   "devDependencies": {
     "@uirouter/angularjs": "^1.0.3",
@@ -47,7 +36,7 @@
     "babelify": "^7.3.0",
     "bootstrap-styl": "^5.0.8",
     "brfs": "^1.2.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.26.5",
     "browserify": "^14.4.0",
     "browserify-ngannotate": "^2.0.0",
     "browserify-shim": "^3.8.5",
@@ -58,10 +47,10 @@
     "del": "^3.0.0",
     "draggabilly": "^2.1.1",
     "envify": "^4.1.0",
-    "express": "^4.7.2",
+    "express": "^4.16.4",
     "graphql-request": "^1.4.0",
     "gulp": "^3.8.8",
-    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-angular-templatecache": "^2.2.6",
     "gulp-babel": "^7.0.1",
     "gulp-changed": "^3.1.0",
     "gulp-gzip": "^1.4.0",
@@ -71,7 +60,7 @@
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.6.1",
-    "gulp-sourcemaps": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-streamify": "1.0.2",
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^3.0.0",
@@ -79,18 +68,18 @@
     "hammerjs": "^2.0.4",
     "imagemin-pngcrush": "^5.1.0",
     "install": "^0.10.1",
-    "jshint": "^2.9.5",
+    "jshint": "^2.10.2",
     "jshint-stylish": "^2.2.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "lunar.js": "git://github.com/toddmotto/lunar.git",
     "masonry-layout": "^4.2.2",
-    "moment": "^2.10.3",
-    "morgan": "^1.2.2",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
     "ng-load": "^1.0.2",
     "nib": "^1.1.0",
     "node-dir": "0.1.16",
     "npm": "^5.3.0",
-    "panoptes-client": "^2.9.4",
+    "panoptes-client": "^2.12.1",
     "pretty-hrtime": "^1.0.3",
     "q": "^1.2.0",
     "run-sequence": "^2.1.0",
@@ -98,18 +87,21 @@
     "spin": "0.0.1",
     "svg-pan-zoom": "^3.2.1",
     "tiny-lr": "1.0.5",
+    "tough-cookie": "^3.0.1",
     "uglifyify": "^4.0.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "watchify": "^3.11.1"
   },
-  "scripts": {
-    "start": "check-engines && gulp dev",
-    "deploy": "check-engines && NODE_ENV=production gulp deploy",
-    "build": "check-engines && NODE_ENV=production gulp production"
-  },
-  "browser": {
-    "./node_modules/angular-bootstrap-npm/dist/angular-bootstrap.min.js": "angular-bootstrap-npm"
+  "keywords": [
+    "angular",
+    "browserify",
+    "express",
+    "gulp",
+    "stylus"
+  ],
+  "engines": {
+    "node": "8"
   },
   "browserify-shim": {
     "angular-bootstrap-npm": "angular-bootstrap-npm"
