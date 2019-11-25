@@ -89,7 +89,7 @@
     "nib": "^1.1.0",
     "node-dir": "0.1.16",
     "npm": "^5.3.0",
-    "panoptes-client": "^2.12.1",
+    "panoptes-client": "^3.0.0-rc.0",
     "pretty-hrtime": "^1.0.3",
     "q": "^1.2.0",
     "run-sequence": "^2.1.0",
